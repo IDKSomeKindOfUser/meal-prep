@@ -1,24 +1,24 @@
 /* Цвета описаны в DESIGN.md. Тёмный набор записан дважды: для системной темы и для ручного выбора. */
 :root {
   color-scheme: light;
-  --ground: #f4f7ec;
+  --ground: #f5f5ef;
   --surface: #ffffff;
-  --ink: #12301f;
-  --muted: #4a6152;
-  --line: #c5d1bd;
+  --ink: #1d2a22;
+  --muted: #56635a;
+  --line: #d6dbd0;
   --control: #6b8073;
   --accent: #8c1d52;
   --on-accent: #ffffff;
   --selected: #0f5b3a;
   --on-selected: #ffffff;
   --danger: #a8201a;
-  --breakfast: #f7d84a;
+  --breakfast: #f2c94c;
   --on-breakfast: #3a2c00;
-  --lunch: #f08a1d;
+  --lunch: #ec8a2e;
   --on-lunch: #2b1500;
-  --dinner: #0f5b3a;
+  --dinner: #1f7a50;
   --on-dinner: #ffffff;
-  --snack: #8c1d52;
+  --snack: #a3336a;
   --on-snack: #ffffff;
 
   --font: 'Sofia Sans Variable', system-ui, sans-serif;
@@ -44,47 +44,47 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
     color-scheme: dark;
-    --ground: #0e1a13;
-    --surface: #18271e;
-    --ink: #eaf3e4;
-    --muted: #a9bcaa;
-    --line: #33463a;
-    --control: #7c9485;
+    --ground: #111312;
+    --surface: #1c1f1d;
+    --ink: #ecece6;
+    --muted: #a3a8a2;
+    --line: #2d312e;
+    --control: #7c8a81;
     --accent: #f2a3c7;
     --on-accent: #3b0a22;
     --selected: #f7d84a;
     --on-selected: #3a2c00;
     --danger: #ffb0a6;
-    --breakfast: #5a4a08;
-    --on-breakfast: #fdeeb0;
-    --lunch: #7a3d06;
-    --on-lunch: #ffe6c8;
-    --dinner: #0f4a31;
-    --on-dinner: #dff5e6;
-    --snack: #6b1640;
-    --on-snack: #ffe0ee;
+    --breakfast: #f2d36b;
+    --on-breakfast: #2e2300;
+    --lunch: #f4a259;
+    --on-lunch: #2b1500;
+    --dinner: #6fcf97;
+    --on-dinner: #0b2a1a;
+    --snack: #f2a3c7;
+    --on-snack: #3b0a22;
   }
 }
 
 :root[data-theme='dark'] {
   color-scheme: dark;
-  --ground: #0e1a13;
-  --surface: #18271e;
-  --ink: #eaf3e4;
-  --muted: #a9bcaa;
-  --line: #33463a;
-  --control: #7c9485;
+  --ground: #111312;
+  --surface: #1c1f1d;
+  --ink: #ecece6;
+  --muted: #a3a8a2;
+  --line: #2d312e;
+  --control: #7c8a81;
   --accent: #f2a3c7;
   --on-accent: #3b0a22;
   --selected: #f7d84a;
   --on-selected: #3a2c00;
   --danger: #ffb0a6;
-  --breakfast: #5a4a08;
-  --on-breakfast: #fdeeb0;
-  --lunch: #7a3d06;
-  --on-lunch: #ffe6c8;
-  --dinner: #0f4a31;
-  --on-dinner: #dff5e6;
-  --snack: #6b1640;
-  --on-snack: #ffe0ee;
+  --breakfast: #f2d36b;
+  --on-breakfast: #2e2300;
+  --lunch: #f4a259;
+  --on-lunch: #2b1500;
+  --dinner: #6fcf97;
+  --on-dinner: #0b2a1a;
+  --snack: #f2a3c7;
+  --on-snack: #3b0a22;
 }
