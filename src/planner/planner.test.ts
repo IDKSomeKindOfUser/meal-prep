@@ -2,6 +2,7 @@ import { describe, expect, test } from 'vitest'
 import { ALLERGENS } from '../data/types'
 import { ingredients, recipeAllergens, recipeLactose, recipes } from '../data'
 import { alternatives, defaultCatalog as catalog, describeMenu, planMenu, replaceDish, type Plan } from './index'
+import { dishFamily } from './search'
 import { NO_LIMITS, SLOTS, TOOLS, type Settings } from './types'
 
 const usual: Settings = {
@@ -89,6 +90,16 @@ describe('budget', () => {
   ] as const)('lunch and dinner of one day differ, %s', (_, over) => {
     for (const cookTimes of [1, 2, 3, 7] as const) for (const seed of [1, 2, 3, 4, 5]) {
       for (const b of plan({ ...over, cookTimes }, seed).menu) expect(b.lunch).not.toBe(b.dinner)
+    }
+  }, 120_000)
+  test.each([
+    ['free', {}],
+    ['tight', { kcal: 2600, protein: 150, budget: 4000 }],
+  ] as const)('lunch and dinner are not the same family of dish, %s', (_, over) => {
+    for (const cookTimes of [2, 7] as const) for (const seed of [1, 2, 3, 4, 5]) {
+      for (const b of plan({ ...over, cookTimes }, seed).menu) {
+        expect(dishFamily(byId.get(b.lunch)!)).not.toBe(dishFamily(byId.get(b.dinner)!))
+      }
     }
   }, 120_000)
   // Without care these rebuilds keep one cooking exactly as it was.

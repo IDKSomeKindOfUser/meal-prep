@@ -61,11 +61,15 @@ function dayPenalty(day: PortionedDay, s: Settings): number {
   return kcal + protein
 }
 
+/** Основа блюда: первое слово названия («плов», «паста», «суп»). */
+export const dishFamily = (r: Recipe): string => r.name.split(' ')[0]!.toLowerCase()
+
 function comfortPenalty(picks: Picks, schedule: readonly Block[], s: Settings): number {
   const weeksOf = new Map<string, number[]>()
   let penalty = 0
   picks.forEach((row, i) => {
     if (row[LUNCH] === row[DINNER]) penalty += 10
+    else if (dishFamily(row[LUNCH]!) === dishFamily(row[DINNER]!)) penalty += 6
     for (const r of row) {
       const seen = weeksOf.get(r.id)
       const week = schedule[i]!.week
@@ -144,6 +148,9 @@ export function search(
     if (next === old) continue
     // Lunch and dinner of one day are never the same dish.
     if ((slot === LUNCH && next === picks[i]![DINNER]) || (slot === DINNER && next === picks[i]![LUNCH])) continue
+    // И две похожие основы («Плов с курицей» и «Плов со свининой») в один день тоже не ставим.
+    const other = slot === LUNCH ? picks[i]![DINNER] : slot === DINNER ? picks[i]![LUNCH] : undefined
+    if (other && dishFamily(next) === dishFamily(other)) continue
     const oldDay = days[i]!
     const oldPenalty = penalties[i]!
     const { week, days: length } = schedule[i]!

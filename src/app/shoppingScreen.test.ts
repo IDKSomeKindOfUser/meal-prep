@@ -19,6 +19,8 @@ describe('shopping list', () => {
     expect(sum).toBeCloseTo(week.marketCost + week.storeCost, 6)
     expect(sum).toBeCloseTo(report.shopping.total, 6)
     for (const item of [...week.market, ...week.store]) expect(buyAmount(item)).toMatch(/\d/)
+    for (const item of [...week.market, ...week.store]) expect(Number.isInteger(item.cost)).toBe(true)
+    expect(Number.isInteger(week.marketCost + week.storeCost)).toBe(true)
   })
   it('keeps checked items after reload and drops a broken list', () => {
     const state = { version: 1, form, plan: { ...plan, checked: ['0:rice'] } }

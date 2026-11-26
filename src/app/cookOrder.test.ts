@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { cookOrder } from './cookOrder'
+import { cookOrder, cookingMinutes } from './cookOrder'
 
 const dish = (name: string, minutes: number, ...tools: string[]) => ({ name, minutes, tools })
 
@@ -29,4 +29,12 @@ describe('cookOrder', () => {
     expect(order.steps).toEqual([])
     expect(order.minutes).toBe(15)
   })
+})
+
+it('cookingMinutes counts parallel tools once', () => {
+  const dishes = [
+    { recipe: { minutes: 60, tools: ['духовка'] } },
+    { recipe: { minutes: 40, tools: ['плита'] } },
+  ]
+  expect(cookingMinutes(dishes)).toBe(60)
 })

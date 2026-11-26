@@ -58,7 +58,8 @@ export function shoppingList(needs: readonly ReadonlyMap<string, number>[], cata
     unitsPerWeek(perWeek, buying.grams).forEach((units, i) => {
       if (units === 0) return
       const week = weeks[i]!
-      const cost = units * buying.cost
+      // Строку чека округляем до рубля, итоги суммируют уже округлённое: на экране всё сходится.
+      const cost = Math.round(units * buying.cost)
       const item = { id, need: perWeek[i]!, units, unit: buying.unit, grams: units * buying.grams, cost }
       if (product.place === 'market') {
         week.market.push(item)

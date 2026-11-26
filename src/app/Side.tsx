@@ -5,6 +5,7 @@ import { DayChart } from './DayChart'
 import { DishPicture } from './DishPicture'
 import { GoIcon } from './parts'
 import { COOK, count, num, rub, SLOT } from './labels'
+import { cookingMinutes } from './cookOrder'
 import { cookHash } from './route'
 import { checkKey } from './ShoppingScreen'
 import { cookingKeys, type SavedPlan } from './storage'
@@ -97,7 +98,7 @@ export function TodaySide({ plan, report, day, onDay }: { plan: SavedPlan; repor
         <section className="widget">
           <h2>Ближайшая готовка</h2>
           <p><b>{next.day === day ? 'Сегодня' : `${capital(weekday(addDays(start, next.day)))}, ${dayMonth(addDays(start, next.day))}`}</b></p>
-          <p className="hint">{count(next.dishes.length, 'блюдо', 'блюда', 'блюд')}, около {num(next.minutes)} мин</p>
+          <p className="hint">{count(next.dishes.length, 'блюдо', 'блюда', 'блюд')}, около {num(cookingMinutes(next.dishes))} мин</p>
           <CookedRing plan={plan} cookDay={next.day} />
           <a className="tonal" href={cookHash(next.day)}>Начать готовку<GoIcon /></a>
         </section>

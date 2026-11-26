@@ -32,3 +32,8 @@ export function cookOrder<T extends Cookable>(items: T[]) {
   const handsOnly = meanwhile.reduce((sum, i) => sum + i.minutes, 0)
   return { steps, meanwhile, minutes: Math.max(handsOnly, ...free.values()) }
 }
+
+/** Одно число времени готовки для «Сегодня», боковой панели и экрана готовки. */
+export function cookingMinutes(dishes: { recipe: { minutes: number; tools: string[] } }[]): number {
+  return cookOrder(dishes.map((d) => ({ minutes: d.recipe.minutes, tools: d.recipe.tools }))).minutes
+}

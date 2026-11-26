@@ -11,7 +11,7 @@ interface Props {
 }
 
 const products = [...ingredients.values()].filter((i) => i.place).sort((a, b) => a.name.localeCompare(b.name, 'ru'))
-const round = (n: number) => String(Math.round(n * 100) / 100)
+const round = (n: number) => String(Math.round(n * 100) / 100).replace('.', ',')
 
 function Row({ id, own, onChange }: { id: string; own: PriceOverrides[string] | undefined; onChange: (next: PriceOverrides[string] | null) => void }) {
   const base = defaultCatalog.price(id)!
@@ -24,22 +24,23 @@ function Row({ id, own, onChange }: { id: string; own: PriceOverrides[string] | 
     if (validOverride(next)) onChange(next)
   }
   const bad = (v: string) => !(Number(v.replace(',', '.')) > 0)
+  const name = getIngredient(id).name
   const estimated = prices[id]?.records.some((r) => r.status === 'estimate')
   return (
     <li>
       <div className="what">
-        <span className="name">{getIngredient(id).name}</span>
+        <span className="name">{name}</span>
         {own ? <span className="hint">Ваша цена</span> : estimated && <span className="hint">Цена примерная</span>}
       </div>
       <label>
         <span className="hint">{packed ? '₽ за пачку' : '₽ за кг'}</span>
-        <input inputMode="decimal" autoComplete="off" value={price} aria-invalid={bad(price) || undefined}
+        <input inputMode="decimal" autoComplete="off" aria-label={`${name}, ${packed ? 'рублей за пачку' : 'рублей за килограмм'}`} value={price} aria-invalid={bad(price) || undefined}
           onChange={(e) => { setPrice(e.target.value); commit(e.target.value, grams) }} />
       </label>
       {packed && (
         <label>
           <span className="hint">г в пачке</span>
-          <input inputMode="decimal" autoComplete="off" value={grams} aria-invalid={bad(grams) || undefined}
+          <input inputMode="decimal" autoComplete="off" aria-label={`${name}, граммов в пачке`} value={grams} aria-invalid={bad(grams) || undefined}
             onChange={(e) => { setGrams(e.target.value); commit(price, e.target.value) }} />
         </label>
       )}

@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import { addDays, dayMonth, dayNumber, dayOfPlan, daysBetween, mealNow, nextMeal, weekday, weekdayShort } from './dates'
 import { daysCount, num, rub, SLOT } from './labels'
 import { DishField, GoIcon, portionNote, Warnings, WeekTabs } from './parts'
+import { cookingMinutes } from './cookOrder'
 import { cookHash, dishHash } from './route'
 import { cookedKey, type SavedPlan } from './storage'
 import { transition } from './transition'
@@ -93,7 +94,7 @@ export function Today({ plan, report, today, day, onDay, busy, onShuffle }: Prop
               <li key={c.day} data-now={iso === today || undefined}>
                 <a href={cookHash(c.day)}>
                   <b>{iso === today ? 'Сегодня' : capital(weekdayShort(iso))}, на {daysCount(covered)}</b>
-                  <span>до {c.minutes} минут<GoIcon /></span>
+                  <span>до {cookingMinutes(c.dishes)} минут<GoIcon /></span>
                 </a>
               </li>
             )
