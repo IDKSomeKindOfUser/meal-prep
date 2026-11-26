@@ -432,6 +432,8 @@ textarea { min-height: 144px; padding-block: var(--space-3); resize: vertical; }
 .product[open]::backdrop { background: rgb(0 0 0 / 0.55); }
 @starting-style { .product[open]::backdrop { background: rgb(0 0 0 / 0); } }
 .product form > * + * { margin-top: var(--space-5); }
+/* Кнопки пересборки всегда видны: на телефоне форма длиннее экрана. */
+.product .actions { position: sticky; bottom: calc(-1 * var(--space-5)); padding-block: var(--space-3) var(--space-5); margin-bottom: calc(-1 * var(--space-5)); background: var(--ground); border-top: 1px solid var(--line); }
 html:has(dialog[open]) { overflow: hidden; }
 @media (max-width: 639px) { .product { height: 100dvh; border: 0; border-radius: 0; } }
 .unfit { padding: var(--space-3) var(--space-5); background: var(--surface); border-bottom: 2px solid var(--danger); }

@@ -2,7 +2,9 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { CalendarDays, ShoppingCart, SlidersHorizontal, Sun } from 'lucide-react'
 import { buildMenu } from './app/buildMenu'
 import { dayOfPlan, toIso } from './app/dates'
-import { readForm } from './app/form'
+import { readForm, type Form } from './app/form'
+import { applyToForm, applyToSettings, canDropMilk } from './app/questions'
+import { RebuildDialog } from './app/RebuildDialog'
 import { makeCatalog } from './app/catalog'
 import { useCloud } from './app/cloud'
 import { EMPTY_RECIPE, recipeDraft, unfitDishes, type OwnProduct } from './app/own'
@@ -56,7 +58,8 @@ export function App() {
   const [busy, setBusy] = useState(false)
   const [missing, setMissing] = useState<Missing[]>([])
   /** `previous` is the menu to bring back, `after` the menu it was replaced with. */
-  const [message, setMessage] = useState<{ text: string; previous: SavedPlan | null; keepChecked?: boolean; after?: string } | null>(null)
+  const [message, setMessage] = useState<{ text: string; previous: SavedPlan | null; keepChecked?: boolean; after?: string; form?: Form } | null>(null)
+  const [asking, setAsking] = useState(false)
   /** Loads the new version of the app. */
   const [update, setUpdate] = useState<(() => void) | null>(null)
   const [unsaved, setUnsaved] = useState(false)
@@ -127,11 +130,13 @@ export function App() {
   useEffect(() => {
     if (!message?.previous) return
     // The menu changed in another way, for example on another device: undo would erase that.
+    // While a view transition is starting, the previous menu is still shown: that is no change yet.
     if (message.after === undefined) setMessage({ ...message, after: shownPlan })
-    else if (message.after !== shownPlan) setMessage({ ...message, previous: null })
+    else if (message.after !== shownPlan && shownPlan !== planKey(message.previous)) setMessage({ ...message, previous: null })
   }, [message, shownPlan])
 
-  async function build(settings: Settings, first: string) {
+  /** `form`: the settings form changed together with the menu, for example by the questions before a rebuild. */
+  async function build(settings: Settings, first: string, form?: Form) {
     const seed = Math.floor(Math.random() * 2 ** 31)
     setBusy(true)
     setMessage(null)
@@ -139,8 +144,10 @@ export function App() {
     try {
       const answer = await buildMenu({ settings, seed, prices: state.prices, own: state.own })
       if (answer.ok) {
-        transition(() => setState((s) => ({ ...s, plan: { settings, menu: answer.menu, seed, start: first } })))
-        setMessage({ text: 'Меню собрано.', previous: plan })
+        const next: SavedPlan = { settings, menu: answer.menu, seed, start: first }
+        transition(() => setState((s) => ({ ...s, form: form ?? s.form, plan: next })))
+        // The new menu is known now, so the check for later changes does not take the old one for it.
+        setMessage({ text: 'Меню собрано.', previous: plan, after: planKey(next), ...(form && { form: state.form }) })
         setChosenDay(null)
         location.hash = 'today'
         // The message with undo is at the top, while the button is at the bottom.
@@ -214,7 +221,7 @@ export function App() {
                   const { previous, keepChecked = false } = message
                   if (!previous) return
                   // Карточки меняются на прошлые плавным перетеканием, а не скачком.
-                  transition(() => setState((s) => ({ ...s, plan: undoPlan(s.plan, previous, keepChecked) })))
+                  transition(() => setState((s) => ({ ...s, form: message.form ?? s.form, plan: undoPlan(s.plan, previous, keepChecked) })))
                   setMessage({ text: 'Прошлое меню возвращено.', previous: null })
                 }}>Вернуть прошлое</button>
               )}
@@ -296,7 +303,12 @@ export function App() {
             <Week plan={plan} report={report} today={today} day={day} onDay={setChosenDay}
               onOpenDay={(d) => { setChosenDay(d); location.hash = 'today' }} />
           ) : (
-            <Today plan={plan} report={report} today={today} day={day} onDay={setChosenDay} busy={busy} onShuffle={() => void build(plan.settings, start)} />
+            <Today plan={plan} report={report} today={today} day={day} onDay={setChosenDay} busy={busy} onShuffle={() => setAsking(true)} />
+          )}
+          {asking && plan && (
+            <RebuildDialog prefer={plan.settings.prefer} budget={plan.settings.budget !== null}
+              milk={plan.settings.allergens.includes('milk') ? 'banned' : canDropMilk(plan.settings, catalog) ? 'ok' : 'impossible'} onClose={() => setAsking(false)}
+              onBuild={(answers) => void build(applyToSettings(plan.settings, answers), start, applyToForm(state.form, answers))} />
           )}
           </div>
           {screen === 'settings' ? <SettingsSide plan={plan} />

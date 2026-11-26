@@ -1,4 +1,5 @@
 import type { Allergen, Ingredient, Lactose, Recipe } from '../data/types'
+import type { Prefer } from './prefer'
 
 /** What the planner needs to know about products; the app adds the user's own recipes and prices here. */
 export interface Catalog {
@@ -34,6 +35,8 @@ export interface Settings extends Limits {
   budget: number | null
   /** Preferred longest cooking time of one dish. */
   maxMinutes: number | null
+  /** Soft wishes asked before a rebuild. Absent in plans saved before they existed. */
+  prefer?: Prefer
 }
 
 export const SLOTS = ['breakfast', 'lunch', 'dinner', 'snack'] as const

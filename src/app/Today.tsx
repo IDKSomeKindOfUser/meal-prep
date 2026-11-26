@@ -107,7 +107,7 @@ export function Today({ plan, report, today, day, onDay, busy, onShuffle }: Prop
         <Warnings report={report} edited={plan.edited ?? false} />
       </section>
       <section className="rebuild">
-        <p className="hint">Не нравится меню? Соберите новое с теми же настройками, прошлое можно будет вернуть.</p>
+        <p className="hint">Не нравится меню? Ответьте на пару вопросов и соберите новое, прошлое можно будет вернуть.</p>
         <button type="button" className="link shuffle" onClick={onShuffle} disabled={busy} aria-busy={busy}>
           <Dices aria-hidden="true" />{busy ? 'Собираю меню…' : 'Собрать меню заново'}
         </button>

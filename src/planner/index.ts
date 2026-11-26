@@ -1,6 +1,7 @@
 import { getIngredient, getPrice, recipes } from '../data'
 import type { Recipe } from '../data/types'
 import { candidates, explainMissing, type Missing } from './candidates'
+import { preference } from './prefer'
 import { describeMenu, type Menu, type Report } from './report'
 import { blocks } from './schedule'
 import { randomFrom, search, tasteFrom, type Picks } from './search'
@@ -49,7 +50,10 @@ export function planMenu(settings: Settings, catalog: Catalog, seed: number, tim
   if (missing.length > 0) return { ok: false, missing }
 
   const random = randomFrom(seed)
-  const taste = tasteFrom(randomFrom(seed ^ 0x5eed))
+  const liking = tasteFrom(randomFrom(seed ^ 0x5eed))
+  const wish = preference(settings.prefer)
+  // The search lowers the score, so a wished dish counts below zero.
+  const taste = (r: Recipe) => liking(r) - wish(r)
   const deadline = performance.now() + timeLimitMs
   const steps = STEPS_PER_WEEK * settings.weeks
   const run = (start: Picks, goal: 'balanced' | 'cheapest', s = settings) =>

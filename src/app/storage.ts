@@ -1,4 +1,5 @@
 import { ALLERGENS } from '../data/types'
+import { KINDS, MEATS } from '../planner/prefer'
 import { describeMenu, type Menu } from '../planner'
 import { TOOLS, type Catalog, type Settings } from '../planner/types'
 import { makeCatalog, parseOverrides, type PriceOverrides } from './catalog'
@@ -37,6 +38,10 @@ export const EMPTY_STATE: SavedState = { version: 1, form: EMPTY_FORM, plan: nul
 const oneOf = (...values: unknown[]) => (x: unknown) => values.includes(x)
 const listOf = (ok: (x: unknown) => boolean) => (x: unknown) => Array.isArray(x) && x.every(ok)
 const text = (x: unknown) => typeof x === 'string'
+function isPrefer(x: unknown): boolean {
+  const p = x as Record<string, unknown> | null
+  return typeof p === 'object' && p !== null && listOf(oneOf(...MEATS))(p.meats) && listOf(oneOf(...KINDS))(p.kinds)
+}
 const CHECKS: { [K in keyof Form]: (x: unknown) => boolean } = {
   normBy: oneOf('profile', 'manual'), sex: oneOf('', 'male', 'female'),
   age: text, height: text, weight: text, kcal: text, protein: text, budget: text,
@@ -44,6 +49,7 @@ const CHECKS: { [K in keyof Form]: (x: unknown) => boolean } = {
   allergens: listOf(oneOf(...ALLERGENS)), excluded: listOf(text), tools: listOf(oneOf(...TOOLS)),
   spicy: oneOf(true, false), lactose: oneOf('none', 'low', 'yes'),
   cookTimes: oneOf(1, 2, 3, 7), weeks: oneOf(1, 4), maxMinutes: oneOf('', '30', '45', '60'),
+  prefer: isPrefer,
 }
 
 function parseForm(saved: unknown): Form {
@@ -62,6 +68,7 @@ function parsePlan(saved: unknown, catalog: Catalog): SavedPlan | null {
     if (!isIsoDate(plan.start)) return null
     if (!Array.isArray(plan.checked) || !plan.checked.every((x) => typeof x === 'string')) delete plan.checked
     if (!Array.isArray(plan.cooked) || !plan.cooked.every((x) => typeof x === 'string')) delete plan.cooked
+    if (plan.settings.prefer !== undefined && !isPrefer(plan.settings.prefer)) delete plan.settings.prefer
     // Throws when the menu does not match the schedule or the recipes.
     const report = describeMenu(plan.menu, plan.settings, catalog)
     return Number.isFinite(report.shopping.total) && report.days.every((d) => Number.isFinite(d.kcal)) ? plan : null

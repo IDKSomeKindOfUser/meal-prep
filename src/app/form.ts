@@ -1,5 +1,6 @@
 import type { Allergen, Lactose } from '../data/types'
 import { dailyNorm, type Profile } from '../planner/norm'
+import type { Prefer } from '../planner/prefer'
 import { TOOLS, type CookTimes, type Settings } from '../planner/types'
 
 /** What is typed on the settings screen. Numbers stay text until the form is read. */
@@ -22,6 +23,8 @@ export interface Form {
   weeks: 1 | 4
   maxMinutes: string
   budget: string
+  /** Wishes from the questions before a rebuild. */
+  prefer: Prefer
 }
 
 export const EMPTY_FORM: Form = {
@@ -29,6 +32,7 @@ export const EMPTY_FORM: Form = {
   kcal: '', protein: '',
   allergens: [], excluded: [], spicy: true, tools: [...TOOLS], lactose: 'yes',
   cookTimes: 2, weeks: 1, maxMinutes: '', budget: '',
+  prefer: { meats: [], kinds: [] },
 }
 
 const NUMBERS = {
@@ -91,6 +95,7 @@ export function readForm(form: Form): { ok: true; settings: Settings } | { ok: f
       allergens: form.allergens, excluded: form.excluded, spicy: form.spicy, tools: form.tools, lactose: form.lactose,
       weeks: form.weeks, cookTimes: form.cookTimes,
       maxMinutes: form.maxMinutes === '' ? null : Number(form.maxMinutes),
+      ...(form.prefer.meats.length + form.prefer.kinds.length > 0 && { prefer: form.prefer }),
     },
   }
 }
