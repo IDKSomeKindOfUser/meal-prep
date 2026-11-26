@@ -68,7 +68,17 @@ export function ShoppingSide({ plan, report, week }: { plan: SavedPlan; report: 
 }
 
 export function SettingsSide({ plan }: { plan: SavedPlan | null }) {
-  if (!plan) return null
+  if (!plan) return (
+    <aside className="side" aria-label="Как собирается меню">
+      <h2>Как собирается меню</h2>
+      <ul className="facts-list">
+        <li>Норма считается по анкете или берётся та, что вы введёте сами.</li>
+        <li>Блюда подбираются так, чтобы день отличался от нормы не больше чем на 5% по калориям, а белка было не меньше 90%.</li>
+        <li>Готовить можно заранее: меню сгруппировано по дням готовки.</li>
+      </ul>
+      <p className="hint">Заполните настройки и нажмите «Собрать меню»: здесь появится итог.</p>
+    </aside>
+  )
   const { kcal, protein, weeks, cookTimes, budget } = plan.settings
   return (
     <aside className="side" aria-label="Текущая норма">
