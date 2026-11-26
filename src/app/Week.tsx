@@ -2,7 +2,8 @@ import type { Report } from '../planner'
 import { SLOTS } from '../planner/types'
 import { addDays, dayMonth, dayNumber, weekday, weekdayShort } from './dates'
 import { num, rub } from './labels'
-import { DishField, WeekTabs } from './parts'
+import { DishPicture } from './DishPicture'
+import { WeekTabs } from './parts'
 import { dishHash } from './route'
 import type { SavedPlan } from './storage'
 
@@ -28,33 +29,33 @@ export function Week({ plan, report, today, day, onDay, onOpenDay }: Props) {
         <p className="sub">{dayMonth(first)} – {dayMonth(addDays(first, 6))}, чек {rub(shopping.marketCost + shopping.storeCost)}</p>
         <WeekTabs weeks={settings.weeks} week={week} onChange={(w) => onDay(w * 7)} />
       </header>
-      {report.blocks.filter((b) => b.block.week === week).map(({ block, day: menu }) => (
-        <section className="block" key={block.firstDay} aria-labelledby={`block-${block.firstDay}`}>
-          <div className="blockhead">
-            <h2 id={`block-${block.firstDay}`}>
-              {weekday(addDays(start, block.firstDay))}{block.days > 1 && ` – ${weekday(addDays(start, block.firstDay + block.days - 1))}`}
-            </h2>
-            <p className="sub">
-              {num(menu.kcal)} ккал в день, белка {num(menu.protein)} г. Готовка: {weekday(addDays(start, block.cookDay))}
-            </p>
-            <div className="days">
-              {Array.from({ length: block.days }, (_, i) => {
-                const d = block.firstDay + i
-                const iso = addDays(start, d)
-                return (
-                  <button key={d} type="button" aria-label={`Открыть: ${weekday(iso)}, ${dayMonth(iso)}`}
-                    aria-current={iso === today ? 'date' : undefined} onClick={() => onOpenDay(d)}>
-                    {weekdayShort(iso)}<b>{dayNumber(iso)}</b>
-                  </button>
-                )
-              })}
-            </div>
-          </div>
-          <ul className="meals compact">
-            {SLOTS.map((slot, i) => <DishField key={slot} slot={slot} dish={menu.dishes[i]!} href={dishHash(report.blocks.findIndex((b) => b.block === block), slot)} />)}
-          </ul>
-        </section>
-      ))}
+      <ol className="wk">
+        {report.blocks.flatMap(({ block, day: menu }, bi) => (block.week === week ? Array.from({ length: block.days }, (_, i) => {
+          const d = block.firstDay + i
+          const iso = addDays(start, d)
+          const note = d === block.cookDay ? 'готовка' : 'остатки'
+          return (
+            <li key={d} className={`wkrow${d === block.cookDay ? ' wkcook' : ''}`} aria-current={iso === today ? 'date' : undefined}>
+              <button type="button" className="wkday" aria-label={`Открыть: ${weekday(iso)}, ${dayMonth(iso)}`} onClick={() => onOpenDay(d)}>
+                <span>{weekdayShort(iso)}</span><b>{dayNumber(iso)}</b><small>{note}</small>
+              </button>
+              <ul className="wkdishes">
+                {SLOTS.map((slot, k) => {
+                  const dish = menu.dishes[k]!
+                  return (
+                    <li key={slot} data-slot={slot}>
+                      <a href={dishHash(bi, slot)} aria-label={`${dish.recipe.name}, ${num(dish.kcal)} ккал`} title={dish.recipe.name}>
+                        <DishPicture recipe={dish.recipe} />
+                      </a>
+                    </li>
+                  )
+                })}
+              </ul>
+              <p className="wkkcal">{num(menu.kcal)}<small> ккал</small></p>
+            </li>
+          )
+        }) : []))}
+      </ol>
     </>
   )
 }
