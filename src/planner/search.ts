@@ -115,7 +115,7 @@ export function search(
     const daily = penalties.reduce((a, b) => a + b, 0)
     if (goal === 'cheapest') return daily + cost.total / totalDays / 10
     const { budget } = settings
-    const over = budget !== null && cost.total > budget ? 20 + (200 * (cost.total - budget)) / budget : 0
+    const over = budget !== null && cost.total > budget ? 20 + (50 * (cost.total - budget)) / budget : 0
     const liking = picks.reduce((sum, row) => sum + row.reduce((a, r) => a + taste(r), 0), 0) / picks.length
     return daily + over + comfortPenalty(picks, schedule, settings) + liking
   }

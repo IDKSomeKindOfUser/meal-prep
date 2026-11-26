@@ -5609,5 +5609,2858 @@
   "fat": 19,
   "carbs": 50,
   "cookedGrams": 360
+ },
+ {
+  "id": "b-n-oatwater",
+  "type": "breakfast",
+  "name": "Овсянка на воде с бананом и арахисовой пастой + яйца",
+  "cuisine": "Домашняя",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 15,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "oats",
+    "grams": 39
+   },
+   {
+    "id": "water",
+    "grams": 197
+   },
+   {
+    "id": "banana",
+    "grams": 55
+   },
+   {
+    "id": "pbutter",
+    "grams": 8
+   },
+   {
+    "id": "egg",
+    "grams": 220
+   }
+  ],
+  "spices": "соль, корица",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Яйца сварите вкрутую: 9 минут, в холодную воду.",
+   "Овсянку залейте водой с щепоткой соли, варите 5 минут, помешивая.",
+   "Разложите по контейнерам, сверху банан кружками и арахисовую пасту. Яйца в скорлупе отдельно.",
+   "Разогрев: микроволновка 1,5 минуты, добавьте ложку воды."
+  ],
+  "source": null,
+  "kcal": 549,
+  "protein": 35,
+  "fat": 27,
+  "carbs": 40,
+  "cookedGrams": 383
+ },
+ {
+  "id": "b-n-draniki",
+  "type": "breakfast",
+  "name": "Драники в аэрогриле с яйцом и индейкой",
+  "cuisine": "Русская",
+  "tools": [
+   "аэрогриль"
+  ],
+  "minutes": 40,
+  "keepDays": 3,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "potato",
+    "grams": 201
+   },
+   {
+    "id": "egg",
+    "grams": 110
+   },
+   {
+    "id": "turkey",
+    "grams": 82
+   },
+   {
+    "id": "flour",
+    "grams": 18
+   },
+   {
+    "id": "onion",
+    "grams": 27
+   },
+   {
+    "id": "oil",
+    "grams": 7
+   }
+  ],
+  "spices": "соль, перец, чеснок сушёный",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Картофель и лук натрите на мелкой тёрке, отожмите сок.",
+   "Индейку мелко нарежьте или возьмите фарш. Смешайте с картофелем, яйцами, мукой, солью и перцем.",
+   "Выложите лепёшками на бумагу, сбрызните маслом.",
+   "Аэрогриль: 200 °C, 12 минут, переверните, ещё 6–8 минут. Духовка: 220 °C, 25 минут.",
+   "Разогрев: аэрогриль 180 °C 4 минуты."
+  ],
+  "source": null,
+  "kcal": 546,
+  "protein": 40,
+  "fat": 19,
+  "carbs": 51,
+  "cookedGrams": 366
+ },
+ {
+  "id": "b-n-buckegg",
+  "type": "breakfast",
+  "name": "Гречка с грибами, луком и яичницей",
+  "cuisine": "Русская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 25,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "buckw",
+    "grams": 64
+   },
+   {
+    "id": "mush",
+    "grams": 127
+   },
+   {
+    "id": "onion",
+    "grams": 42
+   },
+   {
+    "id": "egg",
+    "grams": 165
+   },
+   {
+    "id": "oil",
+    "grams": 7
+   },
+   {
+    "id": "greens",
+    "grams": 11
+   }
+  ],
+  "spices": "соль, перец",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Гречку промойте и сварите в двойном объёме воды, 15 минут.",
+   "Лук и грибы обжарьте на масле 8 минут, смешайте с гречкой.",
+   "Яйца пожарьте или сварите вкрутую, положите сверху. Посыпьте зеленью.",
+   "Разогрев: микроволновка 1,5 минуты."
+  ],
+  "source": null,
+  "kcal": 547,
+  "protein": 34,
+  "fat": 25,
+  "carbs": 49,
+  "cookedGrams": 450
+ },
+ {
+  "id": "b-n-omelet",
+  "type": "breakfast",
+  "name": "Омлет на воде с кабачком, помидорами и курицей + лаваш",
+  "cuisine": "Домашняя",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 15,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "egg",
+    "grams": 165
+   },
+   {
+    "id": "chicken",
+    "grams": 67
+   },
+   {
+    "id": "zucchini",
+    "grams": 112
+   },
+   {
+    "id": "tomato",
+    "grams": 89
+   },
+   {
+    "id": "lavash",
+    "grams": 50
+   },
+   {
+    "id": "oil",
+    "grams": 7
+   },
+   {
+    "id": "water",
+    "grams": 34
+   }
+  ],
+  "spices": "соль, перец, паприка",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Курицу нарежьте мелко, обжарьте 4 минуты. Добавьте кабачок кубиком, ещё 3 минуты.",
+   "Яйца взбейте с водой и солью, вылейте на сковороду, сверху помидоры.",
+   "Накройте крышкой, 5 минут на слабом огне.",
+   "Лаваш положите отдельно. Разогрев: микроволновка 1 минута."
+  ],
+  "source": null,
+  "kcal": 552,
+  "protein": 43,
+  "fat": 26,
+  "carbs": 36,
+  "cookedGrams": 444
+ },
+ {
+  "id": "b-n-pancake",
+  "type": "breakfast",
+  "name": "Овсяные панкейки с бананом без молока + ягоды",
+  "cuisine": "Американская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 20,
+  "keepDays": 3,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "oats",
+    "grams": 45
+   },
+   {
+    "id": "egg",
+    "grams": 165
+   },
+   {
+    "id": "banana",
+    "grams": 80
+   },
+   {
+    "id": "berries",
+    "grams": 80
+   },
+   {
+    "id": "pbutter",
+    "grams": 8
+   }
+  ],
+  "spices": "корица, разрыхлитель на кончике ножа",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Овсянку измельчите в блендере в муку.",
+   "Добавьте яйца и банан, взбейте до гладкого теста. Дайте постоять 5 минут.",
+   "Жарьте маленькие панкейки на сухой антипригарной сковороде по 2 минуты с каждой стороны.",
+   "Подавайте с ягодами и арахисовой пастой. Разогрев: микроволновка 40 секунд."
+  ],
+  "source": null,
+  "kcal": 550,
+  "protein": 30,
+  "fat": 23,
+  "carbs": 57,
+  "cookedGrams": 365
+ },
+ {
+  "id": "b-n-chickshak",
+  "type": "breakfast",
+  "name": "Шакшука с нутом и перцем + лаваш",
+  "cuisine": "Ближневосточная",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 25,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": true,
+  "ingredients": [
+   {
+    "id": "egg",
+    "grams": 165
+   },
+   {
+    "id": "ctomato",
+    "grams": 174
+   },
+   {
+    "id": "chickpea",
+    "grams": 68
+   },
+   {
+    "id": "pepper",
+    "grams": 77
+   },
+   {
+    "id": "onion",
+    "grams": 39
+   },
+   {
+    "id": "lavash",
+    "grams": 34
+   },
+   {
+    "id": "oil",
+    "grams": 6
+   }
+  ],
+  "spices": "зира, паприка, чили, соль",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Лук и перец обжарьте 5 минут, добавьте специи.",
+   "Томаты и нут, тушите 8 минут, пока соус не загустеет.",
+   "Сделайте ямки, разбейте яйца, накройте крышкой на 5–6 минут.",
+   "Лаваш отдельно. Разогрев: микроволновка 1 минута."
+  ],
+  "source": null,
+  "kcal": 553,
+  "protein": 32,
+  "fat": 24,
+  "carbs": 50,
+  "cookedGrams": 481
+ },
+ {
+  "id": "b-n-coconut",
+  "type": "breakfast",
+  "name": "Рисовая каша на кокосовом молоке с бананом + яйца",
+  "cuisine": "Азиатская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 25,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "rice",
+    "grams": 31
+   },
+   {
+    "id": "coconut",
+    "grams": 62
+   },
+   {
+    "id": "water",
+    "grams": 124
+   },
+   {
+    "id": "banana",
+    "grams": 48
+   },
+   {
+    "id": "honey",
+    "grams": 4
+   },
+   {
+    "id": "egg",
+    "grams": 220
+   }
+  ],
+  "spices": "соль, корица",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Рис промойте, варите в воде 12 минут.",
+   "Влейте кокосовое молоко, добавьте мёд и щепотку соли, ещё 5 минут.",
+   "Сверху банан кружками. Яйца сварите вкрутую отдельно, 9 минут.",
+   "Разогрев: микроволновка 1,5 минуты, добавьте ложку воды."
+  ],
+  "source": null,
+  "kcal": 549,
+  "protein": 31,
+  "fat": 27,
+  "carbs": 42,
+  "cookedGrams": 459
+ },
+ {
+  "id": "m-q-noodle",
+  "type": "main",
+  "name": "Лапша с индейкой и овощами за 20 минут",
+  "cuisine": "Азиатская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 20,
+  "keepDays": 4,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "noodle",
+    "grams": 67
+   },
+   {
+    "id": "turkey",
+    "grams": 154
+   },
+   {
+    "id": "vegmix",
+    "grams": 96
+   },
+   {
+    "id": "soy",
+    "grams": 14
+   },
+   {
+    "id": "oil",
+    "grams": 7
+   },
+   {
+    "id": "garlic",
+    "grams": 5
+   }
+  ],
+  "spices": "имбирь, перец",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Лапшу отварите по инструкции.",
+   "Индейку полосками обжарьте на сильном огне 5 минут.",
+   "Овощную смесь и чеснок, ещё 4 минуты.",
+   "Лапшу и соевый соус, перемешайте 1 минуту."
+  ],
+  "source": null,
+  "kcal": 552,
+  "protein": 49,
+  "fat": 11,
+  "carbs": 63,
+  "cookedGrams": 377
+ },
+ {
+  "id": "m-q-pasta",
+  "type": "main",
+  "name": "Паста с курицей, перцем и кабачком за 20 минут",
+  "cuisine": "Средиземноморская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 20,
+  "keepDays": 4,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "pasta",
+    "grams": 70
+   },
+   {
+    "id": "chicken",
+    "grams": 170
+   },
+   {
+    "id": "pepper",
+    "grams": 80
+   },
+   {
+    "id": "zucchini",
+    "grams": 80
+   },
+   {
+    "id": "oil",
+    "grams": 7
+   },
+   {
+    "id": "lemon",
+    "grams": 10
+   }
+  ],
+  "spices": "паприка, чеснок, соль",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Пасту отварите до аль денте.",
+   "Курицу кубиком обжарьте 6 минут с паприкой.",
+   "Перец и кабачок, ещё 4 минуты.",
+   "Смешайте с пастой, сбрызните лимоном."
+  ],
+  "source": null,
+  "kcal": 550,
+  "protein": 49,
+  "fat": 13,
+  "carbs": 57,
+  "cookedGrams": 424
+ },
+ {
+  "id": "m-q-shrimpnoodle",
+  "type": "main",
+  "name": "Лапша с креветками и пекинской капустой",
+  "cuisine": "Азиатская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 15,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": true,
+  "ingredients": [
+   {
+    "id": "noodle",
+    "grams": 80
+   },
+   {
+    "id": "shrimp",
+    "grams": 182
+   },
+   {
+    "id": "peking",
+    "grams": 129
+   },
+   {
+    "id": "soy",
+    "grams": 16
+   },
+   {
+    "id": "oil",
+    "grams": 8
+   },
+   {
+    "id": "garlic",
+    "grams": 5
+   }
+  ],
+  "spices": "чили, имбирь",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Лапшу отварите по инструкции.",
+   "Креветки разморозьте, обжарьте с чесноком 3 минуты.",
+   "Капусту соломкой, ещё 2 минуты.",
+   "Лапшу и соевый соус, перемешайте."
+  ],
+  "source": null,
+  "kcal": 552,
+  "protein": 48,
+  "fat": 11,
+  "carbs": 64,
+  "cookedGrams": 497
+ },
+ {
+  "id": "m-soup-noodle",
+  "type": "main",
+  "name": "Куриный суп с лапшой",
+  "cuisine": "Русская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 40,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "chicken",
+    "grams": 177
+   },
+   {
+    "id": "noodle",
+    "grams": 47
+   },
+   {
+    "id": "potato",
+    "grams": 104
+   },
+   {
+    "id": "carrot",
+    "grams": 63
+   },
+   {
+    "id": "onion",
+    "grams": 42
+   },
+   {
+    "id": "oil",
+    "grams": 5
+   },
+   {
+    "id": "water",
+    "grams": 470
+   },
+   {
+    "id": "greens",
+    "grams": 10
+   }
+  ],
+  "spices": "соль, перец, лавровый лист",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Курицу залейте холодной водой, варите 20 минут, достаньте и нарежьте.",
+   "В бульон картофель кубиком, 10 минут.",
+   "Лук и морковь обжарьте, добавьте в суп вместе с лапшой, 5 минут.",
+   "Верните курицу, посыпьте зеленью."
+  ],
+  "source": null,
+  "kcal": 548,
+  "protein": 48,
+  "fat": 11,
+  "carbs": 62,
+  "cookedGrams": 604
+ },
+ {
+  "id": "m-soup-shchi",
+  "type": "main",
+  "name": "Щи из свежей капусты с говядиной",
+  "cuisine": "Русская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 90,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "beef",
+    "grams": 173
+   },
+   {
+    "id": "cabbage",
+    "grams": 173
+   },
+   {
+    "id": "potato",
+    "grams": 173
+   },
+   {
+    "id": "carrot",
+    "grams": 54
+   },
+   {
+    "id": "onion",
+    "grams": 43
+   },
+   {
+    "id": "tpaste",
+    "grams": 16
+   },
+   {
+    "id": "oil",
+    "grams": 6
+   },
+   {
+    "id": "water",
+    "grams": 486
+   },
+   {
+    "id": "greens",
+    "grams": 11
+   }
+  ],
+  "spices": "соль, перец, лавровый лист",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Говядину кусочками залейте водой, варите 60 минут, снимая пену.",
+   "Капусту соломкой и картофель кубиком, 15 минут.",
+   "Лук и морковь обжарьте с томатной пастой, добавьте в суп, 5 минут.",
+   "Посыпьте зеленью. Вкуснее на второй день."
+  ],
+  "source": null,
+  "kcal": 546,
+  "protein": 44,
+  "fat": 19,
+  "carbs": 52,
+  "cookedGrams": 692
+ },
+ {
+  "id": "m-soup-bean",
+  "type": "main",
+  "name": "Фасолевый суп с индейкой и томатами",
+  "cuisine": "Домашняя",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 35,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "turkey",
+    "grams": 162
+   },
+   {
+    "id": "beans",
+    "grams": 141
+   },
+   {
+    "id": "potato",
+    "grams": 97
+   },
+   {
+    "id": "carrot",
+    "grams": 54
+   },
+   {
+    "id": "onion",
+    "grams": 43
+   },
+   {
+    "id": "ctomato",
+    "grams": 162
+   },
+   {
+    "id": "oil",
+    "grams": 6
+   },
+   {
+    "id": "water",
+    "grams": 325
+   }
+  ],
+  "spices": "паприка, чеснок, соль, перец",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Индейку кубиком обжарьте с луком и морковью 6 минут.",
+   "Залейте водой, добавьте картофель, 12 минут.",
+   "Фасоль без жидкости и томаты, ещё 10 минут.",
+   "Разогрев: на плите или в микроволновке 2 минуты."
+  ],
+  "source": null,
+  "kcal": 545,
+  "protein": 54,
+  "fat": 10,
+  "carbs": 55,
+  "cookedGrams": 668
+ },
+ {
+  "id": "m-soup-ukha",
+  "type": "main",
+  "name": "Уха из горбуши с рисом",
+  "cuisine": "Русская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 35,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "pink",
+    "grams": 205
+   },
+   {
+    "id": "potato",
+    "grams": 173
+   },
+   {
+    "id": "rice",
+    "grams": 27
+   },
+   {
+    "id": "carrot",
+    "grams": 54
+   },
+   {
+    "id": "onion",
+    "grams": 43
+   },
+   {
+    "id": "water",
+    "grams": 540
+   },
+   {
+    "id": "greens",
+    "grams": 11
+   }
+  ],
+  "spices": "соль, перец горошком, лавровый лист",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Картофель, морковь и целую луковицу залейте водой, варите 10 минут.",
+   "Добавьте рис, 10 минут.",
+   "Рыбу кусками, 8 минут на слабом огне. Лук достаньте.",
+   "Посыпьте зеленью."
+  ],
+  "source": null,
+  "kcal": 550,
+  "protein": 49,
+  "fat": 12,
+  "carbs": 60,
+  "cookedGrams": 686
+ },
+ {
+  "id": "m-p-cabbage",
+  "type": "main",
+  "name": "Свинина, тушённая с капустой, + гречка",
+  "cuisine": "Русская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 60,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "pork",
+    "grams": 176
+   },
+   {
+    "id": "cabbage",
+    "grams": 215
+   },
+   {
+    "id": "carrot",
+    "grams": 49
+   },
+   {
+    "id": "onion",
+    "grams": 39
+   },
+   {
+    "id": "tpaste",
+    "grams": 15
+   },
+   {
+    "id": "oil",
+    "grams": 7
+   },
+   {
+    "id": "buckw",
+    "grams": 54
+   }
+  ],
+  "spices": "соль, перец, лавровый лист",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Свинину кубиком обжарьте 6 минут.",
+   "Лук и морковь, ещё 4 минуты. Капусту соломкой и томатную пасту, полстакана воды.",
+   "Тушите под крышкой 30 минут.",
+   "Гречку сварите отдельно в двойном объёме воды, 15 минут."
+  ],
+  "source": null,
+  "kcal": 554,
+  "protein": 48,
+  "fat": 16,
+  "carbs": 57,
+  "cookedGrams": 531
+ },
+ {
+  "id": "m-p-plov",
+  "type": "main",
+  "name": "Плов со свининой",
+  "cuisine": "Среднеазиатская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 70,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "pork",
+    "grams": 148
+   },
+   {
+    "id": "rice",
+    "grams": 61
+   },
+   {
+    "id": "carrot",
+    "grams": 87
+   },
+   {
+    "id": "onion",
+    "grams": 44
+   },
+   {
+    "id": "oil",
+    "grams": 9
+   },
+   {
+    "id": "garlic",
+    "grams": 9
+   }
+  ],
+  "spices": "зира, барбарис, соль",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Свинину кусочками обжарьте в казане 8 минут.",
+   "Лук полукольцами и морковь соломкой, ещё 8 минут, добавьте зиру.",
+   "Сверху промытый рис, залейте горячей водой на 1,5 см выше, посолите.",
+   "В центр целую головку чеснока, накройте, на слабом огне 25 минут. Перемешайте перед раскладкой."
+  ],
+  "source": null,
+  "kcal": 552,
+  "protein": 37,
+  "fat": 16,
+  "carbs": 63,
+  "cookedGrams": 407
+ },
+ {
+  "id": "m-tk-pasta",
+  "type": "main",
+  "name": "Паста с индейкой и шпинатом в томате",
+  "cuisine": "Итальянская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 30,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "pasta",
+    "grams": 76
+   },
+   {
+    "id": "turkey",
+    "grams": 153
+   },
+   {
+    "id": "spinach",
+    "grams": 57
+   },
+   {
+    "id": "ctomato",
+    "grams": 143
+   },
+   {
+    "id": "onion",
+    "grams": 29
+   },
+   {
+    "id": "oil",
+    "grams": 6
+   }
+  ],
+  "spices": "чеснок, базилик сушёный, соль",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Пасту отварите до аль денте.",
+   "Индейку кубиком обжарьте с луком 6 минут.",
+   "Томаты и шпинат, тушите 8 минут.",
+   "Смешайте с пастой."
+  ],
+  "source": null,
+  "kcal": 552,
+  "protein": 49,
+  "fat": 10,
+  "carbs": 64,
+  "cookedGrams": 454
+ },
+ {
+  "id": "m-tk-meatballs",
+  "type": "main",
+  "name": "Тефтели из индейки в томатном соусе с рисом",
+  "cuisine": "Домашняя",
+  "tools": [
+   "аэрогриль",
+   "плита"
+  ],
+  "minutes": 45,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "turkey",
+    "grams": 169
+   },
+   {
+    "id": "rice",
+    "grams": 65
+   },
+   {
+    "id": "onion",
+    "grams": 40
+   },
+   {
+    "id": "egg",
+    "grams": 20
+   },
+   {
+    "id": "ctomato",
+    "grams": 149
+   },
+   {
+    "id": "oil",
+    "grams": 5
+   }
+  ],
+  "spices": "соль, перец, чеснок, орегано",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Индейку прокрутите в фарш с половиной лука, яйцом и солью. Сформируйте тефтели.",
+   "Аэрогриль: 190 °C, 12 минут.",
+   "Остальной лук обжарьте, добавьте томаты, 8 минут. Положите тефтели в соус, 5 минут.",
+   "Рис сварите отдельно."
+  ],
+  "source": null,
+  "kcal": 551,
+  "protein": 49,
+  "fat": 10,
+  "carbs": 61,
+  "cookedGrams": 482
+ },
+ {
+  "id": "m-f-pinkbake",
+  "type": "main",
+  "name": "Горбуша с кабачком, перцем и картофелем в аэрогриле",
+  "cuisine": "Средиземноморская",
+  "tools": [
+   "аэрогриль",
+   "плита"
+  ],
+  "minutes": 30,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "pink",
+    "grams": 197
+   },
+   {
+    "id": "potato",
+    "grams": 219
+   },
+   {
+    "id": "zucchini",
+    "grams": 131
+   },
+   {
+    "id": "pepper",
+    "grams": 109
+   },
+   {
+    "id": "oil",
+    "grams": 7
+   },
+   {
+    "id": "lemon",
+    "grams": 16
+   }
+  ],
+  "spices": "соль, перец, паприка, сушёный укроп",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Картофель нарежьте дольками, аэрогриль 200 °C 12 минут.",
+   "Кабачок и перец нарежьте крупно, сбрызните маслом, посолите.",
+   "Добавьте овощи к картофелю, 8 минут, затем рыбу, ещё 10 минут.",
+   "Сбрызните лимоном."
+  ],
+  "source": null,
+  "kcal": 554,
+  "protein": 48,
+  "fat": 19,
+  "carbs": 49,
+  "cookedGrams": 541
+ },
+ {
+  "id": "m-b-broccoli",
+  "type": "main",
+  "name": "Говядина с брокколи по-азиатски + рис",
+  "cuisine": "Азиатская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 30,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "beef",
+    "grams": 145
+   },
+   {
+    "id": "broccoli",
+    "grams": 136
+   },
+   {
+    "id": "rice",
+    "grams": 54
+   },
+   {
+    "id": "soy",
+    "grams": 14
+   },
+   {
+    "id": "starch",
+    "grams": 5
+   },
+   {
+    "id": "honey",
+    "grams": 5
+   },
+   {
+    "id": "oil",
+    "grams": 5
+   },
+   {
+    "id": "garlic",
+    "grams": 5
+   }
+  ],
+  "spices": "имбирь, чили",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Рис сварите отдельно.",
+   "Говядину тонкими полосками обваляйте в крахмале, обжарьте на сильном огне 4 минуты.",
+   "Брокколи и чеснок, ещё 4 минуты, плеснув 2 ложки воды.",
+   "Соевый соус и мёд, 1 минута до глянца."
+  ],
+  "source": null,
+  "kcal": 550,
+  "protein": 39,
+  "fat": 16,
+  "carbs": 62,
+  "cookedGrams": 406
+ },
+ {
+  "id": "m-c-chickpea",
+  "type": "main",
+  "name": "Курица с нутом и шпинатом в томатном соусе + рис",
+  "cuisine": "Индийская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 35,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": true,
+  "ingredients": [
+   {
+    "id": "chicken",
+    "grams": 144
+   },
+   {
+    "id": "chickpea",
+    "grams": 90
+   },
+   {
+    "id": "spinach",
+    "grams": 54
+   },
+   {
+    "id": "ctomato",
+    "grams": 135
+   },
+   {
+    "id": "onion",
+    "grams": 36
+   },
+   {
+    "id": "rice",
+    "grams": 41
+   },
+   {
+    "id": "oil",
+    "grams": 5
+   }
+  ],
+  "spices": "зира, куркума, чили, чеснок, соль",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Рис сварите отдельно.",
+   "Курицу кубиком обжарьте с луком и специями 6 минут.",
+   "Томаты и нут, тушите 10 минут.",
+   "Шпинат, ещё 2 минуты."
+  ],
+  "source": null,
+  "kcal": 548,
+  "protein": 45,
+  "fat": 12,
+  "carbs": 63,
+  "cookedGrams": 482
+ },
+ {
+  "id": "m-v-beanrice",
+  "type": "main",
+  "name": "Рис с фасолью, перцем и яичницей (без мяса)",
+  "cuisine": "Мексиканская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 30,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": true,
+  "ingredients": [
+   {
+    "id": "rice",
+    "grams": 37
+   },
+   {
+    "id": "beans",
+    "grams": 100
+   },
+   {
+    "id": "pepper",
+    "grams": 66
+   },
+   {
+    "id": "ctomato",
+    "grams": 66
+   },
+   {
+    "id": "onion",
+    "grams": 27
+   },
+   {
+    "id": "oil",
+    "grams": 3
+   },
+   {
+    "id": "egg",
+    "grams": 165
+   }
+  ],
+  "spices": "зира, паприка, чили, чеснок, соль",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Рис сварите отдельно.",
+   "Лук и перец обжарьте 5 минут, добавьте специи.",
+   "Фасоль без жидкости и томаты, тушите 8 минут, смешайте с рисом.",
+   "Яйца пожарьте или сварите вкрутую, положите сверху."
+  ],
+  "source": null,
+  "kcal": 549,
+  "protein": 32,
+  "fat": 20,
+  "carbs": 55,
+  "cookedGrams": 488
+ },
+ {
+  "id": "s-n-pbapple",
+  "type": "snack",
+  "name": "Яблоки с арахисовой пастой",
+  "cuisine": "Купить",
+  "tools": [
+   "без готовки"
+  ],
+  "minutes": 3,
+  "keepDays": 4,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "apple",
+    "grams": 232
+   },
+   {
+    "id": "pbutter",
+    "grams": 37
+   }
+  ],
+  "spices": "корица",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Яблоко нарежьте дольками перед едой, к нему арахисовую пасту."
+  ],
+  "source": null,
+  "kcal": 343,
+  "protein": 10,
+  "fat": 19,
+  "carbs": 40,
+  "cookedGrams": 269
+ },
+ {
+  "id": "s-n-lavashegg",
+  "type": "snack",
+  "name": "Мини-ролл из лаваша с яйцом, курицей и огурцом",
+  "cuisine": "Готовить",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 15,
+  "keepDays": 2,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "lavash",
+    "grams": 45
+   },
+   {
+    "id": "egg",
+    "grams": 110
+   },
+   {
+    "id": "chicken",
+    "grams": 45
+   },
+   {
+    "id": "cucumber",
+    "grams": 67
+   }
+  ],
+  "spices": "соль, перец, зелень",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Яйца сварите вкрутую, курицу отварите или возьмите из обеда.",
+   "Нарежьте мелко с огурцом, посолите.",
+   "Заверните в лаваш плотным роллом, разрежьте пополам."
+  ],
+  "source": null,
+  "kcal": 345,
+  "protein": 29,
+  "fat": 12,
+  "carbs": 28,
+  "cookedGrams": 246
+ },
+ {
+  "id": "s-n-oatbar",
+  "type": "snack",
+  "name": "Овсяные батончики с финиками и орехами",
+  "cuisine": "Готовить",
+  "tools": [
+   "аэрогриль"
+  ],
+  "minutes": 30,
+  "keepDays": 5,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "oats",
+    "grams": 38
+   },
+   {
+    "id": "dates",
+    "grams": 29
+   },
+   {
+    "id": "nuts",
+    "grams": 14
+   },
+   {
+    "id": "banana",
+    "grams": 48
+   }
+  ],
+  "spices": "корица",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Финики без косточек и банан разомните в пюре.",
+   "Смешайте с овсянкой и рублеными орехами.",
+   "Разложите слоем 1,5 см на бумаге.",
+   "Аэрогриль: 170 °C, 15 минут. Остудите и нарежьте."
+  ],
+  "source": null,
+  "kcal": 344,
+  "protein": 8,
+  "fat": 11,
+  "carbs": 58,
+  "cookedGrams": 129
+ },
+ {
+  "id": "s-n-berrykefir",
+  "type": "snack",
+  "name": "Смузи с кефиром, ягодами и овсянкой",
+  "cuisine": "Готовить",
+  "tools": [
+   "без готовки"
+  ],
+  "minutes": 5,
+  "keepDays": 1,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "kefir",
+    "grams": 258
+   },
+   {
+    "id": "berries",
+    "grams": 103
+   },
+   {
+    "id": "oats",
+    "grams": 31
+   },
+   {
+    "id": "banana",
+    "grams": 62
+   },
+   {
+    "id": "honey",
+    "grams": 10
+   }
+  ],
+  "spices": "",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Всё взбейте блендером до гладкости.",
+   "Храните в бутылке в холодильнике до утра следующего дня."
+  ],
+  "source": null,
+  "kcal": 344,
+  "protein": 13,
+  "fat": 5,
+  "carbs": 62,
+  "cookedGrams": 464
+ },
+ {
+  "id": "s-n-cottagepb",
+  "type": "snack",
+  "name": "Творог с бананом и арахисовой пастой",
+  "cuisine": "Купить",
+  "tools": [
+   "без готовки"
+  ],
+  "minutes": 3,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "cottage",
+    "grams": 174
+   },
+   {
+    "id": "banana",
+    "grams": 87
+   },
+   {
+    "id": "pbutter",
+    "grams": 10
+   }
+  ],
+  "spices": "",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Творог разложите по контейнерам.",
+   "Банан нарежьте перед едой, сверху арахисовую пасту."
+  ],
+  "source": null,
+  "kcal": 348,
+  "protein": 31,
+  "fat": 14,
+  "carbs": 27,
+  "cookedGrams": 262
+ },
+ {
+  "id": "s-n-salmcrisp",
+  "type": "snack",
+  "name": "Хлебцы со слабосолёной сёмгой, огурцом и яйцом",
+  "cuisine": "Купить",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 12,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "crisp",
+    "grams": 38
+   },
+   {
+    "id": "salmsalt",
+    "grams": 63
+   },
+   {
+    "id": "cucumber",
+    "grams": 101
+   },
+   {
+    "id": "egg",
+    "grams": 55
+   }
+  ],
+  "spices": "",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Яйцо сварите вкрутую, 9 минут.",
+   "Рыбу и огурец нарежьте тонко, разложите на хлебцы перед едой."
+  ],
+  "source": null,
+  "kcal": 345,
+  "protein": 25,
+  "fat": 14,
+  "carbs": 27,
+  "cookedGrams": 253
+ },
+ {
+  "id": "s-n-chicksalad",
+  "type": "snack",
+  "name": "Салат с курицей, нутом и овощами",
+  "cuisine": "Готовить",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 20,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "chicken",
+    "grams": 89
+   },
+   {
+    "id": "chickpea",
+    "grams": 89
+   },
+   {
+    "id": "tomato",
+    "grams": 89
+   },
+   {
+    "id": "cucumber",
+    "grams": 89
+   },
+   {
+    "id": "oil",
+    "grams": 9
+   },
+   {
+    "id": "lemon",
+    "grams": 11
+   }
+  ],
+  "spices": "соль, перец, зелень",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Курицу отварите 15 минут или возьмите из обеда, нарежьте кубиком.",
+   "Нут без жидкости, помидоры и огурцы кубиком.",
+   "Заправьте маслом и лимонным соком перед едой."
+  ],
+  "source": null,
+  "kcal": 345,
+  "protein": 28,
+  "fat": 14,
+  "carbs": 27,
+  "cookedGrams": 351
+ },
+ {
+  "id": "b-tk-omelet",
+  "type": "breakfast",
+  "name": "Омлет с индейкой, шпинатом и сыром + хлеб",
+  "cuisine": "Домашняя",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 15,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "egg",
+    "grams": 165
+   },
+   {
+    "id": "turkey",
+    "grams": 67
+   },
+   {
+    "id": "spinach",
+    "grams": 42
+   },
+   {
+    "id": "cheese",
+    "grams": 17
+   },
+   {
+    "id": "bread",
+    "grams": 50
+   },
+   {
+    "id": "oil",
+    "grams": 4
+   }
+  ],
+  "spices": "соль, перец",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Индейку нарежьте мелко, обжарьте на масле 5 минут.",
+   "Добавьте шпинат, через минуту залейте взбитыми с солью яйцами.",
+   "Посыпьте тёртым сыром, накройте крышкой, 5 минут на слабом огне.",
+   "Хлеб положите отдельно. Разогрев: микроволновка 1 минута."
+  ],
+  "source": null,
+  "kcal": 551,
+  "protein": 46,
+  "fat": 27,
+  "carbs": 27,
+  "cookedGrams": 296
+ },
+ {
+  "id": "b-c-congee",
+  "type": "breakfast",
+  "name": "Рисовая каша с курицей и яйцом по-азиатски",
+  "cuisine": "Китайская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 35,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "rice",
+    "grams": 66
+   },
+   {
+    "id": "chicken",
+    "grams": 98
+   },
+   {
+    "id": "egg",
+    "grams": 110
+   },
+   {
+    "id": "soy",
+    "grams": 11
+   },
+   {
+    "id": "greens",
+    "grams": 11
+   },
+   {
+    "id": "water",
+    "grams": 437
+   },
+   {
+    "id": "oil",
+    "grams": 3
+   }
+  ],
+  "spices": "соль, имбирь сушёный",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Рис промойте, залейте водой, варите 25 минут до густой каши, помешивая.",
+   "Курицу нарежьте мелко, добавьте в кашу на последние 10 минут.",
+   "Яйца сварите вкрутую, 9 минут.",
+   "Заправьте соевым соусом и маслом, посыпьте зеленью. Разогрев: микроволновка 1,5 минуты с ложкой воды."
+  ],
+  "source": null,
+  "kcal": 549,
+  "protein": 41,
+  "fat": 17,
+  "carbs": 54,
+  "cookedGrams": 570
+ },
+ {
+  "id": "b-tk-sausage",
+  "type": "breakfast",
+  "name": "Домашние колбаски из индейки + яичница с помидорами + хлеб",
+  "cuisine": "Домашняя",
+  "tools": [
+   "аэрогриль",
+   "плита"
+  ],
+  "minutes": 30,
+  "keepDays": 3,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "turkey",
+    "grams": 141
+   },
+   {
+    "id": "egg",
+    "grams": 110
+   },
+   {
+    "id": "tomato",
+    "grams": 118
+   },
+   {
+    "id": "bread",
+    "grams": 59
+   },
+   {
+    "id": "oil",
+    "grams": 6
+   }
+  ],
+  "spices": "соль, перец, паприка, чеснок сушёный",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Индейку пропустите через мясорубку или возьмите фарш, посолите, добавьте специи.",
+   "Сформуйте небольшие колбаски.",
+   "Аэрогриль: 190 °C, 12 минут, переверните на середине. Духовка: 200 °C, 20 минут.",
+   "Яйца пожарьте с помидорами. Хлеб отдельно. Разогрев: микроволновка 1 минута."
+  ],
+  "source": null,
+  "kcal": 551,
+  "protein": 53,
+  "fat": 21,
+  "carbs": 34,
+  "cookedGrams": 386
+ },
+ {
+  "id": "b-c-wrap",
+  "type": "breakfast",
+  "name": "Ролл из тортильи с курицей, яйцом и перцем",
+  "cuisine": "Мексиканская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 20,
+  "keepDays": 3,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "tortilla",
+    "grams": 61
+   },
+   {
+    "id": "chicken",
+    "grams": 81
+   },
+   {
+    "id": "egg",
+    "grams": 110
+   },
+   {
+    "id": "pepper",
+    "grams": 61
+   },
+   {
+    "id": "cheese",
+    "grams": 15
+   },
+   {
+    "id": "oil",
+    "grams": 4
+   }
+  ],
+  "spices": "соль, паприка",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Курицу и перец нарежьте полосками, обжарьте 6 минут.",
+   "Добавьте взбитые яйца, помешивайте 2 минуты.",
+   "Выложите на тортилью, посыпьте сыром и сверните.",
+   "Разогрев: сковорода 2 минуты с каждой стороны или микроволновка 1 минута."
+  ],
+  "source": null,
+  "kcal": 549,
+  "protein": 41,
+  "fat": 25,
+  "carbs": 36,
+  "cookedGrams": 288
+ },
+ {
+  "id": "b-c-oats",
+  "type": "breakfast",
+  "name": "Несладкая овсянка с курицей, яйцом и шпинатом",
+  "cuisine": "Домашняя",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 15,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "oats",
+    "grams": 65
+   },
+   {
+    "id": "chicken",
+    "grams": 104
+   },
+   {
+    "id": "egg",
+    "grams": 55
+   },
+   {
+    "id": "spinach",
+    "grams": 65
+   },
+   {
+    "id": "cheese",
+    "grams": 19
+   },
+   {
+    "id": "water",
+    "grams": 260
+   },
+   {
+    "id": "oil",
+    "grams": 4
+   }
+  ],
+  "spices": "соль, перец",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Курицу нарежьте мелко, обжарьте на масле 5 минут.",
+   "Добавьте овсянку и воду, варите 5 минут.",
+   "Вмешайте шпинат и сыр. Сверху яйцо пашот или варёное.",
+   "Разогрев: микроволновка 1,5 минуты с ложкой воды."
+  ],
+  "source": null,
+  "kcal": 550,
+  "protein": 45,
+  "fat": 21,
+  "carbs": 43,
+  "cookedGrams": 356
+ },
+ {
+  "id": "b-tk-zucchini",
+  "type": "breakfast",
+  "name": "Оладьи из кабачка с индейкой + йогурт",
+  "cuisine": "Домашняя",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 30,
+  "keepDays": 3,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "zucchini",
+    "grams": 222
+   },
+   {
+    "id": "turkey",
+    "grams": 100
+   },
+   {
+    "id": "egg",
+    "grams": 110
+   },
+   {
+    "id": "flour",
+    "grams": 33
+   },
+   {
+    "id": "oil",
+    "grams": 8
+   },
+   {
+    "id": "yogurt",
+    "grams": 67
+   }
+  ],
+  "spices": "соль, перец, чеснок сушёный",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Кабачок натрите и отожмите.",
+   "Индейку мелко нарежьте или возьмите фарш. Смешайте с кабачком, яйцами, мукой и солью.",
+   "Жарьте оладьи на масле по 3 минуты с каждой стороны.",
+   "Йогурт положите отдельно. Разогрев: сковорода или микроволновка 1 минута."
+  ],
+  "source": null,
+  "kcal": 551,
+  "protein": 51,
+  "fat": 22,
+  "carbs": 35,
+  "cookedGrams": 448
+ },
+ {
+  "id": "b-cot-pancake",
+  "type": "breakfast",
+  "name": "Творожные панкейки с ягодами и мёдом",
+  "cuisine": "Американская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 20,
+  "keepDays": 3,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "cottage",
+    "grams": 165
+   },
+   {
+    "id": "egg",
+    "grams": 110
+   },
+   {
+    "id": "flour",
+    "grams": 33
+   },
+   {
+    "id": "berries",
+    "grams": 88
+   },
+   {
+    "id": "honey",
+    "grams": 11
+   }
+  ],
+  "spices": "ванилин, щепотка соли",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Творог разомните с яйцами, добавьте муку, перемешайте.",
+   "Жарьте небольшие панкейки на сухой антипригарной сковороде по 2 минуты с каждой стороны.",
+   "Подавайте с ягодами и мёдом.",
+   "Разогрев: микроволновка 40 секунд."
+  ],
+  "source": null,
+  "kcal": 550,
+  "protein": 44,
+  "fat": 19,
+  "carbs": 49,
+  "cookedGrams": 390
+ },
+ {
+  "id": "b-c-potbake",
+  "type": "breakfast",
+  "name": "Картофельная запеканка с курицей и яйцом",
+  "cuisine": "Домашняя",
+  "tools": [
+   "аэрогриль"
+  ],
+  "minutes": 40,
+  "keepDays": 3,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "potato",
+    "grams": 211
+   },
+   {
+    "id": "chicken",
+    "grams": 95
+   },
+   {
+    "id": "egg",
+    "grams": 110
+   },
+   {
+    "id": "cheese",
+    "grams": 16
+   },
+   {
+    "id": "onion",
+    "grams": 32
+   },
+   {
+    "id": "oil",
+    "grams": 5
+   }
+  ],
+  "spices": "соль, перец, паприка",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Картофель натрите на крупной тёрке, курицу и лук нарежьте мелко.",
+   "Смешайте с яйцами и солью, выложите в форму, сверху сыр.",
+   "Аэрогриль: 180 °C, 25 минут. Духовка: 200 °C, 35 минут.",
+   "Разогрев: аэрогриль 170 °C 4 минуты."
+  ],
+  "source": null,
+  "kcal": 548,
+  "protein": 44,
+  "fat": 22,
+  "carbs": 40,
+  "cookedGrams": 383
+ },
+ {
+  "id": "b-yog-bowl",
+  "type": "breakfast",
+  "name": "Йогурт с овсянкой, бананом и орехами + яйца",
+  "cuisine": "Без готовки",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 10,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "yogurt",
+    "grams": 215
+   },
+   {
+    "id": "oats",
+    "grams": 32
+   },
+   {
+    "id": "banana",
+    "grams": 64
+   },
+   {
+    "id": "nuts",
+    "grams": 11
+   },
+   {
+    "id": "egg",
+    "grams": 110
+   }
+  ],
+  "spices": "корица",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Яйца сварите вкрутую: 9 минут, в холодную воду.",
+   "Йогурт смешайте с овсянкой, оставьте на ночь в холодильнике.",
+   "Утром добавьте банан кружками и орехи."
+  ],
+  "source": null,
+  "kcal": 551,
+  "protein": 42,
+  "fat": 23,
+  "carbs": 45,
+  "cookedGrams": 423
+ },
+ {
+  "id": "b-tk-lavash",
+  "type": "breakfast",
+  "name": "Лаваш с индейкой, яйцом и огурцом в аэрогриле",
+  "cuisine": "Домашняя",
+  "tools": [
+   "аэрогриль"
+  ],
+  "minutes": 20,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "lavash",
+    "grams": 65
+   },
+   {
+    "id": "turkey",
+    "grams": 98
+   },
+   {
+    "id": "egg",
+    "grams": 110
+   },
+   {
+    "id": "cucumber",
+    "grams": 87
+   },
+   {
+    "id": "cheese",
+    "grams": 16
+   },
+   {
+    "id": "oil",
+    "grams": 3
+   }
+  ],
+  "spices": "соль, перец",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Индейку нарежьте мелко, обжарьте 6 минут.",
+   "Яйца взбейте, вылейте на лаваш, сверху индейку и сыр, сверните конвертом.",
+   "Аэрогриль: 180 °C, 8 минут.",
+   "Огурец нарежьте и положите отдельно. Разогрев: аэрогриль 170 °C 3 минуты."
+  ],
+  "source": null,
+  "kcal": 545,
+  "protein": 48,
+  "fat": 20,
+  "carbs": 40,
+  "cookedGrams": 343
+ },
+ {
+  "id": "m-c-teriyaki",
+  "type": "main",
+  "name": "Курица терияки с рисом и брокколи",
+  "cuisine": "Японская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 30,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "chicken",
+    "grams": 157
+   },
+   {
+    "id": "rice",
+    "grams": 61
+   },
+   {
+    "id": "broccoli",
+    "grams": 131
+   },
+   {
+    "id": "soy",
+    "grams": 17
+   },
+   {
+    "id": "honey",
+    "grams": 9
+   },
+   {
+    "id": "starch",
+    "grams": 4
+   },
+   {
+    "id": "garlic",
+    "grams": 4
+   },
+   {
+    "id": "oil",
+    "grams": 4
+   }
+  ],
+  "spices": "имбирь сушёный, перец",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Рис сварите, 15 минут.",
+   "Курицу кубиком обжарьте на масле 7 минут.",
+   "Соевый соус, мёд, чеснок и крахмал размешайте с 50 мл воды, влейте к курице, 2 минуты до загустения.",
+   "Брокколи отварите 4 минуты или приготовьте на пару."
+  ],
+  "source": null,
+  "kcal": 545,
+  "protein": 45,
+  "fat": 9,
+  "carbs": 70,
+  "cookedGrams": 445
+ },
+ {
+  "id": "m-t-plov",
+  "type": "main",
+  "name": "Плов с куриным бедром",
+  "cuisine": "Среднеазиатская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 60,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "thigh",
+    "grams": 156
+   },
+   {
+    "id": "rice",
+    "grams": 61
+   },
+   {
+    "id": "carrot",
+    "grams": 87
+   },
+   {
+    "id": "onion",
+    "grams": 43
+   },
+   {
+    "id": "oil",
+    "grams": 5
+   },
+   {
+    "id": "garlic",
+    "grams": 9
+   }
+  ],
+  "spices": "зира, барбарис, соль",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Бёдра без кожи нарежьте кусками, обжарьте 7 минут.",
+   "Лук и морковь соломкой, ещё 7 минут, добавьте зиру.",
+   "Сверху промытый рис, залейте горячей водой на 1,5 см выше, посолите, в центр головку чеснока.",
+   "Накройте, на слабом огне 25 минут."
+  ],
+  "source": null,
+  "kcal": 549,
+  "protein": 36,
+  "fat": 17,
+  "carbs": 63,
+  "cookedGrams": 416
+ },
+ {
+  "id": "m-c-lavashbake",
+  "type": "main",
+  "name": "Курица, запечённая в лаваше с овощами и сыром",
+  "cuisine": "Домашняя",
+  "tools": [
+   "аэрогриль"
+  ],
+  "minutes": 35,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "chicken",
+    "grams": 169
+   },
+   {
+    "id": "lavash",
+    "grams": 74
+   },
+   {
+    "id": "pepper",
+    "grams": 85
+   },
+   {
+    "id": "tomato",
+    "grams": 85
+   },
+   {
+    "id": "cheese",
+    "grams": 21
+   },
+   {
+    "id": "yogurt",
+    "grams": 42
+   }
+  ],
+  "spices": "соль, паприка, чеснок сушёный",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Курицу нарежьте полосками, смешайте с йогуртом и специями.",
+   "Выложите на лаваш с перцем и помидорами, посыпьте сыром, сверните рулетом.",
+   "Аэрогриль: 180 °C, 18 минут. Духовка: 200 °C, 25 минут.",
+   "Разогрев: аэрогриль 170 °C 4 минуты."
+  ],
+  "source": null,
+  "kcal": 549,
+  "protein": 56,
+  "fat": 12,
+  "carbs": 51,
+  "cookedGrams": 412
+ },
+ {
+  "id": "m-tk-buckw",
+  "type": "main",
+  "name": "Индейка, тушённая с гречкой и кабачком",
+  "cuisine": "Русская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 35,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "turkey",
+    "grams": 176
+   },
+   {
+    "id": "buckw",
+    "grams": 73
+   },
+   {
+    "id": "zucchini",
+    "grams": 155
+   },
+   {
+    "id": "onion",
+    "grams": 41
+   },
+   {
+    "id": "carrot",
+    "grams": 52
+   },
+   {
+    "id": "oil",
+    "grams": 6
+   }
+  ],
+  "spices": "соль, перец, лавровый лист",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Индейку кубиком обжарьте 6 минут, добавьте лук и морковь, ещё 4 минуты.",
+   "Добавьте промытую гречку и кабачок кубиком.",
+   "Залейте водой в двойном объёме к гречке, посолите.",
+   "Тушите под крышкой 20 минут."
+  ],
+  "source": null,
+  "kcal": 549,
+  "protein": 54,
+  "fat": 12,
+  "carbs": 59,
+  "cookedGrams": 518
+ },
+ {
+  "id": "m-tk-mash",
+  "type": "main",
+  "name": "Индейка с картофельным пюре и тушёной капустой",
+  "cuisine": "Русская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 40,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "turkey",
+    "grams": 187
+   },
+   {
+    "id": "potato",
+    "grams": 275
+   },
+   {
+    "id": "cabbage",
+    "grams": 165
+   },
+   {
+    "id": "onion",
+    "grams": 33
+   },
+   {
+    "id": "oil",
+    "grams": 8
+   }
+  ],
+  "spices": "соль, перец, тмин",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Картофель отварите 20 минут, разомните с ложкой отвара.",
+   "Индейку кусочками обжарьте 8 минут.",
+   "Капусту и лук потушите на масле с ложкой воды 15 минут.",
+   "Разогрев: микроволновка 2 минуты."
+  ],
+  "source": null,
+  "kcal": 553,
+  "protein": 53,
+  "fat": 11,
+  "carbs": 59,
+  "cookedGrams": 519
+ },
+ {
+  "id": "m-soup-tkball",
+  "type": "main",
+  "name": "Суп с фрикадельками из индейки и рисом",
+  "cuisine": "Русская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 40,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "turkey",
+    "grams": 198
+   },
+   {
+    "id": "rice",
+    "grams": 49
+   },
+   {
+    "id": "potato",
+    "grams": 124
+   },
+   {
+    "id": "carrot",
+    "grams": 62
+   },
+   {
+    "id": "onion",
+    "grams": 49
+   },
+   {
+    "id": "water",
+    "grams": 619
+   },
+   {
+    "id": "greens",
+    "grams": 12
+   }
+  ],
+  "spices": "соль, перец горошком, лавровый лист",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Индейку пропустите через мясорубку или возьмите фарш, посолите, скатайте фрикадельки.",
+   "Картофель кубиком, морковь и лук залейте водой, варите 10 минут.",
+   "Добавьте рис и фрикадельки, ещё 15 минут на слабом огне.",
+   "Посыпьте зеленью."
+  ],
+  "source": null,
+  "kcal": 548,
+  "protein": 55,
+  "fat": 4,
+  "carbs": 71,
+  "cookedGrams": 735
+ },
+ {
+  "id": "m-tk-tacos",
+  "type": "main",
+  "name": "Тако из индейки с фасолью и кукурузой",
+  "cuisine": "Мексиканская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 25,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "turkey",
+    "grams": 137
+   },
+   {
+    "id": "tortilla",
+    "grams": 55
+   },
+   {
+    "id": "beans",
+    "grams": 73
+   },
+   {
+    "id": "corn",
+    "grams": 55
+   },
+   {
+    "id": "tomato",
+    "grams": 73
+   },
+   {
+    "id": "cheese",
+    "grams": 14
+   },
+   {
+    "id": "oil",
+    "grams": 5
+   }
+  ],
+  "spices": "соль, паприка, зира",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Индейку нарежьте мелко или возьмите фарш, обжарьте с паприкой и зирой 8 минут.",
+   "Добавьте фасоль и кукурузу, прогрейте 3 минуты.",
+   "Помидоры нарежьте кубиком.",
+   "Собирайте тако в тортилье перед едой, сверху сыр. Начинку разогрейте в микроволновке 1,5 минуты."
+  ],
+  "source": null,
+  "kcal": 554,
+  "protein": 48,
+  "fat": 16,
+  "carbs": 50,
+  "cookedGrams": 374
+ },
+ {
+  "id": "m-c-pastamush",
+  "type": "main",
+  "name": "Паста с курицей, грибами и шпинатом",
+  "cuisine": "Итальянская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 25,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "chicken",
+    "grams": 145
+   },
+   {
+    "id": "pasta",
+    "grams": 68
+   },
+   {
+    "id": "mush",
+    "grams": 109
+   },
+   {
+    "id": "spinach",
+    "grams": 45
+   },
+   {
+    "id": "cheese",
+    "grams": 14
+   },
+   {
+    "id": "garlic",
+    "grams": 5
+   },
+   {
+    "id": "oil",
+    "grams": 5
+   }
+  ],
+  "spices": "соль, перец, орегано",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Пасту отварите по упаковке.",
+   "Курицу кубиком обжарьте 6 минут, добавьте грибы и чеснок, ещё 6 минут.",
+   "Вмешайте шпинат и ложку воды от пасты, затем пасту.",
+   "Посыпьте сыром. Разогрев: микроволновка 2 минуты."
+  ],
+  "source": null,
+  "kcal": 548,
+  "protein": 49,
+  "fat": 14,
+  "carbs": 55,
+  "cookedGrams": 377
+ },
+ {
+  "id": "m-t-asian",
+  "type": "main",
+  "name": "Бёдра по-азиатски с рисом и пекинской капустой",
+  "cuisine": "Китайская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 30,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "thigh",
+    "grams": 163
+   },
+   {
+    "id": "rice",
+    "grams": 63
+   },
+   {
+    "id": "peking",
+    "grams": 136
+   },
+   {
+    "id": "soy",
+    "grams": 18
+   },
+   {
+    "id": "honey",
+    "grams": 7
+   },
+   {
+    "id": "garlic",
+    "grams": 5
+   },
+   {
+    "id": "oil",
+    "grams": 4
+   }
+  ],
+  "spices": "имбирь сушёный, перец",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Рис сварите, 15 минут.",
+   "Бёдра без кожи кусками обжарьте 8 минут.",
+   "Добавьте соевый соус, мёд и чеснок, 2 минуты.",
+   "Пекинскую капусту обжарьте отдельно 3 минуты."
+  ],
+  "source": null,
+  "kcal": 551,
+  "protein": 39,
+  "fat": 16,
+  "carbs": 62,
+  "cookedGrams": 481
+ },
+ {
+  "id": "m-tk-lentil",
+  "type": "main",
+  "name": "Индейка с красной чечевицей в томатах",
+  "cuisine": "Домашняя",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 35,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "turkey",
+    "grams": 174
+   },
+   {
+    "id": "lentr",
+    "grams": 58
+   },
+   {
+    "id": "ctomato",
+    "grams": 174
+   },
+   {
+    "id": "onion",
+    "grams": 46
+   },
+   {
+    "id": "carrot",
+    "grams": 58
+   },
+   {
+    "id": "oil",
+    "grams": 7
+   }
+  ],
+  "spices": "соль, паприка, зира",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Индейку кубиком обжарьте 6 минут, добавьте лук и морковь, ещё 4 минуты.",
+   "Добавьте чечевицу, томаты и 250 мл воды.",
+   "Тушите 20 минут до мягкости чечевицы.",
+   "Разогрев: микроволновка 2 минуты."
+  ],
+  "source": null,
+  "kcal": 551,
+  "protein": 58,
+  "fat": 11,
+  "carbs": 53,
+  "cookedGrams": 489
+ },
+ {
+  "id": "m-c-ricebake",
+  "type": "main",
+  "name": "Запеканка из риса с курицей и брокколи",
+  "cuisine": "Домашняя",
+  "tools": [
+   "аэрогриль",
+   "плита"
+  ],
+  "minutes": 45,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "chicken",
+    "grams": 143
+   },
+   {
+    "id": "rice",
+    "grams": 53
+   },
+   {
+    "id": "broccoli",
+    "grams": 134
+   },
+   {
+    "id": "egg",
+    "grams": 55
+   },
+   {
+    "id": "cheese",
+    "grams": 18
+   }
+  ],
+  "spices": "соль, перец, чеснок сушёный",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Рис отварите до полуготовности, 10 минут.",
+   "Курицу и брокколи нарежьте, смешайте с рисом и яйцом.",
+   "Выложите в форму, сверху сыр.",
+   "Аэрогриль: 180 °C, 20 минут. Духовка: 200 °C, 30 минут."
+  ],
+  "source": null,
+  "kcal": 550,
+  "protein": 51,
+  "fat": 15,
+  "carbs": 51,
+  "cookedGrams": 444
+ },
+ {
+  "id": "m-tk-gbeans",
+  "type": "main",
+  "name": "Индейка со стручковой фасолью и картофелем в аэрогриле",
+  "cuisine": "Домашняя",
+  "tools": [
+   "аэрогриль"
+  ],
+  "minutes": 35,
+  "keepDays": 4,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "turkey",
+    "grams": 192
+   },
+   {
+    "id": "potato",
+    "grams": 266
+   },
+   {
+    "id": "gbeans",
+    "grams": 160
+   },
+   {
+    "id": "oil",
+    "grams": 7
+   },
+   {
+    "id": "garlic",
+    "grams": 5
+   }
+  ],
+  "spices": "соль, паприка, розмарин",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Картофель дольками смешайте с половиной масла и специями.",
+   "Аэрогриль: 200 °C, 12 минут.",
+   "Добавьте индейку кусками и стручковую фасоль с остальным маслом и чесноком.",
+   "Ещё 12 минут при 190 °C, встряхните на середине."
+  ],
+  "source": null,
+  "kcal": 546,
+  "protein": 55,
+  "fat": 10,
+  "carbs": 58,
+  "cookedGrams": 499
  }
 ]

@@ -133,7 +133,8 @@ def run_search(out: Path) -> None:
             return Image.new('RGB', (150, 150), 'grey')
 
     font = ImageFont.load_default(16)
-    ids = list(queries)
+    done = json.loads(CREDITS.read_text(encoding='utf-8')) if CREDITS.exists() else {}
+    ids = [recipe for recipe in queries if recipe not in done]
     for sheet_no, start in enumerate(range(0, len(ids), 12), 1):
         chunk = ids[start:start + 12]
         sheet = Image.new('RGB', (170 + PER_RECIPE * 160, 160 * len(chunk)), 'white')
@@ -165,8 +166,10 @@ def run_build(out: Path) -> None:
     found = json.loads(FOUND.read_text(encoding='utf-8'))
     choice: dict[str, int | str] = json.loads(CHOICE.read_text(encoding='utf-8'))
     PHOTOS.mkdir(parents=True, exist_ok=True)
-    credits = {}
+    credits = json.loads(CREDITS.read_text(encoding='utf-8')) if CREDITS.exists() else {}
     for recipe, pick in choice.items():
+        if recipe in credits and (PHOTOS / f'{recipe}.webp').exists():
+            continue
         item = by_title(pick) if isinstance(pick, str) else found[recipe][pick - 1]
         target = PHOTOS / f'{recipe}.webp'
         target.write_bytes(webp(square(get(item['thumb']), SIDE)))

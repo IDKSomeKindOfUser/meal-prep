@@ -6,15 +6,15 @@ const list = [...ingredients.values()]
 const byId = (id: string) => recipes.find((r) => r.id === id)!
 
 describe('целостность', () => {
-  it('77 продуктов и 99 рецептов с уникальными id', () => {
+  it('77 продуктов и 150 рецептов с уникальными id', () => {
     expect(ingredients.size).toBe(77)
-    expect(recipes).toHaveLength(99)
-    expect(new Set(recipes.map((r) => r.id)).size).toBe(99)
+    expect(recipes).toHaveLength(150)
+    expect(new Set(recipes.map((r) => r.id)).size).toBe(150)
   })
 
-  it('типы рецептов: 26 завтраков, 55 основных, 18 перекусов', () => {
+  it('типы рецептов: 43 завтрака, 82 основных, 25 перекусов', () => {
     const n = (t: string) => recipes.filter((r) => r.type === t).length
-    expect([n('breakfast'), n('main'), n('snack')]).toEqual([26, 55, 18])
+    expect([n('breakfast'), n('main'), n('snack')]).toEqual([43, 82, 25])
   })
 
   it('рецепты и выходы ссылаются на известные продукты', () => {
