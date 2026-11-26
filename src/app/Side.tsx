@@ -1,5 +1,4 @@
 import type { Report } from '../planner'
-import { blocks } from '../planner/schedule'
 import { SLOTS, type Slot } from '../planner/types'
 import { addDays, dayMonth, weekday } from './dates'
 import { DayChart } from './DayChart'
@@ -8,7 +7,7 @@ import { GoIcon } from './parts'
 import { COOK, count, num, rub, SLOT } from './labels'
 import { cookHash } from './route'
 import { checkKey } from './ShoppingScreen'
-import { cookedKey, type SavedPlan } from './storage'
+import { cookingKeys, type SavedPlan } from './storage'
 
 const capital = (s: string) => s[0]!.toUpperCase() + s.slice(1)
 
@@ -54,12 +53,11 @@ function BoughtRing({ plan, report, week }: { plan: SavedPlan; report: Report; w
   return <Ring done={done} all={all.length} label="куплено" />
 }
 
-/** Dishes of the week marked as cooked; one dish is one slot of one cooking. */
-function CookedRing({ plan, week }: { plan: SavedPlan; week: number }) {
-  const keys = blocks(plan.settings.cookTimes, plan.settings.weeks).flatMap((b, i) =>
-    b.week === week ? SLOTS.map((slot) => cookedKey(i, slot)) : [])
+/** Dishes of one cooking marked as cooked: the ring fills up in one go, not over the week. */
+function CookedRing({ plan, cookDay }: { plan: SavedPlan; cookDay: number }) {
+  const keys = cookingKeys(plan.settings.cookTimes, plan.settings.weeks, cookDay)
   const cooked = new Set(plan.cooked ?? [])
-  return <Ring done={keys.filter((k) => cooked.has(k)).length} all={keys.length} label="блюд недели приготовлено" />
+  return <Ring done={keys.filter((k) => cooked.has(k)).length} all={keys.length} label="блюд этой готовки приготовлено" />
 }
 
 /** Right column of the cooking screen. */
@@ -67,8 +65,8 @@ export function CookSide({ plan, day }: { plan: SavedPlan; day: number }) {
   return (
     <aside className="side widgets" aria-label="Сводка готовки">
       <section className="widget">
-        <h2>Готовка недели</h2>
-        <CookedRing plan={plan} week={Math.floor(day / 7)} />
+        <h2>Эта готовка</h2>
+        <CookedRing plan={plan} cookDay={day} />
       </section>
     </aside>
   )
@@ -100,7 +98,7 @@ export function TodaySide({ plan, report, day, onDay }: { plan: SavedPlan; repor
           <h2>Ближайшая готовка</h2>
           <p><b>{next.day === day ? 'Сегодня' : `${capital(weekday(addDays(start, next.day)))}, ${dayMonth(addDays(start, next.day))}`}</b></p>
           <p className="hint">{count(next.dishes.length, 'блюдо', 'блюда', 'блюд')}, около {num(next.minutes)} мин</p>
-          <CookedRing plan={plan} week={week} />
+          <CookedRing plan={plan} cookDay={next.day} />
           <a className="tonal" href={cookHash(next.day)}>Начать готовку<GoIcon /></a>
         </section>
       )}

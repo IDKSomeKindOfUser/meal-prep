@@ -1,7 +1,8 @@
 import { ALLERGENS } from '../data/types'
 import { KINDS, MEATS } from '../planner/prefer'
 import { describeMenu, type Menu } from '../planner'
-import { TOOLS, type Catalog, type Settings } from '../planner/types'
+import { blocks } from '../planner/schedule'
+import { SLOTS, TOOLS, type Catalog, type Settings } from '../planner/types'
 import { makeCatalog, parseOverrides, type PriceOverrides } from './catalog'
 import { isIsoDate } from './dates'
 import { EMPTY_FORM, type Form } from './form'
@@ -23,6 +24,10 @@ export interface SavedPlan {
 }
 /** The key of a dish in `SavedPlan.cooked`. */
 export const cookedKey = (block: number, slot: string) => `${block}:${slot}`
+
+/** Keys of the dishes cooked on one cooking day: what is cooked in one go. */
+export const cookingKeys = (cookTimes: Settings['cookTimes'], weeks: Settings['weeks'], cookDay: number) =>
+  blocks(cookTimes, weeks).flatMap((b, i) => (b.cookDay === cookDay ? SLOTS.map((slot) => cookedKey(i, slot)) : []))
 export interface SavedState {
   version: 1
   form: Form

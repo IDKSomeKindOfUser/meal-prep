@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { alternatives, defaultCatalog, planMenu, replaceDish } from '../planner'
 import { EMPTY_FORM, readForm } from './form'
-import { parseState, EMPTY_STATE, type SavedState } from './storage'
+import { cookingKeys, parseState, EMPTY_STATE, type SavedState } from './storage'
 
 const form = { ...EMPTY_FORM, normBy: 'manual' as const, kcal: '2000', protein: '100' }
 const read = readForm(form)
@@ -46,5 +46,15 @@ describe('parseState', () => {
   it('replaces form fields of a wrong type with defaults', () => {
     const odd = { ...state, form: { ...form, age: 5, tools: 'плита', cookTimes: 9 } }
     expect(parseState(JSON.stringify(odd)).form).toEqual(form)
+  })
+})
+
+describe('cookingKeys', () => {
+  it('counts only the dishes of one cooking', () => {
+    expect(cookingKeys(2, 1, 4)).toEqual(['1:breakfast', '1:lunch', '1:dinner', '1:snack'])
+    expect(cookingKeys(7, 4, 8)).toHaveLength(4)
+  })
+  it('one cooking a week covers both blocks of the week', () => {
+    expect(cookingKeys(1, 1, 0)).toHaveLength(8)
   })
 })
