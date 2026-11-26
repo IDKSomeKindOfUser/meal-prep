@@ -42,6 +42,16 @@ const NUMBERS = {
 type NumberField = keyof typeof NUMBERS
 export type Errors = Partial<Record<NumberField | 'sex', string>>
 
+/** Steps of the first-run questionnaire, in order. */
+export const STEPS = ['norm', 'limits', 'cook', 'money'] as const
+export type Step = (typeof STEPS)[number]
+const STEP_OF: Record<keyof Errors, Step> = { sex: 'norm', age: 'norm', height: 'norm', weight: 'norm', kcal: 'norm', protein: 'norm', budget: 'money' }
+
+/** The errors of the fields shown on one step. */
+export function stepErrors(errors: Errors, step: Step): Errors {
+  return Object.fromEntries(Object.entries(errors).filter(([key]) => STEP_OF[key as keyof Errors] === step))
+}
+
 function number(form: Form, field: NumberField): number | null {
   const text = form[field].replace(/\s/g, '').replace(',', '.')
   const { min, max } = NUMBERS[field]

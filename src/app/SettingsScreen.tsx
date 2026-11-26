@@ -7,7 +7,7 @@ import { AccountForm } from './AccountForm'
 import { cloudReady, type Cloud } from './cloud'
 import { dayMonth, isIsoDate, weekday } from './dates'
 import { Checks, Choice, Field, options } from './fields'
-import { norm, readForm, type Errors, type Form } from './form'
+import { norm, readForm, STEPS, stepErrors, type Errors, type Form, type Step } from './form'
 import { ACTIVITY, ALLERGEN, COOK, GOAL, LACTOSE, missingLines, num } from './labels'
 import type { Own } from './own'
 import { applyTheme, currentTheme, type Theme } from './theme'
@@ -27,30 +27,44 @@ interface Props {
   cloud: Cloud
   /** Some edits have not reached the cloud. */
   unsent: boolean
+  /** No menu yet: the questions go one step at a time. */
+  wizard: boolean
 }
 
 const builtIn = recipes.flatMap((r) => r.ingredients.map((i) => i.id))
 
-const Group = ({ title, children }: { title: string; children: ReactNode }) => (
-  <section className="group"><h2>{title}</h2>{children}</section>
+const Group = ({ title, count, children }: { title: string; count?: string; children: ReactNode }) => (
+  <section className="group"><h2 tabIndex={-1}>{count && <><span className="count">{count}</span>{' '}</>}{title}</h2>{children}</section>
 )
 
-export function SettingsScreen({ form, own, onForm, start: suggested, changed, busy, missing, onBuild, cloud, unsent }: Props) {
+export function SettingsScreen({ form, own, onForm, start: suggested, changed, busy, missing, onBuild, cloud, unsent, wizard }: Props) {
   const [start, setStart] = useState(suggested)
   const [submitted, setSubmitted] = useState(false)
   const [theme, setTheme] = useState<Theme>(currentTheme)
   const [tab, setTab] = useState<'form' | 'site'>('form')
+  const [step, setStep] = useState(0)
   const formRef = useRef<HTMLFormElement>(null)
   const missingRef = useRef<HTMLDivElement>(null)
+  const stepped = useRef(false)
 
   useEffect(() => { if (missing.length > 0) missingRef.current?.focus() }, [missing])
+  // A new step starts at its heading; the first one keeps the page heading in focus.
+  useEffect(() => { if (stepped.current) formRef.current?.querySelector<HTMLElement>('h2')?.focus() }, [step])
 
   const used = new Set([...builtIn, ...own.recipes.flatMap((r) => r.ingredients.map((i) => i.id))])
   const products = [...ingredients.values(), ...own.products].filter((i) => i.buyBy !== 'free' && used.has(i.id))
   const categories = [...new Set(products.map((p) => p.category))]
   const read = readForm(form)
-  const errors: Errors = submitted && !read.ok ? read.errors : {}
-  const startError = submitted && !isIsoDate(start) ? 'Укажите дату первого дня.' : undefined
+  const current: Step = STEPS[step]!
+  const last = !wizard || step === STEPS.length - 1
+  const shows = (s: Step) => !wizard || s === current
+  const allErrors: Errors = read.ok ? {} : read.errors
+  const errors: Errors = submitted ? (wizard ? stepErrors(allErrors, current) : allErrors) : {}
+  const startError = submitted && shows('cook') && !isIsoDate(start) ? 'Укажите дату первого дня.' : undefined
+  const count = (s: Step) => wizard ? `Шаг ${STEPS.indexOf(s) + 1} из ${STEPS.length}` : undefined
+  const focusInvalid = () => requestAnimationFrame(() => formRef.current?.querySelector<HTMLElement>('[aria-invalid]')?.focus())
+  const bad = (s: Step) => Object.keys(stepErrors(allErrors, s)).length > 0 || (s === 'cook' && !isIsoDate(start))
+  const go = (to: number) => { stepped.current = true; setSubmitted(false); transition(() => setStep(to)) }
   const goal = norm(form)
   const set = <K extends keyof Form>(key: K) => (value: Form[K]) => onForm({ ...form, [key]: value })
   const typed = (key: 'age' | 'height' | 'weight' | 'kcal' | 'protein' | 'budget') => ({
@@ -70,11 +84,15 @@ export function SettingsScreen({ form, own, onForm, start: suggested, changed, b
       {tab === 'form' ? <form ref={formRef} className="settings" noValidate onSubmit={(e) => {
         e.preventDefault()
         setSubmitted(true)
-        if (read.ok && isIsoDate(start)) onBuild(read.settings, start)
+        const broken = STEPS.findIndex(bad)
+        if (!last && !bad(current)) go(step + 1)
+        else if (last && broken === -1 && read.ok) onBuild(read.settings, start)
+        // An earlier step was broken after leaving it: go back there.
+        else if (wizard && broken < step) { go(broken); setSubmitted(true); requestAnimationFrame(focusInvalid) }
         // The messages appear after the next render.
-        else requestAnimationFrame(() => formRef.current?.querySelector<HTMLElement>('[aria-invalid]')?.focus())
+        else focusInvalid()
       }}>
-        <Group title="Норма">
+        {shows('norm') && <Group title="Норма" count={count('norm')}>
           <Choice name="normBy" legend="Откуда взять калории" value={form.normBy} onChange={set('normBy')}
             options={[['profile', 'Посчитать по анкете'], ['manual', 'Ввести самому']]} />
           {form.normBy === 'profile' ? (
@@ -104,9 +122,9 @@ export function SettingsScreen({ form, own, onForm, start: suggested, changed, b
             {goal ? <><b>{num(goal.kcal)} ккал</b> и <b>{num(goal.protein)} г белка</b> в день</> : 'Заполните поля, и здесь появится норма.'}
           </p>
           <p className="hint">Расчёт справочный и не заменяет совет врача.</p>
-        </Group>
+        </Group>}
 
-        <Group title="Что нельзя">
+        {shows('limits') && <Group title="Что нельзя" count={count('limits')}>
           <Checks legend="Аллергены" value={form.allergens} onChange={set('allergens')}
             options={ALLERGENS.map((a) => [a, ALLERGEN[a]] as const)}
             hint="Убираем и блюда, где аллерген только возможен. Составы взяты обычные, поэтому этикетку на пачке всё равно проверяйте." />
@@ -121,9 +139,9 @@ export function SettingsScreen({ form, own, onForm, start: suggested, changed, b
                 options={products.filter((p) => p.category === category).map((p) => [p.id, p.name] as const)} />
             ))}
           </details>
-        </Group>
+        </Group>}
 
-        <Group title="Готовка">
+        {shows('cook') && <Group title="Готовка" count={count('cook')}>
           <Choice name="weeks" legend="На сколько" value={form.weeks} onChange={set('weeks')} options={[[1, 'Неделя'], [4, '4 недели']]} />
           <Field label="Первый день" type="date" value={start} error={startError} hint={!startError && isIsoDate(start) ? `${weekday(start)}, ${dayMonth(start)}` : undefined} onChange={(e) => setStart(e.target.value)} />
           <Choice name="cookTimes" legend="Готовить в неделю" value={form.cookTimes} onChange={set('cookTimes')}
@@ -134,12 +152,12 @@ export function SettingsScreen({ form, own, onForm, start: suggested, changed, b
             onChange={(v) => set('maxMinutes')(v === 'any' ? '' : v)}
             options={[['any', 'Любое'], ['30', 'до 30 минут'], ['45', 'до 45'], ['60', 'до 60']]}
             hint="Пожелание: если выбора мало, блюдо может готовиться дольше." />
-        </Group>
+        </Group>}
 
-        <Group title="Деньги">
+        {shows('money') && <Group title="Деньги" count={count('money')}>
           <Field label="Бюджет на весь срок" unit="₽" {...typed('budget')}
             hint="Считаем целыми пачками и с нуля, без учёта запасов дома. Пустое поле: без предела." />
-        </Group>
+        </Group>}
 
         <div className="build">
           {missing.length > 0 && (
@@ -148,9 +166,12 @@ export function SettingsScreen({ form, own, onForm, start: suggested, changed, b
               <ul>{missingLines(missing).map((line) => <li key={line}>{line}</li>)}</ul>
             </div>
           )}
-          {submitted && !read.ok && <p className="warn" role="alert">Исправьте отмеченные поля.</p>}
+          {submitted && Object.keys(errors).length + (startError ? 1 : 0) > 0 && <p className="warn" role="alert">Исправьте отмеченные поля.</p>}
           {changed && <p className="hint">Настройки изменены, меню пока прежнее.</p>}
-          <button type="submit" className="go" disabled={busy}>{busy ? 'Собираем…' : 'Собрать меню'}</button>
+          <div className="actions">
+            {wizard && step > 0 && <button type="button" className="back" onClick={() => go(step - 1)}>Назад</button>}
+            <button type="submit" className="go" disabled={busy}>{!last ? 'Дальше' : busy ? 'Собираем…' : 'Собрать меню'}</button>
+          </div>
         </div>
       </form> : <div className="settings">
         <Group title="Свои рецепты">

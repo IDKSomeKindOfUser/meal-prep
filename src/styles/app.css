@@ -220,6 +220,8 @@ fieldset .hint, fieldset .warn, .field .hint { margin-top: var(--space-2); }
 .exclude summary { min-height: 44px; align-content: center; font-weight: 600; }
 .exclude fieldset { margin-top: var(--space-4); }
 .build { padding: var(--space-5) var(--space-5) 0; }
+.group h2 .count { display: block; margin-bottom: var(--space-1); color: var(--muted); font-size: var(--text-s); font-weight: 600; }
+.build .actions .back { background: none; font: inherit; font-weight: 600; cursor: pointer; }
 .missing { background: var(--surface); border: 1px solid var(--danger); border-radius: var(--radius-card); padding: var(--space-4); }
 .missing + .hint, .build .warn + .hint { margin-top: var(--space-3); }
 .missing li { margin-top: var(--space-2); }

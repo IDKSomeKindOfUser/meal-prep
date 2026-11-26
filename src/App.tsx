@@ -239,7 +239,7 @@ export function App() {
           <div>
           {screen === 'settings' ? (
             <SettingsScreen form={form} own={state.own} onForm={(f) => { setMissing([]); setState((s) => ({ ...s, form: f })) }} start={start} changed={changed}
-              busy={busy} missing={missing} onBuild={build} cloud={cloud} unsent={pending(state)} />
+              busy={busy} missing={missing} onBuild={build} cloud={cloud} unsent={pending(state)} wizard={plan === null} />
           ) : route.screen === 'prices' ? (
             <PricesScreen overrides={state.prices} onChange={(prices) => setState((s) => ({ ...s, prices }))} />
           ) : route.screen === 'credits' ? (

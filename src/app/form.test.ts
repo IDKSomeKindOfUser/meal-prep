@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { EMPTY_FORM, norm, readForm, type Form } from './form'
+import { EMPTY_FORM, norm, readForm, stepErrors, type Form } from './form'
 
 const profile: Form = { ...EMPTY_FORM, sex: 'male', age: '30', height: '180', weight: '80' }
 const manual: Form = { ...EMPTY_FORM, normBy: 'manual', kcal: '2000', protein: '120' }
@@ -39,5 +39,15 @@ describe('readForm', () => {
   it('passes the limits on', () => {
     const r = readForm({ ...manual, allergens: ['milk'], excluded: ['egg'], spicy: false, tools: ['плита'], lactose: 'low', weeks: 4, cookTimes: 7, maxMinutes: '45' })
     expect(r.ok && r.settings).toMatchObject({ allergens: ['milk'], excluded: ['egg'], spicy: false, tools: ['плита'], lactose: 'low', weeks: 4, cookTimes: 7, maxMinutes: 45 })
+  })
+})
+
+describe('stepErrors', () => {
+  const errors = { age: 'a', sex: 's', kcal: 'k', budget: 'b' }
+  it('keeps the norm fields on the first step', () => expect(Object.keys(stepErrors(errors, 'norm')).sort()).toEqual(['age', 'kcal', 'sex']))
+  it('keeps the budget on the money step', () => expect(stepErrors(errors, 'money')).toEqual({ budget: 'b' }))
+  it('has nothing on the steps without numbers', () => {
+    expect(stepErrors(errors, 'limits')).toEqual({})
+    expect(stepErrors(errors, 'cook')).toEqual({})
   })
 })
