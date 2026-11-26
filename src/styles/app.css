@@ -2,7 +2,7 @@
 *, ::before, ::after { box-sizing: border-box; }
 * { margin: 0; }
 html { scroll-padding-bottom: 96px; accent-color: var(--accent); scrollbar-color: var(--control) var(--ground); }
-body {
+body { -webkit-tap-highlight-color: transparent;
   background: var(--ground); color: var(--ink); caret-color: var(--accent);
   font: 400 var(--text-m) / 1.35 var(--font); font-variant-numeric: tabular-nums;
   -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
@@ -37,7 +37,7 @@ nav {
 nav a { min-height: 60px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; text-decoration: none; color: inherit; font-size: var(--text-s); font-weight: 600; }
 nav svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
 nav a:focus-visible { outline-offset: -5px; }
-nav a:hover { color: var(--accent); }
+@media (hover: hover) { nav a:hover { color: var(--accent); } }
 nav a { transition: color 0.2s var(--ease), background-color 0.2s var(--ease); }
 nav a:active { background: color-mix(in oklab, var(--ground), var(--ink) 8%); }
 nav [aria-current] { color: var(--accent); background: color-mix(in oklab, var(--ground), var(--accent) 9%); box-shadow: inset 0 4px var(--accent); }
@@ -46,18 +46,18 @@ nav [aria-current] { color: var(--accent); background: color-mix(in oklab, var(-
 .brand { display: inline-flex; align-items: center; gap: var(--space-2); min-height: 44px; margin: var(--space-3) var(--space-5) 0; color: var(--ink); text-decoration: none; font-size: var(--text-l); font-weight: 800; letter-spacing: -0.01em; }
 .brand svg { width: 28px; height: 28px; fill: var(--accent); }
 .brand circle { fill: var(--breakfast); }
-.brand:hover { color: var(--accent); }
+@media (hover: hover) { .brand:hover { color: var(--accent); } }
 
 /* Дни и недели */
 .days { display: grid; grid-template-columns: repeat(7, 1fr); margin-top: var(--space-3); max-width: 520px; }
 .days button, .tabs button { min-height: 48px; border: 0; padding: 0; background: none; border-radius: var(--radius-s); font-size: var(--text-s); }
 .days button, .tabs button { transition: background-color 0.2s var(--ease), scale 0.15s var(--ease); }
-.days button:not([aria-pressed='true']):hover, .tabs button:not([aria-pressed='true']):hover { background: var(--surface); }
+@media (hover: hover) { .days button:not([aria-pressed='true']):hover, .tabs button:not([aria-pressed='true']):hover { background: var(--surface); } }
 .days button:active, .tabs button:active { scale: 0.94; }
 .days b { display: block; font-size: var(--text-m); }
 .days [aria-current] b { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
 .days [aria-pressed='true'], .tabs [aria-pressed='true'] { background: var(--accent); color: var(--on-accent); }
-.days [aria-pressed='true']:hover, .tabs [aria-pressed='true']:hover { background: color-mix(in oklab, var(--accent), var(--ink) 14%); }
+@media (hover: hover) { .days [aria-pressed='true']:hover, .tabs [aria-pressed='true']:hover { background: color-mix(in oklab, var(--accent), var(--ink) 14%); } }
 /* The selected day slides to its new place. */
 .days [aria-pressed='true'] { view-transition-name: day-pick; }
 .tabs { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: var(--space-3); max-width: 520px; }
@@ -93,7 +93,7 @@ nav [aria-current] { color: var(--accent); background: color-mix(in oklab, var(-
 .dish[data-now] { box-shadow: inset 6px 0 var(--mark), inset 0 0 0 2px var(--mark), var(--shadow-card); }
 .art { display: block; width: 112px; height: 112px; transition: scale 0.4s var(--ease); }
 @media (min-width: 480px) { .big .art { width: 140px; height: 140px; } }
-.dish:hover .art { scale: 1.04; }
+@media (hover: hover) { .dish:hover .art { scale: 1.04; } }
 .art.photo { border-radius: var(--radius-thumb); object-fit: cover; }
 .art.none {
   display: grid; place-items: center; border-radius: var(--radius-thumb); aspect-ratio: 1;
@@ -112,7 +112,7 @@ nav [aria-current] { color: var(--accent); background: color-mix(in oklab, var(-
 
 /* Рецепт и замена */
 .back { display: inline-flex; align-items: center; min-height: 48px; padding: 0 var(--space-4); border: 1px solid var(--line); border-radius: 999px; color: var(--accent); font-weight: 600; text-decoration: none; transition: background-color .2s, scale .1s; }
-.back:hover { background: color-mix(in oklch, var(--accent) 10%, transparent); }
+@media (hover: hover) { .back:hover { background: color-mix(in oklch, var(--accent) 10%, transparent); } }
 .back:active { scale: .97; }
 .top { padding: var(--space-2) var(--space-5); }
 .dish.hero { margin-inline: var(--space-5); grid-template-columns: minmax(0, 1fr); }
@@ -158,7 +158,7 @@ nav [aria-current] { color: var(--accent); background: color-mix(in oklab, var(-
   .options li:has(.thumb) button { grid-column: 1 / -1; }
 }
 .options button { flex: none; min-height: 48px; padding: 0 var(--space-4); border: 1px solid var(--control); border-radius: var(--radius-button); background: var(--surface); font-weight: 600; }
-.options button:hover { border-color: var(--ink); }
+@media (hover: hover) { .options button:hover { border-color: var(--ink); } }
 .options button:disabled { cursor: progress; color: var(--muted); }
 
 /* Готовка и чек */
@@ -174,7 +174,7 @@ nav [aria-current] { color: var(--accent); background: color-mix(in oklab, var(-
   background: var(--accent); color: var(--on-accent); font-weight: 700; text-decoration: none;
 }
 .go { transition: background-color 0.2s var(--ease), scale 0.15s var(--ease); }
-.go:hover { background: color-mix(in oklab, var(--accent), var(--ink) 18%); }
+@media (hover: hover) { .go:hover { background: color-mix(in oklab, var(--accent), var(--ink) 18%); } }
 .go:active:not(:disabled) { scale: 0.98; }
 .go:disabled { cursor: progress; background: var(--muted); color: var(--ground); }
 .toasts { position: fixed; inset-inline: var(--space-4); inset-block-end: var(--space-4); z-index: 20; display: grid; gap: var(--space-2); justify-items: center; pointer-events: none; }
@@ -202,9 +202,9 @@ fieldset .hint, fieldset .warn, .field .hint { margin-top: var(--space-2); }
   background: var(--surface); border: 1px solid var(--control); border-radius: var(--radius-button);
   transition: background-color .2s, border-color .2s, color .2s, scale .1s;
 }
-.chip:hover span { border-color: var(--ink); }
+@media (hover: hover) { .chip:hover span { border-color: var(--ink); } }
 .chip:active span { scale: .97; }
-.chip:hover :checked + span { background: color-mix(in oklab, var(--accent), var(--ink) 14%); }
+@media (hover: hover) { .chip:hover :checked + span { background: color-mix(in oklab, var(--accent), var(--ink) 14%); } }
 @media (prefers-reduced-motion: reduce) { .chip span { transition: none; } .chip:active span { scale: none; } }
 .chip :checked + span { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
 /* Галочка: цвет не единственный признак выбора. */
@@ -252,7 +252,7 @@ fieldset .hint, fieldset .warn, .field .hint { margin-top: var(--space-2); }
 
 /* Покупки и готовка */
 .cookings a { display: block; color: inherit; text-decoration: none; margin: calc(-1 * var(--space-3)); padding: var(--space-3); border-radius: var(--radius-m); min-height: 48px; }
-.cookings a:hover { background: color-mix(in oklab, var(--surface), var(--ink) 6%); }
+@media (hover: hover) { .cookings a:hover { background: color-mix(in oklab, var(--surface), var(--ink) 6%); } }
 .total { margin-top: var(--space-3); max-width: 520px; }
 .total b { font-size: var(--text-l); }
 .buy li { border-bottom: 1px solid var(--line); }
@@ -312,7 +312,7 @@ textarea { min-height: 144px; padding-block: var(--space-3); resize: vertical; }
 .rows .unit { color: var(--muted); font-size: var(--text-s); }
 .rows .warn { grid-column: 1 / -1; margin: 0; }
 .remove { min-width: 44px; min-height: 44px; border: 0; padding: 0; background: none; font-size: var(--text-l); color: var(--muted); }
-.remove:hover { color: var(--danger); }
+@media (hover: hover) { .remove:hover { color: var(--danger); } }
 @media (max-width: 479px) {
   .rows li { grid-template-columns: minmax(0, 1fr) 3.8em 44px; }
   .rows select { grid-column: 1 / -1; }
@@ -354,7 +354,7 @@ html:has(dialog[open]) { overflow: hidden; }
 .bar i { border-radius: 999px; background: var(--selected); transition: inline-size .4s var(--ease); }
 .bar.split i:last-child { flex: 1; background: var(--accent); }
 .side .card { display: grid; gap: 2px; padding: var(--space-3); margin-inline: calc(-1 * var(--space-3)); border-radius: var(--radius-m); color: inherit; text-decoration: none; min-block-size: 48px; }
-.side .card:hover { background: color-mix(in oklab, var(--surface), var(--ink) 6%); }
+@media (hover: hover) { .side .card:hover { background: color-mix(in oklab, var(--surface), var(--ink) 6%); } }
 .big-num { font-size: var(--text-m); }
 .big-num b { font-size: var(--text-l); }
 .facts-list { display: grid; gap: var(--space-2); font-size: var(--text-s); }
@@ -374,7 +374,7 @@ html:has(dialog[open]) { overflow: hidden; }
 .wkrow { display: grid; grid-template-columns: 64px minmax(0, 1fr) auto; align-items: center; gap: var(--space-3); padding: var(--space-2); border-radius: var(--radius-card); background: var(--surface); box-shadow: var(--shadow-card); }
 .wkrow[aria-current] { box-shadow: inset 0 0 0 2px var(--accent), var(--shadow-card); }
 .wkday { display: grid; justify-items: center; min-height: 48px; padding: var(--space-1); border: 0; border-radius: var(--radius-s); background: none; color: var(--ink); font-size: var(--text-s); transition: background-color 0.2s var(--ease), scale 0.15s var(--ease); }
-.wkday:hover { background: color-mix(in oklab, var(--surface), var(--ink) 8%); }
+@media (hover: hover) { .wkday:hover { background: color-mix(in oklab, var(--surface), var(--ink) 8%); } }
 .wkday:active { scale: 0.94; }
 .wkday b { font-size: var(--text-m); line-height: 1.1; }
 .wkday small { color: var(--muted); }
@@ -427,7 +427,7 @@ html:has(dialog[open]) { overflow: hidden; }
   .timers { grid-column: 3; grid-row: 1; flex-direction: column; align-items: end; margin: -10px 0 0; }
 }
 .timer { min-height: 44px; padding: 0 var(--space-4); border: 1px solid var(--line); border-radius: 999px; background: none; color: var(--accent); font: inherit; font-weight: 700; font-variant-numeric: tabular-nums; transition: background-color 0.2s var(--ease), scale 0.15s var(--ease); }
-.timer:hover { background: color-mix(in oklab, var(--accent) 10%, transparent); }
+@media (hover: hover) { .timer:hover { background: color-mix(in oklab, var(--accent) 10%, transparent); } }
 .timer:active { scale: 0.95; }
 .timer[aria-pressed='true'] { background: var(--accent); color: var(--on-accent); }
 
