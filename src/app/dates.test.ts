@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { addDays, daysBetween, dayOfPlan, isIsoDate, greeting, mealNow, nextMeal, toIso } from './dates'
+import { addDays, daysBetween, dayOfPlan, isIsoDate, mealNow, nextMeal, toIso } from './dates'
 
 describe('dates', () => {
   it('uses the local calendar day', () => {
@@ -35,13 +35,6 @@ describe('dates', () => {
     expect(mealNow(21)).toBe('dinner')
     expect(mealNow(22)).toBeNull()
     expect(mealNow(3)).toBeNull()
-  })
-  it('greets by the time of day', () => {
-    expect(greeting(4)).toBe('Доброй ночи')
-    expect(greeting(5)).toBe('Доброе утро')
-    expect(greeting(12)).toBe('Добрый день')
-    expect(greeting(18)).toBe('Добрый вечер')
-    expect(greeting(23)).toBe('Доброй ночи')
   })
   it('finds the next meal by the clock', () => {
     expect(nextMeal(6)).toEqual({ slot: 'breakfast', time: '8:00' })

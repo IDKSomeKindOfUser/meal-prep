@@ -31,12 +31,6 @@ export function mealNow(hour: number): Slot | null {
   return hour < 18 ? 'snack' : 'dinner'
 }
 
-export function greeting(hour: number): string {
-  if (hour < 5 || hour >= 23) return 'Доброй ночи'
-  if (hour < 12) return 'Доброе утро'
-  return hour < 18 ? 'Добрый день' : 'Добрый вечер'
-}
-
 /** Usual meal hours, in the order of the day. */
 const MEAL_HOURS: [Slot, number][] = [['breakfast', 8], ['lunch', 13], ['snack', 16], ['dinner', 19]]
 

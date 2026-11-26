@@ -207,7 +207,8 @@ export function App() {
         <div className="toasts" role="status">
           <Toast value={message}>{(message) => (
             <>
-              {message.text}
+              <span className="msg">{message.text}</span>
+              <span className="acts">
               {message.previous && (
                 <button type="button" onClick={() => {
                   const { previous, keepChecked = false } = message
@@ -216,10 +217,11 @@ export function App() {
                   setMessage({ text: 'Прошлое меню возвращено.', previous: null })
                 }}>Вернуть прошлое</button>
               )}
-              <button type="button" onClick={() => setMessage(null)}>Скрыть</button>
+              <button type="button" className="quiet" onClick={() => setMessage(null)}>Скрыть</button>
+              </span>
             </>
           )}</Toast>
-          <Toast value={update}>{(update) => <>Есть новая версия планировщика. <button type="button" onClick={update}>Обновить</button></>}</Toast>
+          <Toast value={update}>{(update) => <><span className="msg">Есть новая версия планировщика.</span><span className="acts"><button type="button" onClick={update}>Обновить</button></span></>}</Toast>
           <Toast value={unsaved}>{() => 'Браузер не даёт сохранять данные: после закрытия страницы меню пропадёт.'}</Toast>
         </div>
         {plan && report && unfit.length > 0 && (

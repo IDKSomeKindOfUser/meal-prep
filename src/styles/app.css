@@ -84,7 +84,7 @@ nav [aria-current] svg { background: color-mix(in oklab, transparent, var(--acce
 @media (min-width: 480px) { .tabs .short { display: none; } }
 
 /* Карточки блюд */
-.meals { display: grid; gap: var(--space-3); padding-inline: var(--space-5); }
+.meals { display: grid; gap: var(--space-4); padding-inline: var(--space-5); }
 .dish {
   position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: var(--space-4);
   padding: var(--space-4); border-radius: var(--radius-card); transition: scale 0.2s var(--ease);
@@ -156,7 +156,8 @@ nav [aria-current] svg { background: color-mix(in oklab, transparent, var(--acce
 .amounts label span { flex: 1; min-width: 0; }
 .amounts b { flex: none; font-weight: 600; font-variant-numeric: tabular-nums; }
 .amounts .ticked { opacity: 0.65; }
-.amounts .ticked span, .amounts .ticked b { text-decoration: line-through; }
+.amounts label span, .amounts b { text-decoration: line-through 1.5px transparent; transition: text-decoration-color .4s var(--ease); }
+.amounts .ticked span, .amounts .ticked b { text-decoration-color: currentColor; }
 /* Разделы экрана блюда: карточки-панели с иконкой в заголовке. */
 .panel { background: var(--surface); border-radius: var(--radius-card); box-shadow: var(--shadow-card); padding: var(--space-4); margin-top: var(--space-4); }
 .recipe .panel { max-width: none; }
@@ -176,10 +177,9 @@ nav [aria-current] svg { background: color-mix(in oklab, transparent, var(--acce
 /* Счётчик шагов с тонкой полосой. */
 .progress { margin-bottom: var(--space-2); }
 .progress p { margin: 0 0 var(--space-1); color: var(--muted); font-size: var(--text-s); font-weight: 600; font-variant-numeric: tabular-nums; }
-.progress progress { appearance: none; display: block; width: 100%; height: 6px; border: 0; border-radius: 999px; background: var(--line); overflow: hidden; }
-.progress progress::-webkit-progress-bar { background: var(--line); }
-.progress progress::-webkit-progress-value { background: var(--accent); border-radius: 999px; transition: width 0.3s var(--ease); }
-.progress progress::-moz-progress-bar { background: var(--accent); border-radius: 999px; }
+.progress .track { block-size: 6px; border-radius: 999px; background: var(--line); overflow: hidden; }
+/* Полоса растёт плавно и чуть дольше, чем рисуется галочка. */
+.progress .track i { display: block; block-size: 100%; border-radius: inherit; background: var(--accent); transform-origin: left; transition: scale .7s cubic-bezier(.65, 0, .35, 1); }
 /* Номер, галочка и первая строка шага стоят на одной линии высотой 24px. */
 .steps { padding: 0; counter-reset: step; }
 .steps li { counter-increment: step; display: grid; grid-template-columns: 28px minmax(0, 1fr); column-gap: var(--space-3); padding: var(--space-3) 0; max-width: 65ch; }
@@ -209,7 +209,7 @@ nav [aria-current] svg { background: color-mix(in oklab, transparent, var(--acce
 .options button:disabled { cursor: progress; color: var(--muted); }
 
 /* Готовка и чек */
-.cookings { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: var(--space-2); }
+.cookings { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: var(--space-3); }
 .cookings li { position: relative; background: var(--surface); box-shadow: var(--shadow-card); border-radius: var(--radius-card); padding: var(--space-3); }
 /* Обводка поверх заливки ссылки: при наведении не пропадает. */
 .cookings [data-now]::after { content: ''; position: absolute; inset: 0; z-index: 1; border-radius: inherit; box-shadow: inset 0 0 0 2px var(--accent); pointer-events: none; }
@@ -231,7 +231,14 @@ nav [aria-current] svg { background: color-mix(in oklab, transparent, var(--acce
 /* Тост поднимается от нижнего края; уходит так же, это делает Toast.tsx. */
 .toasts p { transition: opacity 0.25s var(--ease), translate 0.25s var(--ease); }
 @starting-style { .toasts p { opacity: 0; translate: 0 100%; } }
-.toasts button { min-height: 44px; border: 0; padding: 0; background: none; color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+/* Текст слева, кнопки справа одной группой: при переносе уходят на строку целиком. */
+.toasts p { gap: var(--space-2) var(--space-4); padding: var(--space-3) var(--space-3) var(--space-3) var(--space-5); }
+.toasts .msg { flex: 1 1 22ch; }
+.toasts .acts { display: flex; gap: var(--space-2); margin-inline-start: auto; }
+.toasts button { min-height: 40px; padding: 0 var(--space-4); border: 0; border-radius: 999px; background: color-mix(in oklab, var(--accent) 14%, transparent); color: var(--accent); font-weight: 600; white-space: nowrap; transition: background-color .25s var(--ease), scale .45s var(--spring); }
+.toasts button.quiet { background: color-mix(in oklab, var(--ink) 8%, transparent); color: var(--ink); }
+.toasts button:active { scale: .95; transition-duration: .12s; }
+@media (hover: hover) { .toasts button:hover { background: color-mix(in oklab, var(--accent) 24%, transparent); } .toasts button.quiet:hover { background: color-mix(in oklab, var(--ink) 14%, transparent); } }
 
 /* Настройки */
 .settings { max-width: 720px; }
@@ -527,7 +534,6 @@ html:has(dialog[open]) { overflow: hidden; }
 .steps input { width: 24px; height: 24px; margin: 0; accent-color: var(--accent); }
 .steps li { transition: opacity 0.2s var(--ease); }
 .steps .ticked { opacity: 0.65; }
-.steps .ticked label span { text-decoration: line-through; }
 .steps label span { line-height: 1.5; }
 .timers { grid-column: 2; display: flex; flex-wrap: wrap; gap: var(--space-2); margin: var(--space-1) 0 0 36px; }
 /* На компьютере таймер стоит справа от текста шага, по центру первой строки. */
@@ -547,7 +553,6 @@ html:has(dialog[open]) { overflow: hidden; }
   .options button:hover { border-color: var(--accent); background: var(--accent); color: var(--on-accent); }
   .back:hover, .timer:hover { border-color: var(--accent); background: color-mix(in oklab, var(--accent) 12%, var(--surface)); }
   .go:hover:not(:disabled) { box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 30%, transparent); }
-  .toasts button:hover { color: var(--accent); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
   .chip:hover span { border-color: var(--accent); }
   .wkdishes a:hover .art { scale: 1.05; }
   .wkdishes a:hover .wkname { color: var(--accent); }
@@ -555,7 +560,6 @@ html:has(dialog[open]) { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) { .wkdishes a:hover .art { scale: none; } }
 
 /* Главный экран: приветствие, следующий приём, виджеты справа (этап 18д) */
-.greet { color: var(--muted); font-weight: 600; margin-bottom: var(--space-1); }
 .next { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); margin-top: var(--space-3); }
 .week-note:empty { display: none; }
 .side.widgets { padding: 0; background: none; box-shadow: none; gap: var(--space-3); }
@@ -626,8 +630,10 @@ button.tonal[aria-pressed="true"] { background: var(--accent); color: var(--on-a
 .buy input::after, .steps input::after, .amounts input::after { transition: clip-path .15s var(--ease); }
 .buy input:checked::after, .steps input:checked::after, .amounts input:checked::after { transition: clip-path .35s var(--ease) .06s; }
 .steps li { transition: opacity .3s var(--ease); }
-.steps label span { text-decoration: line-through 2px transparent; transition: text-decoration-color .3s var(--ease); }
-.steps .ticked label span { text-decoration-color: currentColor; }
+/* Зачёркивание прочерчивается слева направо, строка за строкой, и убирается быстрее. */
+.steps .line { background: linear-gradient(currentColor, currentColor) no-repeat 0 58% / 0 2px; transition: background-size .3s var(--ease); }
+.steps .ticked .line { background-size: 100% 2px; transition: background-size .6s cubic-bezier(.65, 0, .35, 1) .08s; }
+.steps li { transition: opacity .5s var(--ease); }
 
 /* «Приготовлено»: кнопка заливается цветом, галочка выскакивает. */
 .tonal[aria-pressed='true'] { background: var(--accent); color: var(--on-accent); }
@@ -645,3 +651,69 @@ nav { view-transition-name: nav; background: color-mix(in oklab, var(--surface) 
 ::view-transition-group(nav) { animation: none; }
 ::view-transition-old(nav) { display: none; }
 ::view-transition-new(nav) { animation: none; }
+
+/* Этап 19б: плавность по всему сайту. */
+/* Знак не участвует в смене экрана и не прячется под панелью навигации. */
+.brand { view-transition-name: brand; }
+::view-transition-group(brand), ::view-transition-new(brand) { animation: none; }
+::view-transition-old(brand) { display: none; }
+.brand svg { transition: rotate .5s var(--spring), scale .5s var(--spring); }
+@media (hover: hover) { .brand:hover svg { rotate: -10deg; } }
+.brand:active svg { scale: .9; transition-duration: .12s; }
+/* На компьютере панель по высоте пунктов, а не на весь экран. */
+@media (min-width: 900px) { nav { bottom: auto; } .meals { gap: var(--space-5); } }
+
+/* Иконка раздела отзывается при выборе: у каждой своё движение. */
+nav svg > * { transform-box: view-box; transform-origin: 50% 50%; }
+nav [href='#today'][aria-current='page'] svg > * { animation: nav-spin .6s var(--spring); }
+nav [href='#week'][aria-current='page'] svg > * { animation: nav-drop .5s var(--spring); }
+nav [href='#shopping'][aria-current='page'] svg > * { animation: nav-roll .5s var(--spring); }
+nav [href='#settings'][aria-current='page'] svg > * { animation: nav-pop .5s var(--spring); }
+@keyframes nav-spin { from { rotate: -90deg; scale: .7; } }
+@keyframes nav-drop { from { translate: 0 -5px; } }
+@keyframes nav-roll { from { translate: -6px 0; } }
+@keyframes nav-pop { from { scale: .6; } }
+@media (max-width: 899px) {
+  nav [aria-current='page'] svg { animation: nav-pill .4s var(--ease); }
+  @keyframes nav-pill { from { background-color: transparent; scale: .8 1; } }
+}
+
+/* Выбранная неделя и вкладка переезжают так же, как выбранный день. */
+.tabs:not(.two) [aria-pressed='true'] { view-transition-name: week-pick; }
+.tabs.two [aria-pressed='true'] { view-transition-name: tab-pick; }
+
+/* Список исключений раскрывается плавно. */
+:root { interpolate-size: allow-keywords; }
+details::details-content { block-size: 0; overflow: clip; transition: block-size .35s var(--ease), content-visibility .35s allow-discrete; }
+details[open]::details-content { block-size: auto; }
+
+/* Галочка в выбранном чипе выскакивает. */
+.chip :checked + span::before { animation: pop .35s var(--spring); }
+
+/* Сводки растут от нуля при появлении. */
+.bar i { transform-origin: left; transition: inline-size .4s var(--ease), scale .7s var(--ease); }
+.daychart i { transform-origin: bottom; transition: background-color .3s var(--ease), scale .7s var(--ease); }
+.ring circle:last-child { transition: stroke-dasharray .7s var(--ease); }
+@starting-style {
+  .bar i, .daychart i { scale: 0; }
+  .ring circle:last-child { stroke-dasharray: 0 100; }
+}
+
+/* Идущий таймер мягко пульсирует. */
+.timer[aria-pressed='true'] { animation: ticking 1.6s ease-in-out infinite; }
+@keyframes ticking { 50% { box-shadow: 0 0 0 5px color-mix(in oklab, var(--accent) 25%, transparent); } }
+
+/* Строки недели и варианты замены появляются друг за другом. */
+@media (prefers-reduced-motion: no-preference) {
+  .wk > li, .options > li { animation: rise .4s var(--ease) backwards; }
+  :is(.wk, .options) > li:nth-child(2) { animation-delay: 30ms; }
+  :is(.wk, .options) > li:nth-child(3) { animation-delay: 60ms; }
+  :is(.wk, .options) > li:nth-child(4) { animation-delay: 90ms; }
+  :is(.wk, .options) > li:nth-child(5) { animation-delay: 120ms; }
+  :is(.wk, .options) > li:nth-child(6) { animation-delay: 150ms; }
+  :is(.wk, .options) > li:nth-child(n+7) { animation-delay: 180ms; }
+}
+@media (prefers-reduced-motion: reduce) {
+  nav svg, nav svg > *, .chip :checked + span::before, .timer[aria-pressed='true'] { animation: none !important; }
+  .bar i, .daychart i { scale: none; }
+}

@@ -61,7 +61,7 @@ function Row({ item, catalog, checked, week, onCheck }: {
           const bought = e.target.checked
           // Строка переезжает в другой список и пересоздаётся: возвращаем фокус, чтобы клавиатура не терялась.
           reorder(() => onCheck(key, bought),
-            () => document.querySelector<HTMLInputElement>(`input[data-key="${CSS.escape(key)}"]`)?.focus())
+            () => document.querySelector<HTMLInputElement>(`input[data-key="${CSS.escape(key)}"]`)?.focus({ preventScroll: true }))
         }} />
         <span className="what">
           <span className="name">{product.name}</span>

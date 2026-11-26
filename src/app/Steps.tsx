@@ -54,7 +54,10 @@ export function Steps({ steps }: { steps: string[] }) {
     {total > 0 && (
       <div className="progress">
         <p aria-live="polite">{done.size} из {total} {total % 10 === 1 && total % 100 !== 11 ? 'шага' : 'шагов'}</p>
-        <progress max={total} value={done.size} aria-label="Сделано шагов" />
+        {/* Not <progress>: browsers do not animate its fill. */}
+        <div className="track" role="progressbar" aria-label="Сделано шагов" aria-valuemin={0} aria-valuemax={total} aria-valuenow={done.size}>
+          <i style={{ scale: `${done.size / total} 1` }} />
+        </div>
       </div>
     )}
     <ol className="steps">
@@ -64,7 +67,7 @@ export function Steps({ steps }: { steps: string[] }) {
           <li key={i} className={done.has(i) ? 'ticked' : undefined}>
             <label>
               <input type="checkbox" checked={done.has(i)} onChange={() => toggle(i)} />
-              <span>{s}</span>
+              <span><span className="line">{s}</span></span>
             </label>
             {times.length > 0 && <span className="timers">{times.map((t, k) => <Timer key={k} {...t} />)}</span>}
           </li>

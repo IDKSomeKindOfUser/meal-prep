@@ -2,7 +2,7 @@ import type { Report } from '../planner'
 import { blocks } from '../planner/schedule'
 import { SLOTS } from '../planner/types'
 import { useEffect, useState } from 'react'
-import { addDays, dayMonth, dayNumber, dayOfPlan, daysBetween, greeting, mealNow, nextMeal, weekday, weekdayShort } from './dates'
+import { addDays, dayMonth, dayNumber, dayOfPlan, daysBetween, mealNow, nextMeal, weekday, weekdayShort } from './dates'
 import { daysCount, num, rub, SLOT } from './labels'
 import { DishField, GoIcon, portionNote, Warnings, WeekTabs } from './parts'
 import { cookHash, dishHash } from './route'
@@ -51,7 +51,6 @@ export function Today({ plan, report, today, day, onDay, }: Props) {
   return (
     <>
       <header>
-        {date === today && <p className="greet">{greeting(hour)}</p>}
         <h1 tabIndex={-1}>{date === today ? `Сегодня, ${weekday(date)}` : `${capital(weekday(date))}, ${dayMonth(date)}`}</h1>
         <p className="sub">{num(menu.kcal)} ккал, белка {num(menu.protein)} г{day === block.cookDay && ', готовим в этот день'}</p>
         {next && (
