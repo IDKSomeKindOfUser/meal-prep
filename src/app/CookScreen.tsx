@@ -1,4 +1,6 @@
+import type { CSSProperties } from 'react'
 import { frozenDays } from '../planner/schedule'
+import { DishPicture } from './DishPicture'
 import type { Report } from '../planner'
 import { SLOTS } from '../planner/types'
 import { addDays, dayMonth, weekday, weekdayShort } from './dates'
@@ -20,6 +22,7 @@ export function CookScreen({ plan, report, day }: Props) {
     .flatMap(({ block, day: menu, index }) =>
       SLOTS.map((slot, i) => ({ block, index, slot, dish: menu.dishes[i]! })))
   const cooking = report.cookings.find((c) => c.day === day)
+  const longest = Math.max(1, ...rows.map((r) => r.dish.recipe.minutes))
   return (
     <article className="recipe">
       <div className="top"><a className="back" href="#today">Назад к меню дня</a></div>
@@ -28,21 +31,26 @@ export function CookScreen({ plan, report, day }: Props) {
         <p className="sub">Всего до {cooking?.minutes ?? 0} минут, если делать блюда по очереди. Что-то можно готовить одновременно.</p>
       </header>
       <section>
-        <ul className="amounts cook">
+        <ul className="cook">
           {rows.map(({ block, index, slot, dish }) => {
             const frozen = frozenDays(dish.recipe, block)
             const days = `${weekdayShort(addDays(plan.start, block.firstDay))}${block.days > 1 ? ` – ${weekdayShort(addDays(plan.start, block.firstDay + block.days - 1))}` : ''}`
             return (
-              <li key={`${index}-${slot}`}>
-                <span>
+              <li key={`${index}-${slot}`} data-slot={slot}>
+                <span className="thumb"><DishPicture recipe={dish.recipe} /></span>
+                <div>
                   <a href={dishHash(index, slot)}>{dish.recipe.name}</a>
-                  <span className="hint">
-                    {SLOT[slot]}, {days}: {count(block.days, 'порция', 'порции', 'порций')}
-                    {frozen.length > 0 ? `, в морозилку ${frozen.length} из ${block.days}` : ''}
-                    , хранится {daysCount(dish.recipe.keepDays)}
+                  <ul className="facts">
+                    <li>{SLOT[slot]}, {days}</li>
+                    <li>{count(block.days, 'порция', 'порции', 'порций')}</li>
+                    {frozen.length > 0 && <li>в морозилку {frozen.length} из {block.days}</li>}
+                    <li>хранится {daysCount(dish.recipe.keepDays)}</li>
+                  </ul>
+                  {/* The bar shows the share of the cooking time. */}
+                  <span className="time" style={{ '--share': `${Math.round((dish.recipe.minutes / longest) * 100)}%` } as CSSProperties}>
+                    <b>{dish.recipe.minutes} мин</b>
                   </span>
-                </span>
-                <b>{dish.recipe.minutes} мин</b>
+                </div>
               </li>
             )
           })}

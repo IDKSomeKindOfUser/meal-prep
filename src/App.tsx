@@ -22,6 +22,7 @@ import { SwapScreen } from './app/SwapScreen'
 import { Today } from './app/Today'
 import { Week } from './app/Week'
 import { Welcome } from './app/Welcome'
+import { cardPhoto, heroPhoto, transition } from './app/transition'
 import { describeMenu, replaceDish, type Missing } from './planner'
 import { SLOTS, type Settings, type Slot } from './planner/types'
 
@@ -73,9 +74,16 @@ export function App() {
       const next = parseHash(location.hash)
       if (current.current.screen === 'today' || current.current.screen === 'week') left.current = scrollY
       current.current = next
+      const before = shown.current
       if (next.screen !== 'swap') swapFromDish.current = false
-      setWanted(next)
-      if (next.screen === 'today' || next.screen === 'week') setOrigin(next.screen)
+      // From a card to its dish the photo flies into the header, and back again.
+      const photo = next.screen === 'dish' && 'block' in next ? { before: cardPhoto(dishHash(next.block, next.slot)), after: heroPhoto }
+        : before.screen === 'dish' && 'block' in before ? { before: heroPhoto(), after: () => cardPhoto(dishHash(before.block, before.slot)) }
+          : undefined
+      transition(() => {
+        setWanted(next)
+        if (next.screen === 'today' || next.screen === 'week') setOrigin(next.screen)
+      }, photo)
     }
     addEventListener('hashchange', update)
     return () => removeEventListener('hashchange', update)

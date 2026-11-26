@@ -6,12 +6,21 @@ import type { Slot } from '../planner/types'
 import type { Report } from '../planner'
 import { DishPicture } from './DishPicture'
 import { num, SLOT } from './labels'
+import { transition } from './transition'
 
 export function DishField({ slot, dish, href, note, big }: { slot: Slot; dish: PortionedDish; href: string; note?: string; big?: boolean }) {
   return (
     <li className={`dish${big ? ' big' : ''}`} data-slot={slot}>
-      <h3><a href={href}>{dish.recipe.name}</a></h3>
-      <p>{[SLOT[slot], `${num(dish.kcal)} ккал`, note].filter(Boolean).join(', ')}</p>
+      <div>
+        <h3><a href={href}>{dish.recipe.name}</a></h3>
+        <ul className="facts">
+          <li>{SLOT[slot]}</li>
+          <li>{num(dish.kcal)} ккал</li>
+          <li>{num(dish.protein)} г белка</li>
+          <li>{dish.recipe.minutes} мин</li>
+        </ul>
+        {note && <p className="from">{note}</p>}
+      </div>
       <DishPicture recipe={dish.recipe} />
     </li>
   )
@@ -28,7 +37,7 @@ export function WeekTabs({ weeks, week, onChange }: { weeks: number; week: numbe
   return (
     <div className="tabs" role="group" aria-label="Неделя">
       {Array.from({ length: weeks }, (_, i) => (
-        <button key={i} type="button" aria-pressed={i === week} onClick={() => onChange(i)}>
+        <button key={i} type="button" aria-pressed={i === week} aria-label={`Неделя ${i + 1}`} onClick={() => transition(() => onChange(i))}>
           <span className="wide">Неделя</span><span className="short">Нед.</span> {i + 1}
         </button>
       ))}

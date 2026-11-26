@@ -34,42 +34,54 @@ nav {
 nav a { min-height: 60px; display: grid; place-items: center; text-decoration: none; color: inherit; font-size: var(--text-s); font-weight: 600; }
 nav a:focus-visible { outline-offset: -5px; }
 nav a:hover { color: var(--accent); }
-nav [aria-current] { color: var(--accent); box-shadow: inset 0 3px var(--accent); }
+nav a { transition: color 0.2s var(--ease), background-color 0.2s var(--ease); }
+nav a:active { background: color-mix(in oklab, var(--ground), var(--ink) 8%); }
+nav [aria-current] { color: var(--accent); background: color-mix(in oklab, var(--ground), var(--accent) 9%); box-shadow: inset 0 4px var(--accent); }
 
 /* Дни и недели */
 .days { display: grid; grid-template-columns: repeat(7, 1fr); margin-top: var(--space-3); max-width: 520px; }
 .days button, .tabs button { min-height: 48px; border: 0; padding: 0; background: none; border-radius: var(--radius-s); font-size: var(--text-s); }
-.days button:hover, .tabs button:hover { background: var(--surface); }
+.days button, .tabs button { transition: background-color 0.2s var(--ease), scale 0.15s var(--ease); }
+.days button:not([aria-pressed='true']):hover, .tabs button:not([aria-pressed='true']):hover { background: var(--surface); }
+.days button:active, .tabs button:active { scale: 0.94; }
 .days b { display: block; font-size: var(--text-m); }
 .days [aria-current] b { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
 .days [aria-pressed='true'], .tabs [aria-pressed='true'] { background: var(--selected); color: var(--on-selected); }
+.days [aria-pressed='true']:hover, .tabs [aria-pressed='true']:hover { background: color-mix(in oklab, var(--selected), var(--ink) 14%); }
+/* The selected day slides to its new place. */
+.days [aria-pressed='true'] { view-transition-name: day-pick; }
 .tabs { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: var(--space-3); max-width: 520px; }
 .tabs button { font-weight: 600; }
 @media (max-width: 479px) { .tabs .wide { display: none; } }
 @media (min-width: 480px) { .tabs .short { display: none; } }
 
-/* Поля блюд */
-.dish { position: relative; overflow: hidden; min-height: 124px; padding: var(--space-4) 42% var(--space-4) var(--space-5); }
-.dish.big { min-height: 188px; }
-.dish h3 { margin: 2px 0 6px; text-wrap: balance; overflow-wrap: break-word; hyphens: auto; }
-/* Нажимается всё поле, а ссылкой служит название. */
+/* Карточки блюд */
+.meals { display: grid; gap: var(--space-3); padding-inline: var(--space-5); }
+.dish {
+  position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: var(--space-4);
+  padding: var(--space-4); border-radius: var(--radius-l); transition: scale 0.2s var(--ease);
+}
+.dish h3 { margin-bottom: var(--space-2); text-wrap: balance; overflow-wrap: break-word; hyphens: auto; }
+.dish:active { scale: 0.985; }
+/* Нажимается вся карточка, а ссылкой служит название. */
 .dish a { color: inherit; text-decoration: none; }
-.dish a::after { content: ''; position: absolute; inset: 0; z-index: 1; }
+.dish a::after { content: ''; position: absolute; inset: 0; z-index: 1; border-radius: inherit; }
 .dish a:focus-visible { outline: none; }
 .dish a:focus-visible::after { outline: 3px solid currentColor; outline-offset: -6px; }
+.facts { display: flex; flex-wrap: wrap; gap: var(--space-1) 6px; font-size: var(--text-s); font-weight: 600; }
+.facts li { padding: 2px var(--space-2); border-radius: var(--radius-s); background: color-mix(in srgb, currentColor 12%, transparent); }
+.dish .from { margin-top: var(--space-2); font-size: var(--text-s); }
 [data-slot='breakfast'] { background: var(--breakfast); color: var(--on-breakfast); }
 [data-slot='lunch'] { background: var(--lunch); color: var(--on-lunch); }
 [data-slot='dinner'] { background: var(--dinner); color: var(--on-dinner); }
 [data-slot='snack'] { background: var(--snack); color: var(--on-snack); }
-.art { position: absolute; right: -28px; top: 50%; translate: 0 -50%; width: 158px; height: 158px; transition: scale 0.4s var(--ease); }
-.big .art { width: 204px; height: 204px; right: -48px; }
-.dish:hover .art { scale: 1.05; }
-.art.photo { border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 5px color-mix(in srgb, currentColor 14%, transparent); }
+.art { display: block; width: 112px; height: 112px; transition: scale 0.4s var(--ease); }
+@media (min-width: 480px) { .big .art { width: 140px; height: 140px; } }
+.dish:hover .art { scale: 1.04; }
+.art.photo { border-radius: var(--radius-m); object-fit: cover; }
 .credits { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-3); }
 .credits li { display: grid; gap: 2px; padding-inline: var(--space-5); overflow-wrap: anywhere; }
-.compact .dish { min-height: 92px; }
-.compact .art { width: 120px; height: 120px; }
-@media (prefers-reduced-motion: reduce) { .art { transition: none; } .dish:hover .art { scale: none; } }
+.compact .art { width: 80px; height: 80px; }
 
 .block { padding-inline: 0; }
 .blockhead { padding: 0 var(--space-5) var(--space-3); }
@@ -79,7 +91,9 @@ nav [aria-current] { color: var(--accent); box-shadow: inset 0 3px var(--accent)
 /* Рецепт и замена */
 .back { display: inline-flex; align-items: center; min-height: 44px; color: var(--accent); font-weight: 600; text-underline-offset: 3px; }
 .top { padding: var(--space-2) var(--space-5); }
-.dish.hero { min-height: 188px; }
+.dish.hero { margin-inline: var(--space-5); grid-template-columns: minmax(0, 1fr); }
+.hero .art { grid-row: 1; width: 100%; height: auto; aspect-ratio: 4 / 3; max-height: 320px; }
+.hero:active { scale: none; }
 .hero h1 { font-size: var(--text-l); overflow-wrap: break-word; hyphens: auto; }
 .hero p { margin-top: var(--space-2); }
 .recipe section { max-width: 720px; }
@@ -112,7 +126,9 @@ nav [aria-current] { color: var(--accent); box-shadow: inset 0 3px var(--accent)
   display: grid; place-items: center; width: 100%; min-height: 52px; margin-top: var(--space-4); border: 0; border-radius: var(--radius-m);
   background: var(--accent); color: var(--on-accent); font-weight: 700; text-decoration: none;
 }
+.go { transition: background-color 0.2s var(--ease), scale 0.15s var(--ease); }
 .go:hover { background: color-mix(in oklab, var(--accent), var(--ink) 18%); }
+.go:active:not(:disabled) { scale: 0.98; }
 .go:disabled { cursor: progress; background: var(--muted); color: var(--ground); }
 .status p { display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--space-4); padding: var(--space-2) var(--space-5); background: var(--surface); border-bottom: 1px solid var(--line); }
 .status button { min-height: 44px; border: 0; padding: 0; background: none; color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
@@ -162,11 +178,11 @@ fieldset .hint, fieldset .warn, .field .hint { margin-top: var(--space-2); }
   nav [aria-current] { box-shadow: inset 0 -2px var(--accent); }
   header .go { max-width: 320px; }
   section .go, .build .go { max-width: 320px; }
-  .meals { display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: minmax(200px, auto); }
-  .art { width: 200px; height: 200px; }
-  .big .art { width: 250px; height: 250px; }
-  .meals.compact { grid-auto-rows: minmax(120px, auto); }
-  .compact .art { width: 150px; height: 150px; }
+  .meals { grid-template-columns: 1fr 1fr; }
+  .art, .big .art { width: 150px; height: 150px; }
+  .compact .art { width: 96px; height: 96px; }
+  .dish.hero { grid-template-columns: minmax(0, 1fr) minmax(0, 360px); max-width: 960px; }
+  .hero .art { grid-row: 1 / span 9; grid-column: 2; }
 }
 
 /* Покупки и готовка */
@@ -180,11 +196,22 @@ fieldset .hint, fieldset .warn, .field .hint { margin-top: var(--space-2); }
 .buy .what { flex: 1; min-width: 0; }
 .buy .name, .buy .hint { display: block; overflow-wrap: break-word; }
 .buy b { flex: none; font-weight: 600; }
-.buy :checked ~ .what .name { text-decoration: line-through; color: var(--muted); }
+.buy .name { text-decoration: line-through 2px transparent; transition: color 0.25s var(--ease), text-decoration-color 0.25s var(--ease); }
+.buy :checked ~ .what .name { text-decoration-color: currentColor; color: var(--muted); }
+.buy label:active { scale: 0.99; }
 section:has(> .buy) { max-width: 720px; }
-.cook li > span { min-width: 0; }
-.cook a { color: var(--accent); font-weight: 600; text-underline-offset: 3px; }
-.cook .hint { display: block; }
+.cook { display: grid; gap: var(--space-3); max-width: 720px; }
+.cook > li { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--space-4); align-items: center; padding: var(--space-3); border-radius: var(--radius-l); }
+.thumb .art { width: 72px; height: 72px; }
+.cook a { display: block; margin-bottom: var(--space-2); color: inherit; font-size: var(--text-l); font-weight: 800; line-height: 1.12; text-decoration: none; overflow-wrap: break-word; hyphens: auto; }
+.cook a::after { content: ''; position: absolute; inset: 0; border-radius: inherit; }
+.cook a:focus-visible { outline: none; }
+.cook a:focus-visible::after { outline: 3px solid currentColor; outline-offset: -6px; }
+.cook > li:active { scale: 0.985; }
+.cook > li { transition: scale 0.2s var(--ease); }
+/* Полоска: доля времени от самого долгого блюда. */
+.time { display: flex; align-items: center; gap: var(--space-2); margin-top: var(--space-2); font-size: var(--text-s); }
+.time::before { content: ''; flex: none; width: calc(var(--share) * 0.7); height: 6px; border-radius: 3px; background: currentColor; }
 
 /* Цены */
 .priced { max-width: 720px; }
@@ -227,3 +254,13 @@ html:has(dialog[open]) { overflow: hidden; }
 .unfit { padding: var(--space-3) var(--space-5); background: var(--surface); border-bottom: 2px solid var(--danger); }
 .status .unfit p { padding: 0; border: 0; color: var(--danger); font-weight: 600; }
 .unfit a { display: inline-flex; align-items: center; min-height: 44px; color: var(--accent); }
+
+/* Переходы между экранами: короткая смена, фото блюда перелетает между карточкой и рецептом. */
+::view-transition-group(*) { animation-duration: 0.32s; animation-timing-function: var(--ease); }
+::view-transition-group(dish-photo) { animation-duration: 0.45s; }
+::view-transition-old(dish-photo), ::view-transition-new(dish-photo) { height: 100%; object-fit: cover; }
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after { transition: none !important; }
+  .dish:hover .art, .dish:active, .cook > li:active, .days button:active, .tabs button:active, .go:active, .buy label:active { scale: none; }
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
+}
