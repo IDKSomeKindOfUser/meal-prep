@@ -237,7 +237,8 @@ button.link { padding: var(--space-2) 0; border: 0; background: none; font: inhe
 .buy :checked ~ .what .name { text-decoration-color: currentColor; color: var(--muted); }
 .buy label:active { scale: 0.99; }
 section:has(> .buy) { max-width: 720px; }
-.cook { display: grid; gap: var(--space-3); max-width: 720px; }
+.cook { list-style: none; padding: 0; display: grid; gap: var(--space-3); max-width: 720px; }
+.cook .when { margin: 0 0 var(--space-1); color: var(--muted); font-size: var(--text-s); font-weight: 700; }
 .cook > li { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--space-4); align-items: center; padding: var(--space-3); border-radius: var(--radius-l); }
 .thumb .art { width: 72px; height: 72px; }
 .cook a { display: block; margin-bottom: var(--space-2); color: inherit; font-size: var(--text-l); font-weight: 800; line-height: 1.12; text-decoration: none; overflow-wrap: break-word; hyphens: auto; }
