@@ -2,6 +2,7 @@ import { useMemo, type MouseEvent } from 'react'
 import { alternatives, type Report } from '../planner'
 import { SLOTS, type Slot } from '../planner/types'
 import { blockDays } from './DishScreen'
+import { DishPicture } from './DishPicture'
 import { num, rub, signed, SLOT } from './labels'
 import { dishHash } from './route'
 import type { Catalog } from '../planner/types'
@@ -29,6 +30,9 @@ export function SwapScreen({ plan, report, block: index, slot, catalog, busy, on
     if (same) return `Уже есть в эти дни: ${SLOT[same].toLowerCase()}`
     return menu.some((row) => SLOTS.some((s) => row[s] === id)) ? 'Уже есть в меню' : null
   }
+  // Хорошо, если после замены день ближе к норме; для чека — если дешевле.
+  const tone = (before: number, after: number, goal: number) =>
+    after === before ? '' : Math.abs(after - goal) < Math.abs(before - goal) ? 'up' : 'down'
   return (
     <>
       <div className="top"><a className="back" href={dishHash(index, slot)} onClick={onBack}>Назад к рецепту</a></div>
@@ -47,13 +51,16 @@ export function SwapScreen({ plan, report, block: index, slot, catalog, busy, on
           const over = settings.budget === null ? 0 : total + costChange - settings.budget
           return (
             <li key={recipe.id}>
+              <span className="thumb"><DishPicture recipe={recipe} /></span>
               <div>
                 <h2>{recipe.name}</h2>
-                <p>День: {num(kcal)} ккал ({signed(kcal - day.kcal)}), белка {num(protein)} г ({signed(protein - day.protein)})</p>
-                <p>
-                  Чек за {settings.weeks === 1 ? 'неделю' : '4 недели'}: {signed(Math.ceil(total + costChange) - Math.ceil(total))} ₽, готовить {recipe.minutes} мин
+                <p className="facts">
+                  <span className={tone(day.kcal, kcal, settings.kcal)}>{num(kcal)} ккал <b>{signed(kcal - day.kcal)}</b></span>
+                  <span className={tone(day.protein, protein, settings.protein)}>белок {num(protein)} г <b>{signed(protein - day.protein)}</b></span>
+                  <span className={costChange < 0 ? 'up' : costChange > 0 ? 'down' : ''}>чек за {settings.weeks === 1 ? 'неделю' : '4 недели'} <b>{signed(Math.ceil(total + costChange) - Math.ceil(total))} ₽</b></span>
+                  <span>{recipe.minutes} мин</span>
                 </p>
-                {used && <p>{used}</p>}
+                {used && <p className="used">{used}</p>}
                 {over > 0 && <p className="warn">Выше бюджета на {rub(over)}</p>}
               </div>
               <button type="button" disabled={busy} aria-label={`Выбрать: ${recipe.name}`} onClick={() => onChoose(recipe.id)}>Выбрать</button>

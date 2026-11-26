@@ -89,7 +89,9 @@ nav [aria-current] { color: var(--accent); background: color-mix(in oklab, var(-
 .blockhead h2::first-letter { text-transform: uppercase; }
 
 /* Рецепт и замена */
-.back { display: inline-flex; align-items: center; min-height: 44px; color: var(--accent); font-weight: 600; text-underline-offset: 3px; }
+.back { display: inline-flex; align-items: center; min-height: 48px; padding: 0 var(--space-4); border: 1px solid var(--line); border-radius: 999px; color: var(--accent); font-weight: 600; text-decoration: none; transition: background-color .2s, scale .1s; }
+.back:hover { background: color-mix(in oklch, var(--accent) 10%, transparent); }
+.back:active { scale: .97; }
 .top { padding: var(--space-2) var(--space-5); }
 .dish.hero { margin-inline: var(--space-5); grid-template-columns: minmax(0, 1fr); }
 .hero .art { grid-row: 1; width: 100%; height: auto; aspect-ratio: 4 / 3; max-height: 320px; }
@@ -110,6 +112,18 @@ nav [aria-current] { color: var(--accent); background: color-mix(in oklab, var(-
 .options div { min-width: 0; }
 .options p { color: var(--muted); font-size: var(--text-s); }
 .options .warn { margin: 0; color: var(--danger); }
+.options li:has(.thumb) { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; }
+.options .thumb .art { border-radius: var(--radius-s); }
+.facts { display: flex; flex-wrap: wrap; gap: var(--space-1); margin-top: var(--space-1); }
+.facts span { padding: 2px var(--space-2); border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); }
+.facts b { font-weight: 700; }
+.facts .up { border-color: var(--selected); background: color-mix(in oklab, var(--selected) 16%, var(--surface)); }
+.facts .down { border-color: var(--danger); background: color-mix(in oklab, var(--danger) 12%, var(--surface)); }
+.options .used { display: inline-block; margin-top: var(--space-2); padding: 2px var(--space-2); border-radius: var(--radius-s); background: var(--accent); color: var(--on-accent); font-weight: 600; }
+@media (width < 480px) {
+  .options li:has(.thumb) { grid-template-columns: auto minmax(0, 1fr); }
+  .options li:has(.thumb) button { grid-column: 1 / -1; }
+}
 .options button { flex: none; min-height: 48px; padding: 0 var(--space-4); border: 1px solid var(--control); border-radius: var(--radius-s); background: var(--surface); font-weight: 600; }
 .options button:hover { border-color: var(--ink); }
 .options button:disabled { cursor: progress; color: var(--muted); }
@@ -148,8 +162,12 @@ fieldset .hint, fieldset .warn, .field .hint { margin-top: var(--space-2); }
 .chip span {
   display: flex; align-items: center; gap: var(--space-2); min-height: 44px; padding: var(--space-2) var(--space-3);
   background: var(--surface); border: 1px solid var(--control); border-radius: var(--radius-s);
+  transition: background-color .2s, border-color .2s, color .2s, scale .1s;
 }
 .chip:hover span { border-color: var(--ink); }
+.chip:active span { scale: .97; }
+.chip:hover :checked + span { background: color-mix(in oklab, var(--selected), var(--ink) 14%); }
+@media (prefers-reduced-motion: reduce) { .chip span { transition: none; } .chip:active span { scale: none; } }
 .chip :checked + span { background: var(--selected); border-color: var(--selected); color: var(--on-selected); }
 /* Галочка: цвет не единственный признак выбора. */
 .chip :checked + span::before { content: ''; flex: none; width: 6px; height: 11px; margin: -3px 2px 0; border: solid currentColor; border-width: 0 2px 2px 0; rotate: 42deg; }
