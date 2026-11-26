@@ -20,7 +20,7 @@ import { ShoppingScreen } from './app/ShoppingScreen'
 import { cookedKey, loadState, saveState, type SavedPlan, type SavedState } from './app/storage'
 import { pending, stamp } from './app/sync'
 import { planKey, undoPlan } from './app/undo'
-import { SettingsSide, ShoppingSide, SwapSide, TodaySide } from './app/Side'
+import { CookSide, SettingsSide, ShoppingSide, SwapSide, TodaySide } from './app/Side'
 import { SwapScreen } from './app/SwapScreen'
 import { Today } from './app/Today'
 import { Toast } from './app/Toast'
@@ -139,7 +139,7 @@ export function App() {
     try {
       const answer = await buildMenu({ settings, seed, prices: state.prices, own: state.own })
       if (answer.ok) {
-        setState((s) => ({ ...s, plan: { settings, menu: answer.menu, seed, start: first } }))
+        transition(() => setState((s) => ({ ...s, plan: { settings, menu: answer.menu, seed, start: first } })))
         setMessage({ text: 'Меню собрано.', previous: plan })
         setChosenDay(null)
         location.hash = 'today'
@@ -213,7 +213,8 @@ export function App() {
                 <button type="button" onClick={() => {
                   const { previous, keepChecked = false } = message
                   if (!previous) return
-                  setState((s) => ({ ...s, plan: undoPlan(s.plan, previous, keepChecked) }))
+                  // Карточки меняются на прошлые плавным перетеканием, а не скачком.
+                  transition(() => setState((s) => ({ ...s, plan: undoPlan(s.plan, previous, keepChecked) })))
                   setMessage({ text: 'Прошлое меню возвращено.', previous: null })
                 }}>Вернуть прошлое</button>
               )}
@@ -301,7 +302,8 @@ export function App() {
           {screen === 'settings' ? <SettingsSide plan={plan} />
             : !plan || !report ? null
             : route.screen === 'swap' ? <SwapSide report={report} block={route.block} slot={route.slot} />
-            : route.screen === 'dish' || route.screen === 'cook' ? null
+            : route.screen === 'cook' ? <CookSide plan={plan} day={route.day} />
+            : route.screen === 'dish' ? null
             : screen === 'shopping' ? <ShoppingSide plan={plan} report={report} week={Math.min(shopWeek, plan.settings.weeks - 1)} />
             : screen === 'today' ? <TodaySide plan={plan} report={report} day={day} onDay={setChosenDay} />
             : null}

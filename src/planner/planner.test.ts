@@ -68,6 +68,20 @@ describe('budget', () => {
     expect(report.shopping.total).toBeLessThan(plan().report.shopping.total)
     for (const d of report.days) expect(Math.abs(d.kcal / 2000 - 1)).toBeLessThanOrEqual(0.05)
   })
+  const flat = (p: Plan) => p.menu.flatMap((b) => SLOTS.map((s) => b[s]))
+  const changed = (a: Plan, b: Plan) => flat(a).filter((id, i) => id !== flat(b)[i]).length
+  test.each([
+    ['reachable', { budget: 4000 }],
+    ['tight', { kcal: 2600, protein: 150, budget: 4000 }],
+  ] as const)('a rebuild with a %s budget changes the menu noticeably', (_, over) => {
+    const menus = [1, 2, 3, 4].map((seed) => plan(over, seed))
+    const cheapest = Math.min(...menus.map((m) => m.report.shopping.total))
+    for (const m of menus) {
+      expect(m.report.warnings).toEqual([])
+      expect(m.report.shopping.total).toBeLessThanOrEqual(Math.max(over.budget, cheapest * 1.08))
+    }
+    for (let i = 1; i < menus.length; i++) expect(changed(menus[i]!, menus[i - 1]!)).toBeGreaterThanOrEqual(3)
+  })
 })
 
 describe('when nothing fits', () => {

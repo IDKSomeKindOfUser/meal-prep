@@ -742,3 +742,6 @@ nav [href='#settings'][aria-current='page'] svg > :is(:nth-child(2), :nth-child(
 .shuffle:disabled { cursor: progress; opacity: .7; }
 @keyframes dice { to { rotate: 360deg; } }
 @media (prefers-reduced-motion: reduce) { .shuffle svg { animation: none !important; transition: none; } }
+
+/* Пересборка меню внизу «Сегодня»: возможность, а не первое, что видно. */
+.rebuild { display: grid; gap: var(--space-2); justify-items: start; }

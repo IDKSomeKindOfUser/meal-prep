@@ -56,11 +56,6 @@ export function Today({ plan, report, today, day, onDay, busy, onShuffle }: Prop
       <header>
         <h1 tabIndex={-1}>{date === today ? `Сегодня, ${weekday(date)}` : `${capital(weekday(date))}, ${dayMonth(date)}`}</h1>
         <p className="sub">{num(menu.kcal)} ккал, белка {num(menu.protein)} г{day === block.cookDay && ', готовим в этот день'}</p>
-        <div className="actions-row">
-          <button type="button" className="link shuffle" onClick={onShuffle} disabled={busy} aria-busy={busy}>
-            <Dices aria-hidden="true" />{busy ? 'Собираю меню…' : 'Собрать меню заново'}
-          </button>
-        </div>
         {next && (
           <p className="next">
             <span>Следующий приём: {SLOT[next.slot].toLowerCase()} в {next.time}</span>
@@ -110,6 +105,12 @@ export function Today({ plan, report, today, day, onDay, busy, onShuffle }: Prop
           <p className="warn">Не хватает {rub(report.shortage)} до бюджета {rub(settings.budget!)}.{!plan.edited && ' Это самое дешёвое найденное меню.'}</p>
         )}
         <Warnings report={report} edited={plan.edited ?? false} />
+      </section>
+      <section className="rebuild">
+        <p className="hint">Не нравится меню? Соберите новое с теми же настройками, прошлое можно будет вернуть.</p>
+        <button type="button" className="link shuffle" onClick={onShuffle} disabled={busy} aria-busy={busy}>
+          <Dices aria-hidden="true" />{busy ? 'Собираю меню…' : 'Собрать меню заново'}
+        </button>
       </section>
     </>
   )

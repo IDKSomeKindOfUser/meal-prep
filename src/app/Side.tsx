@@ -1,4 +1,5 @@
 import type { Report } from '../planner'
+import { blocks } from '../planner/schedule'
 import { SLOTS, type Slot } from '../planner/types'
 import { addDays, dayMonth, weekday } from './dates'
 import { DayChart } from './DayChart'
@@ -7,7 +8,7 @@ import { GoIcon } from './parts'
 import { COOK, count, num, rub, SLOT } from './labels'
 import { cookHash } from './route'
 import { checkKey } from './ShoppingScreen'
-import type { SavedPlan } from './storage'
+import { cookedKey, type SavedPlan } from './storage'
 
 const capital = (s: string) => s[0]!.toUpperCase() + s.slice(1)
 
@@ -30,21 +31,46 @@ function Bought({ plan, report, week }: { plan: SavedPlan; report: Report; week:
   return <Meter label="Куплено продуктов" value={done} goal={all.length} unit="" />
 }
 
-/** Share of the week's products already ticked, as a ring with the numbers beside it. */
-function BoughtRing({ plan, report, week }: { plan: SavedPlan; report: Report; week: number }) {
-  const list = report.shopping.weeks[week]!
-  const all = [...list.market, ...list.store]
-  const checked = new Set(plan.checked ?? [])
-  const done = all.filter((i) => checked.has(checkKey(week, i.id))).length
-  const share = all.length > 0 ? (done / all.length) * 100 : 0
+/** Progress as a ring with the numbers beside it. */
+function Ring({ done, all, label }: { done: number; all: number; label: string }) {
+  const share = all > 0 ? (done / all) * 100 : 0
   return (
     <div className="ring-row">
       <svg className="ring" viewBox="0 0 48 48" aria-hidden="true">
         <circle cx="24" cy="24" r="20" pathLength="100" />
         <circle cx="24" cy="24" r="20" pathLength="100" strokeDasharray={`${share} 100`} />
       </svg>
-      <p><b>{done} из {all.length}</b> <span className="hint">куплено</span></p>
+      <p><b>{done} из {all}</b> <span className="hint">{label}</span></p>
     </div>
+  )
+}
+
+/** Share of the week's products already ticked. */
+function BoughtRing({ plan, report, week }: { plan: SavedPlan; report: Report; week: number }) {
+  const list = report.shopping.weeks[week]!
+  const all = [...list.market, ...list.store]
+  const checked = new Set(plan.checked ?? [])
+  const done = all.filter((i) => checked.has(checkKey(week, i.id))).length
+  return <Ring done={done} all={all.length} label="куплено" />
+}
+
+/** Dishes of the week marked as cooked; one dish is one slot of one cooking. */
+function CookedRing({ plan, week }: { plan: SavedPlan; week: number }) {
+  const keys = blocks(plan.settings.cookTimes, plan.settings.weeks).flatMap((b, i) =>
+    b.week === week ? SLOTS.map((slot) => cookedKey(i, slot)) : [])
+  const cooked = new Set(plan.cooked ?? [])
+  return <Ring done={keys.filter((k) => cooked.has(k)).length} all={keys.length} label="блюд недели приготовлено" />
+}
+
+/** Right column of the cooking screen. */
+export function CookSide({ plan, day }: { plan: SavedPlan; day: number }) {
+  return (
+    <aside className="side widgets" aria-label="Сводка готовки">
+      <section className="widget">
+        <h2>Готовка недели</h2>
+        <CookedRing plan={plan} week={Math.floor(day / 7)} />
+      </section>
+    </aside>
   )
 }
 
@@ -74,6 +100,7 @@ export function TodaySide({ plan, report, day, onDay }: { plan: SavedPlan; repor
           <h2>Ближайшая готовка</h2>
           <p><b>{next.day === day ? 'Сегодня' : `${capital(weekday(addDays(start, next.day)))}, ${dayMonth(addDays(start, next.day))}`}</b></p>
           <p className="hint">{count(next.dishes.length, 'блюдо', 'блюда', 'блюд')}, около {num(next.minutes)} мин</p>
+          <CookedRing plan={plan} week={week} />
           <a className="tonal" href={cookHash(next.day)}>Начать готовку<GoIcon /></a>
         </section>
       )}

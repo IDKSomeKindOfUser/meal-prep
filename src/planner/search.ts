@@ -84,10 +84,23 @@ export interface Found {
   cost: number
 }
 
+/** How strongly the seed's random liking of dishes can outweigh comfort; small next to the norm and the budget. */
+const TASTE = 2
+
+/** A random liking of every dish, so that different seeds settle on different good menus. */
+export function tasteFrom(random: () => number): (recipe: Recipe) => number {
+  const taste = new Map<string, number>()
+  return (r) => {
+    if (!taste.has(r.id)) taste.set(r.id, random() * TASTE)
+    return taste.get(r.id)!
+  }
+}
+
 /** Simulated annealing. Deterministic for a given random source unless the deadline cuts it short. */
 export function search(
   start: Picks, options: readonly (readonly Recipe[])[][], schedule: readonly Block[],
   settings: Settings, catalog: Catalog, goal: Goal, steps: number, random: () => number, deadline: number,
+  taste: (recipe: Recipe) => number = () => 0,
 ): Found {
   const picks = start.map((row) => [...row])
   const size = (row: readonly Recipe[], i: number) =>
@@ -103,7 +116,8 @@ export function search(
     if (goal === 'cheapest') return daily + cost.total / totalDays / 10
     const { budget } = settings
     const over = budget !== null && cost.total > budget ? 20 + (200 * (cost.total - budget)) / budget : 0
-    return daily + over + comfortPenalty(picks, schedule, settings)
+    const liking = picks.reduce((sum, row) => sum + row.reduce((a, r) => a + taste(r), 0), 0) / picks.length
+    return daily + over + comfortPenalty(picks, schedule, settings) + liking
   }
 
   let current = score()

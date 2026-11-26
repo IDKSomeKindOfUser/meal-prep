@@ -3,7 +3,7 @@ import type { Recipe } from '../data/types'
 import { candidates, explainMissing, type Missing } from './candidates'
 import { describeMenu, type Menu, type Report } from './report'
 import { blocks } from './schedule'
-import { randomFrom, search, type Picks } from './search'
+import { randomFrom, search, tasteFrom, type Picks } from './search'
 import { SLOTS, type Catalog, type Settings, type Slot } from './types'
 
 export { describeMenu, type Menu, type Report } from './report'
@@ -31,6 +31,8 @@ const STEPS_PER_WEEK = 6000
 /** Only runs when the budget is tight, so it can afford a longer search. */
 const CHEAPEST_FACTOR = 3
 const TIME_LIMIT_MS = 4500
+/** How much a menu may cost above the cheapest one found when the budget is out of reach. */
+const UNREACHABLE_SLACK = 1.05
 
 /** The same settings, catalog and seed give the same menu unless the time limit is reached. */
 export function planMenu(settings: Settings, catalog: Catalog, seed: number, timeLimitMs = TIME_LIMIT_MS): PlanResult {
@@ -47,17 +49,21 @@ export function planMenu(settings: Settings, catalog: Catalog, seed: number, tim
   if (missing.length > 0) return { ok: false, missing }
 
   const random = randomFrom(seed)
+  const taste = tasteFrom(randomFrom(seed ^ 0x5eed))
   const deadline = performance.now() + timeLimitMs
   const steps = STEPS_PER_WEEK * settings.weeks
-  const run = (start: Picks, goal: 'balanced' | 'cheapest') =>
-    search(start, options, schedule, settings, catalog, goal, goal === 'cheapest' ? steps * CHEAPEST_FACTOR : steps, random, deadline)
+  const run = (start: Picks, goal: 'balanced' | 'cheapest', s = settings) =>
+    search(start, options, schedule, s, catalog, goal, goal === 'cheapest' ? steps * CHEAPEST_FACTOR : steps, random, deadline, taste)
 
   const start = options.map((row) => row.map((pool) => pool[Math.floor(random() * pool.length)]!))
   let found = run(start, 'balanced')
   if (settings.budget !== null && found.cost > settings.budget) {
     const cheapest = run(found.picks, 'cheapest')
-    // A reachable budget: make the cheapest menu nicer without leaving the budget.
-    found = cheapest.cost <= settings.budget ? run(cheapest.picks, 'balanced') : cheapest
+    // Make the cheapest menu nicer without leaving the budget. When the budget cannot be met,
+    // a little over the cheapest found is allowed, or every rebuild would give the same menu.
+    const budget = Math.max(settings.budget, cheapest.cost * UNREACHABLE_SLACK)
+    const nicer = run(cheapest.picks, 'balanced', { ...settings, budget })
+    found = nicer.cost <= budget ? nicer : cheapest
   }
   const menu: Menu = found.picks.map(([breakfast, lunch, dinner, snack]) => ({
     breakfast: breakfast!.id, lunch: lunch!.id, dinner: dinner!.id, snack: snack!.id,
