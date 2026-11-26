@@ -156,8 +156,6 @@ nav [aria-current] svg { background: color-mix(in oklab, transparent, var(--acce
 .amounts label span { flex: 1; min-width: 0; }
 .amounts b { flex: none; font-weight: 600; font-variant-numeric: tabular-nums; }
 .amounts .ticked { opacity: 0.65; }
-.amounts label span, .amounts b { text-decoration: line-through 1.5px transparent; transition: text-decoration-color .4s var(--ease); }
-.amounts .ticked span, .amounts .ticked b { text-decoration-color: currentColor; }
 /* Разделы экрана блюда: карточки-панели с иконкой в заголовке. */
 .panel { background: var(--surface); border-radius: var(--radius-card); box-shadow: var(--shadow-card); padding: var(--space-4); margin-top: var(--space-4); }
 .recipe .panel { max-width: none; }
@@ -275,8 +273,15 @@ fieldset .hint, fieldset .warn, .field .hint { margin-top: var(--space-2); }
 .field [aria-invalid], .rows [aria-invalid] { border-color: var(--danger); border-width: 2px; }
 .result b { font-size: var(--text-l); font-weight: 800; }
 .group > .result + .hint { margin-top: var(--space-1); }
-.exclude summary { min-height: 44px; align-content: center; font-weight: 600; }
+.exclude .disclose { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); inline-size: 100%; min-height: 44px; padding: 0; border: 0; background: none; color: inherit; font: inherit; font-weight: 600; text-align: start; cursor: pointer; }
+.exclude .disclose svg { flex: none; inline-size: 20px; block-size: 20px; transition: rotate .4s var(--spring); }
+.exclude .disclose[aria-expanded='true'] svg { rotate: 180deg; }
+/* Раскрытие: высота растёт через grid-template-rows, содержимое проступает чуть позже. */
+.reveal { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows .45s var(--ease), opacity .25s var(--ease); }
+.reveal[data-open] { grid-template-rows: 1fr; opacity: 1; transition: grid-template-rows .45s var(--ease), opacity .35s var(--ease) .1s; }
+.reveal > div { min-height: 0; overflow: hidden; }
 .exclude fieldset { margin-top: var(--space-4); }
+@media (prefers-reduced-motion: reduce) { .reveal, .reveal[data-open], .exclude .disclose svg { transition: none; } }
 .build { padding: var(--space-5) var(--space-5) 0; }
 .group h2 .count { display: block; margin-bottom: var(--space-1); color: var(--muted); font-size: var(--text-s); font-weight: 600; }
 .build .actions .back { background: none; font: inherit; font-weight: 600; cursor: pointer; }
@@ -334,11 +339,10 @@ fieldset .hint, fieldset .warn, .field .hint { margin-top: var(--space-2); }
 .buy .name, .buy .hint { display: block; overflow-wrap: break-word; }
 .buy b { flex: none; min-width: 4.5ch; text-align: right; font-weight: 600; color: var(--muted); }
 .buy .qty { flex: none; font-size: var(--text-m); font-weight: 700; }
-.buy :checked ~ .qty { color: var(--muted); text-decoration: line-through; }
 .aisle { margin: var(--space-4) 0 0; font-size: var(--text-s); font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
 button.link { padding: var(--space-2) 0; border: 0; background: none; font: inherit; font-weight: 600; cursor: pointer; }
-.buy .name { text-decoration: line-through 2px transparent; transition: color 0.25s var(--ease), text-decoration-color 0.25s var(--ease); }
-.buy :checked ~ .what .name { text-decoration-color: currentColor; color: var(--muted); }
+.buy .name, .buy .qty { transition: color .3s var(--ease); }
+.buy :checked ~ .what .name, .buy :checked ~ .qty { color: var(--muted); }
 .buy label:active { scale: 0.99; }
 section:has(> .buy) { max-width: 720px; }
 .cook { list-style: none; padding: 0; display: grid; gap: var(--space-3); max-width: 720px; }
@@ -442,10 +446,6 @@ html:has(dialog[open]) { overflow: hidden; }
 ::view-transition-new(root) { animation: screen-in .3s var(--ease) both; mix-blend-mode: normal; }
 @keyframes screen-in { from { opacity: 0; transform: translateY(10px); } }
 ::view-transition-old(dish-photo), ::view-transition-new(dish-photo) { height: 100%; object-fit: cover; }
-/* Отмеченный товар переезжает в «Куплено»: строки и заголовки плывут на новые места, экран целиком не мигает. */
-.reorder .buy li { view-transition-name: var(--vt); }
-.reorder .aisle, .reorder .sum { view-transition-name: match-element; }
-.reorder::view-transition-old(root), .reorder::view-transition-new(root) { animation: none; }
 /* Каскад карточек при первом открытии «Сегодня». */
 @keyframes rise { from { opacity: 0; translate: 0 12px; } }
 @media (prefers-reduced-motion: no-preference) {
@@ -630,9 +630,9 @@ button.tonal[aria-pressed="true"] { background: var(--accent); color: var(--on-a
 .buy input::after, .steps input::after, .amounts input::after { transition: clip-path .15s var(--ease); }
 .buy input:checked::after, .steps input:checked::after, .amounts input:checked::after { transition: clip-path .35s var(--ease) .06s; }
 .steps li { transition: opacity .3s var(--ease); }
-/* Зачёркивание прочерчивается слева направо, строка за строкой, и убирается быстрее. */
-.steps .line { background: linear-gradient(currentColor, currentColor) no-repeat 0 58% / 0 2px; transition: background-size .3s var(--ease); }
-.steps .ticked .line { background-size: 100% 2px; transition: background-size .6s cubic-bezier(.65, 0, .35, 1) .08s; }
+/* Зачёркивание везде одно: линия прочерчивается слева направо и убирается быстрее. */
+.line { background: linear-gradient(currentColor, currentColor) no-repeat 0 58% / 0 2px; transition: background-size .3s var(--ease); }
+:is(.steps li, .amounts li).ticked .line, .buy :checked ~ .what .line, .buy :checked ~ .qty .line { background-size: 100% 2px; transition: background-size .6s cubic-bezier(.65, 0, .35, 1) .08s; }
 .steps li { transition: opacity .5s var(--ease); }
 
 /* «Приготовлено»: кнопка заливается цветом, галочка выскакивает. */
@@ -642,7 +642,7 @@ button.tonal[aria-pressed="true"] { background: var(--accent); color: var(--on-a
 @keyframes pop { from { scale: 0; rotate: -30deg; } }
 @media (prefers-reduced-motion: reduce) {
   .tonal[aria-pressed='true'] svg { animation: none; }
-  .steps label span { transition: none; }
+  .steps label span, .line { transition: none !important; }
   ::view-transition-new(root) { animation: none; }
 }
 
@@ -666,12 +666,24 @@ nav { view-transition-name: nav; background: color-mix(in oklab, var(--surface) 
 /* Иконка раздела отзывается при выборе: у каждой своё движение. */
 nav svg > * { transform-box: view-box; transform-origin: 50% 50%; }
 nav [href='#today'][aria-current='page'] svg > * { animation: nav-spin .6s var(--spring); }
-nav [href='#week'][aria-current='page'] svg > * { animation: nav-drop .5s var(--spring); }
-nav [href='#shopping'][aria-current='page'] svg > * { animation: nav-roll .5s var(--spring); }
+/* Календарь: кольца вставляются сверху, потом по очереди проступают дни. */
+nav [href='#week'][aria-current='page'] svg > :is(:nth-child(1), :nth-child(2)) { animation: nav-ring .5s var(--spring); }
+nav [href='#week'][aria-current='page'] svg > :nth-child(n+5) { transform-box: fill-box; animation: nav-day .35s var(--spring) backwards; }
+nav [href='#week'][aria-current='page'] svg > :nth-child(5) { animation-delay: .08s; }
+nav [href='#week'][aria-current='page'] svg > :nth-child(6) { animation-delay: .12s; }
+nav [href='#week'][aria-current='page'] svg > :nth-child(7) { animation-delay: .16s; }
+nav [href='#week'][aria-current='page'] svg > :nth-child(8) { animation-delay: .2s; }
+nav [href='#week'][aria-current='page'] svg > :nth-child(9) { animation-delay: .24s; }
+nav [href='#week'][aria-current='page'] svg > :nth-child(10) { animation-delay: .28s; }
+/* Корзина: заезжает слева, колёса подпрыгивают на кочке. */
+nav [href='#shopping'][aria-current='page'] svg > :not(circle) { animation: nav-roll .55s var(--spring); }
+nav [href='#shopping'][aria-current='page'] svg > circle { transform-box: fill-box; animation: nav-roll .55s var(--spring), nav-hop .4s var(--ease) .2s; }
 nav [href='#settings'][aria-current='page'] svg > * { animation: nav-pop .5s var(--spring); }
 @keyframes nav-spin { from { rotate: -90deg; scale: .7; } }
-@keyframes nav-drop { from { translate: 0 -5px; } }
-@keyframes nav-roll { from { translate: -6px 0; } }
+@keyframes nav-ring { from { translate: 0 -6px; opacity: 0; } }
+@keyframes nav-day { from { scale: 0; opacity: 0; } }
+@keyframes nav-roll { from { translate: -10px 0; opacity: 0; } }
+@keyframes nav-hop { 50% { translate: 0 -2.5px; } }
 @keyframes nav-pop { from { scale: .6; } }
 @media (max-width: 899px) {
   nav [aria-current='page'] svg { animation: nav-pill .4s var(--ease); }
@@ -681,11 +693,6 @@ nav [href='#settings'][aria-current='page'] svg > * { animation: nav-pop .5s var
 /* Выбранная неделя и вкладка переезжают так же, как выбранный день. */
 .tabs:not(.two) [aria-pressed='true'] { view-transition-name: week-pick; }
 .tabs.two [aria-pressed='true'] { view-transition-name: tab-pick; }
-
-/* Список исключений раскрывается плавно. */
-:root { interpolate-size: allow-keywords; }
-details::details-content { block-size: 0; overflow: clip; transition: block-size .35s var(--ease), content-visibility .35s allow-discrete; }
-details[open]::details-content { block-size: auto; }
 
 /* Галочка в выбранном чипе выскакивает. */
 .chip :checked + span::before { animation: pop .35s var(--spring); }

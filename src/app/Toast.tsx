@@ -21,12 +21,22 @@ export function Toast<T>({ value, children }: { value: T | null | undefined | fa
     if (!node || still()) { setKept(null); return }
     const run = node.animate(
       [{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'translateY(100%)' }],
-      { duration: 200, easing: 'cubic-bezier(0.16, 1, 0.3, 1)' },
+      { duration: 220, easing: 'cubic-bezier(0.4, 0, 1, 1)', fill: 'forwards' },
     )
     // A toast that comes back mid-exit cancels the run: that is not an error.
     run.finished.then(() => setKept(null), () => {})
     return () => run.cancel()
   }, [leaving])
+
+  // The text is replaced while the toast stays (for example after "undo"): a short bounce shows it is new.
+  const shown = useRef(kept)
+  useEffect(() => {
+    const node = el.current
+    if (shown.current !== kept && kept !== null && !leaving && node && !still()) {
+      node.animate([{ scale: 0.96 }, { scale: 1 }], { duration: 350, easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)' })
+    }
+    shown.current = kept
+  }, [kept, leaving])
 
   if (kept === null) return null
   return <p ref={el} inert={leaving}>{children(kept)}</p>

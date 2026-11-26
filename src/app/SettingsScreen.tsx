@@ -1,4 +1,4 @@
-import { ArrowLeft, ChevronRight } from 'lucide-react'
+import { ArrowLeft, ChevronDown, ChevronRight } from 'lucide-react'
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { ingredients, recipes } from '../data'
 import { ALLERGENS } from '../data/types'
@@ -44,6 +44,7 @@ export function SettingsScreen({ form, own, onForm, start: suggested, changed, b
   const [theme, setTheme] = useState<Theme>(currentTheme)
   const [tab, setTab] = useState<'form' | 'site'>('form')
   const [step, setStep] = useState(0)
+  const [excludeOpen, setExcludeOpen] = useState(false)
   const formRef = useRef<HTMLFormElement>(null)
   const missingRef = useRef<HTMLDivElement>(null)
   const stepped = useRef(false)
@@ -133,13 +134,20 @@ export function SettingsScreen({ form, own, onForm, start: suggested, changed, b
             hint="Это про непереносимость лактозы. Аллергия на молоко отмечается выше." />
           <Choice name="spicy" legend="Острое" value={form.spicy ? 'yes' : 'no'} onChange={(v) => set('spicy')(v === 'yes')}
             options={[['yes', 'Можно'], ['no', 'Нельзя']]} />
-          <details className="exclude">
-            <summary>Не хочу эти продукты{form.excluded.length > 0 && `: ${form.excluded.length}`}</summary>
-            {categories.map((category) => (
-              <Checks key={category} legend={category} value={form.excluded} onChange={set('excluded')}
-                options={products.filter((p) => p.category === category).map((p) => [p.id, p.name] as const)} />
-            ))}
-          </details>
+          <div className="exclude">
+            <button type="button" className="disclose" aria-expanded={excludeOpen} aria-controls="exclude-list" onClick={() => setExcludeOpen(!excludeOpen)}>
+              Не хочу эти продукты{form.excluded.length > 0 && `: ${form.excluded.length}`}
+              <ChevronDown aria-hidden="true" />
+            </button>
+            <div id="exclude-list" className="reveal" data-open={excludeOpen || undefined} inert={!excludeOpen}>
+              <div>
+                {categories.map((category) => (
+                  <Checks key={category} legend={category} value={form.excluded} onChange={set('excluded')}
+                    options={products.filter((p) => p.category === category).map((p) => [p.id, p.name] as const)} />
+                ))}
+              </div>
+            </div>
+          </div>
         </Group>}
 
         {shows('cook') && <Group title="Готовка" count={count('cook')}>

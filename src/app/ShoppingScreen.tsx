@@ -1,12 +1,11 @@
 import { Copy, Check, Pencil } from 'lucide-react'
-import { useState, type CSSProperties } from 'react'
+import { useState } from 'react'
 import type { Report } from '../planner'
 import type { ShoppingItem } from '../planner/shopping'
 import type { Catalog } from '../planner/types'
 import { addDays, dayMonth } from './dates'
 import { count, num, rub } from './labels'
 import { WeekTabs } from './parts'
-import { reorder } from './transition'
 import { celebrate } from './confetti'
 import type { SavedPlan } from './storage'
 
@@ -54,20 +53,14 @@ function Row({ item, catalog, checked, week, onCheck }: {
   const amount = buyAmount(item, product.pieceGrams)
   const more = detail(item)
   return (
-    <li style={{ '--vt': `buy-${item.id}` } as CSSProperties}>
+    <li>
       <label>
-        <input type="checkbox" data-key={checkKey(week, item.id)} checked={checked} onChange={(e) => {
-          const key = checkKey(week, item.id)
-          const bought = e.target.checked
-          // Строка переезжает в другой список и пересоздаётся: возвращаем фокус, чтобы клавиатура не терялась.
-          reorder(() => onCheck(key, bought),
-            () => document.querySelector<HTMLInputElement>(`input[data-key="${CSS.escape(key)}"]`)?.focus({ preventScroll: true }))
-        }} />
+        <input type="checkbox" checked={checked} onChange={(e) => onCheck(checkKey(week, item.id), e.target.checked)} />
         <span className="what">
-          <span className="name">{product.name}</span>
+          <span className="name"><span className="line">{product.name}</span></span>
           <span className="hint">{more}</span>
         </span>
-        <span className="qty">{amount}</span>
+        <span className="qty"><span className="line">{amount}</span></span>
         <b>{rub(item.cost)}</b>
       </label>
     </li>
@@ -81,9 +74,8 @@ function Group({ title, cost, items, week, checked, catalog, onCheck }: {
   const byName = (a: ShoppingItem, b: ShoppingItem) =>
     catalog.ingredient(a.id).name.localeCompare(catalog.ingredient(b.id).name, 'ru')
   const isDone = (i: ShoppingItem) => checked.has(checkKey(week, i.id))
-  const open = items.filter((i) => !isDone(i))
-  const done = items.filter(isDone).sort(byName)
-  const cats = [...new Set(open.map((i) => catalog.ingredient(i.id).category))]
+  // Купленное остаётся на месте и просто зачёркивается: меньше лишних нажатий.
+  const cats = [...new Set(items.map((i) => catalog.ingredient(i.id).category))]
     .sort((a, b) => (ORDER.indexOf(a) + 100) % 100 - (ORDER.indexOf(b) + 100) % 100)
   const row = (i: ShoppingItem) => <Row key={i.id} item={i} catalog={catalog} checked={isDone(i)} week={week} onCheck={onCheck} />
   return (
@@ -92,15 +84,9 @@ function Group({ title, cost, items, week, checked, catalog, onCheck }: {
       {cats.map((cat) => (
         <div key={cat}>
           <h3 className="aisle">{cat}</h3>
-          <ul className="buy">{open.filter((i) => catalog.ingredient(i.id).category === cat).sort(byName).map(row)}</ul>
+          <ul className="buy">{items.filter((i) => catalog.ingredient(i.id).category === cat).sort(byName).map(row)}</ul>
         </div>
       ))}
-      {done.length > 0 && (
-        <div>
-          <h3 className="aisle">Куплено</h3>
-          <ul className="buy">{done.map(row)}</ul>
-        </div>
-      )}
     </section>
   )
 }

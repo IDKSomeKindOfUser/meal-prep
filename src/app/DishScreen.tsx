@@ -42,7 +42,7 @@ function Ingredients({ items }: { items: { id: string; name: string; text: strin
         <li key={i.id} className={got.has(i.id) ? 'ticked' : undefined}>
           <label>
             <input type="checkbox" checked={got.has(i.id)} onChange={() => toggle(i.id)} />
-            <span>{i.name}</span><b>{i.text}</b>
+            <span><span className="line">{i.name}</span></span><b><span className="line">{i.text}</span></b>
           </label>
         </li>
       ))}
