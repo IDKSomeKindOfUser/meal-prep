@@ -5,7 +5,7 @@ import { daysCount, num, rub } from './labels'
 import { DishPicture } from './DishPicture'
 import { WeekTabs } from './parts'
 import { dishHash } from './route'
-import type { SavedPlan } from './storage'
+import { cookedKey, type SavedPlan } from './storage'
 
 interface Props {
   plan: SavedPlan
@@ -43,9 +43,10 @@ export function Week({ plan, report, today, day, onDay, onOpenDay }: Props) {
               <ul className="wkdishes">
                 {SLOTS.map((slot, k) => {
                   const dish = menu.dishes[k]!
+                  const cooked = plan.cooked?.includes(cookedKey(bi, slot))
                   return (
-                    <li key={slot} data-slot={slot}>
-                      <a href={dishHash(bi, slot)} aria-label={`${dish.recipe.name}, ${num(dish.kcal)} ккал`}>
+                    <li key={slot} data-slot={slot} data-cooked={cooked || undefined}>
+                      <a href={dishHash(bi, slot)} aria-label={`${dish.recipe.name}, ${num(dish.kcal)} ккал${cooked ? ', приготовлено' : ''}`}>
                         <DishPicture recipe={dish.recipe} />
                         <span className="wkname" aria-hidden="true">{dish.recipe.name}</span>
                       </a>

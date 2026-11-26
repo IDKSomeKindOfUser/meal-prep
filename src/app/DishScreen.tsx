@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { BackLink } from './parts'
-import { ChefHat, Clock, Pencil, Refrigerator, ShoppingBasket, TriangleAlert } from 'lucide-react'
+import { Check, ChefHat, Clock, Pencil, Refrigerator, ShoppingBasket, TriangleAlert } from 'lucide-react'
 import { recipeAllergens } from '../data'
 import type { Report } from '../planner'
 import { frozenDays, type Block } from '../planner/schedule'
@@ -10,7 +10,7 @@ import { DishPicture } from './DishPicture'
 import { ALLERGEN, amount, count, daysCount, num, SLOT } from './labels'
 import { Steps } from './Steps'
 import { recipeHash, swapHash } from './route'
-import type { SavedPlan } from './storage'
+import { cookedKey, type SavedPlan } from './storage'
 
 interface Props {
   plan: SavedPlan
@@ -22,6 +22,7 @@ interface Props {
   slot: Slot
   origin: 'today' | 'week'
   onSwap: () => void
+  onCooked: (key: string, cooked: boolean) => void
 }
 
 /** The days a block is eaten on. */
@@ -49,7 +50,7 @@ function Ingredients({ items }: { items: { id: string; name: string; text: strin
   )
 }
 
-export function DishScreen({ plan, report, catalog, isOwn, block: index, slot, origin, onSwap }: Props) {
+export function DishScreen({ plan, report, catalog, isOwn, block: index, slot, origin, onSwap, onCooked }: Props) {
   const { block, day } = report.blocks[index]!
   const dish = day.dishes[SLOTS.indexOf(slot)]!
   const { recipe } = dish
@@ -59,6 +60,8 @@ export function DishScreen({ plan, report, catalog, isOwn, block: index, slot, o
   const names = (list: typeof may) => list.map((a) => ALLERGEN[a].toLowerCase()).join(', ')
   const source = recipe.source as { name: string; url: string } | null
   const cook = addDays(plan.start, block.cookDay)
+  const key = cookedKey(index, slot)
+  const cooked = plan.cooked?.includes(key) ?? false
   return (
     <article className="recipe">
       <div className="top"><BackLink href={`#${origin}`}>{origin === 'today' ? 'Назад к меню дня' : 'Назад к меню недели'}</BackLink></div>
@@ -83,6 +86,9 @@ export function DishScreen({ plan, report, catalog, isOwn, block: index, slot, o
           {frozen.length > 0 && <div><dt>В морозилку</dt><dd>порции на {frozen.map((d) => weekdayShort(addDays(plan.start, d))).join(', ')}</dd></div>}
         </dl>
         <div className="actions">
+          <button type="button" className="tonal" aria-pressed={cooked} onClick={() => onCooked(key, !cooked)}>
+            <Check aria-hidden="true" />{cooked ? 'Приготовлено' : 'Отметить приготовленным'}
+          </button>
           <a className="go" href={swapHash(index, slot)} onClick={onSwap}>Заменить блюдо</a>
           {isOwn(recipe.id) && <a className="back" href={recipeHash(recipe.id)}><Pencil aria-hidden="true" />Изменить рецепт</a>}
         </div>

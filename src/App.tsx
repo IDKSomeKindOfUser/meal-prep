@@ -17,7 +17,7 @@ import { RecipesScreen } from './app/RecipesScreen'
 import { MAIN_SCREENS, dishHash, parseHash, swapHash, type MainScreen } from './app/route'
 import { SettingsScreen } from './app/SettingsScreen'
 import { ShoppingScreen } from './app/ShoppingScreen'
-import { loadState, saveState, type SavedPlan, type SavedState } from './app/storage'
+import { cookedKey, loadState, saveState, type SavedPlan, type SavedState } from './app/storage'
 import { pending, stamp } from './app/sync'
 import { planKey, undoPlan } from './app/undo'
 import { SettingsSide, ShoppingSide, SwapSide, TodaySide } from './app/Side'
@@ -160,7 +160,7 @@ export function App() {
   function replace(block: number, slot: Slot, recipeId: string) {
     if (!plan || busy) return
     // The latest plan: the cloud may have brought changes since this screen was drawn.
-    setState((s) => s.plan ? { ...s, plan: { ...s.plan, edited: true, menu: replaceDish(s.plan.menu, block, slot, recipeId, s.plan.settings, catalog) } } : s)
+    setState((s) => s.plan ? { ...s, plan: { ...s.plan, edited: true, cooked: s.plan.cooked?.filter((k) => k !== cookedKey(block, slot)), menu: replaceDish(s.plan.menu, block, slot, recipeId, s.plan.settings, catalog) } } : s)
     setMessage({ text: 'Блюдо заменено, калории, белок и чек пересчитаны.', previous: plan, keepChecked: true })
     // Keeps "back" on the dish leading to the screen it was opened from.
     if (swapFromDish.current) history.back()
@@ -276,7 +276,8 @@ export function App() {
             <Welcome />
           ) : route.screen === 'dish' ? (
             <DishScreen plan={plan} report={report} catalog={catalog} isOwn={(id) => state.own.recipes.some((r) => r.id === id)} block={route.block} slot={route.slot} origin={origin}
-              onSwap={() => { swapFromDish.current = true }} />
+              onSwap={() => { swapFromDish.current = true }}
+              onCooked={(key, cooked) => setState((s) => s.plan ? { ...s, plan: { ...s.plan, cooked: cooked ? [...new Set([...(s.plan.cooked ?? []), key])] : (s.plan.cooked ?? []).filter((k) => k !== key) } } : s)} />
           ) : route.screen === 'swap' ? (
             <SwapScreen plan={plan} report={report} catalog={catalog} block={route.block} slot={route.slot} busy={busy}
               onBack={(e) => { if (swapFromDish.current) { e.preventDefault(); history.back() } }}

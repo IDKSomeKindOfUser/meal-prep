@@ -27,6 +27,10 @@ export function RecipesScreen({ own, busy, onProduct, onDeleteProduct }: Props) 
       <section>
         {own.recipes.length === 0 && (
           <div className="empty">
+            <svg className="empty-art" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" aria-hidden="true">
+              <circle cx="24" cy="26" r="12" /><circle cx="24" cy="26" r="6.5" />
+              <path d="M8 10v9a3 3 0 0 0 3 3v16M11 10v8M14 10v9a3 3 0 0 1-3 3M38 10c-3 2-4 6-4 10h4v18" />
+            </svg>
             <b>Своих рецептов пока нет</b>
             <p>Добавьте блюдо, которое готовите сами: оно попадёт в подбор меню наравне с готовыми.</p>
             <a className="go" href={recipeHash('new')}>Добавить первый рецепт</a>

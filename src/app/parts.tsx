@@ -15,7 +15,7 @@ export function BackLink({ href, onClick, children }: { href: string; onClick?: 
 
 export const GoIcon = () => <ChevronRight className="go-icon" aria-hidden="true" />
 
-export function DishField({ slot, dish, href, note, big, now }: { slot: Slot; dish: PortionedDish; href: string; note?: string; big?: boolean; now?: boolean }) {
+export function DishField({ slot, dish, href, note, big, now, cooked }: { slot: Slot; dish: PortionedDish; href: string; note?: string; big?: boolean; now?: boolean; cooked?: boolean }) {
   return (
     <li className={`dish${big ? ' big' : ''}`} data-slot={slot} data-now={now || undefined}>
       <div>
@@ -25,6 +25,7 @@ export function DishField({ slot, dish, href, note, big, now }: { slot: Slot; di
           <li>{num(dish.kcal)} ккал</li>
           <li>{num(dish.protein)} г белка</li>
           <li>{dish.recipe.minutes} мин</li>
+          {cooked && <li className="cooked">Приготовлено</li>}
         </ul>
         {note && <p className="from">{note}</p>}
       </div>

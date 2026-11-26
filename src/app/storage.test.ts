@@ -18,6 +18,12 @@ describe('parseState', () => {
     const edited = { ...state, plan: { ...state.plan!, edited: true, menu: replaceDish(menu, 0, 'lunch', other, settings, defaultCatalog) } }
     expect(parseState(JSON.stringify(edited))).toEqual(edited)
   })
+  it('restores cooked dishes, old plans open without the field, broken lists are dropped', () => {
+    const cooked = { ...state, plan: { ...state.plan!, cooked: ['0:lunch'] } }
+    expect(parseState(JSON.stringify(cooked))).toEqual(cooked)
+    expect(parseState(JSON.stringify(state)).plan).not.toHaveProperty('cooked')
+    expect(parseState(JSON.stringify({ ...state, plan: { ...state.plan!, cooked: [1] } })).plan).not.toHaveProperty('cooked')
+  })
   it('restores own prices and drops broken ones', () => {
     const own = { ...state, prices: { rice: { price: 99, grams: 700 } } }
     expect(parseState(JSON.stringify(own))).toEqual(own)

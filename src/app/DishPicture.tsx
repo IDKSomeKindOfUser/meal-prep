@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import type { Recipe } from '../data/types'
 import photos from '../data/photos.json'
 
@@ -21,6 +21,9 @@ function NoPhoto() {
 /** The photo of a dish; a placeholder stays when there is no photo or it fails to load. */
 export function DishPicture({ recipe }: { recipe: Recipe }) {
   const [failed, setFailed] = useState(false)
+  const [loaded, setLoaded] = useState(false)
+  // Фото из кэша может загрузиться раньше, чем React повесит onLoad.
+  const ref = useCallback((img: HTMLImageElement | null) => { if (img?.complete && img.naturalWidth > 0) setLoaded(true) }, [])
   if (!HAS_PHOTO.has(recipe.id) || failed) return <NoPhoto />
-  return <img className="art photo" src={`/photos/${recipe.id}.webp`} alt="" width="500" height="500" onError={() => setFailed(true)} />
+  return <img ref={ref} className={loaded ? 'art photo' : 'art photo loading'} onLoad={() => setLoaded(true)} src={`/photos/${recipe.id}.webp`} alt="" width="500" height="500" onError={() => setFailed(true)} />
 }

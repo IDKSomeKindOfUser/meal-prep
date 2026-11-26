@@ -6,7 +6,7 @@ import { addDays, dayMonth, dayNumber, dayOfPlan, daysBetween, greeting, mealNow
 import { daysCount, num, rub, SLOT } from './labels'
 import { DishField, GoIcon, portionNote, Warnings, WeekTabs } from './parts'
 import { cookHash, dishHash } from './route'
-import type { SavedPlan } from './storage'
+import { cookedKey, type SavedPlan } from './storage'
 import { transition } from './transition'
 
 interface Props {
@@ -78,7 +78,7 @@ export function Today({ plan, report, today, day, onDay, }: Props) {
       </header>
       <ul className={cascade ? 'meals cascade' : 'meals'} aria-label="Блюда дня">
         {SLOTS.map((slot, i) => (
-          <DishField key={slot} slot={slot} dish={menu.dishes[i]!} href={dishHash(blockIndex, slot)} note={day === block.cookDay ? undefined : portionNote(menu.dishes[i]!, block, day)} big={slot === 'lunch'} now={slot === now} />
+          <DishField key={slot} slot={slot} dish={menu.dishes[i]!} href={dishHash(blockIndex, slot)} note={day === block.cookDay ? undefined : portionNote(menu.dishes[i]!, block, day)} big={slot === 'lunch'} now={slot === now} cooked={plan.cooked?.includes(cookedKey(blockIndex, slot))} />
         ))}
       </ul>
       <section>

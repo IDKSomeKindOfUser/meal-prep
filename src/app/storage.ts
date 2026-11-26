@@ -17,7 +17,11 @@ export interface SavedPlan {
   edited?: boolean
   /** Bought items, as `week:product`. */
   checked?: string[]
+  /** Dishes marked as cooked, as `block:slot`. */
+  cooked?: string[]
 }
+/** The key of a dish in `SavedPlan.cooked`. */
+export const cookedKey = (block: number, slot: string) => `${block}:${slot}`
 export interface SavedState {
   version: 1
   form: Form
@@ -57,6 +61,7 @@ function parsePlan(saved: unknown, catalog: Catalog): SavedPlan | null {
     const plan = saved as SavedPlan
     if (!isIsoDate(plan.start)) return null
     if (!Array.isArray(plan.checked) || !plan.checked.every((x) => typeof x === 'string')) delete plan.checked
+    if (!Array.isArray(plan.cooked) || !plan.cooked.every((x) => typeof x === 'string')) delete plan.cooked
     // Throws when the menu does not match the schedule or the recipes.
     const report = describeMenu(plan.menu, plan.settings, catalog)
     return Number.isFinite(report.shopping.total) && report.days.every((d) => Number.isFinite(d.kcal)) ? plan : null

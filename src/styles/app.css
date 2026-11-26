@@ -597,3 +597,15 @@ html:has(dialog[open]) { overflow: hidden; }
   main { max-width: 1440px; margin-inline: auto; }
   .page { grid-template-columns: minmax(0, 1fr) 340px; }
 }
+
+/* Приготовлено: метка в карточке дня и галочка на миниатюре недели. */
+.facts .cooked { color: var(--accent); font-weight: 600; }
+.wkdishes [data-cooked] a { position: relative; }
+.wkdishes [data-cooked] a::after { content: '✓'; position: absolute; inset-block-start: 4px; inset-inline-end: 4px; display: grid; place-items: center; inline-size: 20px; block-size: 20px; border-radius: 50%; background: var(--accent); color: var(--on-accent, #fff); font-size: 13px; font-weight: 700; }
+button.tonal[aria-pressed="true"] { background: var(--accent); color: var(--on-accent, #fff); }
+
+/* Скелетон, пока фото грузится. */
+.art.photo.loading { background: linear-gradient(100deg, var(--surface) 30%, color-mix(in oklab, var(--muted) 18%, var(--surface)) 50%, var(--surface) 70%) 0 0 / 300% 100%; animation: shimmer 1.4s linear infinite; }
+@keyframes shimmer { to { background-position: -300% 0; } }
+@media (prefers-reduced-motion: reduce) { .art.photo.loading { animation: none; } }
+.empty-art { inline-size: 56px; block-size: 56px; color: var(--accent); }
