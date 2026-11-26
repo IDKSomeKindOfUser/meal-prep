@@ -632,7 +632,7 @@ button.tonal[aria-pressed="true"] { background: var(--accent); color: var(--on-a
 .steps li { transition: opacity .3s var(--ease); }
 /* Зачёркивание везде одно: линия прочерчивается слева направо и убирается быстрее. */
 .line { background: linear-gradient(currentColor, currentColor) no-repeat 0 58% / 0 2px; transition: background-size .3s var(--ease); }
-:is(.steps li, .amounts li).ticked .line, .buy :checked ~ .what .line, .buy :checked ~ .qty .line { background-size: 100% 2px; transition: background-size .6s cubic-bezier(.65, 0, .35, 1) .08s; }
+:is(.steps li, .amounts li).ticked .line, .buy :checked ~ .what .line, .buy :checked ~ .qty .line { background-size: 100% 2px; transition: background-size .32s var(--ease) .04s; }
 .steps li { transition: opacity .5s var(--ease); }
 
 /* «Приготовлено»: кнопка заливается цветом, галочка выскакивает. */
@@ -675,16 +675,26 @@ nav [href='#week'][aria-current='page'] svg > :nth-child(7) { animation-delay: .
 nav [href='#week'][aria-current='page'] svg > :nth-child(8) { animation-delay: .2s; }
 nav [href='#week'][aria-current='page'] svg > :nth-child(9) { animation-delay: .24s; }
 nav [href='#week'][aria-current='page'] svg > :nth-child(10) { animation-delay: .28s; }
-/* Корзина: заезжает слева, колёса подпрыгивают на кочке. */
-nav [href='#shopping'][aria-current='page'] svg > :not(circle) { animation: nav-roll .55s var(--spring); }
-nav [href='#shopping'][aria-current='page'] svg > circle { transform-box: fill-box; animation: nav-roll .55s var(--spring), nav-hop .4s var(--ease) .2s; }
-nav [href='#settings'][aria-current='page'] svg > * { animation: nav-pop .5s var(--spring); }
+/* Корзина: подъезжает одним целым, на остановке клюёт вперёд на переднем колесе и выравнивается. */
+nav [href='#shopping'][aria-current='page'] svg > * { transform-origin: 18px 22px; animation: nav-cart .6s var(--ease); }
+/* Настройки: ползунки по очереди сдвигаются и возвращаются, дорожки тянутся следом за ручками. */
+nav [href='#settings'][aria-current='page'] svg > * { animation: nav-track .6s cubic-bezier(.77, 0, .175, 1); }
+nav [href='#settings'] svg > :is(:nth-child(1), :nth-child(2), :nth-child(9)) { transform-origin: 3px 0; }
+nav [href='#settings'] svg > :is(:nth-child(5), :nth-child(6), :nth-child(7)) { transform-origin: 21px 0; }
+nav [href='#settings'][aria-current='page'] svg > :is(:nth-child(3), :nth-child(4), :nth-child(8)) { animation-name: nav-knob; }
+nav [href='#settings'] svg > :is(:nth-child(1), :nth-child(3), :nth-child(7)) { --d: 3px; --s: 1.43; --r: .57; }
+nav [href='#settings'] svg > :is(:nth-child(5), :nth-child(8), :nth-child(9)) { --d: 4px; --s: 1.8; --r: .56; }
+nav [href='#settings'] svg > :is(:nth-child(2), :nth-child(4), :nth-child(6)) { --d: -4px; --s: .56; --r: 1.8; }
+nav [href='#settings'][aria-current='page'] svg > :is(:nth-child(5), :nth-child(6), :nth-child(7)) { animation-name: nav-track-r; }
+nav [href='#settings'][aria-current='page'] svg > :is(:nth-child(5), :nth-child(8), :nth-child(9)) { animation-delay: .07s; }
+nav [href='#settings'][aria-current='page'] svg > :is(:nth-child(2), :nth-child(4), :nth-child(6)) { animation-delay: .14s; }
 @keyframes nav-spin { from { rotate: -90deg; scale: .7; } }
 @keyframes nav-ring { from { translate: 0 -6px; opacity: 0; } }
 @keyframes nav-day { from { scale: 0; opacity: 0; } }
-@keyframes nav-roll { from { translate: -10px 0; opacity: 0; } }
-@keyframes nav-hop { 50% { translate: 0 -2.5px; } }
-@keyframes nav-pop { from { scale: .6; } }
+@keyframes nav-cart { 0% { translate: -7px 0; opacity: 0; } 45% { translate: 0 0; opacity: 1; rotate: 0deg; } 65% { rotate: 9deg; } 85% { rotate: -2deg; } }
+@keyframes nav-knob { 45% { translate: var(--d) 0; } }
+@keyframes nav-track { 45% { scale: var(--s) 1; } }
+@keyframes nav-track-r { 45% { scale: var(--r) 1; } }
 @media (max-width: 899px) {
   nav [aria-current='page'] svg { animation: nav-pill .4s var(--ease); }
   @keyframes nav-pill { from { background-color: transparent; scale: .8 1; } }
@@ -697,10 +707,10 @@ nav [href='#settings'][aria-current='page'] svg > * { animation: nav-pop .5s var
 /* Галочка в выбранном чипе выскакивает. */
 .chip :checked + span::before { animation: pop .35s var(--spring); }
 
-/* Сводки растут от нуля при появлении. */
-.bar i { transform-origin: left; transition: inline-size .4s var(--ease), scale .7s var(--ease); }
-.daychart i { transform-origin: bottom; transition: background-color .3s var(--ease), scale .7s var(--ease); }
-.ring circle:last-child { transition: stroke-dasharray .7s var(--ease); }
+/* Сводки растут от нуля при появлении. Рост ждёт, пока экран проявится, и идёт ровно, иначе он прячется за сменой экрана. */
+.bar i { transform-origin: left; transition: inline-size .4s var(--ease), scale .8s cubic-bezier(.65, 0, .35, 1) .2s; }
+.daychart i { transform-origin: bottom; transition: background-color .3s var(--ease), scale .8s cubic-bezier(.65, 0, .35, 1) .2s; }
+.ring circle:last-child { transition: stroke-dasharray .8s cubic-bezier(.65, 0, .35, 1) .2s; }
 @starting-style {
   .bar i, .daychart i { scale: 0; }
   .ring circle:last-child { stroke-dasharray: 0 100; }
@@ -724,3 +734,11 @@ nav [href='#settings'][aria-current='page'] svg > * { animation: nav-pop .5s var
   nav svg, nav svg > *, .chip :checked + span::before, .timer[aria-pressed='true'] { animation: none !important; }
   .bar i, .daychart i { scale: none; }
 }
+
+/* «Собрать меню заново»: кубики подпрыгивают при наведении и крутятся, пока меню собирается. */
+.shuffle svg { transition: rotate .45s var(--spring); }
+@media (hover: hover) { .shuffle:hover:not(:disabled) svg { rotate: -20deg; } }
+.shuffle[aria-busy='true'] svg { animation: dice .6s linear infinite; }
+.shuffle:disabled { cursor: progress; opacity: .7; }
+@keyframes dice { to { rotate: 360deg; } }
+@media (prefers-reduced-motion: reduce) { .shuffle svg { animation: none !important; transition: none; } }

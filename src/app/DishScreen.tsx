@@ -11,6 +11,7 @@ import { ALLERGEN, amount, count, daysCount, num, SLOT } from './labels'
 import { Steps } from './Steps'
 import { recipeHash, swapHash } from './route'
 import { cookedKey, type SavedPlan } from './storage'
+import { celebrate } from './confetti'
 
 interface Props {
   plan: SavedPlan
@@ -62,6 +63,9 @@ export function DishScreen({ plan, report, catalog, isOwn, block: index, slot, o
   const cook = addDays(plan.start, block.cookDay)
   const key = cookedKey(index, slot)
   const cooked = plan.cooked?.includes(key) ?? false
+  // Блюда той же готовки: когда отмечено последнее, праздник больше.
+  const session = report.blocks.flatMap((b, i) => (b.block.cookDay === block.cookDay ? SLOTS.map((s) => cookedKey(i, s)) : []))
+  const last = session.every((k) => k === key || plan.cooked?.includes(k))
   return (
     <article className="recipe">
       <div className="top"><BackLink href={`#${origin}`}>{origin === 'today' ? 'Назад к меню дня' : 'Назад к меню недели'}</BackLink></div>
@@ -86,7 +90,7 @@ export function DishScreen({ plan, report, catalog, isOwn, block: index, slot, o
           {frozen.length > 0 && <div><dt>В морозилку</dt><dd>порции на {frozen.map((d) => weekdayShort(addDays(plan.start, d))).join(', ')}</dd></div>}
         </dl>
         <div className="actions">
-          <button type="button" className="tonal" aria-pressed={cooked} onClick={() => onCooked(key, !cooked)}>
+          <button type="button" className="tonal" aria-pressed={cooked} onClick={(e) => { if (!cooked) celebrate(last ? 'cooking' : 'dish', e.currentTarget); onCooked(key, !cooked) }}>
             <Check aria-hidden="true" />{cooked ? 'Приготовлено' : 'Отметить приготовленным'}
           </button>
           <a className="go" href={swapHash(index, slot)} onClick={onSwap}>Заменить блюдо</a>

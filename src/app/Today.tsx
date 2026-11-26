@@ -1,3 +1,4 @@
+import { Dices } from 'lucide-react'
 import type { Report } from '../planner'
 import { blocks } from '../planner/schedule'
 import { SLOTS } from '../planner/types'
@@ -15,6 +16,8 @@ interface Props {
   today: string
   day: number
   onDay: (day: number) => void
+  busy: boolean
+  onShuffle: () => void
 }
 
 const capital = (s: string) => s[0]!.toUpperCase() + s.slice(1)
@@ -33,7 +36,7 @@ function useHour(): number {
 // Каскад карточек играет только при первом показе «Сегодня» за сессию, не при смене дня.
 let cascaded = false
 
-export function Today({ plan, report, today, day, onDay, }: Props) {
+export function Today({ plan, report, today, day, onDay, busy, onShuffle }: Props) {
   const [cascade] = useState(() => !cascaded)
   useEffect(() => { cascaded = true }, [])
   const { settings, start } = plan
@@ -53,6 +56,11 @@ export function Today({ plan, report, today, day, onDay, }: Props) {
       <header>
         <h1 tabIndex={-1}>{date === today ? `Сегодня, ${weekday(date)}` : `${capital(weekday(date))}, ${dayMonth(date)}`}</h1>
         <p className="sub">{num(menu.kcal)} ккал, белка {num(menu.protein)} г{day === block.cookDay && ', готовим в этот день'}</p>
+        <div className="actions-row">
+          <button type="button" className="link shuffle" onClick={onShuffle} disabled={busy} aria-busy={busy}>
+            <Dices aria-hidden="true" />{busy ? 'Собираю меню…' : 'Собрать меню заново'}
+          </button>
+        </div>
         {next && (
           <p className="next">
             <span>Следующий приём: {SLOT[next.slot].toLowerCase()} в {next.time}</span>

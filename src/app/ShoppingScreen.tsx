@@ -106,7 +106,7 @@ export function ShoppingScreen({ plan, report, catalog, week, onWeek, onCheck }:
   const first = addDays(plan.start, week * 7)
   const [copied, setCopied] = useState(false)
   const check: Props['onCheck'] = (key, bought) => {
-    if (bought && done + 1 === all.length) celebrate()
+    if (bought && done + 1 === all.length) celebrate('shopping')
     onCheck(key, bought)
   }
   const copy = () => {

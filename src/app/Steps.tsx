@@ -46,7 +46,7 @@ export function Steps({ steps }: { steps: string[] }) {
   }, [])
   const total = steps.length
   const toggle = (i: number) => {
-    if (!done.has(i) && done.size + 1 === total) celebrate()
+    if (!done.has(i) && done.size + 1 === total) celebrate('dish')
     setDone((d) => { const n = new Set(d); if (!n.delete(i)) n.add(i); return n })
   }
   return (

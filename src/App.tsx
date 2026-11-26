@@ -295,7 +295,7 @@ export function App() {
             <Week plan={plan} report={report} today={today} day={day} onDay={setChosenDay}
               onOpenDay={(d) => { setChosenDay(d); location.hash = 'today' }} />
           ) : (
-            <Today plan={plan} report={report} today={today} day={day} onDay={setChosenDay} />
+            <Today plan={plan} report={report} today={today} day={day} onDay={setChosenDay} busy={busy} onShuffle={() => void build(plan.settings, start)} />
           )}
           </div>
           {screen === 'settings' ? <SettingsSide plan={plan} />
