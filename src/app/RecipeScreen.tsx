@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { X } from 'lucide-react'
 import { ingredients, recipeAllergens } from '../data'
 import { ALLERGENS } from '../data/types'
 import { TOOLS, type Catalog } from '../planner/types'
@@ -139,7 +140,7 @@ export function RecipeScreen({ id, exists, saved, own, catalog, inMenu, busy, on
                   <button type="button" className="remove" aria-label={`Убрать: ${product?.name ?? 'пустая строка'}`} onClick={() => {
                     set('rows')(draft.rows.filter((r) => r.key !== row.key))
                     focusLater('add-row')
-                  }}><svg aria-hidden="true" viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 3l10 10M13 3L3 13" /></svg></button>
+                  }}><X aria-hidden="true" size={16} strokeWidth={1.5} /></button>
                   {error && <p className="warn" id={described}>{error}</p>}
                 </li>
               )
