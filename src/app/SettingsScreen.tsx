@@ -192,7 +192,7 @@ export function SettingsScreen({ form, own, onForm, start: suggested, changed, b
           <Choice name="theme" legend="Тема" value={theme} onChange={(t) => { setTheme(t); applyTheme(t) }}
             options={[['system', 'Как в системе'], ['light', 'Светлая'], ['dark', 'Тёмная']]} />
         </Group>
-        <Group title="О сайте"><a className="back" href="#credits">Авторы фото<ChevronRight aria-hidden="true" /></a></Group>
+        <p className="hint">Фото блюд: <a href="#credits">Wikimedia Commons</a></p>
       </div>}
     </>
   )

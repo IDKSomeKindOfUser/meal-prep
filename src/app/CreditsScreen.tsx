@@ -6,7 +6,7 @@ type Credit = { title: string; author: string; license: string; licenseUrl: stri
 
 const credits = photos as Record<string, Credit>
 const rows = recipes
-  .filter((r) => credits[r.id])
+  .filter((r) => credits[r.id]?.source)
   .map((r) => ({ id: r.id, name: r.name, ...credits[r.id]! }))
   .sort((a, b) => a.name.localeCompare(b.name, 'ru'))
 
@@ -19,7 +19,7 @@ export function CreditsScreen() {
       <header>
         <div className="top"><BackLink href="#settings">Назад к настройкам</BackLink></div>
         <h1 tabIndex={-1}>Авторы фото</h1>
-        <p className="note">Фотографии блюд взяты с Wikimedia Commons и обрезаны до квадрата. У четырёх блюд фото нет, там рисунок.</p>
+        <p className="note">Фотографии блюд взяты с Wikimedia Commons и обрезаны до квадрата.</p>
       </header>
       <section>
         <ul className="credits">

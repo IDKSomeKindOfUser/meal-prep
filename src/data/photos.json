@@ -721,11 +721,11 @@
     "source": "https://commons.wikimedia.org/wiki/File:Liat_Portal_for_Foodie_Disorder_-_Classic_Red_Shakshuka_with_Egg.jpg"
   },
   "b-n-coconut": {
-    "title": "File:Syloti style kheer.jpg",
-    "author": "AbuSayeed",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Syloti_style_kheer.jpg"
+    "title": "Своё фото",
+    "author": "",
+    "license": "",
+    "licenseUrl": "",
+    "source": ""
   },
   "m-q-noodle": {
     "title": "File:Chinese stir fry noodles.jpg",
@@ -819,11 +819,11 @@
     "source": "https://commons.wikimedia.org/wiki/File:Red_beans_and_rice_(9452196444).jpg"
   },
   "s-n-lavashegg": {
-    "title": "File:Chicken Shawarma Roll.jpg",
-    "author": "Sannidhishetty",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Chicken_Shawarma_Roll.jpg"
+    "title": "Своё фото",
+    "author": "",
+    "license": "",
+    "licenseUrl": "",
+    "source": ""
   },
   "s-n-oatbar": {
     "title": "File:Granola bars.jpg",
@@ -847,11 +847,11 @@
     "source": "https://commons.wikimedia.org/wiki/File:Blueberries,_bananas,_sour_cream_and_cottage_cheese.jpg"
   },
   "s-n-salmcrisp": {
-    "title": "File:Knäckefrukost.jpg",
-    "author": "Karl Baron",
-    "license": "CC BY 2.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Kn%C3%A4ckefrukost.jpg"
+    "title": "Своё фото",
+    "author": "",
+    "license": "",
+    "licenseUrl": "",
+    "source": ""
   },
   "s-n-chicksalad": {
     "title": "File:Hummus salad.jpg",
@@ -938,11 +938,11 @@
     "source": "https://commons.wikimedia.org/wiki/File:%C4%8Cernobyl,_135.jpg"
   },
   "m-tk-mash": {
-    "title": "File:Argentine-Style Mashed Potatoes with Meat Sauce.jpg",
-    "author": "Horacio Cambeiro",
-    "license": "CC BY-SA 3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Argentine-Style_Mashed_Potatoes_with_Meat_Sauce.jpg"
+    "title": "Своё фото",
+    "author": "",
+    "license": "",
+    "licenseUrl": "",
+    "source": ""
   },
   "m-soup-tkball": {
     "title": "File:Meat ball soup.JPG",
@@ -1013,5 +1013,40 @@
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Liat_Portal_for_Foodie_Disorder_-_Apple_slices_with_honey_for_Rosh_Hashanah.jpg"
+  },
+  "b-n-buckegg": {
+    "title": "File:Гречана каша2.jpg",
+    "author": "Samurai2593",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:%D0%93%D1%80%D0%B5%D1%87%D0%B0%D0%BD%D0%B0_%D0%BA%D0%B0%D1%88%D0%B02.jpg"
+  },
+  "m-s-buckmush": {
+    "title": "File:Гречяна каша з душениною2.jpg",
+    "author": "Samurai2593",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:%D0%93%D1%80%D0%B5%D1%87%D1%8F%D0%BD%D0%B0_%D0%BA%D0%B0%D1%88%D0%B0_%D0%B7_%D0%B4%D1%83%D1%88%D0%B5%D0%BD%D0%B8%D0%BD%D0%BE%D1%8E2.jpg"
+  },
+  "b-tk-lavash": {
+    "title": "File:Breakfast burritos.jpg",
+    "author": "jeffreyw",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Breakfast_burritos.jpg"
+  },
+  "m-c-lavashbake": {
+    "title": "File:Пирог Ачма 01.jpg",
+    "author": "Pannet",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:%D0%9F%D0%B8%D1%80%D0%BE%D0%B3_%D0%90%D1%87%D0%BC%D0%B0_01.jpg"
+  },
+  "b-c-oats": {
+    "title": "File:OatmealCarbonara (8311486095).jpg",
+    "author": "H. Alexander Talbot",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:OatmealCarbonara_(8311486095).jpg"
   }
 }
