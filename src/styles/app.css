@@ -31,7 +31,8 @@ nav {
   position: fixed; z-index: 1; inset: auto 0 0; display: grid; grid-auto-flow: column; grid-auto-columns: 1fr;
   background: var(--ground); border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom);
 }
-nav a { min-height: 60px; display: grid; place-items: center; text-decoration: none; color: inherit; font-size: var(--text-s); font-weight: 600; }
+nav a { min-height: 60px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; text-decoration: none; color: inherit; font-size: var(--text-s); font-weight: 600; }
+nav svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
 nav a:focus-visible { outline-offset: -5px; }
 nav a:hover { color: var(--accent); }
 nav a { transition: color 0.2s var(--ease), background-color 0.2s var(--ease); }
@@ -214,7 +215,7 @@ fieldset .hint, fieldset .warn, .field .hint { margin-top: var(--space-2); }
   body { padding: 0 0 48px 180px; }
   nav { inset: 0 auto 0 0; width: 180px; grid-auto-flow: row; grid-auto-rows: 56px; border: 0; border-right: 1px solid var(--line); padding-top: 88px; align-content: start; }
   .brand { position: fixed; z-index: 2; top: 0; left: 0; margin: var(--space-5) 0 0 var(--space-5); }
-  nav a { place-items: center start; padding-left: 24px; font-size: var(--text-m); min-height: 56px; }
+  nav a { flex-direction: row; justify-content: flex-start; gap: var(--space-3); padding-left: 24px; font-size: var(--text-m); min-height: 56px; }
   nav [aria-current] { box-shadow: inset 0 -2px var(--accent); }
   header .go { max-width: 320px; }
   section .go, .build .go { max-width: 320px; }
@@ -272,6 +273,9 @@ section:has(> .buy) { max-width: 720px; }
 /* Свои рецепты и продукты */
 .link { color: var(--accent); font-weight: 600; text-underline-offset: 3px; }
 .own { max-width: 720px; }
+.empty { max-width: 520px; padding: var(--space-4); border-radius: var(--radius-m); background: var(--surface); display: grid; gap: var(--space-2); justify-items: start; }
+.empty p { color: var(--muted); }
+@media (min-width: 900px) { .own { max-width: none; display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--space-6); } }
 .own li { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0 var(--space-4); padding: var(--space-2) 0; border-bottom: 1px solid var(--line); }
 .own li > span { min-width: 0; overflow-wrap: break-word; }
 .own .hint { display: block; }

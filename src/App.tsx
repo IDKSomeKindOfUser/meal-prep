@@ -177,6 +177,12 @@ export function App() {
   const titles: Record<MainScreen | 'prices' | 'recipes' | 'recipe' | 'credits', string> = {
     recipes: 'Свои рецепты', recipe: edited?.name ?? 'Новый рецепт', today: 'Сегодня', week: period, shopping: 'Покупки', prices: 'Цены', credits: 'Авторы фото', settings: 'Настройки',
   }
+  const ICONS: Record<MainScreen, string> = {
+    today: 'M12 3a9 9 0 1 0 0 18a9 9 0 0 0 0-18zM12 7v5l3.5 2',
+    week: 'M4 6h16v14H4zM4 10h16M8 3v4M16 3v4',
+    shopping: 'M4 5h2l2 10h9l2-7H7M9 19.5v.01M16 19.5v.01',
+    settings: 'M5 7h14M5 12h14M5 17h14M9 5v4M15 10v4M8 15v4',
+  }
   const links = plan ? MAIN_SCREENS : MAIN_SCREENS.filter((s) => s === 'today' || s === 'settings')
   useEffect(() => { document.title = `${route.screen === 'cook' ? 'Готовка' : 'block' in route && report ? `${route.screen === 'swap' ? 'Замена: ' : ''}${report.blocks[route.block]!.day.dishes[SLOTS.indexOf(route.slot)]!.recipe.name}` : titles[screen as keyof typeof titles]} · Prepka` })
 
@@ -193,7 +199,10 @@ export function App() {
       <nav aria-label="Разделы">
         {links.map((s) => (
           <a key={s} href={`#${s}`} aria-current={s === screen ? 'page' : ('block' in route && s === origin) || ((screen === 'recipes' || screen === 'recipe') && s === 'settings') ? 'true' : undefined}
-            onClick={() => { if (s === 'today') setChosenDay(null) }}>{titles[s]}</a>
+            onClick={() => { if (s === 'today') setChosenDay(null) }}>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d={ICONS[s]} /></svg>
+            {titles[s]}
+          </a>
         ))}
       </nav>
       <main ref={main}>

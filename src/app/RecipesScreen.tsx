@@ -21,10 +21,16 @@ export function RecipesScreen({ own, busy, onProduct, onDeleteProduct }: Props) 
       <header>
         <h1 tabIndex={-1}>Свои рецепты</h1>
         <p className="sub">Участвуют в подборе наравне с готовыми. Аллергены и калории берутся из продуктов.</p>
-        <a className="go" href={recipeHash('new')}>Добавить рецепт</a>
+        {own.recipes.length > 0 && <a className="go" href={recipeHash('new')}>Добавить рецепт</a>}
       </header>
       <section>
-        {own.recipes.length === 0 && <p>Своих рецептов пока нет.</p>}
+        {own.recipes.length === 0 && (
+          <div className="empty">
+            <b>Своих рецептов пока нет</b>
+            <p>Добавьте блюдо, которое готовите сами: оно попадёт в подбор меню наравне с готовыми.</p>
+            <a className="go" href={recipeHash('new')}>Добавить первый рецепт</a>
+          </div>
+        )}
         <ul className="own">
           {own.recipes.map((r) => (
             <li key={r.id}>
