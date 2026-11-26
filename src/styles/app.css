@@ -82,6 +82,12 @@ nav [aria-current] { color: var(--accent); background: color-mix(in oklab, var(-
 @media (min-width: 480px) { .big .art { width: 140px; height: 140px; } }
 .dish:hover .art { scale: 1.04; }
 .art.photo { border-radius: var(--radius-m); object-fit: cover; }
+.art.none {
+  display: grid; place-items: center; border-radius: var(--radius-m); aspect-ratio: 1;
+  background: color-mix(in oklab, var(--mark, var(--muted)) 22%, var(--surface));
+  color: color-mix(in oklab, var(--mark, var(--muted)) 60%, var(--ink));
+}
+.art.none svg { inline-size: min(46%, 96px); block-size: auto; }
 .credits { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-3); }
 .credits li { display: grid; gap: 2px; padding-inline: var(--space-5); overflow-wrap: anywhere; }
 .compact .art { width: 80px; height: 80px; }

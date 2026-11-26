@@ -1,6 +1,6 @@
 import { recipes } from '../data'
 import { SLOTS } from '../planner/types'
-import { DishArt } from './DishArt'
+import { DishPicture } from './DishPicture'
 import { SLOT } from './labels'
 
 const EXAMPLE = {
@@ -24,7 +24,7 @@ export function Welcome() {
           <li key={slot} className={`dish${slot === 'lunch' ? ' big' : ''}`} data-slot={slot}>
             <h3>{EXAMPLE[slot].name}</h3>
             <p>{SLOT[slot]}</p>
-            <DishArt recipe={EXAMPLE[slot]} />
+            <DishPicture recipe={EXAMPLE[slot]} />
           </li>
         ))}
       </ul>
