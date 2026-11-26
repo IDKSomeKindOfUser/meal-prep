@@ -1,3 +1,4 @@
+import { BackLink } from './parts'
 import { useState } from 'react'
 import { getIngredient, ingredients, prices } from '../data'
 import { defaultCatalog } from '../planner'
@@ -59,7 +60,7 @@ export function PricesScreen({ overrides, onChange }: Props) {
   return (
     <>
       <header>
-        <div className="top"><a className="back" href="#shopping">Назад к покупкам</a></div>
+        <div className="top"><BackLink href="#shopping">Назад к покупкам</BackLink></div>
         <h1 tabIndex={-1}>Цены и пачки</h1>
         <p className="sub">Исправьте цену или вес пачки, меню и чек пересчитаются. Новое меню подберётся уже по вашим ценам.</p>
         {count > 0 && (

@@ -43,6 +43,10 @@
   --radius-thumb: 12px;
   --shadow-card: 0 2px 6px rgb(29 42 34 / 0.08);
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  /* Фон: сила цветных пятен и зерна. */
+  --blob: 22%;
+  --grain: 0.05;
+  --glass: color-mix(in oklab, var(--surface) 72%, transparent);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -68,6 +72,9 @@
     --snack: #f2a3c7;
     --on-snack: #3b0a22;
     --shadow-card: 0 0 0 1px rgb(255 255 255 / 0.07), 0 2px 8px rgb(0 0 0 / 0.45);
+  --blob: 19%;
+  --grain: 0.07;
+  --glass: color-mix(in oklab, var(--surface) 78%, transparent);
   }
 }
 
@@ -93,4 +100,7 @@
   --snack: #f2a3c7;
   --on-snack: #3b0a22;
   --shadow-card: 0 0 0 1px rgb(255 255 255 / 0.07), 0 2px 8px rgb(0 0 0 / 0.45);
+  --blob: 19%;
+  --grain: 0.07;
+  --glass: color-mix(in oklab, var(--surface) 78%, transparent);
 }

@@ -1,3 +1,4 @@
+import { BackLink } from './parts'
 import { useRef, useState } from 'react'
 import { ALLERGEN, MEAL, num } from './labels'
 import type { Own, OwnProduct } from './own'
@@ -17,7 +18,7 @@ export function RecipesScreen({ own, busy, onProduct, onDeleteProduct }: Props) 
   const addRef = useRef<HTMLButtonElement>(null)
   return (
     <>
-      <div className="top"><a className="back" href="#settings">Назад к настройкам</a></div>
+      <div className="top"><BackLink href="#settings">Назад к настройкам</BackLink></div>
       <header>
         <h1 tabIndex={-1}>Свои рецепты</h1>
         <p className="sub">Участвуют в подборе наравне с готовыми. Аллергены и калории берутся из продуктов.</p>

@@ -1,3 +1,4 @@
+import { BackLink } from './parts'
 import { useMemo, type MouseEvent } from 'react'
 import { alternatives, type Report } from '../planner'
 import { SLOTS, type Slot } from '../planner/types'
@@ -35,7 +36,7 @@ export function SwapScreen({ plan, report, block: index, slot, catalog, busy, on
     after === before ? '' : Math.abs(after - goal) < Math.abs(before - goal) ? 'up' : 'down'
   return (
     <>
-      <div className="top"><a className="back" href={dishHash(index, slot)} onClick={onBack}>Назад к рецепту</a></div>
+      <div className="top"><BackLink href={dishHash(index, slot)} onClick={onBack}>Назад к рецепту</BackLink></div>
       <header>
         <h1 tabIndex={-1}>Чем заменить</h1>
         <p className="sub">Сейчас: {now.name}. {SLOT[slot]}, {blockDays(plan.start, block)}.</p>

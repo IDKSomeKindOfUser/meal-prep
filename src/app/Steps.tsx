@@ -1,3 +1,4 @@
+import { Timer as TimerIcon } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { splitTimes } from './stepTime'
 
@@ -27,7 +28,7 @@ function Timer({ text, seconds }: { text: string; seconds: number }) {
     <button type="button" className="timer" aria-pressed={running}
       aria-label={running ? `Остановить таймер, осталось ${clock(left)}` : `Запустить таймер на ${text}`}
       onClick={() => { if (running) { setEnd(null); setLeft(seconds) } else { setLeft(seconds); setEnd(Date.now() + seconds * 1000) } }}>
-      {running ? clock(left) : done ? 'Готово' : text}
+      <TimerIcon aria-hidden="true" />{running ? clock(left) : done ? 'Готово' : text}
     </button>
   )
 }
@@ -43,7 +44,15 @@ export function Steps({ steps }: { steps: string[] }) {
     return () => { document.removeEventListener('visibilitychange', take); void lock?.release() }
   }, [])
   const toggle = (i: number) => setDone((d) => { const n = new Set(d); if (!n.delete(i)) n.add(i); return n })
+  const total = steps.length
   return (
+    <>
+    {total > 0 && (
+      <div className="progress">
+        <p aria-live="polite">{done.size} из {total} {total % 10 === 1 && total % 100 !== 11 ? 'шага' : 'шагов'}</p>
+        <progress max={total} value={done.size} aria-label="Сделано шагов" />
+      </div>
+    )}
     <ol className="steps">
       {steps.map((s, i) => {
         const times = splitTimes(s).filter((p) => typeof p !== 'string')
@@ -58,5 +67,6 @@ export function Steps({ steps }: { steps: string[] }) {
         )
       })}
     </ol>
+    </>
   )
 }

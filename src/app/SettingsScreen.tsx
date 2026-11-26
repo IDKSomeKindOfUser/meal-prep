@@ -1,3 +1,4 @@
+import { ArrowLeft, ChevronRight } from 'lucide-react'
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { ingredients, recipes } from '../data'
 import { ALLERGENS } from '../data/types'
@@ -169,21 +170,21 @@ export function SettingsScreen({ form, own, onForm, start: suggested, changed, b
           {submitted && Object.keys(errors).length + (startError ? 1 : 0) > 0 && <p className="warn" role="alert">Исправьте отмеченные поля.</p>}
           {changed && <p className="hint">Настройки изменены, меню пока прежнее.</p>}
           <div className="actions">
-            {wizard && step > 0 && <button type="button" className="back" onClick={() => go(step - 1)}>Назад</button>}
+            {wizard && step > 0 && <button type="button" className="back" onClick={() => go(step - 1)}><ArrowLeft aria-hidden="true" />Назад</button>}
             <button type="submit" className="go" disabled={busy}>{!last ? 'Дальше' : busy ? 'Собираем…' : 'Собрать меню'}</button>
           </div>
         </div>
       </form> : <div className="settings">
         <Group title="Свои рецепты">
           <p>{own.recipes.length > 0 ? `Добавлено: ${own.recipes.length}.` : 'Добавьте свои блюда, и они попадут в подбор.'}</p>
-          <a className="back" href="#recipes">Открыть свои рецепты</a>
+          <a className="back" href="#recipes">Открыть свои рецепты<ChevronRight aria-hidden="true" /></a>
         </Group>
         {cloudReady && <Group title="Облако"><AccountForm cloud={cloud} unsent={unsent} /></Group>}
         <Group title="Вид">
           <Choice name="theme" legend="Тема" value={theme} onChange={(t) => { setTheme(t); applyTheme(t) }}
             options={[['system', 'Как в системе'], ['light', 'Светлая'], ['dark', 'Тёмная']]} />
         </Group>
-        <Group title="О сайте"><a className="back" href="#credits">Авторы фото</a></Group>
+        <Group title="О сайте"><a className="back" href="#credits">Авторы фото<ChevronRight aria-hidden="true" /></a></Group>
       </div>}
     </>
   )

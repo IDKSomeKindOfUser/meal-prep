@@ -1,3 +1,4 @@
+import { BackLink, GoIcon } from './parts'
 import type { CSSProperties } from 'react'
 import { frozenDays } from '../planner/schedule'
 import { DishPicture } from './DishPicture'
@@ -39,7 +40,7 @@ export function CookScreen({ plan, report, day }: Props) {
         <span className="thumb"><DishPicture recipe={dish.recipe} /></span>
         <div>
           {when && <p className="when">{when}</p>}
-          <a href={dishHash(index, slot)}>{dish.recipe.name}</a>
+          <a href={dishHash(index, slot)}>{dish.recipe.name}<GoIcon /></a>
           <ul className="facts">
             <li>{SLOT[slot]}, {days}</li>
             <li>{count(block.days, 'порция', 'порции', 'порций')}</li>
@@ -57,7 +58,7 @@ export function CookScreen({ plan, report, day }: Props) {
 
   return (
     <article className="recipe">
-      <div className="top"><a className="back" href="#today">Назад к меню дня</a></div>
+      <div className="top"><BackLink href="#today">Назад к меню дня</BackLink></div>
       <header>
         <h1 tabIndex={-1}>Готовка: {weekday(date)}, {dayMonth(date)}</h1>
         <p className="sub">Примерно {order.minutes} минут{tools.length > 1 && `, если ${tools.slice(0, -1).join(', ')} и ${tools.at(-1)} работают одновременно`}.</p>

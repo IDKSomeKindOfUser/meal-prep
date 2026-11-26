@@ -1,3 +1,4 @@
+import { BackLink } from './parts'
 import photos from '../data/photos.json'
 import { recipes } from '../data'
 
@@ -16,7 +17,7 @@ export function CreditsScreen() {
   return (
     <>
       <header>
-        <div className="top"><a className="back" href="#settings">Назад к настройкам</a></div>
+        <div className="top"><BackLink href="#settings">Назад к настройкам</BackLink></div>
         <h1 tabIndex={-1}>Авторы фото</h1>
         <p className="note">Фотографии блюд взяты с Wikimedia Commons и обрезаны до квадрата. У четырёх блюд фото нет, там рисунок.</p>
       </header>

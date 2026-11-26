@@ -4,7 +4,7 @@ import { SLOTS } from '../planner/types'
 import { useEffect, useState } from 'react'
 import { addDays, dayMonth, dayNumber, dayOfPlan, daysBetween, mealNow, weekday, weekdayShort } from './dates'
 import { daysCount, num, rub } from './labels'
-import { DishField, portionNote, Warnings, WeekTabs } from './parts'
+import { DishField, GoIcon, portionNote, Warnings, WeekTabs } from './parts'
 import { cookHash, dishHash } from './route'
 import type { SavedPlan } from './storage'
 import { transition } from './transition'
@@ -80,7 +80,7 @@ export function Today({ plan, report, today, day, onDay, }: Props) {
               <li key={c.day} data-now={iso === today || undefined}>
                 <a href={cookHash(c.day)}>
                   <b>{iso === today ? 'Сегодня' : capital(weekdayShort(iso))}, на {daysCount(covered)}</b>
-                  <span>до {c.minutes} минут</span>
+                  <span>до {c.minutes} минут<GoIcon /></span>
                 </a>
               </li>
             )

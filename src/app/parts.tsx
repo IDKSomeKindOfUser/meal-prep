@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { ArrowLeft, ChevronRight } from 'lucide-react'
 import type { PortionedDish } from '../planner/portions'
 import type { Block } from '../planner/schedule'
 import { frozenDays } from '../planner/schedule'
@@ -8,11 +9,17 @@ import { DishPicture } from './DishPicture'
 import { num, SLOT } from './labels'
 import { transition } from './transition'
 
+export function BackLink({ href, onClick, children }: { href: string; onClick?: (e: import("react").MouseEvent) => void; children: ReactNode }) {
+  return <a className="back" href={href} onClick={onClick}><ArrowLeft aria-hidden="true" />{children}</a>
+}
+
+export const GoIcon = () => <ChevronRight className="go-icon" aria-hidden="true" />
+
 export function DishField({ slot, dish, href, note, big, now }: { slot: Slot; dish: PortionedDish; href: string; note?: string; big?: boolean; now?: boolean }) {
   return (
     <li className={`dish${big ? ' big' : ''}`} data-slot={slot} data-now={now || undefined}>
       <div>
-        <h3><a href={href}>{dish.recipe.name}</a></h3>
+        <h3><a href={href}>{dish.recipe.name}<GoIcon /></a></h3>
         <ul className="facts">
           <li>{SLOT[slot]}{now && ' · сейчас'}</li>
           <li>{num(dish.kcal)} ккал</li>

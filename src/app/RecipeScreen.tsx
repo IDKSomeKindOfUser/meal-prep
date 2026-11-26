@@ -1,3 +1,4 @@
+import { BackLink } from './parts'
 import { useEffect, useRef, useState } from 'react'
 import { X } from 'lucide-react'
 import { ingredients, recipeAllergens } from '../data'
@@ -67,7 +68,7 @@ export function RecipeScreen({ id, exists, saved, own, catalog, inMenu, busy, on
   if (id !== 'new' && !exists)
     return (
       <>
-        <div className="top"><a className="back" href="#recipes">Назад к своим рецептам</a></div>
+        <div className="top"><BackLink href="#recipes">Назад к своим рецептам</BackLink></div>
         <header><h1 tabIndex={-1}>Такого рецепта нет</h1></header>
       </>
     )
@@ -95,7 +96,7 @@ export function RecipeScreen({ id, exists, saved, own, catalog, inMenu, busy, on
 
   return (
     <>
-      <div className="top"><a className="back" href="#recipes">Назад к своим рецептам</a></div>
+      <div className="top"><BackLink href="#recipes">Назад к своим рецептам</BackLink></div>
       <header><h1 tabIndex={-1}>{exists ? 'Изменить рецепт' : 'Новый рецепт'}</h1></header>
       <form ref={formRef} className="settings" noValidate onSubmit={(e) => {
         e.preventDefault()

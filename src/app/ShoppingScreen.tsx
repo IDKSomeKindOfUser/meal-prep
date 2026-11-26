@@ -1,3 +1,4 @@
+import { Copy, Check, Pencil } from 'lucide-react'
 import { useState } from 'react'
 import type { Report } from '../planner'
 import type { ShoppingItem } from '../planner/shopping'
@@ -53,7 +54,12 @@ function Row({ item, catalog, checked, week, onCheck }: {
   return (
     <li>
       <label>
-        <input type="checkbox" checked={checked} onChange={(e) => onCheck(checkKey(week, item.id), e.target.checked)} />
+        <input type="checkbox" data-key={checkKey(week, item.id)} checked={checked} onChange={(e) => {
+          const key = checkKey(week, item.id)
+          onCheck(key, e.target.checked)
+          // Строка переезжает в другой список и пересоздаётся: возвращаем фокус, чтобы клавиатура не терялась.
+          setTimeout(() => document.querySelector<HTMLInputElement>(`input[data-key="${CSS.escape(key)}"]`)?.focus(), 50)
+        }} />
         <span className="what">
           <span className="name">{product.name}</span>
           <span className="hint">{more}</span>
@@ -127,8 +133,11 @@ export function ShoppingScreen({ plan, report, catalog, week, onWeek, onCheck }:
           <span>Итого за неделю</span><b>{rub(list.marketCost + list.storeCost)}</b>
         </div>
         <p className="hint" role="status">Куплено {done} из {all.length}</p>
-        <button type="button" className="link" onClick={copy}>{copied ? 'Скопировано' : 'Скопировать список'}</button>
-        <p className="hint">Соль и специи считаются имеющимися дома. Остаток пачки идёт в следующую неделю. <a href="#prices">Править цены</a></p>
+        <div className="actions-row">
+          <button type="button" className="link" onClick={copy}>{copied ? <Check aria-hidden="true" /> : <Copy aria-hidden="true" />}{copied ? 'Скопировано' : 'Скопировать список'}</button>
+          <a className="tonal" href="#prices"><Pencil aria-hidden="true" />Править цены</a>
+        </div>
+        <p className="hint">Соль и специи считаются имеющимися дома. Остаток пачки идёт в следующую неделю.</p>
       </header>
       <Group title="Рынок" cost={list.marketCost} items={list.market} week={week} checked={checked} catalog={catalog} onCheck={onCheck} />
       <Group title="Магазин" cost={list.storeCost} items={list.store} week={week} checked={checked} catalog={catalog} onCheck={onCheck} />

@@ -1,3 +1,6 @@
+import { useState } from 'react'
+import { BackLink } from './parts'
+import { ChefHat, Clock, Pencil, Refrigerator, ShoppingBasket, TriangleAlert } from 'lucide-react'
 import { recipeAllergens } from '../data'
 import type { Report } from '../planner'
 import { frozenDays, type Block } from '../planner/schedule'
@@ -28,6 +31,24 @@ export function blockDays(start: string, block: Block): string {
   return block.days === 1 ? `${weekday(first)}, ${dayMonth(first)}` : `${weekdayShort(first)} – ${weekdayShort(last)}, ${dayMonth(first)} – ${dayMonth(last)}`
 }
 
+/** Список продуктов: нажатие отмечает продукт, он зачёркивается. */
+function Ingredients({ items }: { items: { id: string; name: string; text: string }[] }) {
+  const [got, setGot] = useState<Set<string>>(new Set())
+  const toggle = (id: string) => setGot((g) => { const n = new Set(g); if (!n.delete(id)) n.add(id); return n })
+  return (
+    <ul className="amounts">
+      {items.map((i) => (
+        <li key={i.id} className={got.has(i.id) ? 'ticked' : undefined}>
+          <label>
+            <input type="checkbox" checked={got.has(i.id)} onChange={() => toggle(i.id)} />
+            <span>{i.name}</span><b>{i.text}</b>
+          </label>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
 export function DishScreen({ plan, report, catalog, isOwn, block: index, slot, origin, onSwap }: Props) {
   const { block, day } = report.blocks[index]!
   const dish = day.dishes[SLOTS.indexOf(slot)]!
@@ -40,7 +61,7 @@ export function DishScreen({ plan, report, catalog, isOwn, block: index, slot, o
   const cook = addDays(plan.start, block.cookDay)
   return (
     <article className="recipe">
-      <div className="top"><a className="back" href={`#${origin}`}>{origin === 'today' ? 'Назад к меню дня' : 'Назад к меню недели'}</a></div>
+      <div className="top"><BackLink href={`#${origin}`}>{origin === 'today' ? 'Назад к меню дня' : 'Назад к меню недели'}</BackLink></div>
       <div className="dish hero" data-slot={slot}>
         <h1 tabIndex={-1}>{recipe.name}</h1>
         <p>{SLOT[slot]}, {blockDays(plan.start, block)}</p>
@@ -51,49 +72,35 @@ export function DishScreen({ plan, report, catalog, isOwn, block: index, slot, o
           <div><dt>углеводы, г</dt><dd>{num(dish.carbs)}</dd></div>
         </dl>
         <DishPicture recipe={recipe} />
+        <ul className="chips-info" aria-label="Коротко о блюде">
+          <li><Clock aria-hidden="true" />около {recipe.minutes}&nbsp;мин.</li>
+          <li><Refrigerator aria-hidden="true" />в холодильнике {daysCount(recipe.keepDays)}</li>
+          {contains.length > 0 && <li className="warnchip"><TriangleAlert aria-hidden="true" />{names(contains)}</li>}
+          {may.length > 0 && <li className="warnchip maybe"><TriangleAlert aria-hidden="true" />возможно, {names(may)}</li>}
+        </ul>
         <dl className="about">
-          <div><dt>Готовим</dt><dd>{weekday(cook)}, {dayMonth(cook)}, около {recipe.minutes} мин.</dd></div>
-          <div>
-            <dt>Хранение</dt>
-            <dd>
-              В холодильнике {daysCount(recipe.keepDays)}
-              {frozen.length > 0 && `. В морозилку: порции на ${frozen.map((d) => weekdayShort(addDays(plan.start, d))).join(', ')}`}.
-            </dd>
-          </div>
-          {(contains.length > 0 || may.length > 0) && (
-            <div>
-              <dt>Аллергены</dt>
-              <dd>
-                {contains.length > 0 ? names(contains) : 'нет явных'}
-                {may.length > 0 && `; возможно, есть ${names(may)}`}.
-              </dd>
-            </div>
-          )}
+          <div><dt>Готовим</dt><dd>{weekday(cook)}, {dayMonth(cook)}</dd></div>
+          {frozen.length > 0 && <div><dt>В морозилку</dt><dd>порции на {frozen.map((d) => weekdayShort(addDays(plan.start, d))).join(', ')}</dd></div>}
         </dl>
         <div className="actions">
           <a className="go" href={swapHash(index, slot)} onClick={onSwap}>Заменить блюдо</a>
-          {isOwn(recipe.id) && <a className="back" href={recipeHash(recipe.id)}>Изменить рецепт</a>}
+          {isOwn(recipe.id) && <a className="back" href={recipeHash(recipe.id)}><Pencil aria-hidden="true" />Изменить рецепт</a>}
         </div>
       </div>
-      <div className="cols">
-      <section>
-        <h2>Продукты</h2>
-        <p>На {count(block.days, 'порцию', 'порции', 'порций')}, вес сырых продуктов</p>
-        <ul className="amounts">
-          {dish.batch.map(({ id, grams }) => {
-            const product = catalog.ingredient(id)
-            return <li key={id}><span>{product.name}</span><b>{amount(product, grams)}</b></li>
-          })}
-        </ul>
+      <div className="cols" data-slot-mark={slot}>
+      <section className="panel">
+        <h2><ShoppingBasket aria-hidden="true" />Продукты</h2>
+        <p>На {count(block.days, 'порцию', 'порции', 'порций')}, вес сырых продуктов. Нажмите на продукт, чтобы отметить его.</p>
+        <Ingredients key={`${index}${slot}${recipe.id}`} items={dish.batch.map(({ id, grams }) => { const product = catalog.ingredient(id); return { id, name: product.name, text: amount(product, grams) } })} />
         {recipe.spices && <p className="note">Специи: {recipe.spices}.</p>}
       </section>
-      <section>
-        <h2>Как готовить</h2>
+      <section className="panel">
+        <h2><ChefHat aria-hidden="true" />Как готовить</h2>
         {Math.abs(percent - 100) > 5 && (
           <p>Шаги написаны для обычной порции. Ваша порция {percent > 100 ? 'больше' : 'меньше'} на {Math.abs(percent - 100)}%: граммы в шагах берите на столько же {percent > 100 ? 'больше' : 'меньше'}.</p>
         )}
         {recipe.steps.length === 0 && <p>Шаги не записаны.</p>}
-        <Steps steps={recipe.steps} />
+        <Steps key={`${index}${slot}${recipe.id}`} steps={recipe.steps} />
         {source && <p className="note">Источник: <a href={source.url} target="_blank" rel="noreferrer">{source.name}</a></p>}
       </section>
       </div>
