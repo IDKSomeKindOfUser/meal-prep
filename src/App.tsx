@@ -23,6 +23,7 @@ import { planKey, undoPlan } from './app/undo'
 import { SettingsSide, ShoppingSide, SwapSide, TodaySide } from './app/Side'
 import { SwapScreen } from './app/SwapScreen'
 import { Today } from './app/Today'
+import { Toast } from './app/Toast'
 import { Week } from './app/Week'
 import { Welcome } from './app/Welcome'
 import { cardPhoto, heroPhoto, transition } from './app/transition'
@@ -203,8 +204,8 @@ export function App() {
       </nav>
       <main ref={main}>
         <div className="toasts" role="status">
-          {message && (
-            <p>
+          <Toast value={message}>{(message) => (
+            <>
               {message.text}
               {message.previous && (
                 <button type="button" onClick={() => {
@@ -215,10 +216,10 @@ export function App() {
                 }}>Вернуть прошлое</button>
               )}
               <button type="button" onClick={() => setMessage(null)}>Скрыть</button>
-            </p>
-          )}
-          {update && <p>Есть новая версия планировщика. <button type="button" onClick={update}>Обновить</button></p>}
-          {unsaved && <p>Браузер не даёт сохранять данные: после закрытия страницы меню пропадёт.</p>}
+            </>
+          )}</Toast>
+          <Toast value={update}>{(update) => <>Есть новая версия планировщика. <button type="button" onClick={update}>Обновить</button></>}</Toast>
+          <Toast value={unsaved}>{() => 'Браузер не даёт сохранять данные: после закрытия страницы меню пропадёт.'}</Toast>
         </div>
         {plan && report && unfit.length > 0 && (
           <div className="status">

@@ -167,6 +167,9 @@ nav [aria-current] { color: var(--accent); background: color-mix(in oklab, var(-
 .toasts { position: fixed; inset-inline: var(--space-4); inset-block-end: var(--space-4); z-index: 20; display: grid; gap: var(--space-2); justify-items: center; pointer-events: none; }
 .toasts p { pointer-events: auto; display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--space-4); max-inline-size: 36rem; padding: var(--space-2) var(--space-5); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-m, 12px); box-shadow: 0 6px 24px rgb(0 0 0 / 0.18); }
 .status { border-bottom: 1px solid var(--line); }
+/* Тост поднимается от нижнего края; уходит так же, это делает Toast.tsx. */
+.toasts p { transition: opacity 0.25s var(--ease), translate 0.25s var(--ease); }
+@starting-style { .toasts p { opacity: 0; translate: 0 100%; } }
 .toasts button { min-height: 44px; border: 0; padding: 0; background: none; color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
 
 /* Настройки */
@@ -234,6 +237,9 @@ fieldset .hint, fieldset .warn, .field .hint { margin-top: var(--space-2); }
 .buy li { border-bottom: 1px solid var(--line); }
 .buy label { display: flex; align-items: center; gap: var(--space-3); min-height: 56px; padding: var(--space-2) 0; cursor: pointer; }
 .buy input { flex: none; width: 24px; height: 24px; margin: 0; }
+/* Галочка чуть проседает под пальцем: короткий отклик на нажатие. */
+.buy input, .steps input { transition: scale 0.12s var(--ease); }
+.buy input:active, .steps input:active { scale: 0.88; }
 .buy .what { flex: 1; min-width: 0; }
 .buy .name, .buy .hint { display: block; overflow-wrap: break-word; }
 .buy b { flex: none; min-width: 4.5ch; text-align: right; font-weight: 600; color: var(--muted); }
@@ -310,7 +316,7 @@ html:has(dialog[open]) { overflow: hidden; }
 ::view-transition-old(dish-photo), ::view-transition-new(dish-photo) { height: 100%; object-fit: cover; }
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after { transition: none !important; }
-  .dish:hover .art, .dish:active, .cook > li:active, .days button:active, .tabs button:active, .go:active, .buy label:active { scale: none; }
+  .dish:hover .art, .dish:active, .cook > li:active, .days button:active, .tabs button:active, .go:active, .buy label:active, .buy input:active, .steps input:active { scale: none; }
   ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
 }
 
