@@ -38,6 +38,12 @@ nav a { transition: color 0.2s var(--ease), background-color 0.2s var(--ease); }
 nav a:active { background: color-mix(in oklab, var(--ground), var(--ink) 8%); }
 nav [aria-current] { color: var(--accent); background: color-mix(in oklab, var(--ground), var(--accent) 9%); box-shadow: inset 0 4px var(--accent); }
 
+/* Знак: над экраном на телефоне, над меню на компьютере */
+.brand { display: inline-flex; align-items: center; gap: var(--space-2); min-height: 44px; margin: var(--space-3) var(--space-5) 0; color: var(--ink); text-decoration: none; font-size: var(--text-l); font-weight: 800; letter-spacing: -0.01em; }
+.brand svg { width: 28px; height: 28px; fill: var(--accent); }
+.brand circle { fill: var(--breakfast); }
+.brand:hover { color: var(--accent); }
+
 /* Дни и недели */
 .days { display: grid; grid-template-columns: repeat(7, 1fr); margin-top: var(--space-3); max-width: 520px; }
 .days button, .tabs button { min-height: 48px; border: 0; padding: 0; background: none; border-radius: var(--radius-s); font-size: var(--text-s); }
@@ -206,7 +212,8 @@ fieldset .hint, fieldset .warn, .field .hint { margin-top: var(--space-2); }
 
 @media (min-width: 900px) {
   body { padding: 0 0 48px 180px; }
-  nav { inset: 0 auto 0 0; width: 180px; grid-auto-flow: row; grid-auto-rows: 56px; border: 0; border-right: 1px solid var(--line); padding-top: 24px; align-content: start; }
+  nav { inset: 0 auto 0 0; width: 180px; grid-auto-flow: row; grid-auto-rows: 56px; border: 0; border-right: 1px solid var(--line); padding-top: 88px; align-content: start; }
+  .brand { position: fixed; z-index: 2; top: 0; left: 0; margin: var(--space-5) 0 0 var(--space-5); }
   nav a { place-items: center start; padding-left: 24px; font-size: var(--text-m); min-height: 56px; }
   nav [aria-current] { box-shadow: inset 0 -2px var(--accent); }
   header .go { max-width: 320px; }

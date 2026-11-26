@@ -178,10 +178,18 @@ export function App() {
     recipes: 'Свои рецепты', recipe: edited?.name ?? 'Новый рецепт', today: 'Сегодня', week: period, shopping: 'Покупки', prices: 'Цены', credits: 'Авторы фото', settings: 'Настройки',
   }
   const links = plan ? MAIN_SCREENS : MAIN_SCREENS.filter((s) => s === 'today' || s === 'settings')
-  useEffect(() => { document.title = `${route.screen === 'cook' ? 'Готовка' : 'block' in route && report ? `${route.screen === 'swap' ? 'Замена: ' : ''}${report.blocks[route.block]!.day.dishes[SLOTS.indexOf(route.slot)]!.recipe.name}` : titles[screen as keyof typeof titles]} · Планировщик меню` })
+  useEffect(() => { document.title = `${route.screen === 'cook' ? 'Готовка' : 'block' in route && report ? `${route.screen === 'swap' ? 'Замена: ' : ''}${report.blocks[route.block]!.day.dishes[SLOTS.indexOf(route.slot)]!.recipe.name}` : titles[screen as keyof typeof titles]} · Prepka` })
 
   return (
     <>
+      <a className="brand" href="#today" onClick={() => setChosenDay(null)}>
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <rect x="6" y="4" width="6" height="25" rx="3" />
+          <path fillRule="evenodd" d="M17 3.5a9.5 9.5 0 1 0 0 19a9.5 9.5 0 1 0 0-19zM17 8a5 5 0 1 1 0 10a5 5 0 1 1 0-10z" />
+          <circle cx="17" cy="13" r="2.4" />
+        </svg>
+        Prepka
+      </a>
       <nav aria-label="Разделы">
         {links.map((s) => (
           <a key={s} href={`#${s}`} aria-current={s === screen ? 'page' : ('block' in route && s === origin) || ((screen === 'recipes' || screen === 'recipe') && s === 'settings') ? 'true' : undefined}

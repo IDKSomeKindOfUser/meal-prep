@@ -5,7 +5,7 @@ import { sep } from 'node:path'
 
 const files = readdirSync('dist', { recursive: true })
   .map((f) => f.split(sep).join('/'))
-  .filter((f) => f !== 'sw.js' && /\.(html|js|css|woff2|svg|png|webp)$/.test(f))
+  .filter((f) => f !== 'sw.js' && /\.(html|js|css|woff2|svg|png|webp|webmanifest)$/.test(f))
   .sort()
 const template = readFileSync('src/sw.js', 'utf8')
 const hash = createHash('sha256').update(template)
