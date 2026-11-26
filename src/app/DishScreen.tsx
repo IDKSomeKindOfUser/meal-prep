@@ -43,7 +43,12 @@ export function DishScreen({ plan, report, catalog, isOwn, block: index, slot, o
       <div className="dish hero" data-slot={slot}>
         <h1 tabIndex={-1}>{recipe.name}</h1>
         <p>{SLOT[slot]}, {blockDays(plan.start, block)}</p>
-        <p>Порция: {num(dish.kcal)} ккал, белки {num(dish.protein)} г, жиры {num(dish.fat)} г, углеводы {num(dish.carbs)} г</p>
+        <dl className="macros" aria-label="Одна порция">
+          <div><dt>ккал</dt><dd>{num(dish.kcal)}</dd></div>
+          <div><dt>белки, г</dt><dd>{num(dish.protein)}</dd></div>
+          <div><dt>жиры, г</dt><dd>{num(dish.fat)}</dd></div>
+          <div><dt>углеводы, г</dt><dd>{num(dish.carbs)}</dd></div>
+        </dl>
         <DishPicture recipe={recipe} />
       </div>
       <section>
@@ -75,7 +80,7 @@ export function DishScreen({ plan, report, catalog, isOwn, block: index, slot, o
       <section>
         <h2>Как готовить</h2>
         {Math.abs(percent - 100) > 5 && (
-          <p>Ваша порция составляет {percent}% от обычной. Количества на порцию, названные в шагах, меняйте так же.</p>
+          <p>Шаги написаны для обычной порции. Ваша порция {percent > 100 ? 'больше' : 'меньше'} на {Math.abs(percent - 100)}%: граммы в шагах берите на столько же {percent > 100 ? 'больше' : 'меньше'}.</p>
         )}
         {recipe.steps.length === 0 && <p>Шаги не записаны.</p>}
         <ol className="steps">{recipe.steps.map((s, i) => <li key={i}>{s}</li>)}</ol>

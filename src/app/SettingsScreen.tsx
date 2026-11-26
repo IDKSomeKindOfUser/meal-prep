@@ -5,7 +5,7 @@ import type { Missing } from '../planner'
 import { TOOLS, type Settings } from '../planner/types'
 import { AccountForm } from './AccountForm'
 import { cloudReady, type Cloud } from './cloud'
-import { isIsoDate } from './dates'
+import { dayMonth, isIsoDate, weekday } from './dates'
 import { Checks, Choice, Field, options } from './fields'
 import { norm, readForm, type Errors, type Form } from './form'
 import { ACTIVITY, ALLERGEN, COOK, GOAL, LACTOSE, missingLines, num } from './labels'
@@ -117,7 +117,7 @@ export function SettingsScreen({ form, own, onForm, start: suggested, changed, b
 
         <Group title="Готовка">
           <Choice name="weeks" legend="На сколько" value={form.weeks} onChange={set('weeks')} options={[[1, 'Неделя'], [4, '4 недели']]} />
-          <Field label="Первый день" type="date" value={start} error={startError} onChange={(e) => setStart(e.target.value)} />
+          <Field label="Первый день" type="date" value={start} error={startError} hint={!startError && isIsoDate(start) ? `${weekday(start)}, ${dayMonth(start)}` : undefined} onChange={(e) => setStart(e.target.value)} />
           <Choice name="cookTimes" legend="Готовить в неделю" value={form.cookTimes} onChange={set('cookTimes')}
             options={([1, 2, 3, 7] as const).map((n) => [n, COOK[n]] as const)} />
           <Checks legend="Техника" value={form.tools} onChange={set('tools')}
