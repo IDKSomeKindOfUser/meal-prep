@@ -119,7 +119,7 @@ export function SettingsScreen({ form, own, onForm, start: suggested, changed, b
             </div>
           )}
           <p className="result" aria-live="polite">
-            {goal ? <><b>{num(goal.kcal)} ккал</b> и <b>{num(goal.protein)} г белка</b> в день</> : 'Заполните поля, и здесь появится норма.'}
+            {goal ? <><b>{num(goal.kcal)} ккал</b> и <b>{num(goal.protein)} г белка</b> в день</> : 'Заполните поля, и здесь появится норма.'}
           </p>
           <p className="hint">Расчёт справочный и не заменяет совет врача.</p>
         </Group>}

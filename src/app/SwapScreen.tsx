@@ -41,7 +41,7 @@ export function SwapScreen({ plan, report, block: index, slot, catalog, busy, on
         <p className="sub">Сейчас: {now.name}. {SLOT[slot]}, {blockDays(plan.start, block)}.</p>
         <p className="sub">
           {block.days > 1 && 'Блюдо сменится на все эти дни. '}
-          Сначала те, с которыми день ближе к норме: {num(settings.kcal)} ккал и {num(settings.protein)} г белка.
+          Сначала те, с которыми день ближе к норме: {num(settings.kcal)} ккал и {num(settings.protein)} г белка.
         </p>
       </header>
       {options.length === 0 && <section><p>Других блюд под ваши ограничения нет. Ослабьте их в настройках и соберите меню заново.</p></section>}
@@ -55,10 +55,10 @@ export function SwapScreen({ plan, report, block: index, slot, catalog, busy, on
               <div>
                 <h2>{recipe.name}</h2>
                 <p className="facts">
-                  <span className={tone(day.kcal, kcal, settings.kcal)}>{num(kcal)} ккал <b>{signed(kcal - day.kcal)}</b></span>
-                  <span className={tone(day.protein, protein, settings.protein)}>белок {num(protein)} г <b>{signed(protein - day.protein)}</b></span>
-                  <span className={costChange < 0 ? 'up' : costChange > 0 ? 'down' : ''}>чек за {settings.weeks === 1 ? 'неделю' : '4 недели'} <b>{signed(Math.ceil(total + costChange) - Math.ceil(total))} ₽</b></span>
-                  <span>{recipe.minutes} мин</span>
+                  <span className={tone(day.kcal, kcal, settings.kcal)}>{num(kcal)} ккал <b>{signed(kcal - day.kcal)}</b></span>
+                  <span className={tone(day.protein, protein, settings.protein)}>белок {num(protein)} г <b>{signed(protein - day.protein)}</b></span>
+                  <span className={costChange < 0 ? 'up' : costChange > 0 ? 'down' : ''}>чек за {settings.weeks === 1 ? 'неделю' : '4 недели'} <b>{signed(Math.ceil(total + costChange) - Math.ceil(total))} ₽</b></span>
+                  <span>{recipe.minutes} мин</span>
                 </p>
                 {used && <p className="used">{used}</p>}
                 {over > 0 && <p className="warn">Выше бюджета на {rub(over)}</p>}

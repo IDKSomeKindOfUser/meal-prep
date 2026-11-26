@@ -154,7 +154,7 @@ export function RecipeScreen({ id, exists, saved, own, catalog, inMenu, busy, on
             }}>Ещё продукт</button>
           <button type="button" className="textbtn" onClick={() => setAddingProduct(true)}>Нет в списке? Новый продукт</button>
           <div aria-live="polite">
-            {perPortion && <p>В порции <b>{num(perPortion.kcal)} ккал</b>, белки {num(perPortion.protein)} г, жиры {num(perPortion.fat)} г, углеводы {num(perPortion.carbs)} г.</p>}
+            {perPortion && <p>В порции <b>{num(perPortion.kcal)} ккал</b>, белки {num(perPortion.protein)} г, жиры {num(perPortion.fat)} г, углеводы {num(perPortion.carbs)} г.</p>}
             {parts.length > 0 && (
               <p>Аллергены: {contains.length > 0 ? names(contains) : 'нет'}{may.length > 0 && `; возможно, есть ${names(may)}`}.</p>
             )}

@@ -5,13 +5,16 @@ html { scroll-padding-bottom: 96px; accent-color: var(--accent); scrollbar-color
 body {
   background: var(--ground); color: var(--ink); caret-color: var(--accent);
   font: 400 var(--text-m) / 1.35 var(--font); font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   padding-bottom: calc(92px + env(safe-area-inset-bottom));
 }
 ::selection { background: var(--accent); color: var(--on-accent); }
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 h1:focus { outline: none; }
 h1 { font-size: var(--text-xl); font-weight: 800; line-height: 1.1; text-wrap: balance; }
-h2, h3 { font-size: var(--text-l); font-weight: 800; line-height: 1.12; }
+h2, h3 { font-size: var(--text-l); font-weight: 800; line-height: 1.12; text-wrap: balance; }
+/* Абзацы бывают в три строки и больше: им нужен интервал не меньше 1.4 и без одинокого слова в конце. */
+p { line-height: 1.45; text-wrap: pretty; }
 h2 { margin-bottom: var(--space-3); }
 button, input, select, textarea { font: inherit; color: inherit; }
 button, summary, label.chip { cursor: pointer; }
@@ -134,7 +137,7 @@ nav [aria-current] { color: var(--accent); background: color-mix(in oklab, var(-
 /* Номер, галочка и первая строка шага стоят на одной линии высотой 24px. */
 .steps { padding: 0; counter-reset: step; }
 .steps li { counter-increment: step; display: grid; grid-template-columns: 1.6em minmax(0, 1fr); margin-top: var(--space-3); max-width: 65ch; }
-.steps li::before { content: counter(step) '.'; font-weight: 800; line-height: 24px; }
+.steps li::before { content: counter(step) '.'; font-weight: 800; line-height: 1.5; }
 .recipe a:not(.go, .back, .cook a) { color: var(--accent); }
 .options { max-width: 760px; padding: 0 var(--space-5); }
 .options li { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-4) 0; border-bottom: 1px solid var(--line); }
@@ -263,7 +266,7 @@ fieldset .hint, fieldset .warn, .field .hint { margin-top: var(--space-2); }
 .buy b { flex: none; min-width: 4.5ch; text-align: right; font-weight: 600; color: var(--muted); }
 .buy .qty { flex: none; font-size: var(--text-m); font-weight: 700; }
 .buy :checked ~ .qty { color: var(--muted); text-decoration: line-through; }
-.aisle { margin: var(--space-4) 0 0; font-size: var(--text-s); font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+.aisle { margin: var(--space-4) 0 0; font-size: var(--text-s); font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
 button.link { padding: var(--space-2) 0; border: 0; background: none; font: inherit; font-weight: 600; cursor: pointer; }
 .buy .name { text-decoration: line-through 2px transparent; transition: color 0.25s var(--ease), text-decoration-color 0.25s var(--ease); }
 .buy :checked ~ .what .name { text-decoration-color: currentColor; color: var(--muted); }
@@ -416,7 +419,7 @@ html:has(dialog[open]) { overflow: hidden; }
 .steps li { transition: opacity 0.2s var(--ease); }
 .steps .ticked { opacity: 0.55; }
 .steps .ticked label span { text-decoration: line-through; }
-.steps label span { line-height: 24px; }
+.steps label span { line-height: 1.5; }
 .timers { grid-column: 2; display: flex; flex-wrap: wrap; gap: var(--space-2); margin: var(--space-1) 0 0 36px; }
 /* На компьютере таймер стоит справа от текста шага, по центру первой строки. */
 @media (min-width: 900px) {

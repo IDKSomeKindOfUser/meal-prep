@@ -12,7 +12,7 @@ function Meter({ label, value, goal, unit }: { label: string; value: number; goa
   const share = goal > 0 ? value / goal : 0
   return (
     <div className="meter">
-      <p><span>{label}</span> <b>{num(value)}</b> из {num(goal)} {unit}</p>
+      <p><span>{label}</span> <b>{num(value)}</b> из {num(goal)}{unit && ` ${unit}`}</p>
       <div className="bar" aria-hidden="true"><i style={{ inlineSize: `${Math.min(share, 1) * 100}%` }} /></div>
     </div>
   )
@@ -33,12 +33,12 @@ export function TodaySide({ plan, report, day }: { plan: SavedPlan; report: Repo
   return (
     <aside className="side" aria-label="Сводка дня">
       <h2>Сводка дня</h2>
-      <p className="hint">Сегодня <b>{num(menu.kcal)}</b> ккал при норме {num(settings.kcal)}, белка <b>{num(menu.protein)}</b> г при норме {num(settings.protein)}.</p>
+      <p className="hint">Сегодня <b>{num(menu.kcal)}</b> ккал при норме {num(settings.kcal)}, белка <b>{num(menu.protein)}</b> г при норме {num(settings.protein)}.</p>
       {next && (
         <a className="card" href={cookHash(next.day)}>
           <span className="hint">Ближайшая готовка</span>
           <b>{next.day === day ? 'Сегодня' : `${weekday(addDays(start, next.day))}, ${dayMonth(addDays(start, next.day))}`}</b>
-          <span>{count(next.dishes.length, 'блюдо', 'блюда', 'блюд')}, около {num(next.minutes)} мин</span>
+          <span>{count(next.dishes.length, 'блюдо', 'блюда', 'блюд')}, около {num(next.minutes)} мин</span>
         </a>
       )}
       <Bought plan={plan} report={report} week={Math.floor(day / 7)} />
@@ -101,7 +101,7 @@ export function SwapSide({ report, block, slot }: { report: Report; block: numbe
       <h2>Сейчас в меню</h2>
       <span className="thumb wide"><DishPicture recipe={dish.recipe} /></span>
       <p><b>{dish.recipe.name}</b></p>
-      <p className="hint">{SLOT[slot]}, готовить {dish.recipe.minutes} мин. День сейчас: {num(day.kcal)} ккал, белка {num(day.protein)} г.</p>
+      <p className="hint">{SLOT[slot]}, готовить {dish.recipe.minutes} мин. День сейчас: {num(day.kcal)} ккал, белка {num(day.protein)} г.</p>
     </aside>
   )
 }

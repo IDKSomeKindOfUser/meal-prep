@@ -36,7 +36,7 @@ export function RecipesScreen({ own, busy, onProduct, onDeleteProduct }: Props) 
             <li key={r.id}>
               <span>
                 <a className="link" href={recipeHash(r.id)}>{r.name}</a>
-                <span className="hint">{MEAL[r.type]}, {r.minutes} мин, порций: {r.portions}</span>
+                <span className="hint">{MEAL[r.type]}, {r.minutes} мин, порций: {r.portions}</span>
               </span>
             </li>
           ))}
@@ -54,7 +54,7 @@ export function RecipesScreen({ own, busy, onProduct, onDeleteProduct }: Props) 
                 <span>
                   <b>{p.name}</b>
                   <span className="hint">
-                    {num(p.price.price)} ₽ за {p.buyBy === 'pack' ? `пачку ${num(p.price.grams)} г` : 'кг'}, {all.length > 0 ? `аллергены: ${all.join(', ')}` : 'аллергенов нет'}
+                    {num(p.price.price)} ₽ за {p.buyBy === 'pack' ? `пачку ${num(p.price.grams)} г` : 'кг'}, {all.length > 0 ? `аллергены: ${all.join(', ')}` : 'аллергенов нет'}
                     {recipes.length > 0 && `. Есть в рецептах: ${recipes.map((r) => r.name).join(', ')}`}
                   </span>
                 </span>

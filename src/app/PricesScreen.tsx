@@ -46,7 +46,7 @@ function Row({ id, own, onChange }: { id: string; own: PriceOverrides[string] | 
         <button type="button" onClick={() => {
           onChange(null)
           setPrice(round(packed ? base.pack!.price : base.perKg)); setGrams(String(Math.round(packed ? base.pack!.grams : 1000)))
-        }}>Вернуть {num(Math.round(packed ? base.pack!.price : base.perKg))} ₽</button>
+        }}>Вернуть {num(Math.round(packed ? base.pack!.price : base.perKg))} ₽</button>
       )}
     </li>
   )

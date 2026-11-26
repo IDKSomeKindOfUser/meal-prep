@@ -45,7 +45,7 @@ export function Week({ plan, report, today, day, onDay, onOpenDay }: Props) {
                   const dish = menu.dishes[k]!
                   return (
                     <li key={slot} data-slot={slot}>
-                      <a href={dishHash(bi, slot)} aria-label={`${dish.recipe.name}, ${num(dish.kcal)} ккал`}>
+                      <a href={dishHash(bi, slot)} aria-label={`${dish.recipe.name}, ${num(dish.kcal)} ккал`}>
                         <DishPicture recipe={dish.recipe} />
                         <span className="wkname" aria-hidden="true">{dish.recipe.name}</span>
                       </a>
@@ -53,7 +53,7 @@ export function Week({ plan, report, today, day, onDay, onOpenDay }: Props) {
                   )
                 })}
               </ul>
-              <p className="wkkcal">{num(menu.kcal)}<small> ккал</small><small>белка {num(menu.protein)} г</small></p>
+              <p className="wkkcal">{num(menu.kcal)}<small> ккал</small><small>белка {num(menu.protein)} г</small></p>
             </li>
           )
         }) : []))}

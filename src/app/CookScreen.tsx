@@ -48,7 +48,7 @@ export function CookScreen({ plan, report, day }: Props) {
           </ul>
           {/* The bar shows the share of the cooking time. */}
           <span className="time" style={{ '--share': `${Math.round((dish.recipe.minutes / longest) * 100)}%` } as CSSProperties}>
-            <b>{dish.recipe.minutes} мин</b>
+            <b>{dish.recipe.minutes} мин</b>
           </span>
         </div>
       </li>
@@ -60,14 +60,14 @@ export function CookScreen({ plan, report, day }: Props) {
       <div className="top"><a className="back" href="#today">Назад к меню дня</a></div>
       <header>
         <h1 tabIndex={-1}>Готовка: {weekday(date)}, {dayMonth(date)}</h1>
-        <p className="sub">Примерно {order.minutes} минут{tools.length > 1 && `, если ${tools.slice(0, -1).join(', ')} и ${tools.at(-1)} работают одновременно`}.</p>
+        <p className="sub">Примерно {order.minutes} минут{tools.length > 1 && `, если ${tools.slice(0, -1).join(', ')} и ${tools.at(-1)} работают одновременно`}.</p>
       </header>
       {order.steps.length > 0 && (
         <section>
           <h2>По порядку</h2>
           <p>Самое долгое ставьте первым. Следующее блюдо — когда освободится прибор.</p>
           <ol className="cook">
-            {order.steps.map((s) => row(s.item, `${s.tool[0]!.toUpperCase()}${s.tool.slice(1)}, ${s.start ? `через ${s.start} мин` : 'сразу'}`))}
+            {order.steps.map((s) => row(s.item, `${s.tool[0]!.toUpperCase()}${s.tool.slice(1)}, ${s.start ? `через ${s.start} мин` : 'сразу'}`))}
           </ol>
         </section>
       )}

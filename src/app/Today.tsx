@@ -48,7 +48,7 @@ export function Today({ plan, report, today, day, onDay, }: Props) {
     <>
       <header>
         <h1 tabIndex={-1}>{date === today ? `Сегодня, ${weekday(date)}` : `${capital(weekday(date))}, ${dayMonth(date)}`}</h1>
-        <p className="sub">{num(menu.kcal)} ккал, белка {num(menu.protein)} г{day === block.cookDay && ', готовим в этот день'}</p>
+        <p className="sub">{num(menu.kcal)} ккал, белка {num(menu.protein)} г{day === block.cookDay && ', готовим в этот день'}</p>
         {place.state === 'before' && <p className="note">Меню начинается {dayMonth(start)}, через {daysCount(daysBetween(today, start))}.</p>}
         {place.state === 'ended' && <p className="note">Это меню закончилось {dayMonth(addDays(start, report.days.length - 1))}. Соберите новое, оно начнётся с сегодняшнего дня.</p>}
         <WeekTabs weeks={settings.weeks} week={week} onChange={(w) => onDay(w * 7 + (day % 7))} />
@@ -80,7 +80,7 @@ export function Today({ plan, report, today, day, onDay, }: Props) {
               <li key={c.day} data-now={iso === today || undefined}>
                 <a href={cookHash(c.day)}>
                   <b>{iso === today ? 'Сегодня' : capital(weekdayShort(iso))}, на {daysCount(covered)}</b>
-                  <span>до {c.minutes} минут</span>
+                  <span>до {c.minutes} минут</span>
                 </a>
               </li>
             )

@@ -26,8 +26,8 @@ test('differences have a sign', () => {
 })
 
 test('numbers are written in Russian', () => {
-  expect(count(1, 'день', 'дня', 'дней')).toBe('1 день')
-  expect(count(3, 'день', 'дня', 'дней')).toBe('3 дня')
-  expect(count(11, 'день', 'дня', 'дней')).toBe('11 дней')
-  expect(rub(6125.2)).toMatch(/^6\s126 ₽$/)
+  expect(count(1, 'день', 'дня', 'дней')).toBe('1 день')
+  expect(count(3, 'день', 'дня', 'дней')).toBe('3 дня')
+  expect(count(11, 'день', 'дня', 'дней')).toBe('11 дней')
+  expect(rub(6125.2)).toMatch(/^6\s126 ₽$/)
 })

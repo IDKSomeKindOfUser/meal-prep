@@ -27,10 +27,10 @@ describe('shopping list', () => {
   })
   it('shows short amounts: kilos, pieces, litres', () => {
     const item = { id: 'rice', need: 1990, units: 1, unit: 'weight' as const, grams: 1990, cost: 1 }
-    expect(buyAmount(item)).toBe('2 кг')
-    expect(buyAmount({ ...item, id: 'egg', unit: 'pack', units: 2, grams: 1100 }, 55)).toBe('20 шт.')
-    expect(buyAmount({ ...item, id: 'milk', unit: 'pack', grams: 1030 })).toBe('1 л')
-    expect(buyAmount({ ...item, grams: 300 })).toBe('300 г')
-    expect(listText([item], defaultCatalog)).toMatch(/: 2 кг$/)
+    expect(buyAmount(item)).toBe('2 кг')
+    expect(buyAmount({ ...item, id: 'egg', unit: 'pack', units: 2, grams: 1100 }, 55)).toBe('20 шт.')
+    expect(buyAmount({ ...item, id: 'milk', unit: 'pack', grams: 1030 })).toBe('1 л')
+    expect(buyAmount({ ...item, grams: 300 })).toBe('300 г')
+    expect(listText([item], defaultCatalog)).toMatch(/: 2 кг$/)
   })
 })

@@ -52,7 +52,7 @@ export function DishScreen({ plan, report, catalog, isOwn, block: index, slot, o
         </dl>
         <DishPicture recipe={recipe} />
         <dl className="about">
-          <div><dt>Готовим</dt><dd>{weekday(cook)}, {dayMonth(cook)}, около {recipe.minutes} мин.</dd></div>
+          <div><dt>Готовим</dt><dd>{weekday(cook)}, {dayMonth(cook)}, около {recipe.minutes} мин.</dd></div>
           <div>
             <dt>Хранение</dt>
             <dd>

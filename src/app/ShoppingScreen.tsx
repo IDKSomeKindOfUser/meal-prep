@@ -23,14 +23,14 @@ const DENSITY: Record<string, number> = { milk: 1.03, kefir: 1.03, oil: 0.92, se
 const ORDER = ['Овощи', 'Фрукты', 'Мясо', 'Рыба и креветки', 'Яйца и молочное', 'Крупы и хлеб', 'Консервы', 'Бакалея и соусы']
 
 const trim = (n: number) => num(Math.round(n * 10) / 10)
-const weight = (g: number) => (g >= 1000 ? `${trim(g / 1000)} кг` : `${num(g)} г`)
-const volume = (ml: number) => (ml >= 1000 ? `${trim(ml / 1000)} л` : `${num(ml)} мл`)
+const weight = (g: number) => (g >= 1000 ? `${trim(g / 1000)} кг` : `${num(g)} г`)
+const volume = (ml: number) => (ml >= 1000 ? `${trim(ml / 1000)} л` : `${num(ml)} мл`)
 
 /** What to buy, short: "2 кг", "20 шт.", "1 л". */
 export function buyAmount({ id, unit, units, grams }: ShoppingItem, pieceGrams: number | null = null): string {
   if (id === 'garlic') return count(units, 'головка', 'головки', 'головок')
-  if (unit === 'piece') return `${num(units)} шт.`
-  if (unit === 'pack' && pieceGrams) return `${num(Math.round(grams / pieceGrams))} шт.`
+  if (unit === 'piece') return `${num(units)} шт.`
+  if (unit === 'pack' && pieceGrams) return `${num(Math.round(grams / pieceGrams))} шт.`
   const density = DENSITY[id]
   return density ? volume(Math.round(grams / density / 10) * 10) : weight(grams)
 }
@@ -40,7 +40,7 @@ function detail(item: ShoppingItem): string {
   const parts: string[] = []
   if (item.unit === 'pack') parts.push(count(item.units, 'пачка', 'пачки', 'пачек'))
   const need = Math.round(item.need)
-  if (Math.abs(item.grams - need) / Math.max(need, 1) > 0.05) parts.push(`по рецептам нужно ${num(need)} г`)
+  if (Math.abs(item.grams - need) / Math.max(need, 1) > 0.05) parts.push(`по рецептам нужно ${num(need)} г`)
   return parts.join(', ')
 }
 

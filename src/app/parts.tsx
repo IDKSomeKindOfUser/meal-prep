@@ -15,9 +15,9 @@ export function DishField({ slot, dish, href, note, big, now }: { slot: Slot; di
         <h3><a href={href}>{dish.recipe.name}</a></h3>
         <ul className="facts">
           <li>{SLOT[slot]}{now && ' · сейчас'}</li>
-          <li>{num(dish.kcal)} ккал</li>
-          <li>{num(dish.protein)} г белка</li>
-          <li>{dish.recipe.minutes} мин</li>
+          <li>{num(dish.kcal)} ккал</li>
+          <li>{num(dish.protein)} г белка</li>
+          <li>{dish.recipe.minutes} мин</li>
         </ul>
         {note && <p className="from">{note}</p>}
       </div>

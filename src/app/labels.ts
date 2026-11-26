@@ -35,13 +35,13 @@ export function missingLines(missing: Missing[]): string[] {
 }
 
 const rubles = new Intl.NumberFormat('ru-RU', { maximumFractionDigits: 0 })
-export const rub = (n: number) => `${rubles.format(Math.ceil(n))} ₽`
+export const rub = (n: number) => `${rubles.format(Math.ceil(n))} ₽`
 export const num = (n: number) => rubles.format(n)
 
 const plural = new Intl.PluralRules('ru-RU')
 export function count(n: number, one: string, few: string, many: string): string {
   const form = plural.select(n)
-  return `${n} ${form === 'one' ? one : form === 'few' ? few : many}`
+  return `${n} ${form === 'one' ? one : form === 'few' ? few : many}`
 }
 export const daysCount = (n: number) => count(n, 'день', 'дня', 'дней')
 
@@ -54,9 +54,9 @@ export function signed(n: number): string {
 /** An amount in a recipe. A lemon is counted in wedges and garlic in cloves. */
 export function amount(product: Ingredient, grams: number): string {
   const { id, pieceGrams } = product
-  if (pieceGrams === null) return `${num(grams)} г`
+  if (pieceGrams === null) return `${num(grams)} г`
   if (id === 'lemon') return count(Math.round((grams * LEMON_WEDGES) / pieceGrams), 'долька', 'дольки', 'долек')
   const pieces = Math.round(grams / pieceGrams)
   if (id === 'garlic') return count(pieces, 'зубчик', 'зубчика', 'зубчиков')
-  return `${num(pieces)} шт. (${num(grams)} г)`
+  return `${num(pieces)} шт. (${num(grams)} г)`
 }
