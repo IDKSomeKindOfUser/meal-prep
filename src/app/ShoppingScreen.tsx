@@ -1,11 +1,13 @@
 import { Copy, Check, Pencil } from 'lucide-react'
-import { useState } from 'react'
+import { useState, type CSSProperties } from 'react'
 import type { Report } from '../planner'
 import type { ShoppingItem } from '../planner/shopping'
 import type { Catalog } from '../planner/types'
 import { addDays, dayMonth } from './dates'
 import { count, num, rub } from './labels'
 import { WeekTabs } from './parts'
+import { reorder } from './transition'
+import { celebrate } from './confetti'
 import type { SavedPlan } from './storage'
 
 interface Props {
@@ -52,13 +54,14 @@ function Row({ item, catalog, checked, week, onCheck }: {
   const amount = buyAmount(item, product.pieceGrams)
   const more = detail(item)
   return (
-    <li>
+    <li style={{ '--vt': `buy-${item.id}` } as CSSProperties}>
       <label>
         <input type="checkbox" data-key={checkKey(week, item.id)} checked={checked} onChange={(e) => {
           const key = checkKey(week, item.id)
-          onCheck(key, e.target.checked)
+          const bought = e.target.checked
           // Строка переезжает в другой список и пересоздаётся: возвращаем фокус, чтобы клавиатура не терялась.
-          setTimeout(() => document.querySelector<HTMLInputElement>(`input[data-key="${CSS.escape(key)}"]`)?.focus(), 50)
+          reorder(() => onCheck(key, bought),
+            () => document.querySelector<HTMLInputElement>(`input[data-key="${CSS.escape(key)}"]`)?.focus())
         }} />
         <span className="what">
           <span className="name">{product.name}</span>
@@ -116,6 +119,10 @@ export function ShoppingScreen({ plan, report, catalog, week, onWeek, onCheck }:
   const done = all.filter((i) => checked.has(checkKey(week, i.id))).length
   const first = addDays(plan.start, week * 7)
   const [copied, setCopied] = useState(false)
+  const check: Props['onCheck'] = (key, bought) => {
+    if (bought && done + 1 === all.length) celebrate()
+    onCheck(key, bought)
+  }
   const copy = () => {
     const rest = all.filter((i) => !checked.has(checkKey(week, i.id)))
     navigator.clipboard?.writeText(listText(rest, catalog)).then(() => {
@@ -139,8 +146,8 @@ export function ShoppingScreen({ plan, report, catalog, week, onWeek, onCheck }:
         </div>
         <p className="hint">Соль и специи считаются имеющимися дома. Остаток пачки идёт в следующую неделю.</p>
       </header>
-      <Group title="Рынок" cost={list.marketCost} items={list.market} week={week} checked={checked} catalog={catalog} onCheck={onCheck} />
-      <Group title="Магазин" cost={list.storeCost} items={list.store} week={week} checked={checked} catalog={catalog} onCheck={onCheck} />
+      <Group title="Рынок" cost={list.marketCost} items={list.market} week={week} checked={checked} catalog={catalog} onCheck={check} />
+      <Group title="Магазин" cost={list.storeCost} items={list.store} week={week} checked={checked} catalog={catalog} onCheck={check} />
     </>
   )
 }

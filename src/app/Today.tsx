@@ -30,7 +30,12 @@ function useHour(): number {
   return hour
 }
 
+// Каскад карточек играет только при первом показе «Сегодня» за сессию, не при смене дня.
+let cascaded = false
+
 export function Today({ plan, report, today, day, onDay, }: Props) {
+  const [cascade] = useState(() => !cascaded)
+  useEffect(() => { cascaded = true }, [])
   const { settings, start } = plan
   const date = addDays(start, day)
   const place = dayOfPlan(start, report.days.length, today)
@@ -71,7 +76,7 @@ export function Today({ plan, report, today, day, onDay, }: Props) {
           })}
         </div>
       </header>
-      <ul className="meals" aria-label="Блюда дня">
+      <ul className={cascade ? 'meals cascade' : 'meals'} aria-label="Блюда дня">
         {SLOTS.map((slot, i) => (
           <DishField key={slot} slot={slot} dish={menu.dishes[i]!} href={dishHash(blockIndex, slot)} note={day === block.cookDay ? undefined : portionNote(menu.dishes[i]!, block, day)} big={slot === 'lunch'} now={slot === now} />
         ))}

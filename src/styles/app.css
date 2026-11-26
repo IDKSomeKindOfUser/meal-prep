@@ -128,7 +128,7 @@ nav [aria-current] svg { background: color-mix(in oklab, transparent, var(--acce
 .blockhead h2::first-letter { text-transform: uppercase; }
 
 /* Рецепт и замена */
-.back { display: inline-flex; align-items: center; gap: var(--space-2); min-height: 48px; padding: 0 var(--space-4); border: 1px solid var(--line); border-radius: 999px; color: var(--accent); font-weight: 600; text-decoration: none; transition: background-color .2s, scale .1s; }
+.back { display: inline-flex; align-items: center; gap: var(--space-2); min-height: 48px; padding: 0 var(--space-4); border: 1px solid var(--line); border-radius: 999px; color: var(--accent); font-weight: 600; text-decoration: none; transition: background-color .2s var(--ease), scale .1s var(--ease); }
 @media (hover: hover) { .back:hover { background: color-mix(in oklch, var(--accent) 10%, transparent); } }
 .back:active { scale: .97; }
 .top { padding: var(--space-2) var(--space-5); }
@@ -248,7 +248,7 @@ fieldset .hint, fieldset .warn, .field .hint { margin-top: var(--space-2); }
 .chip span {
   display: flex; align-items: center; gap: var(--space-2); min-height: 44px; padding: var(--space-2) var(--space-3);
   background: var(--surface); border: 1px solid var(--control); border-radius: var(--radius-button);
-  transition: background-color .2s, border-color .2s, color .2s, scale .1s;
+  transition: background-color .2s var(--ease), border-color .2s var(--ease), color .2s var(--ease), scale .1s var(--ease);
 }
 @media (hover: hover) { .chip:hover span { border-color: var(--ink); } }
 .chip:active span { scale: .97; }
@@ -361,12 +361,12 @@ section:has(> .buy) { max-width: 720px; }
 .priced button, .textbtn, button.link {
   display: inline-flex; align-items: center; gap: var(--space-2); min-height: 44px; padding: 0 var(--space-3); border: 0; border-radius: 999px;
   background: color-mix(in oklab, var(--accent) 11%, transparent); color: var(--accent); font: inherit; font-weight: 600; text-decoration: none; cursor: pointer;
-  transition: background-color .2s var(--ease), scale .1s;
+  transition: background-color .2s var(--ease), scale .1s var(--ease);
 }
 .priced button:active, .textbtn:active, button.link:active { scale: .97; }
 .priced button svg, .textbtn svg, button.link svg, .back svg, .tonal svg { flex: none; width: 18px; height: 18px; }
 @media (hover: hover) { .priced button:hover, .textbtn:hover:not(:disabled), button.link:hover, .tonal:hover { background: color-mix(in oklab, var(--accent) 20%, transparent); } }
-.tonal { display: inline-flex; align-items: center; gap: var(--space-2); min-height: 44px; padding: 0 var(--space-3); border-radius: 999px; background: color-mix(in oklab, var(--accent) 11%, transparent); color: var(--accent); font-weight: 600; text-decoration: none; transition: background-color .2s var(--ease), scale .1s; }
+.tonal { display: inline-flex; align-items: center; gap: var(--space-2); min-height: 44px; padding: 0 var(--space-3); border-radius: 999px; background: color-mix(in oklab, var(--accent) 11%, transparent); color: var(--accent); font-weight: 600; text-decoration: none; transition: background-color .2s var(--ease), scale .1s var(--ease); }
 .tonal:active { scale: .97; }
 .actions-row { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-2); }
 /* Стрелка в карточке-ссылке и подъём при наведении. */
@@ -405,7 +405,22 @@ textarea { min-height: 144px; padding-block: var(--space-3); resize: vertical; }
   width: min(640px, 100%); max-width: none; max-height: 100dvh; margin: auto; padding: var(--space-5);
   border: 1px solid var(--line); border-radius: var(--radius-card); background: var(--ground); color: var(--ink); overscroll-behavior: contain;
 }
-.product::backdrop { background: rgb(0 0 0 / 0.55); }
+/* Диалог проявляется и чуть всплывает. Уход с анимацией есть там, где браузер умеет переводить display и overlay, в остальных он закрывается сразу. */
+.product, .product::backdrop {
+  transition: opacity .2s var(--ease), translate .2s var(--ease), background-color .2s var(--ease), display .2s, overlay .2s;
+  transition-behavior: allow-discrete;
+}
+.product { opacity: 0; }
+.product[open] { opacity: 1; }
+@starting-style { .product[open] { opacity: 0; } }
+@media (prefers-reduced-motion: no-preference) {
+  .product { translate: 0 16px; }
+  .product[open] { translate: none; }
+  @starting-style { .product[open] { translate: 0 16px; } }
+}
+.product::backdrop { background: rgb(0 0 0 / 0); }
+.product[open]::backdrop { background: rgb(0 0 0 / 0.55); }
+@starting-style { .product[open]::backdrop { background: rgb(0 0 0 / 0); } }
 .product form > * + * { margin-top: var(--space-5); }
 html:has(dialog[open]) { overflow: hidden; }
 @media (max-width: 639px) { .product { height: 100dvh; border: 0; border-radius: 0; } }
@@ -420,6 +435,18 @@ html:has(dialog[open]) { overflow: hidden; }
 ::view-transition-old(root) { animation-duration: 0.12s; }
 ::view-transition-new(root) { animation-duration: 0.2s; animation-delay: 0.12s; animation-fill-mode: both; }
 ::view-transition-old(dish-photo), ::view-transition-new(dish-photo) { height: 100%; object-fit: cover; }
+/* Отмеченный товар переезжает в «Куплено»: строки и заголовки плывут на новые места, экран целиком не мигает. */
+.reorder .buy li { view-transition-name: var(--vt); }
+.reorder .aisle, .reorder .sum { view-transition-name: match-element; }
+.reorder::view-transition-old(root), .reorder::view-transition-new(root) { animation: none; }
+/* Каскад карточек при первом открытии «Сегодня». */
+@keyframes rise { from { opacity: 0; translate: 0 12px; } }
+@media (prefers-reduced-motion: no-preference) {
+  .cascade > li { animation: rise .4s var(--ease) backwards; }
+  .cascade > li:nth-child(2) { animation-delay: 40ms; }
+  .cascade > li:nth-child(3) { animation-delay: 80ms; }
+  .cascade > li:nth-child(4) { animation-delay: 120ms; }
+}
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after { transition: none !important; }
   .dish:hover .art, .dish:active, .cook > li:active, .days button:active, .tabs button:active, .go:active, .buy label:active, .buy input:active, .steps input:active { scale: none; }

@@ -1,6 +1,7 @@
 import { Timer as TimerIcon } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { splitTimes } from './stepTime'
+import { celebrate } from './confetti'
 
 function clock(s: number) {
   const m = Math.floor(s / 60)
@@ -43,8 +44,11 @@ export function Steps({ steps }: { steps: string[] }) {
     document.addEventListener('visibilitychange', take)
     return () => { document.removeEventListener('visibilitychange', take); void lock?.release() }
   }, [])
-  const toggle = (i: number) => setDone((d) => { const n = new Set(d); if (!n.delete(i)) n.add(i); return n })
   const total = steps.length
+  const toggle = (i: number) => {
+    if (!done.has(i) && done.size + 1 === total) celebrate()
+    setDone((d) => { const n = new Set(d); if (!n.delete(i)) n.add(i); return n })
+  }
   return (
     <>
     {total > 0 && (
