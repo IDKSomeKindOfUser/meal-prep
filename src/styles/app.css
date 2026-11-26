@@ -297,7 +297,7 @@ html:has(dialog[open]) { overflow: hidden; }
 .big-num { font-size: var(--text-m); }
 .big-num b { font-size: var(--text-l); }
 .facts-list { display: grid; gap: var(--space-2); font-size: var(--text-s); }
-.facts-list li { padding-left: var(--space-3); border-left: 3px solid var(--selected); }
+.facts-list li { padding-block: var(--space-1); color: var(--muted); }
 .thumb.wide .art { inline-size: 100%; block-size: auto; aspect-ratio: 4 / 3; border-radius: var(--radius-m); }
 @media (prefers-reduced-motion: reduce) { .bar i { transition: none; } }
 @media (min-width: 1180px) {

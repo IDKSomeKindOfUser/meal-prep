@@ -24,7 +24,9 @@ export function transition(change: () => void, photo?: { before?: Element | null
     // The old photo is gone from the page by now, so the name is free.
     if (photo?.after) name(photo.after())
   })
-  run.finished.finally(() => named.forEach((el) => { el.style.viewTransitionName = '' }))
+  // A quick second change skips the first transition: that is fine, not an error.
+  run.ready.catch(() => {})
+  run.finished.catch(() => {}).finally(() => named.forEach((el) => { el.style.viewTransitionName = '' }))
 }
 
 /** The photo in the dish card whose link leads to `hash`. */
