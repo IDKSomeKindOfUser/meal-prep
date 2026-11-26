@@ -5,6 +5,7 @@ import { SLOTS, type Catalog, type Slot } from '../planner/types'
 import { addDays, dayMonth, weekday, weekdayShort } from './dates'
 import { DishPicture } from './DishPicture'
 import { ALLERGEN, amount, count, daysCount, num, SLOT } from './labels'
+import { Steps } from './Steps'
 import { recipeHash, swapHash } from './route'
 import type { SavedPlan } from './storage'
 
@@ -83,7 +84,7 @@ export function DishScreen({ plan, report, catalog, isOwn, block: index, slot, o
           <p>Шаги написаны для обычной порции. Ваша порция {percent > 100 ? 'больше' : 'меньше'} на {Math.abs(percent - 100)}%: граммы в шагах берите на столько же {percent > 100 ? 'больше' : 'меньше'}.</p>
         )}
         {recipe.steps.length === 0 && <p>Шаги не записаны.</p>}
-        <ol className="steps">{recipe.steps.map((s, i) => <li key={i}>{s}</li>)}</ol>
+        <Steps steps={recipe.steps} />
         {source && <p className="note">Источник: <a href={source.url} target="_blank" rel="noreferrer">{source.name}</a></p>}
       </section>
     </article>

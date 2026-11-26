@@ -344,3 +344,16 @@ html:has(dialog[open]) { overflow: hidden; }
 .wkkcal { margin: 0; font-weight: 700; text-align: right; }
 .wkkcal small { display: block; font-weight: 400; color: var(--muted); }
 @media (max-width: 479px) { .wkrow { grid-template-columns: 52px minmax(0, 1fr) 44px; gap: var(--space-2); } }
+
+/* Шаги: галочка и таймер */
+.steps { list-style: decimal; }
+.steps label { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: var(--space-2); align-items: start; min-height: 48px; cursor: pointer; }
+.steps input { width: 24px; height: 24px; margin: 0; accent-color: var(--accent); }
+.steps li { transition: opacity 0.2s var(--ease); }
+.steps .ticked { opacity: 0.55; }
+.steps .ticked label span { text-decoration: line-through; }
+.timers { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: var(--space-1) 0 0 36px; }
+.timer { min-height: 44px; padding: 0 var(--space-4); border: 1px solid var(--line); border-radius: 999px; background: none; color: var(--accent); font: inherit; font-weight: 700; font-variant-numeric: tabular-nums; transition: background-color 0.2s var(--ease), scale 0.15s var(--ease); }
+.timer:hover { background: color-mix(in oklab, var(--accent) 10%, transparent); }
+.timer:active { scale: 0.95; }
+.timer[aria-pressed='true'] { background: var(--accent); color: var(--on-accent); }
