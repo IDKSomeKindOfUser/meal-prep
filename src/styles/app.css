@@ -224,7 +224,11 @@ fieldset .hint, fieldset .warn, .field .hint { margin-top: var(--space-2); }
 .buy input { flex: none; width: 24px; height: 24px; margin: 0; }
 .buy .what { flex: 1; min-width: 0; }
 .buy .name, .buy .hint { display: block; overflow-wrap: break-word; }
-.buy b { flex: none; font-weight: 600; }
+.buy b { flex: none; min-width: 4.5ch; text-align: right; font-weight: 600; color: var(--muted); }
+.buy .qty { flex: none; font-size: var(--text-m); font-weight: 700; }
+.buy :checked ~ .qty { color: var(--muted); text-decoration: line-through; }
+.aisle { margin: var(--space-4) 0 0; font-size: var(--text-s); font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+button.link { padding: var(--space-2) 0; border: 0; background: none; font: inherit; font-weight: 600; cursor: pointer; }
 .buy .name { text-decoration: line-through 2px transparent; transition: color 0.25s var(--ease), text-decoration-color 0.25s var(--ease); }
 .buy :checked ~ .what .name { text-decoration-color: currentColor; color: var(--muted); }
 .buy label:active { scale: 0.99; }

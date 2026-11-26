@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { defaultCatalog, describeMenu, planMenu } from '../planner'
 import { EMPTY_FORM, readForm } from './form'
 import { parseState } from './storage'
-import { buyAmount } from './ShoppingScreen'
+import { buyAmount, listText } from './ShoppingScreen'
 
 const form = { ...EMPTY_FORM, normBy: 'manual' as const, kcal: '2000', protein: '100' }
 const read = readForm(form)
@@ -24,5 +24,13 @@ describe('shopping list', () => {
     const state = { version: 1, form, plan: { ...plan, checked: ['0:rice'] } }
     expect(parseState(JSON.stringify(state)).plan?.checked).toEqual(['0:rice'])
     expect(parseState(JSON.stringify({ ...state, plan: { ...plan, checked: 'x' } })).plan?.checked).toBeUndefined()
+  })
+  it('shows short amounts: kilos, pieces, litres', () => {
+    const item = { id: 'rice', need: 1990, units: 1, unit: 'weight' as const, grams: 1990, cost: 1 }
+    expect(buyAmount(item)).toBe('2 кг')
+    expect(buyAmount({ ...item, id: 'egg', unit: 'pack', units: 2, grams: 1100 }, 55)).toBe('20 шт.')
+    expect(buyAmount({ ...item, id: 'milk', unit: 'pack', grams: 1030 })).toBe('1 л')
+    expect(buyAmount({ ...item, grams: 300 })).toBe('300 г')
+    expect(listText([item], defaultCatalog)).toMatch(/: 2 кг$/)
   })
 })
