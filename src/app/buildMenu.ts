@@ -7,6 +7,7 @@ export function buildMenu(request: PlanRequest): Promise<PlanAnswer> {
     const finish = () => worker.terminate()
     worker.onmessage = ({ data }: MessageEvent<PlanAnswer>) => { finish(); resolve(data) }
     worker.onerror = (e) => { finish(); reject(new Error(e.message)) }
+    worker.onmessageerror = () => { finish(); reject(new Error('The answer of the planner could not be read.')) }
     worker.postMessage(request)
   })
 }

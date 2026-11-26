@@ -142,7 +142,8 @@ export function App() {
 
   function replace(block: number, slot: Slot, recipeId: string) {
     if (!plan || busy) return
-    setState((s) => ({ ...s, plan: { ...plan, edited: true, menu: replaceDish(plan.menu, block, slot, recipeId, plan.settings, catalog) } }))
+    // The latest plan: the cloud may have brought changes since this screen was drawn.
+    setState((s) => s.plan ? { ...s, plan: { ...s.plan, edited: true, menu: replaceDish(s.plan.menu, block, slot, recipeId, s.plan.settings, catalog) } } : s)
     setMessage({ text: 'Блюдо заменено, калории, белок и чек пересчитаны.', previous: plan })
     // Keeps "back" on the dish leading to the screen it was opened from.
     if (swapFromDish.current) history.back()

@@ -112,7 +112,10 @@ export function useCloud(state: SavedState, setState: (change: (s: SavedState) =
         const { error } = await (await getClient()).auth.signInWithPassword({ email, password })
         if (!error) return null
         if (error.code === 'invalid_credentials') return 'Почта или пароль не подходят.'
-        return error.status === 429 ? 'Слишком много попыток. Подождите несколько минут.' : NO_CONNECTION
+        if (error.code === 'email_not_confirmed') return 'Почта не подтверждена. Откройте письмо со ссылкой и подтвердите её.'
+        if (error.status === 429) return 'Слишком много попыток. Подождите несколько минут.'
+        // The cloud answered, so the network is fine.
+        return error.status && error.status < 500 ? 'Войти не получилось. Если ошибка повторяется, напишите владельцу сайта.' : NO_CONNECTION
       } catch {
         return NO_CONNECTION
       }
