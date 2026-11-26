@@ -32,13 +32,13 @@ function Row({ id, own, onChange }: { id: string; own: PriceOverrides[string] | 
       </div>
       <label>
         <span className="hint">{packed ? '₽ за пачку' : '₽ за кг'}</span>
-        <input inputMode="decimal" value={price} aria-invalid={bad(price) || undefined}
+        <input inputMode="decimal" autoComplete="off" value={price} aria-invalid={bad(price) || undefined}
           onChange={(e) => { setPrice(e.target.value); commit(e.target.value, grams) }} />
       </label>
       {packed && (
         <label>
           <span className="hint">г в пачке</span>
-          <input inputMode="decimal" value={grams} aria-invalid={bad(grams) || undefined}
+          <input inputMode="decimal" autoComplete="off" value={grams} aria-invalid={bad(grams) || undefined}
             onChange={(e) => { setGrams(e.target.value); commit(price, e.target.value) }} />
         </label>
       )}

@@ -185,6 +185,7 @@ export function App() {
 
   return (
     <>
+      <button type="button" className="skip" onClick={() => main.current?.querySelector<HTMLElement>('h1')?.focus()}>Перейти к содержимому</button>
       <a className="brand" href="#today" onClick={() => setChosenDay(null)}>
         <svg viewBox="0 0 32 32" aria-hidden="true">
           <rect x="6" y="4" width="6" height="25" rx="3" />
