@@ -1,0 +1,1180 @@
+{
+ "chicken": {
+  "packGrams": null,
+  "records": [
+   {
+    "price": 600,
+    "grams": 1000,
+    "shop": "market",
+    "date": "2026-11-25",
+    "url": null,
+    "status": "estimate",
+    "note": "Примерная цена со слов покупателя."
+   },
+   {
+    "price": 449.99,
+    "grams": 1000,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/myaso_ptitsa_yaytso_1/ptitsa_i_polufabrikaty_iz_ptitsy_1/24981/",
+    "status": "found"
+   },
+   {
+    "price": 569.99,
+    "grams": 1000,
+    "shop": "pyaterochka",
+    "date": "2026-11-03",
+    "url": "https://www.newkaliningrad.ru/news/community/24169016-tseny-idut-na-sblizhenie-kak-izmenilas-stoimost-produktov-v-kaliningrade-v-noyabre.html",
+    "status": "found"
+   }
+  ]
+ },
+ "thigh": {
+  "packGrams": null,
+  "records": [
+   {
+    "price": 600,
+    "grams": 1000,
+    "shop": "market",
+    "date": "2026-11-25",
+    "url": null,
+    "status": "estimate",
+    "note": "Примерная цена со слов покупателя."
+   },
+   {
+    "price": 599.99,
+    "grams": 1000,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/?q=%D0%91%D0%B5%D0%B4%D1%80%D0%BE%20%D0%B1%D0%B5%D1%81%D0%BA%D0%BE%D1%81%D1%82%D0%BD%D0%BE%D0%B5%20%D0%91%D0%9F%D0%9F",
+    "status": "found",
+    "note": "Бедро без кости, охлаждённое."
+   }
+  ]
+ },
+ "turkey": {
+  "packGrams": null,
+  "records": [
+   {
+    "price": 499.99,
+    "grams": 500,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/myaso_ptitsa_yaytso_1/ptitsa_i_polufabrikaty_iz_ptitsy_1/15602977/",
+    "status": "found",
+    "note": "Стейк из филе грудки."
+   }
+  ]
+ },
+ "beef": {
+  "packGrams": null,
+  "records": [
+   {
+    "price": 925,
+    "grams": 1000,
+    "shop": "market",
+    "date": "2026-11-25",
+    "url": null,
+    "status": "estimate",
+    "note": "Примерная цена со слов покупателя. Названо 900–950 ₽."
+   }
+  ]
+ },
+ "bmince": {
+  "packGrams": null,
+  "records": [
+   {
+    "price": 925,
+    "grams": 1000,
+    "shop": "market",
+    "date": "2026-11-25",
+    "url": null,
+    "status": "estimate",
+    "note": "Примерная цена со слов покупателя. Названо 900–950 ₽."
+   }
+  ]
+ },
+ "bfat": {
+  "packGrams": null,
+  "records": [
+   {
+    "price": 200,
+    "grams": 1000,
+    "shop": "market",
+    "date": "2026-11-25",
+    "url": null,
+    "status": "estimate",
+    "note": "В источниках цены нет."
+   }
+  ]
+ },
+ "pork": {
+  "packGrams": null,
+  "records": [
+   {
+    "price": 550,
+    "grams": 1000,
+    "shop": "market",
+    "date": "2026-11-25",
+    "url": null,
+    "status": "estimate",
+    "note": "Примерная цена со слов покупателя."
+   }
+  ]
+ },
+ "salmon": {
+  "packGrams": null,
+  "records": [
+   {
+    "price": 2700,
+    "grams": 1000,
+    "shop": "market",
+    "date": "2026-08-21",
+    "url": "https://strana39.ru/news/2026-08-26/389851-v-kaliningrade-syomga-nakonets-perestala-dorozhat-a-na-bahchevye-ob-yavili-aktsiyu",
+    "status": "found",
+    "note": "Максимальная цена филе сёмги на рынке."
+   }
+  ]
+ },
+ "pink": {
+  "packGrams": null,
+  "records": [
+   {
+    "price": 599.99,
+    "grams": 300,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/?q=%D0%A4%D0%B8%D0%BB%D0%B5%20%D0%B3%D0%BE%D1%80%D0%B1%D1%83%D1%88%D0%B8",
+    "status": "found",
+    "note": "Порционное филе без кожи; целая рыба заметно дешевле."
+   }
+  ]
+ },
+ "salmsalt": {
+  "packGrams": 200,
+  "records": [
+   {
+    "price": 399.99,
+    "grams": 200,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/ryba_moreprodukty_ikra_1/solenaya_ryba_preservy_1/6942634/",
+    "status": "found"
+   }
+  ]
+ },
+ "shrimp": {
+  "packGrams": 500,
+  "records": [
+   {
+    "price": 899.99,
+    "grams": 500,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/zamorozhennaya_produktsiya_1/zamorozhennye_moreprodukty_2/18329953/",
+    "status": "found"
+   }
+  ]
+ },
+ "egg": {
+  "packGrams": 550,
+  "records": [
+   {
+    "price": 159.99,
+    "grams": 550,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/myaso_ptitsa_yaytso_1/yaytso_1/10068556/",
+    "status": "found",
+    "note": "10 штук."
+   },
+   {
+    "price": 109.99,
+    "grams": 550,
+    "shop": "pyaterochka",
+    "date": "2026-11-03",
+    "url": "https://www.newkaliningrad.ru/news/community/24169016-tseny-idut-na-sblizhenie-kak-izmenilas-stoimost-produktov-v-kaliningrade-v-noyabre.html",
+    "status": "found",
+    "note": "10 штук."
+   }
+  ]
+ },
+ "cottage": {
+  "packGrams": 200,
+  "records": [
+   {
+    "price": 144.99,
+    "grams": 200,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/?q=%D0%A2%D0%B2%D0%BE%D1%80%D0%BE%D0%B3%20%D0%97%D0%B0%D0%BB%D0%B5%D1%81%D1%81%D0%BA%D0%B8%D0%B9%205%25",
+    "status": "found"
+   },
+   {
+    "price": 109.99,
+    "grams": 200,
+    "shop": "pyaterochka",
+    "date": "2026-11-03",
+    "url": "https://www.newkaliningrad.ru/news/community/24169016-tseny-idut-na-sblizhenie-kak-izmenilas-stoimost-produktov-v-kaliningrade-v-noyabre.html",
+    "status": "found"
+   }
+  ]
+ },
+ "milk": {
+  "packGrams": 980,
+  "records": [
+   {
+    "price": 199.99,
+    "grams": 980,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/molochnaya_produktsiya_syry_1/moloko_1/18329924/",
+    "status": "found"
+   }
+  ]
+ },
+ "kefir": {
+  "packGrams": 900,
+  "records": [
+   {
+    "price": 149.99,
+    "grams": 900,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/molochnaya_produktsiya_syry_1/kislomolochnaya_produktsiya_1/16231215/",
+    "status": "found"
+   },
+   {
+    "price": 64.99,
+    "grams": 800,
+    "shop": "pyaterochka",
+    "date": "2026-11-03",
+    "url": "https://www.newkaliningrad.ru/news/community/24169016-tseny-idut-na-sblizhenie-kak-izmenilas-stoimost-produktov-v-kaliningrade-v-noyabre.html",
+    "status": "found",
+    "note": "Жирность 2,5%."
+   }
+  ]
+ },
+ "cheese": {
+  "packGrams": 400,
+  "records": [
+   {
+    "price": 499.99,
+    "grams": 400,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/molochnaya_produktsiya_syry_1/syr_polutverdyy_tverdyy_1/12007978/",
+    "status": "found"
+   }
+  ]
+ },
+ "yogurt": {
+  "packGrams": 230,
+  "records": [
+   {
+    "price": 104.99,
+    "grams": 230,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/molochnaya_produktsiya_syry_1/yogurty_gustye/17432444/",
+    "status": "found"
+   }
+  ]
+ },
+ "rice": {
+  "packGrams": 800,
+  "records": [
+   {
+    "price": 139.99,
+    "grams": 800,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/bakaleya/krupy/1454/",
+    "status": "found"
+   }
+  ]
+ },
+ "buckw": {
+  "packGrams": 800,
+  "records": [
+   {
+    "price": 139.99,
+    "grams": 800,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/bakaleya/krupy/14047755/",
+    "status": "found"
+   }
+  ]
+ },
+ "bulgur": {
+  "packGrams": 450,
+  "records": [
+   {
+    "price": 119.99,
+    "grams": 450,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/bakaleya/krupy/1476/",
+    "status": "found"
+   }
+  ]
+ },
+ "couscous": {
+  "packGrams": 450,
+  "records": [
+   {
+    "price": 149.99,
+    "grams": 450,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/bakaleya/krupy/1480/",
+    "status": "found"
+   }
+  ]
+ },
+ "pasta": {
+  "packGrams": 450,
+  "records": [
+   {
+    "price": 99.99,
+    "grams": 450,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/bakaleya/makaronnye_izdeliya/756489/",
+    "status": "found"
+   },
+   {
+    "price": 66.99,
+    "grams": 450,
+    "shop": "pyaterochka",
+    "date": "2026-11-03",
+    "url": "https://www.newkaliningrad.ru/news/community/24169016-tseny-idut-na-sblizhenie-kak-izmenilas-stoimost-produktov-v-kaliningrade-v-noyabre.html",
+    "status": "found"
+   }
+  ]
+ },
+ "noodle": {
+  "packGrams": 450,
+  "records": [
+   {
+    "price": 79.99,
+    "grams": 450,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/bakaleya/makaronnye_izdeliya/3230/",
+    "status": "found"
+   }
+  ]
+ },
+ "oats": {
+  "packGrams": 400,
+  "records": [
+   {
+    "price": 59.99,
+    "grams": 400,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/bakaleya/zernovaya_produktsiya_i_zavtraki/29868/",
+    "status": "found"
+   }
+  ]
+ },
+ "flour": {
+  "packGrams": 1000,
+  "records": [
+   {
+    "price": 89.99,
+    "grams": 1000,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/bakaleya/muka_krakhmal_sakhar/30013/",
+    "status": "found"
+   },
+   {
+    "price": 69.99,
+    "grams": 1000,
+    "shop": "pyaterochka",
+    "date": "2026-11-03",
+    "url": "https://www.newkaliningrad.ru/news/community/24169016-tseny-idut-na-sblizhenie-kak-izmenilas-stoimost-produktov-v-kaliningrade-v-noyabre.html",
+    "status": "found"
+   }
+  ]
+ },
+ "bread": {
+  "packGrams": 350,
+  "records": [
+   {
+    "price": 42.99,
+    "grams": 350,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/?q=%D0%91%D0%B0%D1%82%D0%BE%D0%BD%20%D0%9F%D1%88%D0%B5%D0%BD%D0%B8%D1%87%D0%BD%D1%8B%D0%B9%20%D0%BD%D0%B0%D1%80%D0%B5%D0%B7%D0%BD%D0%BE%D0%B9",
+    "status": "found"
+   },
+   {
+    "price": 34.99,
+    "grams": 580,
+    "shop": "pyaterochka",
+    "date": "2026-11-03",
+    "url": "https://www.newkaliningrad.ru/news/community/24169016-tseny-idut-na-sblizhenie-kak-izmenilas-stoimost-produktov-v-kaliningrade-v-noyabre.html",
+    "status": "found",
+    "note": "Хлеб «Дарницкий»."
+   }
+  ]
+ },
+ "lavash": {
+  "packGrams": 100,
+  "records": [
+   {
+    "price": 57.99,
+    "grams": 100,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/khleb_vypechka_konditerskie_izdeliya_1/khleb_tosty_lavash_1/2027/",
+    "status": "found"
+   }
+  ]
+ },
+ "tortilla": {
+  "packGrams": 390,
+  "records": [
+   {
+    "price": 179.99,
+    "grams": 390,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/khleb_vypechka_konditerskie_izdeliya_1/khleb_tosty_lavash_1/25801340/",
+    "status": "found"
+   }
+  ]
+ },
+ "potato": {
+  "packGrams": null,
+  "records": [
+   {
+    "price": 29.99,
+    "grams": 1000,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/ovoshchi_frukty_griby_zelen_1/ovoshchi_svezhie_1/5585/",
+    "status": "found"
+   },
+   {
+    "price": 34.99,
+    "grams": 1000,
+    "shop": "pyaterochka",
+    "date": "2026-11-03",
+    "url": "https://www.newkaliningrad.ru/news/community/24169016-tseny-idut-na-sblizhenie-kak-izmenilas-stoimost-produktov-v-kaliningrade-v-noyabre.html",
+    "status": "found"
+   }
+  ]
+ },
+ "onion": {
+  "packGrams": null,
+  "records": [
+   {
+    "price": 69.99,
+    "grams": 1000,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/ovoshchi_frukty_griby_zelen_1/ovoshchi_svezhie_1/16398708/",
+    "status": "found"
+   },
+   {
+    "price": 71.99,
+    "grams": 1000,
+    "shop": "pyaterochka",
+    "date": "2026-11-03",
+    "url": "https://www.newkaliningrad.ru/news/community/24169016-tseny-idut-na-sblizhenie-kak-izmenilas-stoimost-produktov-v-kaliningrade-v-noyabre.html",
+    "status": "found"
+   }
+  ]
+ },
+ "carrot": {
+  "packGrams": null,
+  "records": [
+   {
+    "price": 89.99,
+    "grams": 1000,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/ovoshchi_frukty_griby_zelen_1/ovoshchi_svezhie_1/63076/",
+    "status": "found"
+   },
+   {
+    "price": 38.99,
+    "grams": 1000,
+    "shop": "pyaterochka",
+    "date": "2026-11-03",
+    "url": "https://www.newkaliningrad.ru/news/community/24169016-tseny-idut-na-sblizhenie-kak-izmenilas-stoimost-produktov-v-kaliningrade-v-noyabre.html",
+    "status": "found"
+   }
+  ]
+ },
+ "pepper": {
+  "packGrams": null,
+  "records": [
+   {
+    "price": 349.99,
+    "grams": 1000,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/ovoshchi_frukty_griby_zelen_1/ovoshchi_svezhie_1/3483/",
+    "status": "found"
+   }
+  ]
+ },
+ "tomato": {
+  "packGrams": null,
+  "records": [
+   {
+    "price": 269.99,
+    "grams": 1000,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/ovoshchi_frukty_griby_zelen_1/ovoshchi_svezhie_1/25565/",
+    "status": "found"
+   },
+   {
+    "price": 229.99,
+    "grams": 1000,
+    "shop": "pyaterochka",
+    "date": "2026-11-03",
+    "url": "https://www.newkaliningrad.ru/news/community/24169016-tseny-idut-na-sblizhenie-kak-izmenilas-stoimost-produktov-v-kaliningrade-v-noyabre.html",
+    "status": "found"
+   }
+  ]
+ },
+ "cucumber": {
+  "packGrams": null,
+  "records": [
+   {
+    "price": 249.99,
+    "grams": 1000,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/ovoshchi_frukty_griby_zelen_1/ovoshchi_svezhie_1/15981713/",
+    "status": "found"
+   },
+   {
+    "price": 129.99,
+    "grams": 1000,
+    "shop": "pyaterochka",
+    "date": "2026-11-03",
+    "url": "https://www.newkaliningrad.ru/news/community/24169016-tseny-idut-na-sblizhenie-kak-izmenilas-stoimost-produktov-v-kaliningrade-v-noyabre.html",
+    "status": "found"
+   }
+  ]
+ },
+ "zucchini": {
+  "packGrams": null,
+  "records": [
+   {
+    "price": 229.99,
+    "grams": 1000,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/ovoshchi_frukty_griby_zelen_1/ovoshchi_svezhie_1/13394246/",
+    "status": "found"
+   }
+  ]
+ },
+ "broccoli": {
+  "packGrams": null,
+  "records": [
+   {
+    "price": 299.99,
+    "grams": 700,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/ovoshchi_frukty_griby_zelen_1/zamorozhennye_ovoshchi_yagody_i_griby_1/13264201/",
+    "status": "found",
+    "note": "Замороженная."
+   }
+  ]
+ },
+ "cabbage": {
+  "packGrams": null,
+  "records": [
+   {
+    "price": 79.98,
+    "grams": 1000,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/ovoshchi_frukty_griby_zelen_1/ovoshchi_svezhie_1/26769696/",
+    "status": "found"
+   },
+   {
+    "price": 31.99,
+    "grams": 1000,
+    "shop": "pyaterochka",
+    "date": "2026-11-03",
+    "url": "https://www.newkaliningrad.ru/news/community/24169016-tseny-idut-na-sblizhenie-kak-izmenilas-stoimost-produktov-v-kaliningrade-v-noyabre.html",
+    "status": "found"
+   }
+  ]
+ },
+ "daikon": {
+  "packGrams": null,
+  "records": [
+   {
+    "price": 199.99,
+    "grams": 1000,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/ovoshchi_frukty_griby_zelen_1/ovoshchi_svezhie_1/5586/",
+    "status": "found"
+   }
+  ]
+ },
+ "garlic": {
+  "packGrams": null,
+  "records": [
+   {
+    "price": 299.99,
+    "grams": 1000,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/ovoshchi_frukty_griby_zelen_1/ovoshchi_svezhie_1/5584/",
+    "status": "found"
+   }
+  ]
+ },
+ "peking": {
+  "packGrams": null,
+  "records": [
+   {
+    "price": 189.99,
+    "grams": 1000,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/ovoshchi_frukty_griby_zelen_1/ovoshchi_svezhie_1/5579/",
+    "status": "found"
+   }
+  ]
+ },
+ "lemon": {
+  "packGrams": null,
+  "records": [
+   {
+    "price": 149.99,
+    "grams": 1000,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/ovoshchi_frukty_griby_zelen_1/frukty_i_yagody_1/3476/",
+    "status": "found"
+   },
+   {
+    "price": 129.99,
+    "grams": 1000,
+    "shop": "pyaterochka",
+    "date": "2026-11-03",
+    "url": "https://www.newkaliningrad.ru/news/community/24169016-tseny-idut-na-sblizhenie-kak-izmenilas-stoimost-produktov-v-kaliningrade-v-noyabre.html",
+    "status": "found"
+   }
+  ]
+ },
+ "banana": {
+  "packGrams": null,
+  "records": [
+   {
+    "price": 159.99,
+    "grams": 1000,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/ovoshchi_frukty_griby_zelen_1/frukty_i_yagody_1/3475/",
+    "status": "found"
+   },
+   {
+    "price": 159.99,
+    "grams": 1000,
+    "shop": "pyaterochka",
+    "date": "2026-11-03",
+    "url": "https://www.newkaliningrad.ru/news/community/24169016-tseny-idut-na-sblizhenie-kak-izmenilas-stoimost-produktov-v-kaliningrade-v-noyabre.html",
+    "status": "found"
+   }
+  ]
+ },
+ "apple": {
+  "packGrams": null,
+  "records": [
+   {
+    "price": 159.99,
+    "grams": 1000,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/ovoshchi_frukty_griby_zelen_1/frukty_i_yagody_1/5553/",
+    "status": "found"
+   },
+   {
+    "price": 139.99,
+    "grams": 1000,
+    "shop": "pyaterochka",
+    "date": "2026-11-03",
+    "url": "https://www.newkaliningrad.ru/news/community/24169016-tseny-idut-na-sblizhenie-kak-izmenilas-stoimost-produktov-v-kaliningrade-v-noyabre.html",
+    "status": "found"
+   }
+  ]
+ },
+ "mandarin": {
+  "packGrams": null,
+  "records": [
+   {
+    "price": 199.99,
+    "grams": 1000,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/ovoshchi_frukty_griby_zelen_1/frukty_i_yagody_1/18409948/",
+    "status": "found"
+   }
+  ]
+ },
+ "mush": {
+  "packGrams": null,
+  "records": [
+   {
+    "price": 379.98,
+    "grams": 1000,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/ovoshchi_frukty_griby_zelen_1/griby_1/28941/",
+    "status": "found"
+   }
+  ]
+ },
+ "spinach": {
+  "packGrams": 125,
+  "records": [
+   {
+    "price": 259.99,
+    "grams": 125,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/?q=%D0%A8%D0%BF%D0%B8%D0%BD%D0%B0%D1%82",
+    "status": "found",
+    "note": "Свежий; замороженный стоит 199,99 ₽ за 400 г."
+   }
+  ]
+ },
+ "greens": {
+  "packGrams": 150,
+  "records": [
+   {
+    "price": 129.99,
+    "grams": 150,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/ovoshchi_frukty_griby_zelen_1/zelen_1/5609/",
+    "status": "found",
+    "note": "Петрушка."
+   }
+  ]
+ },
+ "iceberg": {
+  "packGrams": 400,
+  "records": [
+   {
+    "price": 229.88,
+    "grams": 400,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/ovoshchi_frukty_griby_zelen_1/zelen_1/2161/",
+    "status": "found",
+    "note": "Цена за штуку; вес кочана 400 г предположен."
+   }
+  ]
+ },
+ "vegmix": {
+  "packGrams": 400,
+  "records": [
+   {
+    "price": 169.99,
+    "grams": 400,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/zamorozhennaya_produktsiya_1/zamorozhennye_ovoshchi_yagody_i_griby/14048046/",
+    "status": "found"
+   }
+  ]
+ },
+ "gbeans": {
+  "packGrams": 400,
+  "records": [
+   {
+    "price": 159.99,
+    "grams": 400,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/zamorozhennaya_produktsiya_1/zamorozhennye_ovoshchi_yagody_i_griby/27624154/",
+    "status": "found"
+   }
+  ]
+ },
+ "berries": {
+  "packGrams": 400,
+  "records": [
+   {
+    "price": 289.99,
+    "grams": 400,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/?q=%D0%AF%D0%B3%D0%BE%D0%B4%D0%BD%D1%8B%D0%B9%20%D0%BA%D0%BE%D0%BA%D1%82%D0%B5%D0%B9%D0%BB%D1%8C",
+    "status": "found"
+   }
+  ]
+ },
+ "ctomato": {
+  "packGrams": 400,
+  "records": [
+   {
+    "price": 139.99,
+    "grams": 400,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/bakaleya/ovoshchnaya_konservatsiya_aktsiya/ogurtsy_pomidory_patissony_konservirovannye/1568/",
+    "status": "found"
+   }
+  ]
+ },
+ "tpaste": {
+  "packGrams": 270,
+  "records": [
+   {
+    "price": 89.99,
+    "grams": 270,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/bakaleya/sousy_uksus/4453420/",
+    "status": "found"
+   }
+  ]
+ },
+ "beans": {
+  "packGrams": 400,
+  "records": [
+   {
+    "price": 129.99,
+    "grams": 400,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/bakaleya/ovoshchnaya_konservatsiya_aktsiya/goroshek_kukuruza_fasol/5989663/",
+    "status": "found",
+    "note": "Вес с заливкой."
+   }
+  ]
+ },
+ "corn": {
+  "packGrams": 340,
+  "records": [
+   {
+    "price": 129.99,
+    "grams": 340,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/bakaleya/ovoshchnaya_konservatsiya_aktsiya/goroshek_kukuruza_fasol/19974535/",
+    "status": "found",
+    "note": "Вес с заливкой."
+   }
+  ]
+ },
+ "chickpea": {
+  "packGrams": 400,
+  "records": [
+   {
+    "price": 130,
+    "grams": 400,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": null,
+    "status": "estimate",
+    "note": "Консервированного нута в каталоге SPAR нет; взята цена фасоли."
+   }
+  ]
+ },
+ "lentr": {
+  "packGrams": 500,
+  "records": [
+   {
+    "price": 139.99,
+    "grams": 500,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/bakaleya/ovoshchnaya_konservatsiya_aktsiya/goroshek_kukuruza_fasol/29860/",
+    "status": "found"
+   }
+  ]
+ },
+ "lentg": {
+  "packGrams": 500,
+  "records": [
+   {
+    "price": 159.99,
+    "grams": 500,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/bakaleya/krupy/9351231/",
+    "status": "found"
+   }
+  ]
+ },
+ "coconut": {
+  "packGrams": 400,
+  "records": [
+   {
+    "price": 339.99,
+    "grams": 400,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/bakaleya/natsionalnaya_kukhnya/26770023/",
+    "status": "found",
+    "note": "Жирность не указана."
+   }
+  ]
+ },
+ "oil": {
+  "packGrams": 920,
+  "records": [
+   {
+    "price": 229.99,
+    "grams": 920,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/bakaleya/rastitelnoe_maslo/1531/",
+    "status": "found",
+    "note": "1 л."
+   },
+   {
+    "price": 219.99,
+    "grams": 920,
+    "shop": "pyaterochka",
+    "date": "2026-11-03",
+    "url": "https://www.newkaliningrad.ru/news/community/24169016-tseny-idut-na-sblizhenie-kak-izmenilas-stoimost-produktov-v-kaliningrade-v-noyabre.html",
+    "status": "found",
+    "note": "1 л."
+   }
+  ]
+ },
+ "sesoil": {
+  "packGrams": 230,
+  "records": [
+   {
+    "price": 259.99,
+    "grams": 230,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/bakaleya/rastitelnoe_maslo/11026413/",
+    "status": "found",
+    "note": "250 мл."
+   }
+  ]
+ },
+ "soy": {
+  "packGrams": 575,
+  "records": [
+   {
+    "price": 129.99,
+    "grams": 575,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/bakaleya/sousy_uksus/7591840/",
+    "status": "found",
+    "note": "500 мл."
+   }
+  ]
+ },
+ "vinegar": {
+  "packGrams": 220,
+  "records": [
+   {
+    "price": 184.99,
+    "grams": 220,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/bakaleya/natsionalnaya_kukhnya/7591861/",
+    "status": "found",
+    "note": "Рисовый, 220 мл."
+   }
+  ]
+ },
+ "ketchup": {
+  "packGrams": 320,
+  "records": [
+   {
+    "price": 109.99,
+    "grams": 320,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/?q=%D0%9A%D0%B5%D1%82%D1%87%D1%83%D0%BF%20SPAR",
+    "status": "found"
+   }
+  ]
+ },
+ "gochu": {
+  "packGrams": 200,
+  "records": [
+   {
+    "price": 350,
+    "grams": 200,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": null,
+    "status": "estimate",
+    "note": "В каталоге SPAR нет."
+   }
+  ]
+ },
+ "pbutter": {
+  "packGrams": 250,
+  "records": [
+   {
+    "price": 260,
+    "grams": 250,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": null,
+    "status": "estimate",
+    "note": "Пасты без сахара в каталоге SPAR нет; паста с какао стоит 229,99 ₽ за 220 г."
+   }
+  ]
+ },
+ "honey": {
+  "packGrams": 500,
+  "records": [
+   {
+    "price": 249.99,
+    "grams": 500,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/bakaleya/fruktovo_yagodnaya_konservatsiya_myed/myed/11415644/",
+    "status": "found"
+   }
+  ]
+ },
+ "sugar": {
+  "packGrams": 1000,
+  "records": [
+   {
+    "price": 99.99,
+    "grams": 1000,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/bakaleya/muka_krakhmal_sakhar/9544330/",
+    "status": "found"
+   },
+   {
+    "price": 99.99,
+    "grams": 1000,
+    "shop": "pyaterochka",
+    "date": "2026-11-03",
+    "url": "https://www.newkaliningrad.ru/news/community/24169016-tseny-idut-na-sblizhenie-kak-izmenilas-stoimost-produktov-v-kaliningrade-v-noyabre.html",
+    "status": "found"
+   }
+  ]
+ },
+ "starch": {
+  "packGrams": 200,
+  "records": [
+   {
+    "price": 59.99,
+    "grams": 200,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/bakaleya/muka_krakhmal_sakhar/19495773/",
+    "status": "found"
+   }
+  ]
+ },
+ "nuts": {
+  "packGrams": 100,
+  "records": [
+   {
+    "price": 219.99,
+    "grams": 100,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/ovoshchi_frukty_griby_zelen_1/orekhi_semechki_1/1752/",
+    "status": "found",
+    "note": "Грецкий орех."
+   }
+  ]
+ },
+ "choc": {
+  "packGrams": 100,
+  "records": [
+   {
+    "price": 329.99,
+    "grams": 100,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/?q=%D0%9C%D0%B5%D1%80%D1%81%D0%B8%2072%25",
+    "status": "found"
+   }
+  ]
+ },
+ "hummus": {
+  "packGrams": 200,
+  "records": [
+   {
+    "price": 279.99,
+    "grams": 200,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/bakaleya/ovoshchnaya_konservatsiya_aktsiya/ovoshchnye_zakuski/5823/",
+    "status": "found"
+   }
+  ]
+ },
+ "crumbs": {
+  "packGrams": 500,
+  "records": [
+   {
+    "price": 94.99,
+    "grams": 500,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/bakaleya/spetsii_pripravy_i_sol/1451/",
+    "status": "found"
+   }
+  ]
+ },
+ "semolina": {
+  "packGrams": 700,
+  "records": [
+   {
+    "price": 64.99,
+    "grams": 700,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/bakaleya/krupy/1469/",
+    "status": "found"
+   }
+  ]
+ },
+ "crisp": {
+  "packGrams": 150,
+  "records": [
+   {
+    "price": 124.99,
+    "grams": 150,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/bakaleya/zdorovoe_pitanie_dieticheskie_produkty/7512/",
+    "status": "found"
+   }
+  ]
+ },
+ "dates": {
+  "packGrams": 270,
+  "records": [
+   {
+    "price": 159.99,
+    "grams": 270,
+    "shop": "spar",
+    "date": "2026-11-25",
+    "url": "https://spar-online.ru/catalog/bakaleya/sukhofrukty_smesi_2/459803/",
+    "status": "found"
+   }
+  ]
+ }
+}

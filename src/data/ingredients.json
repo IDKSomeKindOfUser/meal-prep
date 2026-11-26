@@ -1,0 +1,1498 @@
+[
+ {
+  "id": "chicken",
+  "name": "Куриное филе (грудка)",
+  "category": "Мясо",
+  "kcal": 120,
+  "protein": 22.5,
+  "fat": 2.6,
+  "carbs": 0,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "weight",
+  "place": "market",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "beef",
+  "name": "Говядина постная (лопатка, вырезка)",
+  "category": "Мясо",
+  "kcal": 150,
+  "protein": 21,
+  "fat": 7,
+  "carbs": 0,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "weight",
+  "place": "market",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "bmince",
+  "name": "Говядина на фарш (лопатка, шея)",
+  "category": "Мясо",
+  "kcal": 160,
+  "protein": 19.5,
+  "fat": 9,
+  "carbs": 0,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "weight",
+  "place": "market",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "bfat",
+  "name": "Говяжий жир почечный (для фарша)",
+  "category": "Мясо",
+  "kcal": 850,
+  "protein": 1.5,
+  "fat": 94,
+  "carbs": 0,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "weight",
+  "place": "market",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "egg",
+  "name": "Яйца C1",
+  "category": "Яйца и молочное",
+  "kcal": 143,
+  "protein": 12.6,
+  "fat": 9.5,
+  "carbs": 0.7,
+  "pieceGrams": 55,
+  "pieceLabel": "шт",
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [
+    "eggs"
+   ],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "cottage",
+  "name": "Творог 5%",
+  "category": "Яйца и молочное",
+  "kcal": 121,
+  "protein": 16,
+  "fat": 5,
+  "carbs": 3,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [
+    "milk"
+   ],
+   "may": []
+  },
+  "lactose": "yes"
+ },
+ {
+  "id": "milk",
+  "name": "Молоко безлактозное 1,5%",
+  "category": "Яйца и молочное",
+  "kcal": 45,
+  "protein": 3,
+  "fat": 1.5,
+  "carbs": 4.8,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [
+    "milk"
+   ],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "kefir",
+  "name": "Кефир 1%",
+  "category": "Яйца и молочное",
+  "kcal": 40,
+  "protein": 3,
+  "fat": 1,
+  "carbs": 4,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [
+    "milk"
+   ],
+   "may": []
+  },
+  "lactose": "yes"
+ },
+ {
+  "id": "cheese",
+  "name": "Сыр твёрдый (гауда, российский)",
+  "category": "Яйца и молочное",
+  "kcal": 350,
+  "protein": 25,
+  "fat": 27,
+  "carbs": 0,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [
+    "milk"
+   ],
+   "may": [
+    "eggs"
+   ]
+  },
+  "lactose": "low"
+ },
+ {
+  "id": "yogurt",
+  "name": "Греческий йогурт 2%",
+  "category": "Яйца и молочное",
+  "kcal": 73,
+  "protein": 10,
+  "fat": 2,
+  "carbs": 3.6,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [
+    "milk"
+   ],
+   "may": []
+  },
+  "lactose": "yes"
+ },
+ {
+  "id": "rice",
+  "name": "Рис длиннозёрный",
+  "category": "Крупы и хлеб",
+  "kcal": 360,
+  "protein": 6.7,
+  "fat": 0.6,
+  "carbs": 79,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "buckw",
+  "name": "Гречка",
+  "category": "Крупы и хлеб",
+  "kcal": 313,
+  "protein": 12.6,
+  "fat": 3.3,
+  "carbs": 62,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": [
+    "gluten"
+   ]
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "bulgur",
+  "name": "Булгур",
+  "category": "Крупы и хлеб",
+  "kcal": 342,
+  "protein": 12.3,
+  "fat": 1.3,
+  "carbs": 76,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [
+    "gluten"
+   ],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "couscous",
+  "name": "Кускус",
+  "category": "Крупы и хлеб",
+  "kcal": 376,
+  "protein": 12.8,
+  "fat": 0.6,
+  "carbs": 77,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [
+    "gluten"
+   ],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "pasta",
+  "name": "Макароны из твёрдых сортов",
+  "category": "Крупы и хлеб",
+  "kcal": 350,
+  "protein": 12,
+  "fat": 1.5,
+  "carbs": 71,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [
+    "gluten"
+   ],
+   "may": [
+    "eggs"
+   ]
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "noodle",
+  "name": "Лапша пшеничная или спагетти",
+  "category": "Крупы и хлеб",
+  "kcal": 350,
+  "protein": 11,
+  "fat": 1.5,
+  "carbs": 72,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [
+    "gluten"
+   ],
+   "may": [
+    "eggs"
+   ]
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "oats",
+  "name": "Овсяные хлопья",
+  "category": "Крупы и хлеб",
+  "kcal": 352,
+  "protein": 12.3,
+  "fat": 6.2,
+  "carbs": 61.8,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [
+    "gluten"
+   ],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "flour",
+  "name": "Мука пшеничная",
+  "category": "Крупы и хлеб",
+  "kcal": 364,
+  "protein": 10.3,
+  "fat": 1,
+  "carbs": 76,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [
+    "gluten"
+   ],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "bread",
+  "name": "Хлеб белый (или любой)",
+  "category": "Крупы и хлеб",
+  "kcal": 265,
+  "protein": 8,
+  "fat": 3.2,
+  "carbs": 49,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [
+    "gluten"
+   ],
+   "may": [
+    "milk",
+    "eggs",
+    "soy",
+    "sesame"
+   ]
+  },
+  "lactose": "low"
+ },
+ {
+  "id": "lavash",
+  "name": "Лаваш тонкий",
+  "category": "Крупы и хлеб",
+  "kcal": 275,
+  "protein": 9,
+  "fat": 1.2,
+  "carbs": 56,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [
+    "gluten"
+   ],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "tortilla",
+  "name": "Тортилья пшеничная",
+  "category": "Крупы и хлеб",
+  "kcal": 310,
+  "protein": 8,
+  "fat": 7.5,
+  "carbs": 52,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [
+    "gluten"
+   ],
+   "may": [
+    "milk",
+    "soy"
+   ]
+  },
+  "lactose": "low"
+ },
+ {
+  "id": "potato",
+  "name": "Картофель",
+  "category": "Овощи",
+  "kcal": 77,
+  "protein": 2,
+  "fat": 0.1,
+  "carbs": 17,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "weight",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "onion",
+  "name": "Лук репчатый",
+  "category": "Овощи",
+  "kcal": 40,
+  "protein": 1.1,
+  "fat": 0.1,
+  "carbs": 9,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "weight",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "carrot",
+  "name": "Морковь",
+  "category": "Овощи",
+  "kcal": 41,
+  "protein": 0.9,
+  "fat": 0.2,
+  "carbs": 9.6,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "weight",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "pepper",
+  "name": "Перец болгарский",
+  "category": "Овощи",
+  "kcal": 27,
+  "protein": 1,
+  "fat": 0.3,
+  "carbs": 5.3,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "weight",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "tomato",
+  "name": "Помидоры",
+  "category": "Овощи",
+  "kcal": 18,
+  "protein": 0.9,
+  "fat": 0.2,
+  "carbs": 3.9,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "weight",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "cucumber",
+  "name": "Огурцы",
+  "category": "Овощи",
+  "kcal": 15,
+  "protein": 0.7,
+  "fat": 0.1,
+  "carbs": 3.6,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "weight",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "zucchini",
+  "name": "Кабачок",
+  "category": "Овощи",
+  "kcal": 17,
+  "protein": 1.2,
+  "fat": 0.3,
+  "carbs": 3.1,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "weight",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "broccoli",
+  "name": "Брокколи (можно замороженную)",
+  "category": "Овощи",
+  "kcal": 34,
+  "protein": 2.8,
+  "fat": 0.4,
+  "carbs": 6.6,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "weight",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "cabbage",
+  "name": "Капуста белокочанная",
+  "category": "Овощи",
+  "kcal": 25,
+  "protein": 1.3,
+  "fat": 0.1,
+  "carbs": 5.8,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "weight",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "spinach",
+  "name": "Шпинат (можно замороженный)",
+  "category": "Овощи",
+  "kcal": 23,
+  "protein": 2.9,
+  "fat": 0.4,
+  "carbs": 3.6,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "daikon",
+  "name": "Редька (дайкон)",
+  "category": "Овощи",
+  "kcal": 18,
+  "protein": 0.6,
+  "fat": 0.1,
+  "carbs": 4,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "weight",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "vegmix",
+  "name": "Смесь замороженная: горошек, морковь, кукуруза",
+  "category": "Овощи",
+  "kcal": 65,
+  "protein": 3,
+  "fat": 0.5,
+  "carbs": 13,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "garlic",
+  "name": "Чеснок",
+  "category": "Овощи",
+  "kcal": 149,
+  "protein": 6.4,
+  "fat": 0.5,
+  "carbs": 33,
+  "pieceGrams": 5,
+  "pieceLabel": "зуб.",
+  "buyBy": "weight",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "greens",
+  "name": "Зелень (кинза, петрушка, укроп)",
+  "category": "Овощи",
+  "kcal": 30,
+  "protein": 2.5,
+  "fat": 0.5,
+  "carbs": 4,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "lemon",
+  "name": "Лимон",
+  "category": "Фрукты",
+  "kcal": 29,
+  "protein": 1.1,
+  "fat": 0.3,
+  "carbs": 9,
+  "pieceGrams": 100,
+  "pieceLabel": "шт",
+  "buyBy": "weight",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "banana",
+  "name": "Бананы",
+  "category": "Фрукты",
+  "kcal": 89,
+  "protein": 1.1,
+  "fat": 0.3,
+  "carbs": 23,
+  "pieceGrams": 120,
+  "pieceLabel": "шт",
+  "buyBy": "weight",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "apple",
+  "name": "Яблоки",
+  "category": "Фрукты",
+  "kcal": 52,
+  "protein": 0.3,
+  "fat": 0.2,
+  "carbs": 14,
+  "pieceGrams": 180,
+  "pieceLabel": "шт",
+  "buyBy": "weight",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "berries",
+  "name": "Ягоды замороженные",
+  "category": "Фрукты",
+  "kcal": 45,
+  "protein": 0.8,
+  "fat": 0.3,
+  "carbs": 10,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "ctomato",
+  "name": "Томаты в собственном соку (банка)",
+  "category": "Консервы",
+  "kcal": 22,
+  "protein": 1,
+  "fat": 0.2,
+  "carbs": 4,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "tpaste",
+  "name": "Томатная паста",
+  "category": "Консервы",
+  "kcal": 82,
+  "protein": 4.3,
+  "fat": 0.5,
+  "carbs": 18,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "beans",
+  "name": "Фасоль красная консервированная",
+  "category": "Консервы",
+  "kcal": 110,
+  "protein": 7.5,
+  "fat": 0.5,
+  "carbs": 16,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "corn",
+  "name": "Кукуруза консервированная",
+  "category": "Консервы",
+  "kcal": 70,
+  "protein": 2.3,
+  "fat": 1.2,
+  "carbs": 13,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "coconut",
+  "name": "Кокосовое молоко (жирность до 12%)",
+  "category": "Консервы",
+  "kcal": 110,
+  "protein": 1,
+  "fat": 10,
+  "carbs": 3,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "oil",
+  "name": "Масло растительное",
+  "category": "Бакалея и соусы",
+  "kcal": 900,
+  "protein": 0,
+  "fat": 100,
+  "carbs": 0,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "sesoil",
+  "name": "Масло кунжутное",
+  "category": "Бакалея и соусы",
+  "kcal": 900,
+  "protein": 0,
+  "fat": 100,
+  "carbs": 0,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [
+    "sesame"
+   ],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "soy",
+  "name": "Соевый соус",
+  "category": "Бакалея и соусы",
+  "kcal": 53,
+  "protein": 8,
+  "fat": 0.6,
+  "carbs": 5,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [
+    "soy",
+    "gluten"
+   ],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "honey",
+  "name": "Мёд",
+  "category": "Бакалея и соусы",
+  "kcal": 304,
+  "protein": 0.3,
+  "fat": 0,
+  "carbs": 82,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "sugar",
+  "name": "Сахар",
+  "category": "Бакалея и соусы",
+  "kcal": 400,
+  "protein": 0,
+  "fat": 0,
+  "carbs": 100,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "starch",
+  "name": "Крахмал кукурузный",
+  "category": "Бакалея и соусы",
+  "kcal": 343,
+  "protein": 0.3,
+  "fat": 0,
+  "carbs": 86,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": [
+    "gluten"
+   ]
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "gochu",
+  "name": "Паста кочхуджан (острая)",
+  "category": "Бакалея и соусы",
+  "kcal": 220,
+  "protein": 4,
+  "fat": 2,
+  "carbs": 45,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [
+    "soy",
+    "gluten"
+   ],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "ketchup",
+  "name": "Кетчуп",
+  "category": "Бакалея и соусы",
+  "kcal": 100,
+  "protein": 1.5,
+  "fat": 0.2,
+  "carbs": 24,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": [
+    "mustard"
+   ]
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "vinegar",
+  "name": "Уксус рисовый или яблочный",
+  "category": "Бакалея и соусы",
+  "kcal": 18,
+  "protein": 0,
+  "fat": 0,
+  "carbs": 1,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "pbutter",
+  "name": "Арахисовая паста без сахара",
+  "category": "Бакалея и соусы",
+  "kcal": 600,
+  "protein": 25,
+  "fat": 50,
+  "carbs": 20,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [
+    "peanuts"
+   ],
+   "may": [
+    "nuts",
+    "sesame"
+   ]
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "nuts",
+  "name": "Орехи (грецкие, миндаль)",
+  "category": "Бакалея и соусы",
+  "kcal": 610,
+  "protein": 18,
+  "fat": 57,
+  "carbs": 15,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [
+    "nuts"
+   ],
+   "may": [
+    "peanuts"
+   ]
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "choc",
+  "name": "Шоколад тёмный 70%",
+  "category": "Бакалея и соусы",
+  "kcal": 598,
+  "protein": 7.8,
+  "fat": 42.6,
+  "carbs": 45.9,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": [
+    "milk",
+    "nuts",
+    "peanuts",
+    "soy",
+    "gluten"
+   ]
+  },
+  "lactose": "low"
+ },
+ {
+  "id": "hummus",
+  "name": "Хумус (готовый)",
+  "category": "Бакалея и соусы",
+  "kcal": 260,
+  "protein": 7,
+  "fat": 19,
+  "carbs": 14,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [
+    "sesame"
+   ],
+   "may": [
+    "mustard"
+   ]
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "mush",
+  "name": "Шампиньоны",
+  "category": "Овощи",
+  "kcal": 22,
+  "protein": 3.1,
+  "fat": 0.3,
+  "carbs": 3.3,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "weight",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "crumbs",
+  "name": "Панировочные сухари",
+  "category": "Крупы и хлеб",
+  "kcal": 395,
+  "protein": 10,
+  "fat": 2.5,
+  "carbs": 78,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [
+    "gluten"
+   ],
+   "may": [
+    "milk",
+    "eggs",
+    "soy",
+    "sesame"
+   ]
+  },
+  "lactose": "low"
+ },
+ {
+  "id": "semolina",
+  "name": "Манка",
+  "category": "Крупы и хлеб",
+  "kcal": 333,
+  "protein": 10.3,
+  "fat": 1,
+  "carbs": 70.6,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [
+    "gluten"
+   ],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "crisp",
+  "name": "Хлебцы цельнозерновые",
+  "category": "Крупы и хлеб",
+  "kcal": 330,
+  "protein": 11,
+  "fat": 2.5,
+  "carbs": 60,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [
+    "gluten"
+   ],
+   "may": [
+    "milk",
+    "nuts",
+    "soy",
+    "sesame"
+   ]
+  },
+  "lactose": "low"
+ },
+ {
+  "id": "dates",
+  "name": "Финики",
+  "category": "Фрукты",
+  "kcal": 282,
+  "protein": 2.5,
+  "fat": 0.4,
+  "carbs": 75,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": [
+    "nuts",
+    "peanuts"
+   ]
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "mandarin",
+  "name": "Мандарины",
+  "category": "Фрукты",
+  "kcal": 53,
+  "protein": 0.8,
+  "fat": 0.3,
+  "carbs": 13,
+  "pieceGrams": 80,
+  "pieceLabel": "шт",
+  "buyBy": "weight",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "chickpea",
+  "name": "Нут консервированный",
+  "category": "Консервы",
+  "kcal": 140,
+  "protein": 7,
+  "fat": 2.6,
+  "carbs": 22,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "lentr",
+  "name": "Чечевица красная",
+  "category": "Крупы и хлеб",
+  "kcal": 358,
+  "protein": 24,
+  "fat": 2.2,
+  "carbs": 63,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": [
+    "gluten"
+   ]
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "lentg",
+  "name": "Чечевица зелёная или коричневая",
+  "category": "Крупы и хлеб",
+  "kcal": 352,
+  "protein": 24.6,
+  "fat": 1.1,
+  "carbs": 63,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": [
+    "gluten"
+   ]
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "thigh",
+  "name": "Куриное бедро, филе без кожи",
+  "category": "Мясо",
+  "kcal": 140,
+  "protein": 19,
+  "fat": 7,
+  "carbs": 0,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "weight",
+  "place": "market",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "turkey",
+  "name": "Филе индейки (или фарш из него)",
+  "category": "Мясо",
+  "kcal": 115,
+  "protein": 24,
+  "fat": 1.5,
+  "carbs": 0,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "weight",
+  "place": "market",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "pork",
+  "name": "Свиная вырезка",
+  "category": "Мясо",
+  "kcal": 125,
+  "protein": 21,
+  "fat": 4,
+  "carbs": 0,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "weight",
+  "place": "market",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "salmon",
+  "name": "Красная рыба (сёмга, форель)",
+  "category": "Рыба и креветки",
+  "kcal": 200,
+  "protein": 20,
+  "fat": 13,
+  "carbs": 0,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "weight",
+  "place": "market",
+  "allergens": {
+   "contains": [
+    "fish"
+   ],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "pink",
+  "name": "Горбуша или кета",
+  "category": "Рыба и креветки",
+  "kcal": 135,
+  "protein": 20.5,
+  "fat": 5.5,
+  "carbs": 0,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "weight",
+  "place": "market",
+  "allergens": {
+   "contains": [
+    "fish"
+   ],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "salmsalt",
+  "name": "Сёмга или форель слабосолёная",
+  "category": "Рыба и креветки",
+  "kcal": 200,
+  "protein": 21,
+  "fat": 12,
+  "carbs": 0,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [
+    "fish"
+   ],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "shrimp",
+  "name": "Креветки очищенные с/м",
+  "category": "Рыба и креветки",
+  "kcal": 90,
+  "protein": 20,
+  "fat": 1,
+  "carbs": 0,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [
+    "crustaceans"
+   ],
+   "may": [
+    "fish"
+   ]
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "peking",
+  "name": "Пекинская капуста",
+  "category": "Овощи",
+  "kcal": 16,
+  "protein": 1.2,
+  "fat": 0.2,
+  "carbs": 3.2,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "weight",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "iceberg",
+  "name": "Салат айсберг",
+  "category": "Овощи",
+  "kcal": 14,
+  "protein": 0.9,
+  "fat": 0.1,
+  "carbs": 3,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "gbeans",
+  "name": "Фасоль стручковая с/м",
+  "category": "Овощи",
+  "kcal": 31,
+  "protein": 1.8,
+  "fat": 0.2,
+  "carbs": 7,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "pack",
+  "place": "store",
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ },
+ {
+  "id": "water",
+  "name": "Вода",
+  "category": "",
+  "kcal": 0,
+  "protein": 0,
+  "fat": 0,
+  "carbs": 0,
+  "pieceGrams": null,
+  "pieceLabel": null,
+  "buyBy": "free",
+  "place": null,
+  "allergens": {
+   "contains": [],
+   "may": []
+  },
+  "lactose": "none"
+ }
+]

@@ -1,0 +1,66 @@
+import { useMemo, type MouseEvent } from 'react'
+import { alternatives, type Report } from '../planner'
+import { SLOTS, type Slot } from '../planner/types'
+import { blockDays } from './DishScreen'
+import { num, rub, signed, SLOT } from './labels'
+import { dishHash } from './route'
+import type { Catalog } from '../planner/types'
+import type { SavedPlan } from './storage'
+
+interface Props {
+  plan: SavedPlan
+  report: Report
+  block: number
+  slot: Slot
+  catalog: Catalog
+  busy: boolean
+  onBack: (e: MouseEvent) => void
+  onChoose: (recipeId: string) => void
+}
+
+export function SwapScreen({ plan, report, block: index, slot, catalog, busy, onBack, onChoose }: Props) {
+  const { menu, settings } = plan
+  const options = useMemo(() => alternatives(menu, index, slot, settings, catalog), [menu, index, slot, settings, catalog])
+  const { block, day } = report.blocks[index]!
+  const now = day.dishes[SLOTS.indexOf(slot)]!.recipe
+  const { total } = report.shopping
+  const usedIn = (id: string) => {
+    const same = SLOTS.find((s) => s !== slot && menu[index]![s] === id)
+    if (same) return `Уже есть в эти дни: ${SLOT[same].toLowerCase()}`
+    return menu.some((row) => SLOTS.some((s) => row[s] === id)) ? 'Уже есть в меню' : null
+  }
+  return (
+    <>
+      <div className="top"><a className="back" href={dishHash(index, slot)} onClick={onBack}>Назад к рецепту</a></div>
+      <header>
+        <h1 tabIndex={-1}>Чем заменить</h1>
+        <p className="sub">Сейчас: {now.name}. {SLOT[slot]}, {blockDays(plan.start, block)}.</p>
+        <p className="sub">
+          {block.days > 1 && 'Блюдо сменится на все эти дни. '}
+          Сначала те, с которыми день ближе к норме: {num(settings.kcal)} ккал и {num(settings.protein)} г белка.
+        </p>
+      </header>
+      {options.length === 0 && <section><p>Других блюд под ваши ограничения нет. Ослабьте их в настройках и соберите меню заново.</p></section>}
+      <ul className="options">
+        {options.map(({ recipe, kcal, protein, costChange }) => {
+          const used = usedIn(recipe.id)
+          const over = settings.budget === null ? 0 : total + costChange - settings.budget
+          return (
+            <li key={recipe.id}>
+              <div>
+                <h2>{recipe.name}</h2>
+                <p>День: {num(kcal)} ккал ({signed(kcal - day.kcal)}), белка {num(protein)} г ({signed(protein - day.protein)})</p>
+                <p>
+                  Чек за {settings.weeks === 1 ? 'неделю' : '4 недели'}: {signed(Math.ceil(total + costChange) - Math.ceil(total))} ₽, готовить {recipe.minutes} мин
+                </p>
+                {used && <p>{used}</p>}
+                {over > 0 && <p className="warn">Выше бюджета на {rub(over)}</p>}
+              </div>
+              <button type="button" disabled={busy} aria-label={`Выбрать: ${recipe.name}`} onClick={() => onChoose(recipe.id)}>Выбрать</button>
+            </li>
+          )
+        })}
+      </ul>
+    </>
+  )
+}

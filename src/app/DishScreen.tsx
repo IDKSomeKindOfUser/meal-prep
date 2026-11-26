@@ -1,0 +1,86 @@
+import { recipeAllergens } from '../data'
+import type { Report } from '../planner'
+import { frozenDays, type Block } from '../planner/schedule'
+import { SLOTS, type Catalog, type Slot } from '../planner/types'
+import { addDays, dayMonth, weekday, weekdayShort } from './dates'
+import { DishPicture } from './DishPicture'
+import { ALLERGEN, amount, count, daysCount, num, SLOT } from './labels'
+import { recipeHash, swapHash } from './route'
+import type { SavedPlan } from './storage'
+
+interface Props {
+  plan: SavedPlan
+  report: Report
+  catalog: Catalog
+  /** The recipe was added by the user. */
+  isOwn: (recipeId: string) => boolean
+  block: number
+  slot: Slot
+  origin: 'today' | 'week'
+  onSwap: () => void
+}
+
+/** The days a block is eaten on. */
+export function blockDays(start: string, block: Block): string {
+  const first = addDays(start, block.firstDay)
+  const last = addDays(start, block.firstDay + block.days - 1)
+  return block.days === 1 ? `${weekday(first)}, ${dayMonth(first)}` : `${weekdayShort(first)} – ${weekdayShort(last)}, ${dayMonth(first)} – ${dayMonth(last)}`
+}
+
+export function DishScreen({ plan, report, catalog, isOwn, block: index, slot, origin, onSwap }: Props) {
+  const { block, day } = report.blocks[index]!
+  const dish = day.dishes[SLOTS.indexOf(slot)]!
+  const { recipe } = dish
+  const frozen = frozenDays(recipe, block)
+  const percent = Math.round(dish.scale * 100)
+  const { contains, may } = recipeAllergens(recipe, catalog.ingredient)
+  const names = (list: typeof may) => list.map((a) => ALLERGEN[a].toLowerCase()).join(', ')
+  const source = recipe.source as { name: string; url: string } | null
+  const cook = addDays(plan.start, block.cookDay)
+  return (
+    <article className="recipe">
+      <div className="top"><a className="back" href={`#${origin}`}>{origin === 'today' ? 'Назад к меню дня' : 'Назад к меню недели'}</a></div>
+      <div className="dish hero" data-slot={slot}>
+        <h1 tabIndex={-1}>{recipe.name}</h1>
+        <p>{SLOT[slot]}, {blockDays(plan.start, block)}</p>
+        <p>Порция: {num(dish.kcal)} ккал, белки {num(dish.protein)} г, жиры {num(dish.fat)} г, углеводы {num(dish.carbs)} г</p>
+        <DishPicture recipe={recipe} />
+      </div>
+      <section>
+        <p>Готовим: {weekday(cook)}, {dayMonth(cook)}, около {recipe.minutes} мин.</p>
+        <p>
+          Хранится в холодильнике {daysCount(recipe.keepDays)}
+          {frozen.length > 0 && `. В морозилку: порции на ${frozen.map((d) => weekdayShort(addDays(plan.start, d))).join(', ')}`}.
+        </p>
+        {(contains.length > 0 || may.length > 0) && (
+          <p>
+            Аллергены: {contains.length > 0 ? names(contains) : 'нет явных'}
+            {may.length > 0 && `; возможно, есть ${names(may)}`}.
+          </p>
+        )}
+        <a className="go" href={swapHash(index, slot)} onClick={onSwap}>Заменить блюдо</a>
+        {isOwn(recipe.id) && <a className="back" href={recipeHash(recipe.id)}>Изменить рецепт</a>}
+      </section>
+      <section>
+        <h2>Продукты</h2>
+        <p>На {count(block.days, 'порцию', 'порции', 'порций')}, вес сырых продуктов</p>
+        <ul className="amounts">
+          {dish.batch.map(({ id, grams }) => {
+            const product = catalog.ingredient(id)
+            return <li key={id}><span>{product.name}</span><b>{amount(product, grams)}</b></li>
+          })}
+        </ul>
+        {recipe.spices && <p className="note">Специи: {recipe.spices}.</p>}
+      </section>
+      <section>
+        <h2>Как готовить</h2>
+        {Math.abs(percent - 100) > 5 && (
+          <p>Ваша порция составляет {percent}% от обычной. Количества на порцию, названные в шагах, меняйте так же.</p>
+        )}
+        {recipe.steps.length === 0 && <p>Шаги не записаны.</p>}
+        <ol className="steps">{recipe.steps.map((s, i) => <li key={i}>{s}</li>)}</ol>
+        {source && <p className="note">Источник: <a href={source.url} target="_blank" rel="noreferrer">{source.name}</a></p>}
+      </section>
+    </article>
+  )
+}

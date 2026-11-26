@@ -1,0 +1,15 @@
+node_modules/
+dist/
+coverage/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+.claude/
+
+# Личные рабочие файлы
+reference/
+HANDOFF.md
+PLAN.md
+HISTORY.md

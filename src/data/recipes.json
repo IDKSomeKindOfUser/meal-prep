@@ -1,0 +1,5613 @@
+[
+ {
+  "id": "b-eggmuff",
+  "type": "breakfast",
+  "name": "Яичные маффины с курицей и шпинатом + хлеб",
+  "cuisine": "Американская",
+  "tools": [
+   "аэрогриль"
+  ],
+  "minutes": 35,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "egg",
+    "grams": 165
+   },
+   {
+    "id": "chicken",
+    "grams": 80
+   },
+   {
+    "id": "spinach",
+    "grams": 40
+   },
+   {
+    "id": "pepper",
+    "grams": 50
+   },
+   {
+    "id": "onion",
+    "grams": 20
+   },
+   {
+    "id": "cheese",
+    "grams": 15
+   },
+   {
+    "id": "bread",
+    "grams": 50
+   }
+  ],
+  "spices": "соль, перец, паприка, чеснок сушёный",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Курицу нарежьте мелким кубиком, обжарьте 5 минут на сковороде с солью и паприкой. Лук и перец мелко нарежьте.",
+   "Яйца взбейте с солью и перцем. Добавьте курицу, овощи, шпинат и тёртый сыр.",
+   "Разлейте по силиконовым формам для маффинов на 2/3 высоты. По 3 маффина на порцию.",
+   "Аэрогриль: 160 °C, 15–18 минут, пока центр не перестанет дрожать. Духовка: 180 °C, 20–22 минуты.",
+   "Остудите на решётке и разложите по контейнерам. Хлеб положите отдельно.",
+   "Разогрев: микроволновка 40–60 секунд или аэрогриль 160 °C 4 минуты."
+  ],
+  "source": {
+   "name": "The Roasted Root: Chicken and Spinach Egg Cups",
+   "url": "https://theroastedroot.net/?p=56714"
+  },
+  "kcal": 548,
+  "protein": 48,
+  "fat": 24,
+  "carbs": 32,
+  "cookedGrams": 350
+ },
+ {
+  "id": "b-burrito",
+  "type": "breakfast",
+  "name": "Бурито на завтрак с говядиной и яйцом (в морозилку)",
+  "cuisine": "Мексиканская",
+  "tools": [
+   "плита",
+   "аэрогриль"
+  ],
+  "minutes": 40,
+  "keepDays": 3,
+  "freezable": true,
+  "spicy": true,
+  "ingredients": [
+   {
+    "id": "tortilla",
+    "grams": 60
+   },
+   {
+    "id": "egg",
+    "grams": 110
+   },
+   {
+    "id": "bmince",
+    "grams": 60
+   },
+   {
+    "id": "beans",
+    "grams": 40
+   },
+   {
+    "id": "cheese",
+    "grams": 10
+   },
+   {
+    "id": "pepper",
+    "grams": 40
+   },
+   {
+    "id": "onion",
+    "grams": 20
+   },
+   {
+    "id": "ctomato",
+    "grams": 30
+   }
+  ],
+  "spices": "соль, паприка копчёная, чили по вкусу; по желанию: кумин (зира)",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Фарш делай сам: говядину без плёнок прокрути через мясорубку со средней решёткой.",
+   "Обжарьте фарш с луком и перцем 8–10 минут, добавьте специи, фасоль и томаты, выпарите жидкость.",
+   "Отдельно сделайте яичницу-болтунью, не пересушивайте: дойдёт при разогреве.",
+   "На каждую тортилью: болтунья, начинка, сыр. Сверните конвертом, туго.",
+   "Заверните каждую в пищевую плёнку или пергамент и в пакет. 3 дня в холодильнике или 2 месяца в морозилке.",
+   "Разогрев: из морозилки на ночь в холодильник, потом аэрогриль 180 °C 8–10 минут без плёнки."
+  ],
+  "source": {
+   "name": "Budget Bytes: Freezer Breakfast Burritos",
+   "url": "https://www.budgetbytes.com/freezer-breakfast-burritos/"
+  },
+  "kcal": 544,
+  "protein": 37,
+  "fat": 23,
+  "carbs": 43,
+  "cookedGrams": 330
+ },
+ {
+  "id": "b-oats",
+  "type": "breakfast",
+  "name": "Протеиновая овсянка на ночь с творогом и бананом",
+  "cuisine": "Домашняя",
+  "tools": [
+   "без готовки"
+  ],
+  "minutes": 10,
+  "keepDays": 4,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "oats",
+    "grams": 45
+   },
+   {
+    "id": "milk",
+    "grams": 200
+   },
+   {
+    "id": "cottage",
+    "grams": 150
+   },
+   {
+    "id": "banana",
+    "grams": 60
+   },
+   {
+    "id": "pbutter",
+    "grams": 10
+   },
+   {
+    "id": "honey",
+    "grams": 5
+   }
+  ],
+  "spices": "корица, щепотка соли",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "В банку или контейнер на 500 мл: овсянка, молоко, творог, корица, соль. Перемешайте.",
+   "Сверху банан кружками и арахисовая паста. Мёд по желанию.",
+   "Закройте и уберите в холодильник минимум на 6 часов. Хранится до 4 дней, банан лучше добавлять утром.",
+   "Едят холодной. Если хочется тёплую: 1,5 минуты в микроволновке."
+  ],
+  "source": {
+   "name": "Т—Ж: ленивая овсянка",
+   "url": "https://t-j.ru/overnight-oats/"
+  },
+  "kcal": 558,
+  "protein": 39,
+  "fat": 18,
+  "carbs": 62,
+  "cookedGrams": 460
+ },
+ {
+  "id": "b-syrniki",
+  "type": "breakfast",
+  "name": "Сырники в аэрогриле + ягоды",
+  "cuisine": "Русская",
+  "tools": [
+   "аэрогриль"
+  ],
+  "minutes": 30,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "cottage",
+    "grams": 250
+   },
+   {
+    "id": "egg",
+    "grams": 55
+   },
+   {
+    "id": "flour",
+    "grams": 25
+   },
+   {
+    "id": "sugar",
+    "grams": 10
+   },
+   {
+    "id": "berries",
+    "grams": 80
+   }
+  ],
+  "spices": "ванилин, щепотка соли",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Творог разомните вилкой, добавьте яйцо, сахар, соль, ванилин и муку. Масса должна держать форму.",
+   "Сформируйте сырники толщиной 1,5 см, обваляйте в муке. Выйдет 4–5 штук на порцию.",
+   "Аэрогриль на пергаменте: 180 °C 12–14 минут, на середине переверните.",
+   "Остудите, разложите по контейнерам, ягоды отдельно. В морозилке до 1 месяца.",
+   "Разогрев: аэрогриль 170 °C 4–5 минут."
+  ],
+  "source": {
+   "name": "Лайфхакер: сырники в аэрогриле",
+   "url": "https://lifehacker.ru/recipe/syrniki-v-aerogrile/"
+  },
+  "kcal": 548,
+  "protein": 50,
+  "fat": 18,
+  "carbs": 45,
+  "cookedGrams": 400
+ },
+ {
+  "id": "b-shak",
+  "type": "breakfast",
+  "name": "Шакшука с курицей + хлеб",
+  "cuisine": "Ближневосточная",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 35,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": true,
+  "ingredients": [
+   {
+    "id": "egg",
+    "grams": 165
+   },
+   {
+    "id": "chicken",
+    "grams": 60
+   },
+   {
+    "id": "ctomato",
+    "grams": 150
+   },
+   {
+    "id": "pepper",
+    "grams": 60
+   },
+   {
+    "id": "onion",
+    "grams": 30
+   },
+   {
+    "id": "oil",
+    "grams": 5
+   },
+   {
+    "id": "bread",
+    "grams": 50
+   }
+  ],
+  "spices": "паприка, чили, чеснок, соль; по желанию: зира",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Курицу нарежьте мелко и обжарьте на масле 5 минут. Добавьте лук и перец, ещё 5 минут.",
+   "Влейте томаты, специи, тушите 10 минут до густоты.",
+   "Сделайте углубления, вбейте яйца (по 3 на порцию), накройте крышкой. 6–7 минут, белок должен схватиться.",
+   "Разложите по контейнерам вместе с соусом. Хлеб отдельно.",
+   "Разогрев: микроволновка 1,5 минуты на средней мощности, чтобы желток не взорвался: проколите его."
+  ],
+  "source": {
+   "name": "ВкусВилл: шакшука классическая",
+   "url": "https://vkusvill.ru/recipes/shakshuka.html"
+  },
+  "kcal": 547,
+  "protein": 41,
+  "fat": 24,
+  "carbs": 38,
+  "cookedGrams": 430
+ },
+ {
+  "id": "b-sand",
+  "type": "breakfast",
+  "name": "Горячие сэндвичи с яйцом, курицей и сыром",
+  "cuisine": "Американская",
+  "tools": [
+   "аэрогриль"
+  ],
+  "minutes": 30,
+  "keepDays": 3,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "bread",
+    "grams": 80
+   },
+   {
+    "id": "egg",
+    "grams": 110
+   },
+   {
+    "id": "chicken",
+    "grams": 80
+   },
+   {
+    "id": "cheese",
+    "grams": 20
+   },
+   {
+    "id": "tomato",
+    "grams": 50
+   }
+  ],
+  "spices": "соль, перец, горчица по вкусу",
+  "spiceAllergens": {
+   "contains": [],
+   "may": [
+    "mustard"
+   ]
+  },
+  "steps": [
+   "Курицу запеките в аэрогриле: 190 °C 14–16 минут, нарежьте тонко.",
+   "Яйца сделайте плоским омлетом на сковороде или в форме в аэрогриле (160 °C 8 минут), нарежьте по размеру хлеба.",
+   "Соберите: хлеб, омлет, курица, сыр, помидор, хлеб. Заверните в пергамент.",
+   "Утром: аэрогриль 180 °C 6–7 минут. Из морозилки: 160 °C 12 минут."
+  ],
+  "source": {
+   "name": "Т—Ж: 20 рецептов в аэрогриле, сэндвич с яйцом",
+   "url": "https://t-j.ru/list/airfryer-cooking-101/"
+  },
+  "kcal": 544,
+  "protein": 44,
+  "fat": 21,
+  "carbs": 42,
+  "cookedGrams": 310
+ },
+ {
+  "id": "b-muff",
+  "type": "breakfast",
+  "name": "Овсяные маффины с творогом и бананом",
+  "cuisine": "Американская",
+  "tools": [
+   "аэрогриль"
+  ],
+  "minutes": 35,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "oats",
+    "grams": 45
+   },
+   {
+    "id": "egg",
+    "grams": 110
+   },
+   {
+    "id": "cottage",
+    "grams": 100
+   },
+   {
+    "id": "banana",
+    "grams": 80
+   },
+   {
+    "id": "honey",
+    "grams": 10
+   },
+   {
+    "id": "milk",
+    "grams": 30
+   }
+  ],
+  "spices": "разрыхлитель 1/2 ч. л. на порцию, корица",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Овсянку смелите в муку (блендер) или возьмите мелкие хлопья.",
+   "Банан разомните, смешайте с яйцами, творогом, молоком и мёдом. Добавьте овсянку, разрыхлитель, корицу.",
+   "Разложите по силиконовым формам, 3 маффина на порцию.",
+   "Аэрогриль 160 °C 16–18 минут, проверьте шпажкой. Духовка 175 °C 22–25 минут.",
+   "Храните в контейнере с бумажной салфеткой, чтобы не отсырели."
+  ],
+  "source": {
+   "name": "Eat This: protein muffins",
+   "url": "https://www.eatthis.com/protein-muffins-recipe"
+  },
+  "kcal": 552,
+  "protein": 37,
+  "fat": 19,
+  "carbs": 60,
+  "cookedGrams": 360
+ },
+ {
+  "id": "b-hummus",
+  "type": "breakfast",
+  "name": "Боул с яйцами, хумусом и овощами",
+  "cuisine": "Средиземноморская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 20,
+  "keepDays": 4,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "egg",
+    "grams": 165
+   },
+   {
+    "id": "hummus",
+    "grams": 50
+   },
+   {
+    "id": "bread",
+    "grams": 40
+   },
+   {
+    "id": "cucumber",
+    "grams": 80
+   },
+   {
+    "id": "tomato",
+    "grams": 80
+   },
+   {
+    "id": "cheese",
+    "grams": 15
+   }
+  ],
+  "spices": "соль, паприка, зелень",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Сварите яйца 9 минут, сразу в холодную воду, очистите.",
+   "Овощи нарежьте крупно, они хранятся лучше целыми кусками.",
+   "Контейнер: 3 яйца половинками, хумус в маленькой ёмкости, овощи, сыр. Хлеб отдельно.",
+   "Едят холодным. Сюда лучше подходит цельнозерновой хлеб, его можно подсушить в аэрогриле 180 °C 3 минуты."
+  ],
+  "source": {
+   "name": "Feel Good Foodie: avocado and egg breakfast meal prep",
+   "url": "https://feelgoodfoodie.net/high-protein-breakfast"
+  },
+  "kcal": 551,
+  "protein": 33,
+  "fat": 31,
+  "carbs": 34,
+  "cookedGrams": 420
+ },
+ {
+  "id": "b-zap",
+  "type": "breakfast",
+  "name": "Творожная запеканка в аэрогриле",
+  "cuisine": "Русская",
+  "tools": [
+   "аэрогриль"
+  ],
+  "minutes": 55,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "cottage",
+    "grams": 200
+   },
+   {
+    "id": "egg",
+    "grams": 55
+   },
+   {
+    "id": "oats",
+    "grams": 35
+   },
+   {
+    "id": "milk",
+    "grams": 40
+   },
+   {
+    "id": "sugar",
+    "grams": 10
+   },
+   {
+    "id": "banana",
+    "grams": 60
+   }
+  ],
+  "spices": "ванилин, цедра лимона",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Смешайте творог, яйца, молоко, сахар, ванилин. Добавьте овсянку и оставьте на 15 минут набухать.",
+   "Выложите в форму, подходящую к корзине аэрогриля (силикон или фольга).",
+   "Аэрогриль 160 °C 35–40 минут. Сверху подрумянится, внутри должна держаться.",
+   "Остудите прямо в форме, иначе развалится. Нарежьте на порции, банан добавляйте при еде."
+  ],
+  "source": {
+   "name": "ВкусВилл: творожная запеканка в аэрогриле",
+   "url": "https://vkusvill.ru/media/recipes/tvorozhnaya-zapekanka-s-izyumom-v-aerogrile.html"
+  },
+  "kcal": 555,
+  "protein": 45,
+  "fat": 18,
+  "carbs": 54,
+  "cookedGrams": 390
+ },
+ {
+  "id": "m-curry",
+  "type": "main",
+  "name": "Курица карри с рисом",
+  "cuisine": "Азиатская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 40,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": true,
+  "ingredients": [
+   {
+    "id": "chicken",
+    "grams": 180
+   },
+   {
+    "id": "rice",
+    "grams": 50
+   },
+   {
+    "id": "coconut",
+    "grams": 50
+   },
+   {
+    "id": "ctomato",
+    "grams": 60
+   },
+   {
+    "id": "onion",
+    "grams": 40
+   },
+   {
+    "id": "pepper",
+    "grams": 60
+   },
+   {
+    "id": "oil",
+    "grams": 5
+   },
+   {
+    "id": "garlic",
+    "grams": 5
+   }
+  ],
+  "spices": "соль, чили; по желанию: имбирь; настоятельно рекомендуется: карри",
+  "spiceAllergens": {
+   "contains": [],
+   "may": [
+    "mustard"
+   ]
+  },
+  "steps": [
+   "Отварите рис.",
+   "Лук и чеснок обжарьте на масле 4 минуты, добавьте карри и имбирь, 30 секунд.",
+   "Добавьте курицу кубиками, обжарьте 5 минут. Влейте томаты и кокосовое молоко, добавьте перец.",
+   "Тушите 12–15 минут под крышкой до густоты.",
+   "Разложите: рис + карри. Отлично морозится."
+  ],
+  "source": {
+   "name": "Sweet Peas and Saffron: Easy Chicken Curry",
+   "url": "https://sweetpeasandsaffron.com/?p=24032"
+  },
+  "kcal": 549,
+  "protein": 46,
+  "fat": 15,
+  "carbs": 52,
+  "cookedGrams": 460
+ },
+ {
+  "id": "m-korean",
+  "type": "main",
+  "name": "Корейская говядина с рисом и огурцами",
+  "cuisine": "Азиатская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 30,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": true,
+  "ingredients": [
+   {
+    "id": "bmince",
+    "grams": 160
+   },
+   {
+    "id": "rice",
+    "grams": 50
+   },
+   {
+    "id": "carrot",
+    "grams": 50
+   },
+   {
+    "id": "cucumber",
+    "grams": 80
+   },
+   {
+    "id": "soy",
+    "grams": 10
+   },
+   {
+    "id": "honey",
+    "grams": 5
+   },
+   {
+    "id": "gochu",
+    "grams": 10
+   },
+   {
+    "id": "sesoil",
+    "grams": 3
+   },
+   {
+    "id": "garlic",
+    "grams": 5
+   }
+  ],
+  "spices": "соль, перец; по желанию: имбирь, зелёный лук, кунжут; настоятельно рекомендуется: кочхуджан (можно заменить: чили + ложка мёда)",
+  "spiceAllergens": {
+   "contains": [],
+   "may": [
+    "sesame"
+   ]
+  },
+  "steps": [
+   "Фарш делай сам: говядину без плёнок прокрути через мясорубку со средней решёткой.",
+   "Отварите рис.",
+   "Фарш обжарьте на сильном огне без масла 8–10 минут до корочки.",
+   "Соус: соевый, кочхуджан, мёд, чеснок, имбирь, кунжутное масло. Влейте к фаршу, 2 минуты.",
+   "Морковь натрите, огурцы нарежьте и держите отдельно: в разогреве им не место.",
+   "Контейнер: рис, говядина, сбоку овощи. Кунжут сверху."
+  ],
+  "source": {
+   "name": "Foodiecrush: Korean Ground Beef Bowls",
+   "url": "https://www.foodiecrush.com/korean-ground-beef-bowls/"
+  },
+  "kcal": 545,
+  "protein": 37,
+  "fat": 18,
+  "carbs": 58,
+  "cookedGrams": 420
+ },
+ {
+  "id": "m-fried",
+  "type": "main",
+  "name": "Жареный рис с курицей и яйцом",
+  "cuisine": "Азиатская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 30,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "chicken",
+    "grams": 140
+   },
+   {
+    "id": "egg",
+    "grams": 55
+   },
+   {
+    "id": "rice",
+    "grams": 45
+   },
+   {
+    "id": "vegmix",
+    "grams": 100
+   },
+   {
+    "id": "onion",
+    "grams": 30
+   },
+   {
+    "id": "soy",
+    "grams": 15
+   },
+   {
+    "id": "oil",
+    "grams": 5
+   },
+   {
+    "id": "garlic",
+    "grams": 5
+   }
+  ],
+  "spices": "белый перец; по желанию: зелёный лук, имбирь",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Рис сварите заранее и остудите: холодный рис не слипается. Можно накануне.",
+   "Курицу кубиками обжарьте на сильном огне 6 минут, отложите.",
+   "Яйца взбейте, сделайте болтунью, отложите.",
+   "Лук, чеснок и овощную смесь 4 минуты. Добавьте рис, жарьте 3 минуты, верните курицу и яйцо, влейте соевый соус."
+  ],
+  "source": {
+   "name": "Eating Bird Food: Chicken Fried Rice",
+   "url": "https://www.eatingbirdfood.com/chicken-fried-rice/"
+  },
+  "kcal": 546,
+  "protein": 46,
+  "fat": 15,
+  "carbs": 54,
+  "cookedGrams": 420
+ },
+ {
+  "id": "m-lomein",
+  "type": "main",
+  "name": "Лапша с говядиной и овощами (ло мейн)",
+  "cuisine": "Азиатская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 30,
+  "keepDays": 4,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "beef",
+    "grams": 160
+   },
+   {
+    "id": "noodle",
+    "grams": 40
+   },
+   {
+    "id": "broccoli",
+    "grams": 100
+   },
+   {
+    "id": "carrot",
+    "grams": 40
+   },
+   {
+    "id": "pepper",
+    "grams": 50
+   },
+   {
+    "id": "soy",
+    "grams": 15
+   },
+   {
+    "id": "honey",
+    "grams": 5
+   },
+   {
+    "id": "oil",
+    "grams": 7
+   },
+   {
+    "id": "starch",
+    "grams": 4
+   }
+  ],
+  "spices": "чеснок; по желанию: имбирь, кунжут",
+  "spiceAllergens": {
+   "contains": [],
+   "may": [
+    "sesame"
+   ]
+  },
+  "steps": [
+   "Говядину нарежьте тонко поперёк волокон, обваляйте в крахмале.",
+   "Отварите лапшу на 1 минуту меньше, чем на упаковке, промойте.",
+   "Говядину обжарьте на сильном огне партиями по 2 минуты, отложите.",
+   "Овощи 4 минуты, добавьте лапшу, говядину и соус из соевого, мёда, чеснока и имбиря. Перемешайте 2 минуты."
+  ],
+  "source": {
+   "name": "TipBuzz: Beef Lo Mein Meal Prep",
+   "url": "https://tipbuzz.com/?p=36002"
+  },
+  "kcal": 544,
+  "protein": 43,
+  "fat": 20,
+  "carbs": 50,
+  "cookedGrams": 380
+ },
+ {
+  "id": "m-tikka",
+  "type": "main",
+  "name": "Курица тикка масала с рисом",
+  "cuisine": "Индийская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 40,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": true,
+  "ingredients": [
+   {
+    "id": "chicken",
+    "grams": 180
+   },
+   {
+    "id": "rice",
+    "grams": 55
+   },
+   {
+    "id": "yogurt",
+    "grams": 40
+   },
+   {
+    "id": "ctomato",
+    "grams": 120
+   },
+   {
+    "id": "onion",
+    "grams": 40
+   },
+   {
+    "id": "oil",
+    "grams": 5
+   },
+   {
+    "id": "tpaste",
+    "grams": 10
+   },
+   {
+    "id": "garlic",
+    "grams": 5
+   }
+  ],
+  "spices": "паприка, чили; по желанию: куркума, имбирь; настоятельно рекомендуется: гарам масала",
+  "spiceAllergens": {
+   "contains": [],
+   "may": [
+    "mustard"
+   ]
+  },
+  "steps": [
+   "Курицу замаринуйте в половине йогурта со специями на 30 минут или ночь.",
+   "Отварите рис.",
+   "Обжарьте курицу 6 минут, отложите. На той же сковороде лук, чеснок, томатная паста 4 минуты.",
+   "Томаты и специи, 10 минут. Верните курицу, снимите с огня и вмешайте остаток йогурта.",
+   "Йогурт вместо сливок легче. Не кипятите его, иначе свернётся."
+  ],
+  "source": {
+   "name": "Damn Delicious: Chicken Tikka Masala Meal Prep",
+   "url": "https://damndelicious.net/2017/08/08/chicken-tikka-masala-meal-prep/print/"
+  },
+  "kcal": 546,
+  "protein": 51,
+  "fat": 11,
+  "carbs": 57,
+  "cookedGrams": 470
+ },
+ {
+  "id": "m-lagman",
+  "type": "main",
+  "name": "Лагман с говядиной на спагетти",
+  "cuisine": "Среднеазиатская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 60,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": true,
+  "ingredients": [
+   {
+    "id": "beef",
+    "grams": 140
+   },
+   {
+    "id": "pasta",
+    "grams": 50
+   },
+   {
+    "id": "pepper",
+    "grams": 60
+   },
+   {
+    "id": "onion",
+    "grams": 40
+   },
+   {
+    "id": "carrot",
+    "grams": 40
+   },
+   {
+    "id": "potato",
+    "grams": 60
+   },
+   {
+    "id": "tomato",
+    "grams": 80
+   },
+   {
+    "id": "tpaste",
+    "grams": 10
+   },
+   {
+    "id": "oil",
+    "grams": 5
+   },
+   {
+    "id": "garlic",
+    "grams": 5
+   },
+   {
+    "id": "water",
+    "grams": 150
+   }
+  ],
+  "spices": "чили, соль; по желанию: зира, кориандр, бадьян",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Говядину нарежьте кубиком 1,5 см, овощи соломкой. Казан или сотейник на сильный огонь.",
+   "Мясо обжарьте 5 минут, добавьте лук, морковь и картофель кубиком, ещё 5 минут.",
+   "Перец, помидоры, томатная паста, чеснок, специи. Влейте воду, тушите 35–40 минут под крышкой.",
+   "Спагетти варите на 1 минуту меньше, чем на пачке, и храните отдельно от соуса, иначе разбухнут. Если найдёшь удон или сделаешь домашнюю лапшу, будет ближе к оригиналу.",
+   "Контейнер: лапша, сверху густой соус с мясом."
+  ],
+  "source": {
+   "name": "Лайфхакер: лагман с говядиной",
+   "url": "https://lifehacker.ru/recipe/lagman-s-govyadinoj/"
+  },
+  "kcal": 555,
+  "protein": 39,
+  "fat": 16,
+  "carbs": 63,
+  "cookedGrams": 520
+ },
+ {
+  "id": "m-kuurdak",
+  "type": "main",
+  "name": "Куурдак из говядины с картофелем + салат",
+  "cuisine": "Среднеазиатская",
+  "tools": [
+   "плита",
+   "аэрогриль"
+  ],
+  "minutes": 60,
+  "keepDays": 4,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "beef",
+    "grams": 170
+   },
+   {
+    "id": "potato",
+    "grams": 210
+   },
+   {
+    "id": "onion",
+    "grams": 60
+   },
+   {
+    "id": "pepper",
+    "grams": 40
+   },
+   {
+    "id": "oil",
+    "grams": 8
+   },
+   {
+    "id": "cucumber",
+    "grams": 80
+   },
+   {
+    "id": "tomato",
+    "grams": 80
+   }
+  ],
+  "spices": "чёрный перец, соль, зелень; по желанию: зира",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Говядину нарежьте кусочками 2 см, обжарьте в казане на масле на сильном огне 10 минут.",
+   "Лук полукольцами и перец, ещё 5 минут. Немного воды, крышка, 30–40 минут до мягкости.",
+   "Картофель кубиком в аэрогриле: 200 °C 18–20 минут с ложкой масла. Так меньше масла, чем при жарке.",
+   "Смешайте картофель с мясом в казане, 3 минуты. Салат из огурцов и помидоров храните отдельно."
+  ],
+  "source": {
+   "name": "Folkways: Kuurdak, how the Kyrgyz do meat and potatoes",
+   "url": "https://folkways.today/?p=23608"
+  },
+  "kcal": 550,
+  "protein": 42,
+  "fat": 21,
+  "carbs": 49,
+  "cookedGrams": 520
+ },
+ {
+  "id": "m-shashlik",
+  "type": "main",
+  "name": "Куриный шашлык в аэрогриле + рис + ачичук",
+  "cuisine": "Среднеазиатская",
+  "tools": [
+   "аэрогриль",
+   "плита"
+  ],
+  "minutes": 40,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "chicken",
+    "grams": 190
+   },
+   {
+    "id": "rice",
+    "grams": 60
+   },
+   {
+    "id": "onion",
+    "grams": 50
+   },
+   {
+    "id": "tomato",
+    "grams": 100
+   },
+   {
+    "id": "cucumber",
+    "grams": 60
+   },
+   {
+    "id": "lemon",
+    "grams": 15
+   },
+   {
+    "id": "oil",
+    "grams": 7
+   }
+  ],
+  "spices": "паприка, чеснок, соль; по желанию: зира, кориандр",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Курицу крупными кубиками замаринуйте с половиной лука, лимонным соком, маслом и специями минимум на 2 часа.",
+   "Аэрогриль: 200 °C 14–16 минут, на середине встряхните. Можно на шпажках.",
+   "Отварите рис.",
+   "Ачичук: помидоры и лук тонко, соль, перец. Хранить отдельно, огурец добавить при еде."
+  ],
+  "source": {
+   "name": "Леди Mail: шашлык в аэрогриле",
+   "url": "https://lady.mail.ru/article/563171-luchshie-retsepty-shashlyka-v-aehrogrile/"
+  },
+  "kcal": 558,
+  "protein": 49,
+  "fat": 13,
+  "carbs": 59,
+  "cookedGrams": 540
+ },
+ {
+  "id": "m-chili",
+  "type": "main",
+  "name": "Чили кон карне с рисом",
+  "cuisine": "Мексиканская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 60,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": true,
+  "ingredients": [
+   {
+    "id": "bmince",
+    "grams": 130
+   },
+   {
+    "id": "beans",
+    "grams": 80
+   },
+   {
+    "id": "ctomato",
+    "grams": 120
+   },
+   {
+    "id": "onion",
+    "grams": 40
+   },
+   {
+    "id": "pepper",
+    "grams": 50
+   },
+   {
+    "id": "rice",
+    "grams": 50
+   },
+   {
+    "id": "tpaste",
+    "grams": 10
+   },
+   {
+    "id": "garlic",
+    "grams": 5
+   }
+  ],
+  "spices": "чили, паприка копчёная, соль; по желанию: орегано; настоятельно рекомендуется: кумин",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Фарш делай сам: говядину без плёнок прокрути через мясорубку со средней решёткой.",
+   "Отварите рис.",
+   "Обжарьте фарш до корочки 8 минут. Добавьте лук, чеснок, перец, 5 минут.",
+   "Томатная паста и специи, 1 минута. Томаты и фасоль, тушите 30 минут на слабом огне.",
+   "Чем дольше стоит, тем вкуснее. Морозится отлично."
+  ],
+  "source": {
+   "name": "RecipeTin Eats: Chilli Con Carne",
+   "url": "https://recipetineats.com/chilli-con-carne/"
+  },
+  "kcal": 548,
+  "protein": 38,
+  "fat": 13,
+  "carbs": 67,
+  "cookedGrams": 500
+ },
+ {
+  "id": "m-enchil",
+  "type": "main",
+  "name": "Запеканка «энчилада» с курицей и рисом",
+  "cuisine": "Мексиканская",
+  "tools": [
+   "духовка",
+   "плита"
+  ],
+  "minutes": 60,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": true,
+  "ingredients": [
+   {
+    "id": "chicken",
+    "grams": 170
+   },
+   {
+    "id": "rice",
+    "grams": 45
+   },
+   {
+    "id": "beans",
+    "grams": 50
+   },
+   {
+    "id": "corn",
+    "grams": 40
+   },
+   {
+    "id": "ctomato",
+    "grams": 100
+   },
+   {
+    "id": "onion",
+    "grams": 30
+   },
+   {
+    "id": "cheese",
+    "grams": 20
+   }
+  ],
+  "spices": "чили, паприка, чеснок; по желанию: кумин, орегано",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Рис сварите наполовину (8 минут). Курицу нарежьте кубиком.",
+   "Смешайте в форме: рис, курица, фасоль, кукуруза, лук, томаты со специями. Добавьте 50 мл воды на порцию.",
+   "Накройте фольгой. Духовка 180 °C (для газовой 170 °C) 40 минут.",
+   "Снимите фольгу, посыпьте сыром, ещё 10 минут. Порции лучше нарезать после остывания."
+  ],
+  "source": {
+   "name": "The Roasted Root: Chicken and Rice Enchilada Casserole",
+   "url": "https://www.theroastedroot.net/chicken-and-rice-enchilada-casserole"
+  },
+  "kcal": 553,
+  "protein": 52,
+  "fat": 11,
+  "carbs": 55,
+  "cookedGrams": 460
+ },
+ {
+  "id": "m-taco",
+  "type": "main",
+  "name": "Тако-боул с говядиной и печёным картофелем",
+  "cuisine": "Мексиканская",
+  "tools": [
+   "аэрогриль",
+   "плита"
+  ],
+  "minutes": 40,
+  "keepDays": 4,
+  "freezable": false,
+  "spicy": true,
+  "ingredients": [
+   {
+    "id": "bmince",
+    "grams": 150
+   },
+   {
+    "id": "potato",
+    "grams": 235
+   },
+   {
+    "id": "corn",
+    "grams": 40
+   },
+   {
+    "id": "tomato",
+    "grams": 80
+   },
+   {
+    "id": "onion",
+    "grams": 20
+   },
+   {
+    "id": "cheese",
+    "grams": 10
+   },
+   {
+    "id": "oil",
+    "grams": 5
+   }
+  ],
+  "spices": "чили, паприка, чеснок; по желанию: кумин, лайм",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Фарш делай сам: говядину без плёнок прокрути через мясорубку со средней решёткой.",
+   "Картофель кубиком 2 см с маслом и половиной специй: аэрогриль 200 °C 20 минут, дважды встряхните.",
+   "Фарш обжарьте с луком и остальными специями 10 минут, добавьте 2 ст. л. воды.",
+   "Контейнер: картофель, фарш, кукуруза. Помидоры и сыр отдельно или сверху после разогрева."
+  ],
+  "source": {
+   "name": "Nutrition to Fit: Taco Potato Bowls",
+   "url": "https://nutritiontofit.com/taco-potato-bowls/"
+  },
+  "kcal": 551,
+  "protein": 38,
+  "fat": 22,
+  "carbs": 50,
+  "cookedGrams": 450
+ },
+ {
+  "id": "m-shawarma",
+  "type": "main",
+  "name": "Шаурма-боул с курицей в лаваше",
+  "cuisine": "Ближневосточная",
+  "tools": [
+   "аэрогриль"
+  ],
+  "minutes": 35,
+  "keepDays": 4,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "chicken",
+    "grams": 190
+   },
+   {
+    "id": "yogurt",
+    "grams": 50
+   },
+   {
+    "id": "lavash",
+    "grams": 85
+   },
+   {
+    "id": "cucumber",
+    "grams": 80
+   },
+   {
+    "id": "tomato",
+    "grams": 80
+   },
+   {
+    "id": "peking",
+    "grams": 60
+   },
+   {
+    "id": "lemon",
+    "grams": 10
+   },
+   {
+    "id": "garlic",
+    "grams": 5
+   }
+  ],
+  "spices": "соль; по желанию: орегано; настоятельно рекомендуется: корица, мускат, гвоздика",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Маринад: половина йогурта, лимонный сок, чеснок, специи. Курицу полосками в маринад на 4 часа или ночь.",
+   "Аэрогриль 200 °C 12–14 минут, встряхнуть на середине.",
+   "Соус: остаток йогурта, чеснок, соль.",
+   "Контейнер: курица, овощи, соус отдельно. Лаваш в пакете, заворачивать перед едой."
+  ],
+  "source": {
+   "name": "Budget Bytes: Chicken Shawarma",
+   "url": "https://www.budgetbytes.com/chicken-shawarma-2/"
+  },
+  "kcal": 545,
+  "protein": 58,
+  "fat": 7,
+  "carbs": 60,
+  "cookedGrams": 510
+ },
+ {
+  "id": "m-greek",
+  "type": "main",
+  "name": "Греческая курица с картофелем и овощами",
+  "cuisine": "Средиземноморская",
+  "tools": [
+   "духовка",
+   "аэрогриль"
+  ],
+  "minutes": 50,
+  "keepDays": 4,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "chicken",
+    "grams": 190
+   },
+   {
+    "id": "potato",
+    "grams": 230
+   },
+   {
+    "id": "pepper",
+    "grams": 60
+   },
+   {
+    "id": "gbeans",
+    "grams": 100
+   },
+   {
+    "id": "onion",
+    "grams": 30
+   },
+   {
+    "id": "oil",
+    "grams": 8
+   },
+   {
+    "id": "lemon",
+    "grams": 15
+   },
+   {
+    "id": "garlic",
+    "grams": 5
+   }
+  ],
+  "spices": "чеснок, соль, перец; по желанию: орегано",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Маринад: масло, лимонный сок, чеснок, орегано. Курицу кусками в маринад на 30 минут.",
+   "Картофель дольками в аэрогриль первым: 200 °C 10 минут.",
+   "Добавьте курицу и овощи, ещё 15–18 минут. В газовой духовке: 200 °C, средний уровень, 35 минут, противень развернуть на середине.",
+   "Сбрызните лимоном перед раскладкой."
+  ],
+  "source": {
+   "name": "Tastes Better From Scratch: Greek Chicken and Potatoes",
+   "url": "https://tastesbetterfromscratch.com/greek-chicken-and-potatoes/"
+  },
+  "kcal": 548,
+  "protein": 51,
+  "fat": 14,
+  "carbs": 55,
+  "cookedGrams": 500
+ },
+ {
+  "id": "m-kofta",
+  "type": "main",
+  "name": "Кёфта из говядины с рисом и печёными овощами",
+  "cuisine": "Ближневосточная",
+  "tools": [
+   "аэрогриль"
+  ],
+  "minutes": 45,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "bmince",
+    "grams": 140
+   },
+   {
+    "id": "bfat",
+    "grams": 12
+   },
+   {
+    "id": "onion",
+    "grams": 20
+   },
+   {
+    "id": "rice",
+    "grams": 40
+   },
+   {
+    "id": "tomato",
+    "grams": 80
+   },
+   {
+    "id": "pepper",
+    "grams": 110
+   },
+   {
+    "id": "yogurt",
+    "grams": 30
+   },
+   {
+    "id": "greens",
+    "grams": 5
+   }
+  ],
+  "spices": "паприка, чеснок; по желанию: кориандр, корица; настоятельно рекомендуется: кумин",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Фарш делай сам: говядину без плёнок прокрути через мясорубку со средней решёткой. Прокрути вместе с говяжьим жиром, это примерно 8–10% от веса мяса: без жира тефтели и кёфта из постной говядины выходят сухими. Жир спроси у мясника на рынке.",
+   "Фарш смешайте с тёртым луком, зеленью и специями. Слепите колбаски или шарики.",
+   "Овощи крупно, с маслом: аэрогриль 200 °C 15 минут.",
+   "Кёфту: аэрогриль 190 °C 12 минут.",
+   "Отварите рис.",
+   "Йогуртовый соус с чесноком храните отдельно."
+  ],
+  "source": {
+   "name": "Budget Bytes: Beef Kofta Meatballs with Roasted Vegetables",
+   "url": "https://www.budgetbytes.com/beef-kofta-meatballs-with-roasted-vegetables/"
+  },
+  "kcal": 546,
+  "protein": 35,
+  "fat": 25,
+  "carbs": 44,
+  "cookedGrams": 460
+ },
+ {
+  "id": "m-bolo",
+  "type": "main",
+  "name": "Паста болоньезе",
+  "cuisine": "Итальянская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 60,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "bmince",
+    "grams": 130
+   },
+   {
+    "id": "pasta",
+    "grams": 60
+   },
+   {
+    "id": "ctomato",
+    "grams": 150
+   },
+   {
+    "id": "onion",
+    "grams": 40
+   },
+   {
+    "id": "carrot",
+    "grams": 40
+   },
+   {
+    "id": "tpaste",
+    "grams": 10
+   },
+   {
+    "id": "oil",
+    "grams": 4
+   },
+   {
+    "id": "cheese",
+    "grams": 8
+   }
+  ],
+  "spices": "чеснок, соль; по желанию: орегано, базилик",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Фарш делай сам: говядину без плёнок прокрути через мясорубку со средней решёткой.",
+   "Лук и морковь мелко, обжарьте на масле 6 минут.",
+   "Добавьте фарш, жарьте до корочки 8 минут.",
+   "Томатная паста, томаты, специи. Тушите 30–45 минут на слабом огне.",
+   "Макароны варите al dente и храните вместе с соусом: болоньезе это выдерживает."
+  ],
+  "source": {
+   "name": "Т—Ж: болоньезе с фаршем",
+   "url": "https://t-j.ru/pasta-bolognese/"
+  },
+  "kcal": 556,
+  "protein": 37,
+  "fat": 19,
+  "carbs": 58,
+  "cookedGrams": 430
+ },
+ {
+  "id": "m-goulash",
+  "type": "main",
+  "name": "Гуляш из говядины с гречкой",
+  "cuisine": "Русская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 90,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "beef",
+    "grams": 170
+   },
+   {
+    "id": "buckw",
+    "grams": 50
+   },
+   {
+    "id": "onion",
+    "grams": 50
+   },
+   {
+    "id": "pepper",
+    "grams": 50
+   },
+   {
+    "id": "ctomato",
+    "grams": 80
+   },
+   {
+    "id": "tpaste",
+    "grams": 10
+   },
+   {
+    "id": "oil",
+    "grams": 6
+   },
+   {
+    "id": "flour",
+    "grams": 5
+   },
+   {
+    "id": "water",
+    "grams": 150
+   }
+  ],
+  "spices": "паприка сладкая, лавровый лист, чеснок, соль",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Говядину кубиком 2 см обжарьте партиями на масле до корочки.",
+   "Лук и перец 5 минут, мука и паприка 1 минута.",
+   "Томатная паста, томаты, вода, лавр. Тушите под крышкой 1 час до мягкости.",
+   "Гречку сварите 1:2. Контейнер: гречка + гуляш с подливой."
+  ],
+  "source": {
+   "name": "Т—Ж: гуляш из говядины",
+   "url": "https://t-j.ru/beef-goulash/"
+  },
+  "kcal": 543,
+  "protein": 45,
+  "fat": 20,
+  "carbs": 47,
+  "cookedGrams": 460
+ },
+ {
+  "id": "m-kotlety",
+  "type": "main",
+  "name": "Куриные котлеты в аэрогриле + пюре + салат",
+  "cuisine": "Русская",
+  "tools": [
+   "аэрогриль",
+   "плита"
+  ],
+  "minutes": 50,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "chicken",
+    "grams": 110
+   },
+   {
+    "id": "thigh",
+    "grams": 80
+   },
+   {
+    "id": "onion",
+    "grams": 30
+   },
+   {
+    "id": "egg",
+    "grams": 11
+   },
+   {
+    "id": "oats",
+    "grams": 10
+   },
+   {
+    "id": "potato",
+    "grams": 160
+   },
+   {
+    "id": "milk",
+    "grams": 40
+   },
+   {
+    "id": "oil",
+    "grams": 8
+   },
+   {
+    "id": "peking",
+    "grams": 100
+   },
+   {
+    "id": "carrot",
+    "grams": 30
+   }
+  ],
+  "spices": "соль, перец, укроп, уксус для салата",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Фарш делай сам: прокрути грудку вместе с филе бедра. Бедро даёт сочность, из одной грудки котлеты получаются сухими.",
+   "Фарш смешайте с тёртым луком, яйцом, овсянкой и солью. 10 минут постоять.",
+   "Мокрыми руками сформируйте котлеты. Аэрогриль на пергаменте 180 °C 18–20 минут, перевернуть на середине.",
+   "Картофель отварите, разомните с горячим безлактозным молоком и половиной масла.",
+   "Салат: пекинская капуста и морковь тонко, соль, уксус, остаток масла. Хранить отдельно."
+  ],
+  "source": {
+   "name": "Лайфхакер: куриные котлеты в аэрогриле",
+   "url": "https://lifehacker.ru/recipe/kurinye-kotlety-v-aerogrile/"
+  },
+  "kcal": 548,
+  "protein": 49,
+  "fat": 19,
+  "carbs": 44,
+  "cookedGrams": 480
+ },
+ {
+  "id": "m-sweet",
+  "type": "main",
+  "name": "Кисло-сладкая курица в аэрогриле с рисом",
+  "cuisine": "Азиатская",
+  "tools": [
+   "аэрогриль",
+   "плита"
+  ],
+  "minutes": 35,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "chicken",
+    "grams": 180
+   },
+   {
+    "id": "starch",
+    "grams": 10
+   },
+   {
+    "id": "rice",
+    "grams": 50
+   },
+   {
+    "id": "pepper",
+    "grams": 80
+   },
+   {
+    "id": "onion",
+    "grams": 30
+   },
+   {
+    "id": "honey",
+    "grams": 12
+   },
+   {
+    "id": "ketchup",
+    "grams": 15
+   },
+   {
+    "id": "vinegar",
+    "grams": 15
+   },
+   {
+    "id": "soy",
+    "grams": 8
+   },
+   {
+    "id": "oil",
+    "grams": 3
+   }
+  ],
+  "spices": "чеснок; по желанию: имбирь",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Курицу кубиком обваляйте в крахмале, сбрызните маслом. Аэрогриль 200 °C 12–14 минут.",
+   "Соус: мёд, кетчуп, уксус, соевый, чеснок. Прогрейте, загустите щепоткой крахмала.",
+   "Перец и лук 3 минуты на сковороде, добавьте курицу и соус.",
+   "Рис отдельно. Разогревать лучше в аэрогриле: 180 °C 5 минут вернут хруст."
+  ],
+  "source": {
+   "name": "Fit Foodie Finds: Air Fryer Sweet and Sour Chicken",
+   "url": "https://fitfoodiefinds.com/?p=261953"
+  },
+  "kcal": 549,
+  "protein": 46,
+  "fat": 8,
+  "carbs": 69,
+  "cookedGrams": 430
+ },
+ {
+  "id": "m-kharcho",
+  "type": "main",
+  "name": "Суп харчо с говядиной",
+  "cuisine": "Грузинская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 90,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": true,
+  "ingredients": [
+   {
+    "id": "beef",
+    "grams": 170
+   },
+   {
+    "id": "rice",
+    "grams": 50
+   },
+   {
+    "id": "ctomato",
+    "grams": 120
+   },
+   {
+    "id": "onion",
+    "grams": 40
+   },
+   {
+    "id": "nuts",
+    "grams": 10
+   },
+   {
+    "id": "tpaste",
+    "grams": 10
+   },
+   {
+    "id": "garlic",
+    "grams": 5
+   },
+   {
+    "id": "greens",
+    "grams": 5
+   },
+   {
+    "id": "water",
+    "grams": 350
+   }
+  ],
+  "spices": "чили, лавр; по желанию: уцхо-сунели, ткемали по вкусу; настоятельно рекомендуется: хмели-сунели",
+  "spiceAllergens": {
+   "contains": [],
+   "may": [
+    "mustard"
+   ]
+  },
+  "steps": [
+   "Говядину кусочками залейте водой, доведите до кипения, снимите пену. Варите 1 час.",
+   "Лук обжарьте, добавьте томаты и пасту, 5 минут. Отправьте в бульон с рисом.",
+   "Через 15 минут: толчёные орехи, чеснок, хмели-сунели, чили. Ещё 5 минут.",
+   "Зелень в конце. Суп разливать в контейнеры с плотной крышкой. Хлеб отдельно."
+  ],
+  "source": {
+   "name": "ВкусВилл: суп харчо",
+   "url": "https://vkusvill.ru/media/recipes/sup-kharcho.html"
+  },
+  "kcal": 556,
+  "protein": 43,
+  "fat": 18,
+  "carbs": 53,
+  "cookedGrams": 550
+ },
+ {
+  "id": "s-nuts",
+  "type": "snack",
+  "name": "Орехи, яблоко и тёмный шоколад",
+  "cuisine": "Купить",
+  "tools": [
+   "без готовки"
+  ],
+  "minutes": 2,
+  "keepDays": 7,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "nuts",
+    "grams": 20
+   },
+   {
+    "id": "apple",
+    "grams": 210
+   },
+   {
+    "id": "choc",
+    "grams": 20
+   }
+  ],
+  "spices": "соль, перец",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Разложите орехи и шоколад по маленьким пакетам или контейнерам на 150–200 мл на несколько дней сразу."
+  ],
+  "source": null,
+  "kcal": 351,
+  "protein": 6,
+  "fat": 20,
+  "carbs": 42,
+  "cookedGrams": 250
+ },
+ {
+  "id": "s-kefir",
+  "type": "snack",
+  "name": "Кефир, банан и орехи",
+  "cuisine": "Купить",
+  "tools": [
+   "без готовки"
+  ],
+  "minutes": 1,
+  "keepDays": 5,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "kefir",
+    "grams": 380
+   },
+   {
+    "id": "banana",
+    "grams": 120
+   },
+   {
+    "id": "nuts",
+    "grams": 15
+   }
+  ],
+  "spices": "соль, перец",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Ничего готовить не нужно. Можно взбить кефир с бананом в блендере."
+  ],
+  "source": null,
+  "kcal": 350,
+  "protein": 15,
+  "fat": 13,
+  "carbs": 45,
+  "cookedGrams": 520
+ },
+ {
+  "id": "s-cottage",
+  "type": "snack",
+  "name": "Творог с ягодами и мёдом",
+  "cuisine": "Купить",
+  "tools": [
+   "без готовки"
+  ],
+  "minutes": 3,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "cottage",
+    "grams": 225
+   },
+   {
+    "id": "berries",
+    "grams": 100
+   },
+   {
+    "id": "honey",
+    "grams": 10
+   }
+  ],
+  "spices": "соль, перец",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Разложите творог по контейнерам на 2–3 дня, замороженные ягоды сверху: к вечеру оттают."
+  ],
+  "source": null,
+  "kcal": 348,
+  "protein": 37,
+  "fat": 12,
+  "carbs": 25,
+  "cookedGrams": 320
+ },
+ {
+  "id": "s-eggs",
+  "type": "snack",
+  "name": "Варёные яйца, банан и орехи",
+  "cuisine": "Купить",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 12,
+  "keepDays": 5,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "egg",
+    "grams": 110
+   },
+   {
+    "id": "banana",
+    "grams": 115
+   },
+   {
+    "id": "nuts",
+    "grams": 15
+   }
+  ],
+  "spices": "соль",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Сварите яйца вместе с яйцами для завтраков: 9 минут, в холодную воду. Хранить в скорлупе до 5 дней."
+  ],
+  "source": null,
+  "kcal": 351,
+  "protein": 18,
+  "fat": 19,
+  "carbs": 29,
+  "cookedGrams": 230
+ },
+ {
+  "id": "s-hummus",
+  "type": "snack",
+  "name": "Хумус с овощными палочками и хлебом",
+  "cuisine": "Купить",
+  "tools": [
+   "без готовки"
+  ],
+  "minutes": 5,
+  "keepDays": 4,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "hummus",
+    "grams": 80
+   },
+   {
+    "id": "carrot",
+    "grams": 100
+   },
+   {
+    "id": "cucumber",
+    "grams": 100
+   },
+   {
+    "id": "bread",
+    "grams": 30
+   }
+  ],
+  "spices": "соль, перец",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Морковь и огурцы нарежьте палочками, храните в контейнере с влажной салфеткой."
+  ],
+  "source": null,
+  "kcal": 344,
+  "protein": 10,
+  "fat": 16,
+  "carbs": 39,
+  "cookedGrams": 290
+ },
+ {
+  "id": "s-balls",
+  "type": "snack",
+  "name": "Энергетические шарики с овсянкой и арахисовой пастой",
+  "cuisine": "Готовить",
+  "tools": [
+   "без готовки"
+  ],
+  "minutes": 15,
+  "keepDays": 10,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "oats",
+    "grams": 35
+   },
+   {
+    "id": "pbutter",
+    "grams": 20
+   },
+   {
+    "id": "honey",
+    "grams": 15
+   },
+   {
+    "id": "choc",
+    "grams": 8
+   }
+  ],
+  "spices": "корица, щепотка соли",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Смешайте овсянку, арахисовую пасту, мёд, соль, рубленый шоколад.",
+   "30 минут в холодильник, потом скатайте шарики по 25–30 г.",
+   "Хранятся до 10 дней в холодильнике или 3 месяца в морозилке."
+  ],
+  "source": {
+   "name": "Love and Lemons: No-Bake Energy Balls",
+   "url": "https://www.loveandlemons.com/energy-balls"
+  },
+  "kcal": 337,
+  "protein": 10,
+  "fat": 16,
+  "carbs": 42,
+  "cookedGrams": 80
+ },
+ {
+  "id": "s-apple",
+  "type": "snack",
+  "name": "Печёное яблоко с творогом и орехами",
+  "cuisine": "Готовить",
+  "tools": [
+   "аэрогриль"
+  ],
+  "minutes": 25,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "apple",
+    "grams": 220
+   },
+   {
+    "id": "cottage",
+    "grams": 95
+   },
+   {
+    "id": "nuts",
+    "grams": 15
+   },
+   {
+    "id": "honey",
+    "grams": 10
+   }
+  ],
+  "spices": "корица",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Яблоки разрежьте пополам, удалите сердцевину.",
+   "Аэрогриль 170 °C 15–18 минут до мягкости.",
+   "Остудите, сверху творог, рубленые орехи, корица, мёд. Хранить в контейнере до 3 дней."
+  ],
+  "source": {
+   "name": "ВкусВилл: запечённые яблоки с творогом и орехами",
+   "url": "https://vkusvill.ru/media/recipes/zapechyennye-yabloki-s-tvorogom-i-orekhami.html"
+  },
+  "kcal": 351,
+  "protein": 19,
+  "fat": 14,
+  "carbs": 44,
+  "cookedGrams": 340
+ },
+ {
+  "id": "s-banbread",
+  "type": "snack",
+  "name": "Сэндвич с яйцом и огурцом",
+  "cuisine": "Готовить",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 10,
+  "keepDays": 2,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "bread",
+    "grams": 55
+   },
+   {
+    "id": "egg",
+    "grams": 110
+   },
+   {
+    "id": "cucumber",
+    "grams": 60
+   },
+   {
+    "id": "cheese",
+    "grams": 10
+   }
+  ],
+  "spices": "соль, перец",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Яйца сварите заранее. Собирайте за 1 день до еды, огурец кладите в последний момент."
+  ],
+  "source": null,
+  "kcal": 347,
+  "protein": 21,
+  "fat": 15,
+  "carbs": 30,
+  "cookedGrams": 230
+ },
+ {
+  "id": "m-s-chrice",
+  "type": "main",
+  "name": "Куриная грудка с рисом, овощами и сыром",
+  "cuisine": "Простое",
+  "tools": [
+   "аэрогриль",
+   "плита"
+  ],
+  "minutes": 30,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "chicken",
+    "grams": 180
+   },
+   {
+    "id": "rice",
+    "grams": 40
+   },
+   {
+    "id": "vegmix",
+    "grams": 150
+   },
+   {
+    "id": "cheese",
+    "grams": 20
+   },
+   {
+    "id": "oil",
+    "grams": 3
+   }
+  ],
+  "spices": "соль, паприка, чеснок сушёный",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Рис сварите.",
+   "Грудку натрите солью, паприкой и маслом. Аэрогриль 190 °C 16–18 минут, перевернуть на середине. Дать постоять 5 минут и нарезать.",
+   "Овощную смесь из заморозки: в аэрогриль 190 °C 10 минут или на сковороду 7 минут.",
+   "Контейнер: рис, овощи, курица, сверху тёртый сыр. Сыр расплавится при разогреве."
+  ],
+  "source": null,
+  "kcal": 554,
+  "protein": 53,
+  "fat": 14,
+  "carbs": 51,
+  "cookedGrams": 410
+ },
+ {
+  "id": "m-s-sweetpot",
+  "type": "main",
+  "name": "Печёная картошка с курицей в кисло-сладком соусе",
+  "cuisine": "Простое",
+  "tools": [
+   "аэрогриль"
+  ],
+  "minutes": 40,
+  "keepDays": 4,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "chicken",
+    "grams": 170
+   },
+   {
+    "id": "potato",
+    "grams": 280
+   },
+   {
+    "id": "pepper",
+    "grams": 60
+   },
+   {
+    "id": "onion",
+    "grams": 30
+   },
+   {
+    "id": "honey",
+    "grams": 10
+   },
+   {
+    "id": "ketchup",
+    "grams": 20
+   },
+   {
+    "id": "soy",
+    "grams": 10
+   },
+   {
+    "id": "vinegar",
+    "grams": 10
+   },
+   {
+    "id": "oil",
+    "grams": 5
+   }
+  ],
+  "spices": "чеснок, соль",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Картофель дольками с маслом и солью: аэрогриль 200 °C 15 минут.",
+   "Соус: мёд, кетчуп, соевый, уксус, чеснок. Курицу кубиком смешайте с половиной соуса.",
+   "Добавьте к картошке курицу, перец и лук. Ещё 15 минут при 190 °C, встряхнуть на середине.",
+   "Полейте остатком соуса и разложите. Духовка вместо аэрогриля: 190 °C (газовая 180 °C), 40 минут на одном противне."
+  ],
+  "source": null,
+  "kcal": 550,
+  "protein": 46,
+  "fat": 10,
+  "carbs": 67,
+  "cookedGrams": 470
+ },
+ {
+  "id": "m-s-buckmush",
+  "type": "main",
+  "name": "Курица с гречкой и грибами",
+  "cuisine": "Простое",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 35,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "chicken",
+    "grams": 180
+   },
+   {
+    "id": "buckw",
+    "grams": 75
+   },
+   {
+    "id": "mush",
+    "grams": 120
+   },
+   {
+    "id": "onion",
+    "grams": 40
+   },
+   {
+    "id": "oil",
+    "grams": 6
+   }
+  ],
+  "spices": "соль, перец, лавровый лист",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Гречку сварите 1:2 с лавром.",
+   "Курицу кубиком обжарьте 6 минут, добавьте лук и грибы, ещё 8 минут.",
+   "Смешайте с гречкой прямо в сковороде. Одна посуда, одно блюдо."
+  ],
+  "source": null,
+  "kcal": 547,
+  "protein": 54,
+  "fat": 14,
+  "carbs": 54,
+  "cookedGrams": 440
+ },
+ {
+  "id": "m-s-meatballs",
+  "type": "main",
+  "name": "Говяжьи тефтели из аэрогриля с макаронами в томате",
+  "cuisine": "Простое",
+  "tools": [
+   "аэрогриль",
+   "плита"
+  ],
+  "minutes": 35,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "bmince",
+    "grams": 135
+   },
+   {
+    "id": "bfat",
+    "grams": 10
+   },
+   {
+    "id": "onion",
+    "grams": 20
+   },
+   {
+    "id": "pasta",
+    "grams": 60
+   },
+   {
+    "id": "ctomato",
+    "grams": 150
+   }
+  ],
+  "spices": "соль, перец, чеснок; по желанию: орегано",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Фарш делай сам: говядину без плёнок прокрути через мясорубку со средней решёткой. Прокрути вместе с говяжьим жиром, это примерно 8–10% от веса мяса: без жира тефтели и кёфта из постной говядины выходят сухими. Жир спроси у мясника на рынке.",
+   "Фарш с тёртым луком, солью и перцем. Скатайте шарики по 30–35 г.",
+   "Аэрогриль 190 °C 12 минут.",
+   "Томаты прогрейте с чесноком и орегано 10 минут, положите туда тефтели.",
+   "Макароны отварите. Контейнер: макароны, сверху тефтели с соусом."
+  ],
+  "source": null,
+  "kcal": 552,
+  "protein": 35,
+  "fat": 23,
+  "carbs": 50,
+  "cookedGrams": 380
+ },
+ {
+  "id": "m-s-paprika",
+  "type": "main",
+  "name": "Курица с картофелем и морковью в аэрогриле",
+  "cuisine": "Простое",
+  "tools": [
+   "аэрогриль"
+  ],
+  "minutes": 35,
+  "keepDays": 4,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "chicken",
+    "grams": 180
+   },
+   {
+    "id": "potato",
+    "grams": 300
+   },
+   {
+    "id": "carrot",
+    "grams": 100
+   },
+   {
+    "id": "oil",
+    "grams": 7
+   }
+  ],
+  "spices": "паприка, чеснок, соль, перец",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Всё нарежьте кусками одного размера, около 2–3 см.",
+   "Смешайте с маслом и специями в одной миске.",
+   "Аэрогриль 200 °C 25 минут, дважды встряхнуть. Курица и картошка готовы одновременно, если курица крупнее."
+  ],
+  "source": null,
+  "kcal": 551,
+  "protein": 47,
+  "fat": 12,
+  "carbs": 61,
+  "cookedGrams": 460
+ },
+ {
+  "id": "m-s-ricemince",
+  "type": "main",
+  "name": "Рис с говяжьим фаршем и овощами на одной сковороде",
+  "cuisine": "Простое",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 30,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "bmince",
+    "grams": 150
+   },
+   {
+    "id": "rice",
+    "grams": 55
+   },
+   {
+    "id": "vegmix",
+    "grams": 150
+   },
+   {
+    "id": "tpaste",
+    "grams": 10
+   },
+   {
+    "id": "water",
+    "grams": 150
+   }
+  ],
+  "spices": "соль, паприка, чеснок; по желанию: зира",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Фарш делай сам: говядину без плёнок прокрути через мясорубку со средней решёткой.",
+   "Обжарьте фарш 7 минут, добавьте томатную пасту и специи.",
+   "Всыпьте сухой рис и овощную смесь, залейте горячей водой (2 части к рису).",
+   "Крышка, слабый огонь, 18–20 минут. Не мешать. Готово в одной сковороде."
+  ],
+  "source": null,
+  "kcal": 544,
+  "protein": 38,
+  "fat": 15,
+  "carbs": 65,
+  "cookedGrams": 480
+ },
+ {
+  "id": "m-s-flot",
+  "type": "main",
+  "name": "Макароны по-флотски с огурцами",
+  "cuisine": "Простое",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 25,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "bmince",
+    "grams": 150
+   },
+   {
+    "id": "pasta",
+    "grams": 80
+   },
+   {
+    "id": "onion",
+    "grams": 50
+   },
+   {
+    "id": "cucumber",
+    "grams": 100
+   }
+  ],
+  "spices": "соль, перец",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Фарш делай сам: говядину без плёнок прокрути через мясорубку со средней решёткой.",
+   "Отварите макароны.",
+   "Фарш с луком обжарьте до корочки 10 минут без масла: жира в фарше хватает.",
+   "Смешайте с макаронами. Огурцы храните отдельно."
+  ],
+  "source": null,
+  "kcal": 555,
+  "protein": 40,
+  "fat": 15,
+  "carbs": 65,
+  "cookedGrams": 430
+ },
+ {
+  "id": "m-s-beefpot",
+  "type": "main",
+  "name": "Тушёная говядина с картошкой",
+  "cuisine": "Простое",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 90,
+  "keepDays": 4,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "beef",
+    "grams": 160
+   },
+   {
+    "id": "potato",
+    "grams": 300
+   },
+   {
+    "id": "onion",
+    "grams": 40
+   },
+   {
+    "id": "carrot",
+    "grams": 40
+   },
+   {
+    "id": "oil",
+    "grams": 5
+   },
+   {
+    "id": "water",
+    "grams": 200
+   }
+  ],
+  "spices": "лавр, перец горошком, соль",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Говядину кубиком обжарьте 5 минут, добавьте лук и морковь.",
+   "Залейте водой, крышка, 60 минут на слабом огне.",
+   "Картофель крупно, ещё 25 минут. Готовить почти не надо, только ждать."
+  ],
+  "source": null,
+  "kcal": 548,
+  "protein": 40,
+  "fat": 17,
+  "carbs": 58,
+  "cookedGrams": 490
+ },
+ {
+  "id": "m-s-nuggets",
+  "type": "main",
+  "name": "Куриные наггетсы в аэрогриле + картофельные дольки",
+  "cuisine": "Простое",
+  "tools": [
+   "аэрогриль"
+  ],
+  "minutes": 40,
+  "keepDays": 3,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "chicken",
+    "grams": 180
+   },
+   {
+    "id": "egg",
+    "grams": 15
+   },
+   {
+    "id": "crumbs",
+    "grams": 20
+   },
+   {
+    "id": "potato",
+    "grams": 225
+   },
+   {
+    "id": "cucumber",
+    "grams": 100
+   },
+   {
+    "id": "oil",
+    "grams": 5
+   }
+  ],
+  "spices": "паприка, чеснок, соль",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Курицу кусочками обмакните в яйцо и обваляйте в сухарях с паприкой.",
+   "Картофель дольками с маслом: аэрогриль 200 °C 15 минут.",
+   "Наггетсы: 200 °C 10–12 минут, сбрызнуть маслом. Разогревать в аэрогриле 4 минуты, чтобы хрустели."
+  ],
+  "source": null,
+  "kcal": 550,
+  "protein": 50,
+  "fat": 12,
+  "carbs": 58,
+  "cookedGrams": 450
+ },
+ {
+  "id": "m-s-pastabroc",
+  "type": "main",
+  "name": "Паста с курицей и брокколи",
+  "cuisine": "Простое",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 25,
+  "keepDays": 4,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "chicken",
+    "grams": 160
+   },
+   {
+    "id": "pasta",
+    "grams": 60
+   },
+   {
+    "id": "broccoli",
+    "grams": 150
+   },
+   {
+    "id": "cheese",
+    "grams": 15
+   },
+   {
+    "id": "oil",
+    "grams": 5
+   },
+   {
+    "id": "garlic",
+    "grams": 5
+   }
+  ],
+  "spices": "соль, перец, чили по желанию",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Макароны варите, за 3 минуты до конца бросьте туда брокколи.",
+   "Курицу кубиком обжарьте с чесноком 7 минут.",
+   "Смешайте всё, посыпьте сыром. Одна кастрюля и одна сковорода."
+  ],
+  "source": null,
+  "kcal": 558,
+  "protein": 51,
+  "fat": 15,
+  "carbs": 54,
+  "cookedGrams": 410
+ },
+ {
+  "id": "m-s-couscous",
+  "type": "main",
+  "name": "Курица гриль с зелёной чечевицей и свежими овощами",
+  "cuisine": "Простое",
+  "tools": [
+   "аэрогриль",
+   "плита"
+  ],
+  "minutes": 35,
+  "keepDays": 4,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "chicken",
+    "grams": 170
+   },
+   {
+    "id": "lentg",
+    "grams": 75
+   },
+   {
+    "id": "tomato",
+    "grams": 120
+   },
+   {
+    "id": "cucumber",
+    "grams": 80
+   },
+   {
+    "id": "lemon",
+    "grams": 10
+   },
+   {
+    "id": "oil",
+    "grams": 6
+   }
+  ],
+  "spices": "паприка, чеснок, соль",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Зелёную чечевицу варите 20–25 минут в подсоленной воде, она держит форму. Слейте воду.",
+   "Курицу со специями и маслом: аэрогриль 190 °C 16 минут.",
+   "Помидоры и огурцы нарежьте, сбрызните лимоном, храните отдельно."
+  ],
+  "source": null,
+  "kcal": 558,
+  "protein": 58,
+  "fat": 12,
+  "carbs": 56,
+  "cookedGrams": 520
+ },
+ {
+  "id": "m-s-kupech",
+  "type": "main",
+  "name": "Гречка с говяжьим фаршем по-купечески",
+  "cuisine": "Простое",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 35,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "bmince",
+    "grams": 140
+   },
+   {
+    "id": "buckw",
+    "grams": 90
+   },
+   {
+    "id": "onion",
+    "grams": 50
+   },
+   {
+    "id": "carrot",
+    "grams": 40
+   },
+   {
+    "id": "tpaste",
+    "grams": 10
+   },
+   {
+    "id": "water",
+    "grams": 150
+   }
+  ],
+  "spices": "соль, перец, лавр",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Фарш делай сам: говядину без плёнок прокрути через мясорубку со средней решёткой.",
+   "Фарш обжарьте с луком и морковью 10 минут, добавьте томатную пасту.",
+   "Всыпьте промытую гречку, залейте водой 1:2, крышка.",
+   "20 минут на слабом огне. Всё в одной сковороде."
+  ],
+  "source": null,
+  "kcal": 550,
+  "protein": 40,
+  "fat": 16,
+  "carbs": 66,
+  "cookedGrams": 490
+ },
+ {
+  "id": "b-s-sheetegg",
+  "type": "breakfast",
+  "name": "Омлет на противне с курицей и сыром + хлеб",
+  "cuisine": "Простое",
+  "tools": [
+   "аэрогриль"
+  ],
+  "minutes": 25,
+  "keepDays": 4,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "egg",
+    "grams": 165
+   },
+   {
+    "id": "chicken",
+    "grams": 60
+   },
+   {
+    "id": "pepper",
+    "grams": 60
+   },
+   {
+    "id": "cheese",
+    "grams": 15
+   },
+   {
+    "id": "bread",
+    "grams": 65
+   }
+  ],
+  "spices": "соль, перец",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Взбейте яйца с солью, добавьте мелко нарезанные курицу и перец.",
+   "Вылейте в форму, посыпьте сыром.",
+   "Аэрогриль 160 °C 15–18 минут. Нарежьте квадратами на порции."
+  ],
+  "source": null,
+  "kcal": 549,
+  "protein": 44,
+  "fat": 24,
+  "carbs": 36,
+  "cookedGrams": 320
+ },
+ {
+  "id": "b-s-eggsand",
+  "type": "breakfast",
+  "name": "Варёные яйца и бутерброды с курицей",
+  "cuisine": "Простое",
+  "tools": [
+   "плита",
+   "аэрогриль"
+  ],
+  "minutes": 20,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "egg",
+    "grams": 110
+   },
+   {
+    "id": "bread",
+    "grams": 90
+   },
+   {
+    "id": "chicken",
+    "grams": 70
+   },
+   {
+    "id": "cucumber",
+    "grams": 80
+   },
+   {
+    "id": "cheese",
+    "grams": 15
+   }
+  ],
+  "spices": "соль, горчица",
+  "spiceAllergens": {
+   "contains": [
+    "mustard"
+   ],
+   "may": []
+  },
+  "steps": [
+   "Яйца сварите 9 минут. Курицу запеките вместе с курицей для обедов, лишней работы нет.",
+   "Хлеб, курица, сыр, огурец утром в момент еды: собранные заранее бутерброды размокают."
+  ],
+  "source": null,
+  "kcal": 544,
+  "protein": 41,
+  "fat": 19,
+  "carbs": 48,
+  "cookedGrams": 340
+ },
+ {
+  "id": "b-s-oatmilk",
+  "type": "breakfast",
+  "name": "Овсянка на безлактозном молоке с яйцами",
+  "cuisine": "Простое",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 10,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "oats",
+    "grams": 40
+   },
+   {
+    "id": "milk",
+    "grams": 250
+   },
+   {
+    "id": "egg",
+    "grams": 165
+   },
+   {
+    "id": "banana",
+    "grams": 60
+   },
+   {
+    "id": "honey",
+    "grams": 5
+   }
+  ],
+  "spices": "щепотка соли, корица",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Овсянку сварите на молоке 5 минут (или залейте с вечера и разогрейте утром).",
+   "Яйца сварите заранее.",
+   "Банан и мёд добавляйте при еде."
+  ],
+  "source": null,
+  "kcal": 558,
+  "protein": 34,
+  "fat": 22,
+  "carbs": 56,
+  "cookedGrams": 510
+ },
+ {
+  "id": "b-s-lavash",
+  "type": "breakfast",
+  "name": "Ролл из лаваша с омлетом и курицей",
+  "cuisine": "Простое",
+  "tools": [
+   "плита",
+   "аэрогриль"
+  ],
+  "minutes": 20,
+  "keepDays": 3,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "lavash",
+    "grams": 95
+   },
+   {
+    "id": "egg",
+    "grams": 110
+   },
+   {
+    "id": "chicken",
+    "grams": 60
+   },
+   {
+    "id": "cheese",
+    "grams": 15
+   },
+   {
+    "id": "tomato",
+    "grams": 60
+   }
+  ],
+  "spices": "соль, зелень",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Сделайте тонкий омлет на сковороде.",
+   "На лаваш: омлет, курица, сыр, помидор. Сверните туго.",
+   "Разогрев: аэрогриль 180 °C 5 минут. В морозилке до месяца, без помидора."
+  ],
+  "source": null,
+  "kcal": 554,
+  "protein": 40,
+  "fat": 17,
+  "carbs": 56,
+  "cookedGrams": 310
+ },
+ {
+  "id": "b-vareniki",
+  "type": "breakfast",
+  "name": "Ленивые вареники из творога",
+  "cuisine": "Русская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 30,
+  "keepDays": 3,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "cottage",
+    "grams": 230
+   },
+   {
+    "id": "egg",
+    "grams": 30
+   },
+   {
+    "id": "flour",
+    "grams": 40
+   },
+   {
+    "id": "sugar",
+    "grams": 10
+   },
+   {
+    "id": "yogurt",
+    "grams": 60
+   }
+  ],
+  "spices": "щепотка соли, ванилин",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Творог, яйцо, сахар, соль, мука: мягкое тесто, не липнет к рукам.",
+   "Раскатайте колбаской, нарежьте подушечками.",
+   "Варите в кипящей подсоленной воде 2–3 минуты после всплытия.",
+   "Сразу в морозилку на доске, потом в пакет. Утром 1–2 минуты в кипятке или микроволновке. Йогурт сверху."
+  ],
+  "source": null,
+  "kcal": 551,
+  "protein": 51,
+  "fat": 16,
+  "carbs": 50,
+  "cookedGrams": 360
+ },
+ {
+  "id": "b-parfait",
+  "type": "breakfast",
+  "name": "Йогурт-парфе с домашней гранолой и ягодами",
+  "cuisine": "Американская",
+  "tools": [
+   "аэрогриль"
+  ],
+  "minutes": 20,
+  "keepDays": 4,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "yogurt",
+    "grams": 300
+   },
+   {
+    "id": "oats",
+    "grams": 55
+   },
+   {
+    "id": "honey",
+    "grams": 12
+   },
+   {
+    "id": "nuts",
+    "grams": 10
+   },
+   {
+    "id": "berries",
+    "grams": 80
+   }
+  ],
+  "spices": "корица, щепотка соли",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Гранола: овсянка, рубленые орехи, мёд, корица. Аэрогриль 160 °C 8–10 минут, перемешать дважды. Остудить, она станет хрустящей.",
+   "Гранолу храните в банке отдельно, иначе размокнет.",
+   "В контейнер: йогурт, ягоды. Гранолу сверху утром."
+  ],
+  "source": null,
+  "kcal": 546,
+  "protein": 39,
+  "fat": 15,
+  "carbs": 64,
+  "cookedGrams": 460
+ },
+ {
+  "id": "b-bliny",
+  "type": "breakfast",
+  "name": "Блинчики с творогом (в морозилку)",
+  "cuisine": "Русская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 50,
+  "keepDays": 3,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "milk",
+    "grams": 150
+   },
+   {
+    "id": "egg",
+    "grams": 55
+   },
+   {
+    "id": "flour",
+    "grams": 35
+   },
+   {
+    "id": "cottage",
+    "grams": 170
+   },
+   {
+    "id": "sugar",
+    "grams": 10
+   },
+   {
+    "id": "oil",
+    "grams": 3
+   }
+  ],
+  "spices": "соль, ванилин",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Тесто: молоко, яйцо, мука, щепотка соли и сахара, масло. Постоит 15 минут.",
+   "Пеките тонкие блины на сухой сковороде с антипригарным покрытием.",
+   "Начинка: творог с сахаром и ванилином. Заверните конвертом.",
+   "Заморозьте на доске, потом в пакет. Разогрев: аэрогриль 170 °C 6–8 минут."
+  ],
+  "source": null,
+  "kcal": 546,
+  "protein": 42,
+  "fat": 19,
+  "carbs": 49,
+  "cookedGrams": 410
+ },
+ {
+  "id": "b-ovsyanoblin",
+  "type": "breakfast",
+  "name": "Овсяноблин с курицей и сыром",
+  "cuisine": "Домашняя",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 15,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "oats",
+    "grams": 60
+   },
+   {
+    "id": "egg",
+    "grams": 110
+   },
+   {
+    "id": "milk",
+    "grams": 30
+   },
+   {
+    "id": "chicken",
+    "grams": 70
+   },
+   {
+    "id": "cheese",
+    "grams": 20
+   },
+   {
+    "id": "tomato",
+    "grams": 60
+   }
+  ],
+  "spices": "соль, перец, зелень",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Овсянку смешайте с яйцами и молоком, 5 минут постоять.",
+   "Вылейте на сковороду, 3 минуты, переверните.",
+   "Сверху курица, сыр, помидор, сложите пополам. Храните в контейнере, разогрев 1 минута в микроволновке."
+  ],
+  "source": null,
+  "kcal": 547,
+  "protein": 43,
+  "fat": 22,
+  "carbs": 42,
+  "cookedGrams": 320
+ },
+ {
+  "id": "b-adjarski",
+  "type": "breakfast",
+  "name": "Лодочки из лаваша с яйцом и сыром",
+  "cuisine": "Грузинская",
+  "tools": [
+   "аэрогриль"
+  ],
+  "minutes": 20,
+  "keepDays": 2,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "lavash",
+    "grams": 75
+   },
+   {
+    "id": "egg",
+    "grams": 110
+   },
+   {
+    "id": "cheese",
+    "grams": 30
+   },
+   {
+    "id": "cottage",
+    "grams": 70
+   }
+  ],
+  "spices": "соль, зелень",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Лаваш сложите в 2–3 слоя и сформируйте лодочку в форме для аэрогриля.",
+   "Начинка: творог с тёртым сыром.",
+   "Аэрогриль 180 °C 6 минут, вбейте яйца, ещё 5–6 минут.",
+   "Лучше готовить на 2 дня вперёд, не больше."
+  ],
+  "source": null,
+  "kcal": 553,
+  "protein": 39,
+  "fat": 23,
+  "carbs": 45,
+  "cookedGrams": 270
+ },
+ {
+  "id": "b-quesadilla",
+  "type": "breakfast",
+  "name": "Кесадилья с курицей, фасолью и сыром",
+  "cuisine": "Мексиканская",
+  "tools": [
+   "аэрогриль"
+  ],
+  "minutes": 25,
+  "keepDays": 3,
+  "freezable": true,
+  "spicy": true,
+  "ingredients": [
+   {
+    "id": "tortilla",
+    "grams": 90
+   },
+   {
+    "id": "chicken",
+    "grams": 90
+   },
+   {
+    "id": "cheese",
+    "grams": 30
+   },
+   {
+    "id": "pepper",
+    "grams": 50
+   },
+   {
+    "id": "beans",
+    "grams": 40
+   }
+  ],
+  "spices": "паприка, чили; по желанию: кумин",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Курицу запеките или возьмите из заготовки обедов, нарежьте мелко.",
+   "Половину тортильи: курица, фасоль, перец, сыр. Сложите.",
+   "Аэрогриль 190 °C 6 минут, придавив решёткой. Остудите, заверните в пергамент.",
+   "Разогрев: аэрогриль 180 °C 4 минуты."
+  ],
+  "source": null,
+  "kcal": 550,
+  "protein": 38,
+  "fat": 18,
+  "carbs": 56,
+  "cookedGrams": 260
+ },
+ {
+  "id": "b-hash",
+  "type": "breakfast",
+  "name": "Картофельный хэш с яйцами и курицей",
+  "cuisine": "Американская",
+  "tools": [
+   "аэрогриль"
+  ],
+  "minutes": 30,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "potato",
+    "grams": 260
+   },
+   {
+    "id": "egg",
+    "grams": 110
+   },
+   {
+    "id": "chicken",
+    "grams": 70
+   },
+   {
+    "id": "pepper",
+    "grams": 50
+   },
+   {
+    "id": "onion",
+    "grams": 20
+   },
+   {
+    "id": "cheese",
+    "grams": 15
+   },
+   {
+    "id": "oil",
+    "grams": 4
+   }
+  ],
+  "spices": "паприка копчёная, соль, перец",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Картофель кубиком 1,5 см с маслом и паприкой: аэрогриль 200 °C 15 минут.",
+   "Добавьте курицу, перец, лук, ещё 5 минут.",
+   "Разложите по контейнерам. Яйца: сварите заранее или сделайте болтунью и положите сверху."
+  ],
+  "source": null,
+  "kcal": 552,
+  "protein": 39,
+  "fat": 21,
+  "carbs": 49,
+  "cookedGrams": 430
+ },
+ {
+  "id": "b-tvorogbowl",
+  "type": "breakfast",
+  "name": "Творог с йогуртом, бананом и овсянкой (без готовки)",
+  "cuisine": "Домашняя",
+  "tools": [
+   "без готовки"
+  ],
+  "minutes": 5,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "cottage",
+    "grams": 200
+   },
+   {
+    "id": "yogurt",
+    "grams": 100
+   },
+   {
+    "id": "banana",
+    "grams": 100
+   },
+   {
+    "id": "oats",
+    "grams": 35
+   },
+   {
+    "id": "honey",
+    "grams": 5
+   }
+  ],
+  "spices": "корица",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Смешайте творог с йогуртом и разложите по контейнерам.",
+   "Овсянку сверху: за ночь станет мягкой. Банан режьте утром."
+  ],
+  "source": null,
+  "kcal": 542,
+  "protein": 47,
+  "fat": 14,
+  "carbs": 58,
+  "cookedGrams": 430
+ },
+ {
+  "id": "b-frenchtoast",
+  "type": "breakfast",
+  "name": "Французские тосты в аэрогриле + творог с ягодами",
+  "cuisine": "Американская",
+  "tools": [
+   "аэрогриль"
+  ],
+  "minutes": 20,
+  "keepDays": 3,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "bread",
+    "grams": 75
+   },
+   {
+    "id": "egg",
+    "grams": 110
+   },
+   {
+    "id": "milk",
+    "grams": 60
+   },
+   {
+    "id": "cottage",
+    "grams": 100
+   },
+   {
+    "id": "berries",
+    "grams": 80
+   },
+   {
+    "id": "honey",
+    "grams": 5
+   }
+  ],
+  "spices": "корица, ванилин",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Взбейте яйца с молоком и корицей. Обмакните хлеб с двух сторон.",
+   "Аэрогриль на пергаменте 180 °C 8 минут, перевернуть на середине.",
+   "Творог с ягодами и мёдом в отдельный контейнер. Тосты разогревать 3 минуты в аэрогриле."
+  ],
+  "source": null,
+  "kcal": 555,
+  "protein": 38,
+  "fat": 19,
+  "carbs": 56,
+  "cookedGrams": 420
+ },
+ {
+  "id": "b-sirnikimix",
+  "type": "breakfast",
+  "name": "Запечённая манка-творожник (как в садике)",
+  "cuisine": "Русская",
+  "tools": [
+   "аэрогриль"
+  ],
+  "minutes": 50,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "cottage",
+    "grams": 220
+   },
+   {
+    "id": "egg",
+    "grams": 55
+   },
+   {
+    "id": "semolina",
+    "grams": 30
+   },
+   {
+    "id": "yogurt",
+    "grams": 50
+   },
+   {
+    "id": "sugar",
+    "grams": 12
+   },
+   {
+    "id": "berries",
+    "grams": 60
+   }
+  ],
+  "spices": "ванилин, разрыхлитель",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Смешайте творог, яйцо, йогурт, сахар и манку. 20 минут постоять, манка набухнет.",
+   "Выложите в форму.",
+   "Аэрогриль 160 °C 30–35 минут. Остудите в форме, нарежьте. Ягоды сверху при еде."
+  ],
+  "source": null,
+  "kcal": 556,
+  "protein": 51,
+  "fat": 18,
+  "carbs": 48,
+  "cookedGrams": 410
+ },
+ {
+  "id": "s-yogurt",
+  "type": "snack",
+  "name": "Греческий йогурт с мёдом и орехами",
+  "cuisine": "Купить",
+  "tools": [
+   "без готовки"
+  ],
+  "minutes": 2,
+  "keepDays": 4,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "yogurt",
+    "grams": 310
+   },
+   {
+    "id": "honey",
+    "grams": 10
+   },
+   {
+    "id": "nuts",
+    "grams": 15
+   }
+  ],
+  "spices": "соль, перец",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Разложите йогурт по баночкам, орехи сверху в момент еды."
+  ],
+  "source": null,
+  "kcal": 348,
+  "protein": 34,
+  "fat": 15,
+  "carbs": 22,
+  "cookedGrams": 340
+ },
+ {
+  "id": "s-kefircrisp",
+  "type": "snack",
+  "name": "Кефир и хлебцы с сыром",
+  "cuisine": "Купить",
+  "tools": [
+   "без готовки"
+  ],
+  "minutes": 2,
+  "keepDays": 5,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "kefir",
+    "grams": 300
+   },
+   {
+    "id": "crisp",
+    "grams": 30
+   },
+   {
+    "id": "cheese",
+    "grams": 35
+   }
+  ],
+  "spices": "соль, перец",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Сыр нарежьте на неделю вперёд и храните в плёнке."
+  ],
+  "source": null,
+  "kcal": 342,
+  "protein": 21,
+  "fat": 13,
+  "carbs": 30,
+  "cookedGrams": 360
+ },
+ {
+  "id": "s-minisyr",
+  "type": "snack",
+  "name": "Мини-сырники с йогуртом",
+  "cuisine": "Готовить",
+  "tools": [
+   "аэрогриль"
+  ],
+  "minutes": 20,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "cottage",
+    "grams": 170
+   },
+   {
+    "id": "egg",
+    "grams": 25
+   },
+   {
+    "id": "flour",
+    "grams": 15
+   },
+   {
+    "id": "sugar",
+    "grams": 5
+   },
+   {
+    "id": "yogurt",
+    "grams": 50
+   }
+  ],
+  "spices": "ванилин",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Делайте вместе с сырниками для завтраков, только меньше: по 25–30 г.",
+   "Аэрогриль 180 °C 10 минут."
+  ],
+  "source": null,
+  "kcal": 353,
+  "protein": 37,
+  "fat": 12,
+  "carbs": 23,
+  "cookedGrams": 250
+ },
+ {
+  "id": "s-smoothie",
+  "type": "snack",
+  "name": "Смузи: молоко, банан, творог, овсянка",
+  "cuisine": "Готовить",
+  "tools": [
+   "без готовки"
+  ],
+  "minutes": 5,
+  "keepDays": 1,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "milk",
+    "grams": 250
+   },
+   {
+    "id": "banana",
+    "grams": 100
+   },
+   {
+    "id": "cottage",
+    "grams": 65
+   },
+   {
+    "id": "oats",
+    "grams": 20
+   }
+  ],
+  "spices": "корица",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Всё в блендер на 40 секунд. Пить сразу.",
+   "Заготовка: банан, творог и овсянку разложите по пакетам и заморозьте. Утром в блендер с молоком."
+  ],
+  "source": null,
+  "kcal": 351,
+  "protein": 21,
+  "fat": 9,
+  "carbs": 49,
+  "cookedGrams": 430
+ },
+ {
+  "id": "s-mandarin",
+  "type": "snack",
+  "name": "Мандарины, сыр и хлебцы",
+  "cuisine": "Купить",
+  "tools": [
+   "без готовки"
+  ],
+  "minutes": 1,
+  "keepDays": 7,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "mandarin",
+    "grams": 240
+   },
+   {
+    "id": "cheese",
+    "grams": 30
+   },
+   {
+    "id": "crisp",
+    "grams": 35
+   }
+  ],
+  "spices": "соль, перец",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Ничего готовить не нужно."
+  ],
+  "source": null,
+  "kcal": 348,
+  "protein": 13,
+  "fat": 10,
+  "carbs": 52,
+  "cookedGrams": 300
+ },
+ {
+  "id": "s-chickpea",
+  "type": "snack",
+  "name": "Хрустящий нут из аэрогриля и яблоко",
+  "cuisine": "Готовить",
+  "tools": [
+   "аэрогриль"
+  ],
+  "minutes": 25,
+  "keepDays": 5,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "chickpea",
+    "grams": 160
+   },
+   {
+    "id": "oil",
+    "grams": 5
+   },
+   {
+    "id": "apple",
+    "grams": 150
+   }
+  ],
+  "spices": "паприка копчёная, чеснок, соль",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Нут промойте и обсушите полотенцем, это важно для хруста.",
+   "С маслом и специями: аэрогриль 200 °C 15–18 минут, встряхивать каждые 5 минут.",
+   "Храните в банке без крышки первые часы, потом закройте."
+  ],
+  "source": null,
+  "kcal": 347,
+  "protein": 12,
+  "fat": 9,
+  "carbs": 56,
+  "cookedGrams": 320
+ },
+ {
+  "id": "s-dates",
+  "type": "snack",
+  "name": "Финики с арахисовой пастой и кефир",
+  "cuisine": "Купить",
+  "tools": [
+   "без готовки"
+  ],
+  "minutes": 3,
+  "keepDays": 7,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "dates",
+    "grams": 40
+   },
+   {
+    "id": "pbutter",
+    "grams": 15
+   },
+   {
+    "id": "kefir",
+    "grams": 370
+   }
+  ],
+  "spices": "соль, перец",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Финики разрежьте и положите внутрь по ложке пасты. Хранить в холодильнике."
+  ],
+  "source": null,
+  "kcal": 351,
+  "protein": 16,
+  "fat": 11,
+  "carbs": 48,
+  "cookedGrams": 420
+ },
+ {
+  "id": "s-oatcookie",
+  "type": "snack",
+  "name": "Банановое овсяное печенье",
+  "cuisine": "Готовить",
+  "tools": [
+   "аэрогриль"
+  ],
+  "minutes": 20,
+  "keepDays": 5,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "banana",
+    "grams": 120
+   },
+   {
+    "id": "oats",
+    "grams": 30
+   },
+   {
+    "id": "nuts",
+    "grams": 10
+   },
+   {
+    "id": "choc",
+    "grams": 10
+   },
+   {
+    "id": "egg",
+    "grams": 15
+   }
+  ],
+  "spices": "корица",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Банан разомните, смешайте с овсянкой, яйцом, орехами и рубленым шоколадом.",
+   "Ложкой выложите кружки на пергамент.",
+   "Аэрогриль 170 °C 10–12 минут. На порцию 3–4 печенья."
+  ],
+  "source": null,
+  "kcal": 355,
+  "protein": 9,
+  "fat": 14,
+  "carbs": 52,
+  "cookedGrams": 180
+ },
+ {
+  "id": "s-lavashroll",
+  "type": "snack",
+  "name": "Мини-ролл из лаваша с курицей и творогом",
+  "cuisine": "Готовить",
+  "tools": [
+   "без готовки"
+  ],
+  "minutes": 10,
+  "keepDays": 2,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "lavash",
+    "grams": 65
+   },
+   {
+    "id": "chicken",
+    "grams": 70
+   },
+   {
+    "id": "cottage",
+    "grams": 60
+   },
+   {
+    "id": "cucumber",
+    "grams": 60
+   }
+  ],
+  "spices": "чеснок, зелень, соль",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Курицу возьмите из заготовки обедов. Творог смешайте с чесноком и зеленью.",
+   "Намажьте лаваш, сверху курица и огурец, сверните. Хранить 2 дня."
+  ],
+  "source": null,
+  "kcal": 344,
+  "protein": 32,
+  "fat": 6,
+  "carbs": 40,
+  "cookedGrams": 230
+ },
+ {
+  "id": "s-chickcrisp",
+  "type": "snack",
+  "name": "Куриная грудка, хлебцы и помидор",
+  "cuisine": "Готовить",
+  "tools": [
+   "аэрогриль"
+  ],
+  "minutes": 5,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "chicken",
+    "grams": 110
+   },
+   {
+    "id": "crisp",
+    "grams": 50
+   },
+   {
+    "id": "tomato",
+    "grams": 120
+   },
+   {
+    "id": "cheese",
+    "grams": 10
+   }
+  ],
+  "spices": "соль, перец",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Грудку запеките заранее вместе с курицей для обедов и нарежьте ломтиками.",
+   "Белковый перекус, если в основных приёмах белка вышло мало."
+  ],
+  "source": null,
+  "kcal": 354,
+  "protein": 34,
+  "fat": 7,
+  "carbs": 35,
+  "cookedGrams": 260
+ },
+ {
+  "id": "m-l-chicklent",
+  "type": "main",
+  "name": "Курица с зелёной чечевицей и морковью в одной кастрюле",
+  "cuisine": "Чечевица",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 45,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "chicken",
+    "grams": 170
+   },
+   {
+    "id": "lentg",
+    "grams": 70
+   },
+   {
+    "id": "carrot",
+    "grams": 60
+   },
+   {
+    "id": "onion",
+    "grams": 40
+   },
+   {
+    "id": "ctomato",
+    "grams": 80
+   },
+   {
+    "id": "oil",
+    "grams": 5
+   },
+   {
+    "id": "water",
+    "grams": 200
+   }
+  ],
+  "spices": "паприка, чеснок, соль, чёрный перец, по желанию: карри",
+  "spiceAllergens": {
+   "contains": [],
+   "may": [
+    "mustard"
+   ]
+  },
+  "steps": [
+   "Лук и морковь обжарьте на масле 5 минут.",
+   "Добавьте промытую чечевицу, томаты, специи и воду. Крышка, 20 минут.",
+   "Курицу кубиком положите сверху, ещё 12–15 минут, пока чечевица не станет мягкой, а вода не уйдёт.",
+   "В оригинале есть карри: с ним вкуснее, но и без него блюдо получается."
+  ],
+  "source": {
+   "name": "Clean Eating: One-Pot Chicken and Lentils",
+   "url": "https://www.cleaneatingmag.com/recipes/one-pot-chicken-and-lentils/"
+  },
+  "kcal": 554,
+  "protein": 57,
+  "fat": 11,
+  "carbs": 57,
+  "cookedGrams": 510
+ },
+ {
+  "id": "m-l-beeflent",
+  "type": "main",
+  "name": "Говядина, тушённая с зелёной чечевицей",
+  "cuisine": "Чечевица",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 90,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "beef",
+    "grams": 160
+   },
+   {
+    "id": "lentg",
+    "grams": 65
+   },
+   {
+    "id": "onion",
+    "grams": 40
+   },
+   {
+    "id": "carrot",
+    "grams": 40
+   },
+   {
+    "id": "tpaste",
+    "grams": 10
+   },
+   {
+    "id": "oil",
+    "grams": 5
+   },
+   {
+    "id": "water",
+    "grams": 300
+   }
+  ],
+  "spices": "паприка, чеснок, чили, соль, лавр",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Говядину кубиком обжарьте до корочки, добавьте лук и морковь.",
+   "Томатная паста, специи, вода. Тушите под крышкой 50 минут.",
+   "Добавьте чечевицу, ещё 25–30 минут. Получается как гуляш с гречкой, только в одной кастрюле."
+  ],
+  "source": null,
+  "kcal": 554,
+  "protein": 51,
+  "fat": 17,
+  "carbs": 50,
+  "cookedGrams": 460
+ },
+ {
+  "id": "m-l-soup",
+  "type": "main",
+  "name": "Суп из красной чечевицы с курицей",
+  "cuisine": "Чечевица",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 50,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "chicken",
+    "grams": 160
+   },
+   {
+    "id": "lentr",
+    "grams": 40
+   },
+   {
+    "id": "potato",
+    "grams": 80
+   },
+   {
+    "id": "carrot",
+    "grams": 40
+   },
+   {
+    "id": "onion",
+    "grams": 40
+   },
+   {
+    "id": "oil",
+    "grams": 5
+   },
+   {
+    "id": "water",
+    "grams": 400
+   },
+   {
+    "id": "bread",
+    "grams": 30
+   }
+  ],
+  "spices": "паприка, чеснок, соль, перец, зелень",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Курицу целиком отварите 20 минут, достаньте и нарежьте.",
+   "В бульон: картофель кубиком и промытая красная чечевица, 15 минут.",
+   "Лук и морковь обжарьте, добавьте в суп, верните курицу, 5 минут. Красная чечевица разварится и сделает суп густым.",
+   "Хлеб к супу отдельно."
+  ],
+  "source": {
+   "name": "Лайфхакер: куриный суп с красной чечевицей",
+   "url": "https://lifehacker.ru/recipe/kurinyj-sup-s-krasnoj-chechevicej/"
+  },
+  "kcal": 554,
+  "protein": 50,
+  "fat": 11,
+  "carbs": 61,
+  "cookedGrams": 540
+ },
+ {
+  "id": "m-l-dal",
+  "type": "main",
+  "name": "Курица с красной чечевицей по-индийски (дал) и рисом",
+  "cuisine": "Чечевица",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 40,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": true,
+  "ingredients": [
+   {
+    "id": "chicken",
+    "grams": 160
+   },
+   {
+    "id": "lentr",
+    "grams": 40
+   },
+   {
+    "id": "rice",
+    "grams": 35
+   },
+   {
+    "id": "ctomato",
+    "grams": 80
+   },
+   {
+    "id": "onion",
+    "grams": 40
+   },
+   {
+    "id": "oil",
+    "grams": 5
+   },
+   {
+    "id": "garlic",
+    "grams": 5
+   },
+   {
+    "id": "water",
+    "grams": 150
+   }
+  ],
+  "spices": "паприка, чили, чеснок, соль, настоятельно рекомендуется: карри или куркума",
+  "spiceAllergens": {
+   "contains": [],
+   "may": [
+    "mustard"
+   ]
+  },
+  "steps": [
+   "Лук и чеснок обжарьте, добавьте специи на 30 секунд.",
+   "Чечевица, томаты, вода. 15 минут, пока не станет как густое пюре.",
+   "Курицу кубиком добавьте, ещё 10 минут.",
+   "Рис отдельно. Без карри получится просто чечевица с курицей: тоже вкусно, но уже не дал."
+  ],
+  "source": null,
+  "kcal": 547,
+  "protein": 50,
+  "fat": 10,
+  "carbs": 61,
+  "cookedGrams": 480
+ },
+ {
+  "id": "m-l-bolo",
+  "type": "main",
+  "name": "Спагетти с фаршем и красной чечевицей в томате",
+  "cuisine": "Чечевица",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 40,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "bmince",
+    "grams": 110
+   },
+   {
+    "id": "lentr",
+    "grams": 30
+   },
+   {
+    "id": "pasta",
+    "grams": 60
+   },
+   {
+    "id": "ctomato",
+    "grams": 150
+   },
+   {
+    "id": "onion",
+    "grams": 40
+   },
+   {
+    "id": "carrot",
+    "grams": 30
+   }
+  ],
+  "spices": "паприка, чеснок, соль, перец",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Фарш делай сам: говядину без плёнок прокрути через мясорубку со средней решёткой.",
+   "Фарш с луком и морковью обжарьте 10 минут.",
+   "Добавьте промытую красную чечевицу, томаты и 100 мл воды на порцию. 20 минут.",
+   "Чечевица разварится и сделает соус густым и сытным. Спагетти отдельно."
+  ],
+  "source": null,
+  "kcal": 555,
+  "protein": 38,
+  "fat": 12,
+  "carbs": 74,
+  "cookedGrams": 460
+ },
+ {
+  "id": "m-l-salad",
+  "type": "main",
+  "name": "Тёплый салат: зелёная чечевица, курица, помидоры, айсберг",
+  "cuisine": "Чечевица",
+  "tools": [
+   "плита",
+   "аэрогриль"
+  ],
+  "minutes": 30,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "chicken",
+    "grams": 160
+   },
+   {
+    "id": "lentg",
+    "grams": 70
+   },
+   {
+    "id": "tomato",
+    "grams": 120
+   },
+   {
+    "id": "iceberg",
+    "grams": 60
+   },
+   {
+    "id": "cucumber",
+    "grams": 80
+   },
+   {
+    "id": "oil",
+    "grams": 7
+   },
+   {
+    "id": "lemon",
+    "grams": 10
+   }
+  ],
+  "spices": "паприка, чеснок, соль, перец",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Чечевицу сварите 20–25 минут, слейте.",
+   "Курицу запеките в аэрогриле 190 °C 16 минут, нарежьте.",
+   "Чечевица и курица в контейнер. Овощи и айсберг в отдельный, заправка из масла и лимона в маленький."
+  ],
+  "source": null,
+  "kcal": 546,
+  "protein": 56,
+  "fat": 12,
+  "carbs": 54,
+  "cookedGrams": 560
+ },
+ {
+  "id": "b-l-eggs",
+  "type": "breakfast",
+  "name": "Красная чечевица с яйцами и сыром (как каша)",
+  "cuisine": "Чечевица",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 25,
+  "keepDays": 3,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "lentr",
+    "grams": 80
+   },
+   {
+    "id": "egg",
+    "grams": 110
+   },
+   {
+    "id": "cheese",
+    "grams": 20
+   },
+   {
+    "id": "tomato",
+    "grams": 80
+   },
+   {
+    "id": "oil",
+    "grams": 3
+   }
+  ],
+  "spices": "паприка, чеснок, соль",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Красную чечевицу варите 15 минут в воде 1:2,5, посолите. Получится густая каша.",
+   "Яйца сварите заранее.",
+   "Контейнер: чечевица, сверху тёртый сыр, яйца половинками, помидор отдельно."
+  ],
+  "source": null,
+  "kcal": 555,
+  "protein": 39,
+  "fat": 21,
+  "carbs": 54,
+  "cookedGrams": 400
+ },
+ {
+  "id": "b-buckmilk",
+  "type": "breakfast",
+  "name": "Гречневая каша на безлактозном молоке + яйца",
+  "cuisine": "Русская",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 25,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "buckw",
+    "grams": 60
+   },
+   {
+    "id": "milk",
+    "grams": 250
+   },
+   {
+    "id": "egg",
+    "grams": 165
+   },
+   {
+    "id": "sugar",
+    "grams": 5
+   }
+  ],
+  "spices": "щепотка соли",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Гречку сварите в воде 1:2 заранее, можно сразу на 3 дня.",
+   "Утром залейте порцию горячим молоком, добавьте сахар или мёд по вкусу, 1 минута в микроволновке.",
+   "Яйца сварите вместе с гречкой."
+  ],
+  "source": null,
+  "kcal": 556,
+  "protein": 36,
+  "fat": 21,
+  "carbs": 55,
+  "cookedGrams": 570
+ },
+ {
+  "id": "m-t-paprika",
+  "type": "main",
+  "name": "Куриные бёдра в аэрогриле с рисом и салатом",
+  "cuisine": "Куриные бёдра",
+  "tools": [
+   "аэрогриль",
+   "плита"
+  ],
+  "minutes": 30,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "thigh",
+    "grams": 180
+   },
+   {
+    "id": "rice",
+    "grams": 75
+   },
+   {
+    "id": "iceberg",
+    "grams": 60
+   },
+   {
+    "id": "cucumber",
+    "grams": 80
+   },
+   {
+    "id": "tomato",
+    "grams": 60
+   }
+  ],
+  "spices": "паприка, чеснок, соль, перец",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Бёдра натрите специями. Масло не нужно: бедро само даёт жир.",
+   "Аэрогриль 200 °C 18–20 минут в один слой, перевернуть на середине.",
+   "Рис отдельно, салат отдельно."
+  ],
+  "source": {
+   "name": "The Girl on Bloor: Air Fryer Chicken Thighs",
+   "url": "https://thegirlonbloor.com/?p=53134"
+  },
+  "kcal": 553,
+  "protein": 41,
+  "fat": 13,
+  "carbs": 66,
+  "cookedGrams": 560
+ },
+ {
+  "id": "m-t-honey",
+  "type": "main",
+  "name": "Бёдра в медово-чесночном соусе с рисом и брокколи",
+  "cuisine": "Куриные бёдра",
+  "tools": [
+   "аэрогриль",
+   "плита"
+  ],
+  "minutes": 35,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "thigh",
+    "grams": 180
+   },
+   {
+    "id": "honey",
+    "grams": 10
+   },
+   {
+    "id": "soy",
+    "grams": 12
+   },
+   {
+    "id": "garlic",
+    "grams": 5
+   },
+   {
+    "id": "rice",
+    "grams": 60
+   },
+   {
+    "id": "broccoli",
+    "grams": 120
+   }
+  ],
+  "spices": "чили по вкусу",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Маринад: мёд, соевый соус, чеснок, чили. Бёдра в маринад на 30 минут.",
+   "Аэрогриль 200 °C 18 минут.",
+   "Брокколи в аэрогриль на последние 8 минут или отварите 4 минуты.",
+   "В оригинале есть шрирача: можно добавить, если любишь острое."
+  ],
+  "source": {
+   "name": "Project Meal Plan: Air Fryer Honey Sriracha Chicken Bowls",
+   "url": "https://projectmealplan.com/air-fryer-honey-sriracha-chicken-bowls/"
+  },
+  "kcal": 553,
+  "protein": 43,
+  "fat": 14,
+  "carbs": 66,
+  "cookedGrams": 440
+ },
+ {
+  "id": "m-t-potato",
+  "type": "main",
+  "name": "Бёдра с картофелем и стручковой фасолью на одном противне",
+  "cuisine": "Куриные бёдра",
+  "tools": [
+   "аэрогриль"
+  ],
+  "minutes": 35,
+  "keepDays": 4,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "thigh",
+    "grams": 180
+   },
+   {
+    "id": "potato",
+    "grams": 290
+   },
+   {
+    "id": "gbeans",
+    "grams": 120
+   },
+   {
+    "id": "oil",
+    "grams": 4
+   }
+  ],
+  "spices": "паприка, чеснок, соль, перец",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Картофель дольками с маслом и специями: 200 °C 10 минут.",
+   "Бёдра сверху, ещё 15 минут.",
+   "Стручковую фасоль из заморозки на последние 7 минут."
+  ],
+  "source": null,
+  "kcal": 548,
+  "protein": 42,
+  "fat": 17,
+  "carbs": 58,
+  "cookedGrams": 470
+ },
+ {
+  "id": "m-t-mex",
+  "type": "main",
+  "name": "Бёдра по-мексикански с рисом, фасолью и кукурузой",
+  "cuisine": "Куриные бёдра",
+  "tools": [
+   "аэрогриль",
+   "плита"
+  ],
+  "minutes": 35,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": true,
+  "ingredients": [
+   {
+    "id": "thigh",
+    "grams": 170
+   },
+   {
+    "id": "rice",
+    "grams": 55
+   },
+   {
+    "id": "beans",
+    "grams": 60
+   },
+   {
+    "id": "corn",
+    "grams": 40
+   },
+   {
+    "id": "ctomato",
+    "grams": 60
+   },
+   {
+    "id": "pepper",
+    "grams": 50
+   }
+  ],
+  "spices": "паприка копчёная, чили, чеснок, соль, по желанию: кумин",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Бёдра со специями: аэрогриль 200 °C 18 минут, нарежьте.",
+   "Рис отварите и смешайте с фасолью, кукурузой и прогретыми томатами.",
+   "Контейнер: рис с фасолью, сверху бёдра и свежий перец."
+  ],
+  "source": null,
+  "kcal": 557,
+  "protein": 43,
+  "fat": 13,
+  "carbs": 63,
+  "cookedGrams": 480
+ },
+ {
+  "id": "m-t-pasta",
+  "type": "main",
+  "name": "Паста с куриным бедром в томатно-чесночном соусе",
+  "cuisine": "Куриные бёдра",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 30,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "thigh",
+    "grams": 170
+   },
+   {
+    "id": "pasta",
+    "grams": 65
+   },
+   {
+    "id": "ctomato",
+    "grams": 150
+   },
+   {
+    "id": "onion",
+    "grams": 30
+   },
+   {
+    "id": "garlic",
+    "grams": 5
+   },
+   {
+    "id": "cheese",
+    "grams": 10
+   }
+  ],
+  "spices": "паприка, чили, соль, по желанию: орегано",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Бедро кубиком обжарьте без масла 8 минут.",
+   "Лук и чеснок 3 минуты, томаты, 10 минут.",
+   "Смешайте с пастой, сверху сыр."
+  ],
+  "source": null,
+  "kcal": 553,
+  "protein": 45,
+  "fat": 16,
+  "carbs": 56,
+  "cookedGrams": 430
+ },
+ {
+  "id": "m-t-buckw",
+  "type": "main",
+  "name": "Бёдра с гречкой и грибами",
+  "cuisine": "Куриные бёдра",
+  "tools": [
+   "аэрогриль",
+   "плита"
+  ],
+  "minutes": 35,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "thigh",
+    "grams": 180
+   },
+   {
+    "id": "buckw",
+    "grams": 85
+   },
+   {
+    "id": "mush",
+    "grams": 120
+   },
+   {
+    "id": "onion",
+    "grams": 30
+   }
+  ],
+  "spices": "паприка, чеснок, соль, лавр",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Гречку сварите.",
+   "Бёдра со специями, грибы и лук: всё в аэрогриль 200 °C 18 минут, встряхнуть на середине.",
+   "Смешайте с гречкой."
+  ],
+  "source": null,
+  "kcal": 556,
+  "protein": 49,
+  "fat": 16,
+  "carbs": 59,
+  "cookedGrams": 460
+ },
+ {
+  "id": "m-t-shawarma",
+  "type": "main",
+  "name": "Домашняя шаурма из бёдер с пекинской капустой",
+  "cuisine": "Куриные бёдра",
+  "tools": [
+   "аэрогриль"
+  ],
+  "minutes": 30,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "thigh",
+    "grams": 170
+   },
+   {
+    "id": "lavash",
+    "grams": 90
+   },
+   {
+    "id": "peking",
+    "grams": 80
+   },
+   {
+    "id": "tomato",
+    "grams": 60
+   },
+   {
+    "id": "cucumber",
+    "grams": 60
+   },
+   {
+    "id": "yogurt",
+    "grams": 40
+   },
+   {
+    "id": "garlic",
+    "grams": 5
+   }
+  ],
+  "spices": "паприка, чеснок, чили, соль",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Бёдра со специями: аэрогриль 200 °C 18 минут, нарежьте полосками.",
+   "Соус: йогурт, чеснок, соль.",
+   "Мясо, овощи и соус храните отдельно. Заворачивать в лаваш перед едой, иначе размокнет. Свернутую можно прогреть в аэрогриле 3 минуты."
+  ],
+  "source": null,
+  "kcal": 555,
+  "protein": 47,
+  "fat": 14,
+  "carbs": 61,
+  "cookedGrams": 460
+ },
+ {
+  "id": "m-tk-kotlety",
+  "type": "main",
+  "name": "Котлеты из индейки с гречкой и огурцами",
+  "cuisine": "Индейка",
+  "tools": [
+   "аэрогриль",
+   "плита"
+  ],
+  "minutes": 40,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "turkey",
+    "grams": 140
+   },
+   {
+    "id": "thigh",
+    "grams": 50
+   },
+   {
+    "id": "onion",
+    "grams": 30
+   },
+   {
+    "id": "egg",
+    "grams": 11
+   },
+   {
+    "id": "buckw",
+    "grams": 80
+   },
+   {
+    "id": "cucumber",
+    "grams": 100
+   },
+   {
+    "id": "oil",
+    "grams": 3
+   }
+  ],
+  "spices": "чеснок, соль, перец, паприка",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Фарш делай сам: прокрути филе индейки вместе с куриным бедром. Индейка очень постная, бедро делает котлеты сочнее.",
+   "Фарш смешайте с тёртым луком, яйцом и специями.",
+   "Сформируйте котлеты. Аэрогриль 180 °C 16–18 минут.",
+   "Гречку сварите. Огурцы отдельно."
+  ],
+  "source": null,
+  "kcal": 551,
+  "protein": 56,
+  "fat": 12,
+  "carbs": 56,
+  "cookedGrams": 490
+ },
+ {
+  "id": "m-tk-rice",
+  "type": "main",
+  "name": "Индейка с рисом и болгарским перцем в соевом соусе",
+  "cuisine": "Индейка",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 30,
+  "keepDays": 4,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "turkey",
+    "grams": 180
+   },
+   {
+    "id": "rice",
+    "grams": 65
+   },
+   {
+    "id": "pepper",
+    "grams": 100
+   },
+   {
+    "id": "onion",
+    "grams": 30
+   },
+   {
+    "id": "soy",
+    "grams": 12
+   },
+   {
+    "id": "honey",
+    "grams": 5
+   },
+   {
+    "id": "oil",
+    "grams": 6
+   }
+  ],
+  "spices": "чеснок, чили",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Индейку полосками обжарьте на сильном огне 5 минут.",
+   "Перец и лук, ещё 4 минуты.",
+   "Соевый соус, мёд, чеснок, 1 минута. Рис отдельно."
+  ],
+  "source": null,
+  "kcal": 556,
+  "protein": 50,
+  "fat": 9,
+  "carbs": 64,
+  "cookedGrams": 450
+ },
+ {
+  "id": "m-p-tender",
+  "type": "main",
+  "name": "Свиная вырезка с картофелем и морковью в аэрогриле",
+  "cuisine": "Свинина (нежирная)",
+  "tools": [
+   "аэрогриль"
+  ],
+  "minutes": 40,
+  "keepDays": 4,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "pork",
+    "grams": 170
+   },
+   {
+    "id": "potato",
+    "grams": 330
+   },
+   {
+    "id": "carrot",
+    "grams": 60
+   },
+   {
+    "id": "oil",
+    "grams": 5
+   },
+   {
+    "id": "cucumber",
+    "grams": 80
+   }
+  ],
+  "spices": "паприка, чеснок, соль, перец",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Картофель и морковь с маслом: 200 °C 12 минут.",
+   "Вырезку кусками 3 см со специями добавьте, ещё 12–14 минут. Вырезка самая нежирная часть свинины, не передержи, иначе будет сухой.",
+   "Огурцы отдельно."
+  ],
+  "source": null,
+  "kcal": 548,
+  "protein": 43,
+  "fat": 12,
+  "carbs": 65,
+  "cookedGrams": 520
+ },
+ {
+  "id": "m-f-salmonrice",
+  "type": "main",
+  "name": "Красная рыба в аэрогриле с рисом и брокколи",
+  "cuisine": "Рыба и креветки",
+  "tools": [
+   "аэрогриль",
+   "плита"
+  ],
+  "minutes": 25,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "salmon",
+    "grams": 150
+   },
+   {
+    "id": "rice",
+    "grams": 55
+   },
+   {
+    "id": "broccoli",
+    "grams": 150
+   },
+   {
+    "id": "soy",
+    "grams": 8
+   },
+   {
+    "id": "lemon",
+    "grams": 10
+   }
+  ],
+  "spices": "чеснок, соль, перец",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Рыбу кубиками со специями: аэрогриль 200 °C 7–8 минут.",
+   "Брокколи 4 минуты в кипятке или в аэрогриле.",
+   "Рис, брокколи, рыба. Соевый соус и лимон при еде. Рыбу лучше съесть за 3 дня."
+  ],
+  "source": {
+   "name": "The Recipe Critic: Air Fryer Salmon Rice Bowl",
+   "url": "https://therecipecritic.com/salmon-rice-bowl/"
+  },
+  "kcal": 556,
+  "protein": 39,
+  "fat": 21,
+  "carbs": 55,
+  "cookedGrams": 430
+ },
+ {
+  "id": "m-f-pinkpotato",
+  "type": "main",
+  "name": "Горбуша с картофелем и салатом айсберг",
+  "cuisine": "Рыба и креветки",
+  "tools": [
+   "аэрогриль"
+  ],
+  "minutes": 35,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "pink",
+    "grams": 180
+   },
+   {
+    "id": "potato",
+    "grams": 310
+   },
+   {
+    "id": "iceberg",
+    "grams": 60
+   },
+   {
+    "id": "cucumber",
+    "grams": 80
+   },
+   {
+    "id": "oil",
+    "grams": 5
+   },
+   {
+    "id": "lemon",
+    "grams": 10
+   }
+  ],
+  "spices": "паприка, чеснок, соль, перец",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Картофель дольками: 200 °C 15 минут.",
+   "Горбушу кусками сбрызните лимоном, специи: 190 °C 10 минут. Горбуша суховата, не передержи.",
+   "Салат отдельно. Горбуша дешевле сёмги примерно в 2 раза."
+  ],
+  "source": null,
+  "kcal": 550,
+  "protein": 44,
+  "fat": 15,
+  "carbs": 58,
+  "cookedGrams": 550
+ },
+ {
+  "id": "m-f-fishcakes",
+  "type": "main",
+  "name": "Котлеты из горбуши с картофельным пюре",
+  "cuisine": "Рыба и креветки",
+  "tools": [
+   "аэрогриль",
+   "плита"
+  ],
+  "minutes": 45,
+  "keepDays": 3,
+  "freezable": true,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "pink",
+    "grams": 180
+   },
+   {
+    "id": "egg",
+    "grams": 11
+   },
+   {
+    "id": "onion",
+    "grams": 30
+   },
+   {
+    "id": "oats",
+    "grams": 10
+   },
+   {
+    "id": "potato",
+    "grams": 245
+   },
+   {
+    "id": "milk",
+    "grams": 40
+   },
+   {
+    "id": "cucumber",
+    "grams": 80
+   },
+   {
+    "id": "oil",
+    "grams": 3
+   }
+  ],
+  "spices": "соль, перец, укроп",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Горбушу без кожи и костей измельчите ножом или блендером с луком. Добавьте яйцо, овсянку, соль.",
+   "Котлеты: аэрогриль 180 °C 14 минут.",
+   "Пюре на безлактозном молоке. Котлеты хорошо морозятся."
+  ],
+  "source": null,
+  "kcal": 552,
+  "protein": 47,
+  "fat": 16,
+  "carbs": 55,
+  "cookedGrams": 510
+ },
+ {
+  "id": "m-f-salmonpasta",
+  "type": "main",
+  "name": "Паста с красной рыбой в томатном соусе",
+  "cuisine": "Рыба и креветки",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 25,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "salmon",
+    "grams": 120
+   },
+   {
+    "id": "pasta",
+    "grams": 75
+   },
+   {
+    "id": "ctomato",
+    "grams": 150
+   },
+   {
+    "id": "onion",
+    "grams": 30
+   },
+   {
+    "id": "garlic",
+    "grams": 5
+   }
+  ],
+  "spices": "чили, соль, перец",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Лук и чеснок 3 минуты, томаты 8 минут.",
+   "Рыбу кубиком в соус на 4 минуты, не мешать сильно.",
+   "Смешайте с пастой."
+  ],
+  "source": null,
+  "kcal": 555,
+  "protein": 35,
+  "fat": 17,
+  "carbs": 64,
+  "cookedGrams": 410
+ },
+ {
+  "id": "m-sh-friedrice",
+  "type": "main",
+  "name": "Жареный рис с креветками и яйцом",
+  "cuisine": "Рыба и креветки",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 25,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "shrimp",
+    "grams": 170
+   },
+   {
+    "id": "egg",
+    "grams": 55
+   },
+   {
+    "id": "rice",
+    "grams": 50
+   },
+   {
+    "id": "vegmix",
+    "grams": 100
+   },
+   {
+    "id": "soy",
+    "grams": 12
+   },
+   {
+    "id": "oil",
+    "grams": 6
+   },
+   {
+    "id": "garlic",
+    "grams": 5
+   }
+  ],
+  "spices": "чили, перец",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Рис сварите накануне и остудите.",
+   "Креветки 2–3 минуты на сильном огне, отложите. Яйцо болтуньей, отложите.",
+   "Овощи 4 минуты, рис 3 минуты, верните всё, соевый соус. Разогревать коротко: креветки от долгого нагрева становятся резиновыми."
+  ],
+  "source": null,
+  "kcal": 544,
+  "protein": 49,
+  "fat": 14,
+  "carbs": 55,
+  "cookedGrams": 460
+ },
+ {
+  "id": "m-sh-pasta",
+  "type": "main",
+  "name": "Спагетти с креветками, чесноком и помидорами",
+  "cuisine": "Рыба и креветки",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 25,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "shrimp",
+    "grams": 180
+   },
+   {
+    "id": "pasta",
+    "grams": 70
+   },
+   {
+    "id": "garlic",
+    "grams": 8
+   },
+   {
+    "id": "oil",
+    "grams": 8
+   },
+   {
+    "id": "cheese",
+    "grams": 10
+   },
+   {
+    "id": "tomato",
+    "grams": 80
+   },
+   {
+    "id": "lemon",
+    "grams": 10
+   }
+  ],
+  "spices": "чили, соль, перец",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Спагетти отварите, оставьте полстакана воды от варки.",
+   "Чеснок и чили на масле 1 минута, креветки 3 минуты, помидоры кубиком 2 минуты.",
+   "Спагетти, немного воды от варки, лимон, сыр. В оригинале сливочное масло и пармезан, здесь вариант легче."
+  ],
+  "source": {
+   "name": "Feel Good Foodie: Shrimp Spaghetti",
+   "url": "https://feelgoodfoodie.net/recipe/garlic-butter-shrimp-spaghetti/"
+  },
+  "kcal": 543,
+  "protein": 48,
+  "fat": 14,
+  "carbs": 56,
+  "cookedGrams": 430
+ },
+ {
+  "id": "m-sh-garlicrice",
+  "type": "main",
+  "name": "Креветки с чесноком, рисом и брокколи",
+  "cuisine": "Рыба и креветки",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 25,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "shrimp",
+    "grams": 180
+   },
+   {
+    "id": "rice",
+    "grams": 70
+   },
+   {
+    "id": "broccoli",
+    "grams": 150
+   },
+   {
+    "id": "garlic",
+    "grams": 8
+   },
+   {
+    "id": "oil",
+    "grams": 7
+   },
+   {
+    "id": "soy",
+    "grams": 5
+   }
+  ],
+  "spices": "чили, соль, перец",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Рис и брокколи сварите.",
+   "Креветки с чесноком на масле 3 минуты, соевый соус.",
+   "Рис, брокколи, креветки. Разогрев 1 минута, не дольше."
+  ],
+  "source": {
+   "name": "Meal Prep on Fleek: Garlic Shrimp Meal Prep",
+   "url": "https://mealpreponfleek.com/garlic-shrimp-meal-prep/"
+  },
+  "kcal": 543,
+  "protein": 46,
+  "fat": 10,
+  "carbs": 68,
+  "cookedGrams": 510
+ },
+ {
+  "id": "m-sh-sweet",
+  "type": "main",
+  "name": "Креветки в кисло-сладком соусе с рисом и перцем",
+  "cuisine": "Рыба и креветки",
+  "tools": [
+   "плита"
+  ],
+  "minutes": 25,
+  "keepDays": 3,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "shrimp",
+    "grams": 180
+   },
+   {
+    "id": "rice",
+    "grams": 70
+   },
+   {
+    "id": "pepper",
+    "grams": 100
+   },
+   {
+    "id": "honey",
+    "grams": 10
+   },
+   {
+    "id": "ketchup",
+    "grams": 15
+   },
+   {
+    "id": "vinegar",
+    "grams": 10
+   },
+   {
+    "id": "soy",
+    "grams": 8
+   },
+   {
+    "id": "starch",
+    "grams": 5
+   },
+   {
+    "id": "oil",
+    "grams": 4
+   }
+  ],
+  "spices": "чеснок, чили",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Соус: мёд, кетчуп, уксус, соевый, крахмал, 50 мл воды.",
+   "Перец 3 минуты, креветки 2 минуты, соус до загустения.",
+   "Рис отдельно."
+  ],
+  "source": null,
+  "kcal": 546,
+  "protein": 43,
+  "fat": 7,
+  "carbs": 77,
+  "cookedGrams": 500
+ },
+ {
+  "id": "b-f-sandwich",
+  "type": "breakfast",
+  "name": "Бутерброды с красной рыбой, яйцом и творожным кремом",
+  "cuisine": "Рыба и креветки",
+  "tools": [
+   "без готовки"
+  ],
+  "minutes": 10,
+  "keepDays": 2,
+  "freezable": false,
+  "spicy": false,
+  "ingredients": [
+   {
+    "id": "bread",
+    "grams": 90
+   },
+   {
+    "id": "salmsalt",
+    "grams": 60
+   },
+   {
+    "id": "egg",
+    "grams": 55
+   },
+   {
+    "id": "cottage",
+    "grams": 80
+   },
+   {
+    "id": "cucumber",
+    "grams": 80
+   }
+  ],
+  "spices": "укроп, перец",
+  "spiceAllergens": {
+   "contains": [],
+   "may": []
+  },
+  "steps": [
+   "Творог разомните с укропом и щепоткой соли: это крем.",
+   "Утром: хлеб, крем, рыба, огурец. Яйцо сварите заранее.",
+   "Готовые бутерброды не храни, собирай утром за 3 минуты."
+  ],
+  "source": null,
+  "kcal": 546,
+  "protein": 40,
+  "fat": 19,
+  "carbs": 50,
+  "cookedGrams": 360
+ }
+]
