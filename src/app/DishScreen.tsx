@@ -51,22 +51,31 @@ export function DishScreen({ plan, report, catalog, isOwn, block: index, slot, o
           <div><dt>углеводы, г</dt><dd>{num(dish.carbs)}</dd></div>
         </dl>
         <DishPicture recipe={recipe} />
+        <dl className="about">
+          <div><dt>Готовим</dt><dd>{weekday(cook)}, {dayMonth(cook)}, около {recipe.minutes} мин.</dd></div>
+          <div>
+            <dt>Хранение</dt>
+            <dd>
+              В холодильнике {daysCount(recipe.keepDays)}
+              {frozen.length > 0 && `. В морозилку: порции на ${frozen.map((d) => weekdayShort(addDays(plan.start, d))).join(', ')}`}.
+            </dd>
+          </div>
+          {(contains.length > 0 || may.length > 0) && (
+            <div>
+              <dt>Аллергены</dt>
+              <dd>
+                {contains.length > 0 ? names(contains) : 'нет явных'}
+                {may.length > 0 && `; возможно, есть ${names(may)}`}.
+              </dd>
+            </div>
+          )}
+        </dl>
+        <div className="actions">
+          <a className="go" href={swapHash(index, slot)} onClick={onSwap}>Заменить блюдо</a>
+          {isOwn(recipe.id) && <a className="back" href={recipeHash(recipe.id)}>Изменить рецепт</a>}
+        </div>
       </div>
-      <section>
-        <p>Готовим: {weekday(cook)}, {dayMonth(cook)}, около {recipe.minutes} мин.</p>
-        <p>
-          Хранится в холодильнике {daysCount(recipe.keepDays)}
-          {frozen.length > 0 && `. В морозилку: порции на ${frozen.map((d) => weekdayShort(addDays(plan.start, d))).join(', ')}`}.
-        </p>
-        {(contains.length > 0 || may.length > 0) && (
-          <p>
-            Аллергены: {contains.length > 0 ? names(contains) : 'нет явных'}
-            {may.length > 0 && `; возможно, есть ${names(may)}`}.
-          </p>
-        )}
-        <a className="go" href={swapHash(index, slot)} onClick={onSwap}>Заменить блюдо</a>
-        {isOwn(recipe.id) && <a className="back" href={recipeHash(recipe.id)}>Изменить рецепт</a>}
-      </section>
+      <div className="cols">
       <section>
         <h2>Продукты</h2>
         <p>На {count(block.days, 'порцию', 'порции', 'порций')}, вес сырых продуктов</p>
@@ -87,6 +96,7 @@ export function DishScreen({ plan, report, catalog, isOwn, block: index, slot, o
         <Steps steps={recipe.steps} />
         {source && <p className="note">Источник: <a href={source.url} target="_blank" rel="noreferrer">{source.name}</a></p>}
       </section>
+      </div>
     </article>
   )
 }

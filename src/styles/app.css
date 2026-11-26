@@ -71,10 +71,10 @@ nav [aria-current] { color: var(--accent); background: color-mix(in oklab, var(-
 .dish h3 { margin-bottom: var(--space-2); text-wrap: balance; overflow-wrap: break-word; hyphens: auto; }
 .dish:active { scale: 0.985; }
 /* Нажимается вся карточка, а ссылкой служит название. */
-.dish a { color: inherit; text-decoration: none; }
-.dish a::after { content: ''; position: absolute; inset: 0; z-index: 1; border-radius: inherit; }
-.dish a:focus-visible { outline: none; }
-.dish a:focus-visible::after { outline: 3px solid currentColor; outline-offset: -6px; }
+.dish:not(.hero) a { color: inherit; text-decoration: none; }
+.dish:not(.hero) a::after { content: ''; position: absolute; inset: 0; z-index: 1; border-radius: inherit; }
+.dish:not(.hero) a:focus-visible { outline: none; }
+.dish:not(.hero) a:focus-visible::after { outline: 3px solid currentColor; outline-offset: -6px; }
 .facts { display: flex; flex-wrap: wrap; gap: var(--space-1) 6px; font-size: var(--text-s); font-weight: 600; }
 .facts li { padding: 2px var(--space-2); border-radius: var(--radius-s); background: color-mix(in srgb, currentColor 12%, transparent); }
 .dish .from { margin-top: var(--space-2); font-size: var(--text-s); }
@@ -118,13 +118,20 @@ nav [aria-current] { color: var(--accent); background: color-mix(in oklab, var(-
 .macros div { display: flex; flex-direction: column-reverse; }
 .macros dd { margin: 0; font-size: var(--text-l); font-weight: 800; }
 .macros dt { font-size: var(--text-s); color: var(--muted); }
+.about { display: grid; gap: var(--space-2); margin-top: var(--space-4); padding-top: var(--space-4); border-top: 1px solid var(--line); }
+.about div { display: grid; grid-template-columns: 6.25em minmax(0, 1fr); gap: var(--space-3); }
+.about dt { color: var(--muted); }
+.about dd { margin: 0; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); margin-top: var(--space-4); }
+.actions .go { margin: 0; flex: 1 1 200px; }
 .recipe section { max-width: 720px; }
 .recipe h2 + p { margin: calc(-1 * var(--space-2)) 0 var(--space-3); color: var(--muted); }
 .amounts li { display: flex; justify-content: space-between; gap: var(--space-4); padding: var(--space-2) 0; border-bottom: 1px solid var(--line); }
 .amounts b { flex: none; font-weight: 600; }
-.steps { padding-left: 1.5em; }
-.steps li { margin-top: var(--space-3); padding-left: var(--space-1); max-width: 65ch; }
-.steps li::marker { font-weight: 800; }
+/* Номер, галочка и первая строка шага стоят на одной линии высотой 24px. */
+.steps { padding: 0; counter-reset: step; }
+.steps li { counter-increment: step; display: grid; grid-template-columns: 1.6em minmax(0, 1fr); margin-top: var(--space-3); max-width: 65ch; }
+.steps li::before { content: counter(step) '.'; font-weight: 800; line-height: 24px; }
 .recipe a:not(.go, .back, .cook a) { color: var(--accent); }
 .options { max-width: 760px; padding: 0 var(--space-5); }
 .options li { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-4) 0; border-bottom: 1px solid var(--line); }
@@ -226,7 +233,13 @@ fieldset .hint, fieldset .warn, .field .hint { margin-top: var(--space-2); }
   .art, .big .art { width: 150px; height: 150px; }
   .compact .art { width: 96px; height: 96px; }
   .dish.hero { grid-template-columns: minmax(0, 1fr) minmax(0, 360px); max-width: 960px; }
-  .hero .art { grid-row: 1 / span 9; grid-column: 2; }
+  .dish.hero { grid-template-rows: repeat(5, auto) 1fr; align-items: start; }
+  .hero .art { grid-row: 1 / -1; grid-column: 2; }
+  .actions .go { flex: 0 1 260px; }
+  /* Продукты и рецепт рядом, чтобы правая часть экрана не пустовала. */
+  .recipe .cols { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); max-width: calc(960px + 2 * var(--space-5)); }
+  .cols section { max-width: none; }
+  .cols section + section { padding-left: var(--space-3); }
 }
 
 /* Покупки и готовка */
@@ -340,6 +353,8 @@ html:has(dialog[open]) { overflow: hidden; }
 @media (min-width: 1180px) {
   main { max-width: 1240px; }
   .page { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: var(--space-5); align-items: start; }
+  /* Без боковой панели (экран блюда и другие) колонка под неё не нужна. */
+  .page:not(:has(> .side)) { grid-template-columns: minmax(0, 1fr); }
   .side { position: sticky; top: var(--space-5); margin: var(--space-5) var(--space-5) 0 0; }
 }
 
@@ -355,23 +370,53 @@ html:has(dialog[open]) { overflow: hidden; }
 .wkrow.wkcook .wkday small { color: var(--accent); font-weight: 700; }
 .wkdishes { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-2); max-width: 360px; }
 .wkdishes [data-slot] { background: none; box-shadow: none; padding: 0; }
-.wkdishes a { display: block; border-radius: var(--radius-thumb); transition: scale 0.15s var(--ease); }
+.wkdishes a { display: block; color: inherit; text-decoration: none; border-radius: var(--radius-thumb); transition: scale 0.15s var(--ease); }
 .wkdishes a:active { scale: 0.94; }
 .wkdishes a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 .wkdishes .art { width: 100%; height: auto; aspect-ratio: 1; }
 .wkkcal { margin: 0; font-weight: 700; text-align: right; }
 .wkkcal small { display: block; font-weight: 400; color: var(--muted); }
-@media (max-width: 479px) { .wkrow { grid-template-columns: 52px minmax(0, 1fr) 44px; gap: var(--space-2); } }
+.wkday .wkfor { display: block; font-weight: 400; }
+.wkname { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; margin-top: var(--space-1); font-size: 0.75rem; line-height: 1.25; color: var(--ink); text-wrap: pretty; overflow-wrap: anywhere; hyphens: auto; }
+.wkdishes .art { transition: scale 0.3s var(--ease); }
+@media (max-width: 479px) {
+  .wkrow { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: 'day kcal' 'dishes dishes'; row-gap: var(--space-2); }
+  .wkday { grid-area: day; display: flex; align-items: baseline; justify-content: start; gap: var(--space-2); min-height: 44px; padding: 0 var(--space-2); }
+  .wkday .wkfor { display: inline; }
+  .wkdishes { grid-area: dishes; max-width: none; }
+  .wkkcal { grid-area: kcal; }
+  .wkkcal small { display: inline; }
+  .wkkcal small + small::before { content: ' · '; }
+}
+@media (min-width: 480px) { .wkdishes { max-width: 520px; } }
 
 /* Шаги: галочка и таймер */
-.steps { list-style: decimal; }
 .steps label { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: var(--space-2); align-items: start; min-height: 48px; cursor: pointer; }
 .steps input { width: 24px; height: 24px; margin: 0; accent-color: var(--accent); }
 .steps li { transition: opacity 0.2s var(--ease); }
 .steps .ticked { opacity: 0.55; }
 .steps .ticked label span { text-decoration: line-through; }
-.timers { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: var(--space-1) 0 0 36px; }
+.steps label span { line-height: 24px; }
+.timers { grid-column: 2; display: flex; flex-wrap: wrap; gap: var(--space-2); margin: var(--space-1) 0 0 36px; }
+/* На компьютере таймер стоит справа от текста шага, по центру первой строки. */
+@media (min-width: 900px) {
+  .steps li { grid-template-columns: 1.6em minmax(0, 1fr) auto; column-gap: var(--space-2); }
+  .timers { grid-column: 3; grid-row: 1; flex-direction: column; align-items: end; margin: -10px 0 0; }
+}
 .timer { min-height: 44px; padding: 0 var(--space-4); border: 1px solid var(--line); border-radius: 999px; background: none; color: var(--accent); font: inherit; font-weight: 700; font-variant-numeric: tabular-nums; transition: background-color 0.2s var(--ease), scale 0.15s var(--ease); }
 .timer:hover { background: color-mix(in oklab, var(--accent) 10%, transparent); }
 .timer:active { scale: 0.95; }
 .timer[aria-pressed='true'] { background: var(--accent); color: var(--on-accent); }
+
+/* Hover on mouse devices only: filled or accent-outlined controls so the target is obvious. */
+@media (hover: hover) {
+  .options button { transition: background-color 0.2s var(--ease), border-color 0.2s var(--ease), color 0.2s var(--ease); }
+  .options button:hover { border-color: var(--accent); background: var(--accent); color: var(--on-accent); }
+  .back:hover, .timer:hover { border-color: var(--accent); background: color-mix(in oklab, var(--accent) 12%, var(--surface)); }
+  .go:hover:not(:disabled) { box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 30%, transparent); }
+  button.link:hover, .toasts button:hover { color: var(--accent); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
+  .chip:hover span { border-color: var(--accent); }
+  .wkdishes a:hover .art { scale: 1.05; }
+  .wkdishes a:hover .wkname { color: var(--accent); }
+}
+@media (prefers-reduced-motion: reduce) { .wkdishes a:hover .art { scale: none; } }
