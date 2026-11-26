@@ -117,6 +117,11 @@ export function App() {
   const changed = plan !== null && read.ok && JSON.stringify(read.settings) !== JSON.stringify(plan.settings)
   const shownPlan = useMemo(() => planKey(plan), [plan])
   useEffect(() => {
+    if (!message) return
+    const timer = setTimeout(() => setMessage(null), message.previous ? 12000 : 6000)
+    return () => clearTimeout(timer)
+  }, [message])
+  useEffect(() => {
     if (!message?.previous) return
     // The menu changed in another way, for example on another device: undo would erase that.
     if (message.after === undefined) setMessage({ ...message, after: shownPlan })
@@ -184,7 +189,7 @@ export function App() {
         ))}
       </nav>
       <main ref={main}>
-        <div className="status" role="status">
+        <div className="toasts" role="status">
           {message && (
             <p>
               {message.text}
@@ -199,7 +204,11 @@ export function App() {
               <button type="button" onClick={() => setMessage(null)}>Скрыть</button>
             </p>
           )}
-          {plan && report && unfit.length > 0 && (
+          {update && <p>Есть новая версия планировщика. <button type="button" onClick={update}>Обновить</button></p>}
+          {unsaved && <p>Браузер не даёт сохранять данные: после закрытия страницы меню пропадёт.</p>}
+        </div>
+        {plan && report && unfit.length > 0 && (
+          <div className="status">
             <div className="unfit">
               <p>После правок эти блюда не подходят под ограничения меню. Замените их:</p>
               <ul>
@@ -210,10 +219,8 @@ export function App() {
                 ))}
               </ul>
             </div>
-          )}
-          {update && <p>Есть новая версия планировщика. <button type="button" onClick={update}>Обновить</button></p>}
-          {unsaved && <p>Браузер не даёт сохранять данные: после закрытия страницы меню пропадёт.</p>}
-        </div>
+          </div>
+        )}
         <div className="page">
           <div>
           {screen === 'settings' ? (
@@ -270,7 +277,7 @@ export function App() {
             <Week plan={plan} report={report} today={today} day={day} onDay={setChosenDay}
               onOpenDay={(d) => { setChosenDay(d); location.hash = 'today' }} />
           ) : (
-            <Today plan={plan} report={report} today={today} day={day} onDay={setChosenDay} busy={busy} onRebuild={() => build(plan.settings, start)} />
+            <Today plan={plan} report={report} today={today} day={day} onDay={setChosenDay} />
           )}
           </div>
           {screen === 'settings' ? <SettingsSide plan={plan} />

@@ -14,13 +14,11 @@ interface Props {
   today: string
   day: number
   onDay: (day: number) => void
-  busy: boolean
-  onRebuild: () => void
 }
 
 const capital = (s: string) => s[0]!.toUpperCase() + s.slice(1)
 
-export function Today({ plan, report, today, day, onDay, busy, onRebuild }: Props) {
+export function Today({ plan, report, today, day, onDay, }: Props) {
   const { settings, start } = plan
   const date = addDays(start, day)
   const place = dayOfPlan(start, report.days.length, today)
@@ -36,7 +34,7 @@ export function Today({ plan, report, today, day, onDay, busy, onRebuild }: Prop
     <>
       <header>
         <h1 tabIndex={-1}>{date === today ? `Сегодня, ${weekday(date)}` : `${capital(weekday(date))}, ${dayMonth(date)}`}</h1>
-        <p className="sub">{num(menu.kcal)} ккал, белка {num(menu.protein)} г</p>
+        <p className="sub">{num(menu.kcal)} ккал, белка {num(menu.protein)} г{day === block.cookDay && ', готовим в этот день'}</p>
         {place.state === 'before' && <p className="note">Меню начинается {dayMonth(start)}, через {daysCount(daysBetween(today, start))}.</p>}
         {place.state === 'ended' && <p className="note">Это меню закончилось {dayMonth(addDays(start, report.days.length - 1))}. Соберите новое, оно начнётся с сегодняшнего дня.</p>}
         <WeekTabs weeks={settings.weeks} week={week} onChange={(w) => onDay(w * 7 + (day % 7))} />
@@ -55,7 +53,7 @@ export function Today({ plan, report, today, day, onDay, busy, onRebuild }: Prop
       </header>
       <ul className="meals" aria-label="Блюда дня">
         {SLOTS.map((slot, i) => (
-          <DishField key={slot} slot={slot} dish={menu.dishes[i]!} href={dishHash(blockIndex, slot)} note={portionNote(menu.dishes[i]!, block, day)} big={slot === 'lunch'} />
+          <DishField key={slot} slot={slot} dish={menu.dishes[i]!} href={dishHash(blockIndex, slot)} note={day === block.cookDay ? undefined : portionNote(menu.dishes[i]!, block, day)} big={slot === 'lunch'} />
         ))}
       </ul>
       <section>
@@ -86,7 +84,6 @@ export function Today({ plan, report, today, day, onDay, busy, onRebuild }: Prop
           <p className="warn">Не хватает {rub(report.shortage)} до бюджета {rub(settings.budget!)}.{!plan.edited && ' Это самое дешёвое найденное меню.'}</p>
         )}
         <Warnings report={report} edited={plan.edited ?? false} />
-        <button type="button" className="go" disabled={busy} onClick={onRebuild}>{busy ? 'Собираем…' : 'Собрать заново'}</button>
       </section>
     </>
   )

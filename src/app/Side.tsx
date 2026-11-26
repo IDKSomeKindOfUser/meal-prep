@@ -33,8 +33,7 @@ export function TodaySide({ plan, report, day }: { plan: SavedPlan; report: Repo
   return (
     <aside className="side" aria-label="Сводка дня">
       <h2>Сводка дня</h2>
-      <Meter label="Калории" value={menu.kcal} goal={settings.kcal} unit="ккал" />
-      <Meter label="Белок" value={menu.protein} goal={settings.protein} unit="г" />
+      <p className="hint">Сегодня <b>{num(menu.kcal)}</b> ккал при норме {num(settings.kcal)}, белка <b>{num(menu.protein)}</b> г при норме {num(settings.protein)}.</p>
       {next && (
         <a className="card" href={cookHash(next.day)}>
           <span className="hint">Ближайшая готовка</span>
