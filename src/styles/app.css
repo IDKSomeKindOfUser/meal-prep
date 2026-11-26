@@ -526,3 +526,47 @@ html:has(dialog[open]) { overflow: hidden; }
   .wkdishes a:hover .wkname { color: var(--accent); }
 }
 @media (prefers-reduced-motion: reduce) { .wkdishes a:hover .art { scale: none; } }
+
+/* Главный экран: приветствие, следующий приём, виджеты справа (этап 18д) */
+.greet { color: var(--muted); font-weight: 600; margin-bottom: var(--space-1); }
+.next { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); margin-top: var(--space-3); }
+.week-note:empty { display: none; }
+.side.widgets { padding: 0; background: none; box-shadow: none; gap: var(--space-3); }
+.widget { display: grid; gap: var(--space-2); justify-items: start; padding: var(--space-4); background: var(--surface); box-shadow: var(--shadow-card); border-radius: var(--radius-card); }
+.widget > * { justify-self: stretch; }
+.widget > .tonal { justify-self: start; margin-top: var(--space-1); }
+.widget h2 { margin: 0; font-size: var(--text-m); }
+.widget .sum b { font-size: var(--text-m); }
+.ring-row { display: flex; align-items: center; gap: var(--space-3); }
+.ring { inline-size: 48px; block-size: 48px; rotate: -90deg; flex: none; }
+.ring circle { fill: none; stroke-width: 6; }
+.ring circle:first-child { stroke: color-mix(in oklab, var(--line) 60%, var(--surface)); }
+.ring circle:last-child { stroke: var(--selected); stroke-linecap: butt; transition: stroke-dasharray .4s var(--ease); }
+.ring + p b { display: block; font-size: var(--text-m); }
+
+/* График ккал: тонкие столбики от нуля, пунктир — норма. */
+.daychart ol { position: relative; display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; block-size: 120px; margin: 0; padding: 0 0 22px; list-style: none; }
+.daychart ol::before { content: ''; position: absolute; inset-inline: 0; inset-block-end: calc(22px + (100% - 22px) * var(--goal)); border-top: 1px dashed var(--muted); pointer-events: none; }
+.daychart li { display: flex; }
+.daychart button { position: relative; flex: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; padding: 0; border: 0; background: none; border-radius: var(--radius-s); }
+.daychart i { inline-size: min(60%, 18px); border-radius: 4px 4px 0 0; background: color-mix(in oklab, var(--ink) 45%, var(--surface)); }
+.daychart [aria-pressed='true'] i { background: var(--accent); }
+.daychart span { position: absolute; inset-block-start: 100%; padding-top: 4px; font-size: var(--text-s); color: var(--muted); }
+.daychart [aria-pressed='true'] span { color: var(--ink); font-weight: 700; }
+.daychart button::after { content: attr(data-tip); position: absolute; inset-block-end: calc(100% + 4px); padding: 2px 6px; border-radius: var(--radius-s); background: var(--ink); color: var(--surface); font-size: var(--text-s); white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity .15s; z-index: 2; }
+.daychart button:focus-visible::after { opacity: 1; }
+@media (hover: hover) { .daychart button:hover::after { opacity: 1; } .daychart button:hover i { background: color-mix(in oklab, var(--accent) 60%, var(--surface)); } }
+@media (prefers-reduced-motion: reduce) { .ring circle:last-child, .daychart button::after { transition: none; } }
+
+/* Карточки блюд крупнее, фото на всю высоту карточки. */
+@media (min-width: 900px) {
+  .meals .dish:has(> div) { align-items: stretch; padding-block: 0; padding-inline-end: 0; overflow: hidden; min-block-size: 168px; }
+  .meals .dish > div { padding-block: var(--space-4); align-self: center; }
+  .meals .dish:has(> div) > .art { inline-size: 120px; block-size: 100%; border-radius: 0; }
+  .meals .dish:has(> div):hover .art { scale: none; }
+}
+@media (min-width: 1500px) { .meals .dish:has(> div) > .art { inline-size: 168px; } }
+@media (min-width: 1180px) {
+  main { max-width: 1440px; margin-inline: auto; }
+  .page { grid-template-columns: minmax(0, 1fr) 340px; }
+}

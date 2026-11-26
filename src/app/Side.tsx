@@ -1,11 +1,15 @@
 import type { Report } from '../planner'
 import { SLOTS, type Slot } from '../planner/types'
 import { addDays, dayMonth, weekday } from './dates'
+import { DayChart } from './DayChart'
 import { DishPicture } from './DishPicture'
+import { GoIcon } from './parts'
 import { COOK, count, num, rub, SLOT } from './labels'
 import { cookHash } from './route'
 import { checkKey } from './ShoppingScreen'
 import type { SavedPlan } from './storage'
+
+const capital = (s: string) => s[0]!.toUpperCase() + s.slice(1)
 
 /** A value against its goal. The numbers are written out, so the bar is never the only signal. */
 function Meter({ label, value, goal, unit }: { label: string; value: number; goal: number; unit: string }) {
@@ -26,39 +30,82 @@ function Bought({ plan, report, week }: { plan: SavedPlan; report: Report; week:
   return <Meter label="Куплено продуктов" value={done} goal={all.length} unit="" />
 }
 
-export function TodaySide({ plan, report, day }: { plan: SavedPlan; report: Report; day: number }) {
-  const menu = report.days[day]!
-  const { settings, start } = plan
-  const next = report.cookings.find((c) => c.day >= day)
+/** Share of the week's products already ticked, as a ring with the numbers beside it. */
+function BoughtRing({ plan, report, week }: { plan: SavedPlan; report: Report; week: number }) {
+  const list = report.shopping.weeks[week]!
+  const all = [...list.market, ...list.store]
+  const checked = new Set(plan.checked ?? [])
+  const done = all.filter((i) => checked.has(checkKey(week, i.id))).length
+  const share = all.length > 0 ? (done / all.length) * 100 : 0
   return (
-    <aside className="side" aria-label="Сводка дня">
-      <h2>Сводка дня</h2>
-      <p className="hint">Сегодня <b>{num(menu.kcal)}</b> ккал при норме {num(settings.kcal)}, белка <b>{num(menu.protein)}</b> г при норме {num(settings.protein)}.</p>
+    <div className="ring-row">
+      <svg className="ring" viewBox="0 0 48 48" aria-hidden="true">
+        <circle cx="24" cy="24" r="20" pathLength="100" />
+        <circle cx="24" cy="24" r="20" pathLength="100" strokeDasharray={`${share} 100`} />
+      </svg>
+      <p><b>{done} из {all.length}</b> <span className="hint">куплено</span></p>
+    </div>
+  )
+}
+
+/** Market and store parts of the week's bill as one split bar. */
+function Split({ marketCost, storeCost }: { marketCost: number; storeCost: number }) {
+  const sum = marketCost + storeCost
+  const market = sum > 0 ? Math.round((marketCost / sum) * 100) : 0
+  return (
+    <div className="meter">
+      <p><span>Рынок</span> <b>{rub(marketCost)}</b> · <span>магазин</span> <b>{rub(storeCost)}</b></p>
+      <div className="bar split" aria-hidden="true"><i style={{ inlineSize: `${market}%` }} /><i /></div>
+      <p className="hint">На рынке {market}% чека, в магазине {100 - market}%.</p>
+    </div>
+  )
+}
+
+export function TodaySide({ plan, report, day, onDay }: { plan: SavedPlan; report: Report; day: number; onDay: (day: number) => void }) {
+  const { settings, start } = plan
+  const week = Math.floor(day / 7)
+  const next = report.cookings.find((c) => c.day >= day)
+  const shopping = report.shopping.weeks[week]!
+  const month = settings.weeks > 1
+  return (
+    <aside className="side widgets" aria-label="Сводка">
       {next && (
-        <a className="card" href={cookHash(next.day)}>
-          <span className="hint">Ближайшая готовка</span>
-          <b>{next.day === day ? 'Сегодня' : `${weekday(addDays(start, next.day))}, ${dayMonth(addDays(start, next.day))}`}</b>
-          <span>{count(next.dishes.length, 'блюдо', 'блюда', 'блюд')}, около {num(next.minutes)} мин</span>
-        </a>
+        <section className="widget">
+          <h2>Ближайшая готовка</h2>
+          <p><b>{next.day === day ? 'Сегодня' : `${capital(weekday(addDays(start, next.day)))}, ${dayMonth(addDays(start, next.day))}`}</b></p>
+          <p className="hint">{count(next.dishes.length, 'блюдо', 'блюда', 'блюд')}, около {num(next.minutes)} мин</p>
+          <a className="tonal" href={cookHash(next.day)}>Начать готовку<GoIcon /></a>
+        </section>
       )}
-      <Bought plan={plan} report={report} week={Math.floor(day / 7)} />
+      <section className="widget">
+        <h2>Покупки</h2>
+        <BoughtRing plan={plan} report={report} week={week} />
+        <a className="tonal" href="#shopping">К списку<GoIcon /></a>
+      </section>
+      <section className="widget">
+        <h2>Неделя</h2>
+        <DayChart start={start} firstDay={week * 7} goal={settings.kcal} day={day} onDay={onDay}
+          days={report.days.slice(week * 7, week * 7 + 7).map((d) => d.kcal)} />
+      </section>
+      <section className="widget">
+        <div className="sum">
+          <h2>{month ? `Чек недели ${week + 1}` : 'Чек недели'}</h2>
+          <b>{rub(shopping.marketCost + shopping.storeCost)}</b>
+        </div>
+        <Split marketCost={shopping.marketCost} storeCost={shopping.storeCost} />
+        {month && <p className="hint">За 4 недели {rub(report.shopping.total)}</p>}
+      </section>
     </aside>
   )
 }
 
 export function ShoppingSide({ plan, report, week }: { plan: SavedPlan; report: Report; week: number }) {
   const { marketCost, storeCost } = report.shopping.weeks[week]!
-  const sum = marketCost + storeCost
-  const market = sum > 0 ? Math.round((marketCost / sum) * 100) : 0
   return (
     <aside className="side" aria-label="Сводка покупок">
       <h2>Сводка покупок</h2>
       <Bought plan={plan} report={report} week={week} />
-      <div className="meter">
-        <p><span>Рынок</span> <b>{rub(marketCost)}</b> · <span>магазин</span> <b>{rub(storeCost)}</b></p>
-        <div className="bar split" aria-hidden="true"><i style={{ inlineSize: `${market}%` }} /><i /></div>
-        <p className="hint">На рынке {market}% чека, в магазине {100 - market}%.</p>
-      </div>
+      <Split marketCost={marketCost} storeCost={storeCost} />
       {plan.settings.budget !== null && (
         <Meter label="Бюджет" value={Math.ceil(report.shopping.total)} goal={plan.settings.budget} unit="₽" />
       )}

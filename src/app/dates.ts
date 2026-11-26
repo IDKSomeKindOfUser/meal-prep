@@ -31,6 +31,21 @@ export function mealNow(hour: number): Slot | null {
   return hour < 18 ? 'snack' : 'dinner'
 }
 
+export function greeting(hour: number): string {
+  if (hour < 5 || hour >= 23) return 'Доброй ночи'
+  if (hour < 12) return 'Доброе утро'
+  return hour < 18 ? 'Добрый день' : 'Добрый вечер'
+}
+
+/** Usual meal hours, in the order of the day. */
+const MEAL_HOURS: [Slot, number][] = [['breakfast', 8], ['lunch', 13], ['snack', 16], ['dinner', 19]]
+
+/** The first meal that has not started yet today, or null after dinner. */
+export function nextMeal(hour: number): { slot: Slot; time: string } | null {
+  const next = MEAL_HOURS.find(([, h]) => h > hour)
+  return next ? { slot: next[0], time: `${next[1]}:00` } : null
+}
+
 const format = (options: Intl.DateTimeFormatOptions) => {
   const f = new Intl.DateTimeFormat('ru-RU', { ...options, timeZone: 'UTC' })
   return (iso: string) => f.format(utc(iso))

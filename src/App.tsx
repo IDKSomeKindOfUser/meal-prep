@@ -300,7 +300,7 @@ export function App() {
             : route.screen === 'swap' ? <SwapSide report={report} block={route.block} slot={route.slot} />
             : route.screen === 'dish' || route.screen === 'cook' ? null
             : screen === 'shopping' ? <ShoppingSide plan={plan} report={report} week={Math.min(shopWeek, plan.settings.weeks - 1)} />
-            : screen === 'today' ? <TodaySide plan={plan} report={report} day={day} />
+            : screen === 'today' ? <TodaySide plan={plan} report={report} day={day} onDay={setChosenDay} />
             : null}
         </div>
       </main>
