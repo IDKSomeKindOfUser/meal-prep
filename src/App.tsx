@@ -18,6 +18,7 @@ import { SettingsScreen } from './app/SettingsScreen'
 import { ShoppingScreen } from './app/ShoppingScreen'
 import { loadState, saveState, type SavedPlan, type SavedState } from './app/storage'
 import { pending, stamp } from './app/sync'
+import { SettingsSide, ShoppingSide, SwapSide, TodaySide } from './app/Side'
 import { SwapScreen } from './app/SwapScreen'
 import { Today } from './app/Today'
 import { Week } from './app/Week'
@@ -202,62 +203,73 @@ export function App() {
           {update && <p>Есть новая версия планировщика. <button type="button" onClick={update}>Обновить</button></p>}
           {unsaved && <p>Браузер не даёт сохранять данные: после закрытия страницы меню пропадёт.</p>}
         </div>
-        {screen === 'settings' ? (
-          <SettingsScreen form={form} own={state.own} onForm={(f) => { setMissing([]); setState((s) => ({ ...s, form: f })) }} start={start} changed={changed}
-            busy={busy} missing={missing} onBuild={build} cloud={cloud} unsent={pending(state)} />
-        ) : route.screen === 'prices' ? (
-          <PricesScreen overrides={state.prices} onChange={(prices) => setState((s) => ({ ...s, prices }))} />
-        ) : route.screen === 'credits' ? (
-          <CreditsScreen />
-        ) : route.screen === 'recipes' ? (
-          <RecipesScreen own={state.own} busy={busy} onProduct={saveProduct}
-            onDeleteProduct={(id) => setState((s) => ({
-              ...s, own: { ...s.own, products: s.own.products.filter((p) => p.id !== id) },
-              form: { ...s.form, excluded: s.form.excluded.filter((x) => x !== id) },
-            }))} />
-        ) : route.screen === 'recipe' ? (
-          <RecipeScreen key={route.id} id={route.id} exists={edited !== undefined} own={state.own} catalog={catalog} busy={busy}
-            saved={edited ? recipeDraft(edited, catalog.ingredient) : EMPTY_RECIPE}
-            inMenu={plan !== null && plan.menu.some((row) => SLOTS.some((s) => row[s] === route.id))} onProduct={saveProduct}
-            onSave={(recipe) => {
-              const { recipes } = state.own
-              setState((s) => ({ ...s, own: { ...s.own, recipes: edited ? recipes.map((r) => (r.id === recipe.id ? recipe : r)) : [...recipes, recipe] } }))
-              clearDraft(route.id)
-              setMessage({
-                text: edited ? 'Рецепт сохранён.' : 'Рецепт добавлен и участвует в следующей сборке меню. В готовое меню его ставит кнопка «Заменить блюдо».',
-                previous: null,
-              })
-              location.hash = 'recipes'
-            }}
-            onDelete={() => {
-              // The previous menu may contain this recipe, so it can no longer be restored.
-              setMessage({ text: 'Рецепт удалён.', previous: null })
-              setState((s) => ({ ...s, own: { ...s.own, recipes: s.own.recipes.filter((r) => r.id !== route.id) } }))
-              clearDraft(route.id)
-              location.hash = 'recipes'
-            }} />
-        ) : !plan || !report ? (
-          <Welcome />
-        ) : route.screen === 'dish' ? (
-          <DishScreen plan={plan} report={report} catalog={catalog} isOwn={(id) => state.own.recipes.some((r) => r.id === id)} block={route.block} slot={route.slot} origin={origin}
-            onSwap={() => { swapFromDish.current = true }} />
-        ) : route.screen === 'swap' ? (
-          <SwapScreen plan={plan} report={report} catalog={catalog} block={route.block} slot={route.slot} busy={busy}
-            onBack={(e) => { if (swapFromDish.current) { e.preventDefault(); history.back() } }}
-            onChoose={(id) => replace(route.block, route.slot, id)} />
-        ) : route.screen === 'cook' ? (
-          <CookScreen plan={plan} report={report} day={route.day} />
-        ) : screen === 'shopping' ? (
-          <ShoppingScreen plan={plan} report={report} catalog={catalog} week={Math.min(shopWeek, plan.settings.weeks - 1)} onWeek={setShopWeek}
-            onCheck={(key, bought) => setState((s) => s.plan && {
-              ...s, plan: { ...s.plan, checked: bought ? [...new Set([...(s.plan.checked ?? []), key])] : (s.plan.checked ?? []).filter((k) => k !== key) },
-            } || s)} />
-        ) : screen === 'week' ? (
-          <Week plan={plan} report={report} today={today} day={day} onDay={setChosenDay}
-            onOpenDay={(d) => { setChosenDay(d); location.hash = 'today' }} />
-        ) : (
-          <Today plan={plan} report={report} today={today} day={day} onDay={setChosenDay} busy={busy} onRebuild={() => build(plan.settings, start)} />
-        )}
+        <div className="page">
+          <div>
+          {screen === 'settings' ? (
+            <SettingsScreen form={form} own={state.own} onForm={(f) => { setMissing([]); setState((s) => ({ ...s, form: f })) }} start={start} changed={changed}
+              busy={busy} missing={missing} onBuild={build} cloud={cloud} unsent={pending(state)} />
+          ) : route.screen === 'prices' ? (
+            <PricesScreen overrides={state.prices} onChange={(prices) => setState((s) => ({ ...s, prices }))} />
+          ) : route.screen === 'credits' ? (
+            <CreditsScreen />
+          ) : route.screen === 'recipes' ? (
+            <RecipesScreen own={state.own} busy={busy} onProduct={saveProduct}
+              onDeleteProduct={(id) => setState((s) => ({
+                ...s, own: { ...s.own, products: s.own.products.filter((p) => p.id !== id) },
+                form: { ...s.form, excluded: s.form.excluded.filter((x) => x !== id) },
+              }))} />
+          ) : route.screen === 'recipe' ? (
+            <RecipeScreen key={route.id} id={route.id} exists={edited !== undefined} own={state.own} catalog={catalog} busy={busy}
+              saved={edited ? recipeDraft(edited, catalog.ingredient) : EMPTY_RECIPE}
+              inMenu={plan !== null && plan.menu.some((row) => SLOTS.some((s) => row[s] === route.id))} onProduct={saveProduct}
+              onSave={(recipe) => {
+                const { recipes } = state.own
+                setState((s) => ({ ...s, own: { ...s.own, recipes: edited ? recipes.map((r) => (r.id === recipe.id ? recipe : r)) : [...recipes, recipe] } }))
+                clearDraft(route.id)
+                setMessage({
+                  text: edited ? 'Рецепт сохранён.' : 'Рецепт добавлен и участвует в следующей сборке меню. В готовое меню его ставит кнопка «Заменить блюдо».',
+                  previous: null,
+                })
+                location.hash = 'recipes'
+              }}
+              onDelete={() => {
+                // The previous menu may contain this recipe, so it can no longer be restored.
+                setMessage({ text: 'Рецепт удалён.', previous: null })
+                setState((s) => ({ ...s, own: { ...s.own, recipes: s.own.recipes.filter((r) => r.id !== route.id) } }))
+                clearDraft(route.id)
+                location.hash = 'recipes'
+              }} />
+          ) : !plan || !report ? (
+            <Welcome />
+          ) : route.screen === 'dish' ? (
+            <DishScreen plan={plan} report={report} catalog={catalog} isOwn={(id) => state.own.recipes.some((r) => r.id === id)} block={route.block} slot={route.slot} origin={origin}
+              onSwap={() => { swapFromDish.current = true }} />
+          ) : route.screen === 'swap' ? (
+            <SwapScreen plan={plan} report={report} catalog={catalog} block={route.block} slot={route.slot} busy={busy}
+              onBack={(e) => { if (swapFromDish.current) { e.preventDefault(); history.back() } }}
+              onChoose={(id) => replace(route.block, route.slot, id)} />
+          ) : route.screen === 'cook' ? (
+            <CookScreen plan={plan} report={report} day={route.day} />
+          ) : screen === 'shopping' ? (
+            <ShoppingScreen plan={plan} report={report} catalog={catalog} week={Math.min(shopWeek, plan.settings.weeks - 1)} onWeek={setShopWeek}
+              onCheck={(key, bought) => setState((s) => s.plan && {
+                ...s, plan: { ...s.plan, checked: bought ? [...new Set([...(s.plan.checked ?? []), key])] : (s.plan.checked ?? []).filter((k) => k !== key) },
+              } || s)} />
+          ) : screen === 'week' ? (
+            <Week plan={plan} report={report} today={today} day={day} onDay={setChosenDay}
+              onOpenDay={(d) => { setChosenDay(d); location.hash = 'today' }} />
+          ) : (
+            <Today plan={plan} report={report} today={today} day={day} onDay={setChosenDay} busy={busy} onRebuild={() => build(plan.settings, start)} />
+          )}
+          </div>
+          {screen === 'settings' ? <SettingsSide plan={plan} />
+            : !plan || !report ? null
+            : route.screen === 'swap' ? <SwapSide report={report} block={route.block} slot={route.slot} />
+            : route.screen === 'dish' || route.screen === 'cook' ? null
+            : screen === 'shopping' ? <ShoppingSide plan={plan} report={report} week={Math.min(shopWeek, plan.settings.weeks - 1)} />
+            : screen === 'today' ? <TodaySide plan={plan} report={report} day={day} />
+            : null}
+        </div>
       </main>
     </>
   )
