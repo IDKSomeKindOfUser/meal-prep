@@ -162,7 +162,7 @@ nav [aria-current] svg { background: color-mix(in oklab, transparent, var(--acce
 .recipe .panel { max-width: none; }
 .panel h2 { display: flex; align-items: center; gap: var(--space-2); margin-top: 0; }
 .panel h2 svg { flex: none; width: 1.2em; height: 1.2em; color: var(--accent); }
-.cols { padding-inline: var(--space-5); }
+.cols { display: grid; gap: var(--space-5); padding-inline: var(--space-5); }
 .cols[data-slot-mark='breakfast'] { --mark: var(--breakfast); --on-mark: var(--on-breakfast); }
 .cols[data-slot-mark='lunch'] { --mark: var(--lunch); --on-mark: var(--on-lunch); }
 .cols[data-slot-mark='dinner'] { --mark: var(--dinner); --on-mark: var(--on-dinner); }
@@ -296,9 +296,8 @@ fieldset .hint, fieldset .warn, .field .hint { margin-top: var(--space-2); }
   .hero .art { grid-row: 1 / -1; grid-column: 2; }
   .actions .go { flex: 0 1 260px; }
   /* Продукты и рецепт рядом, чтобы правая часть экрана не пустовала. */
-  .recipe .cols { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); max-width: calc(960px + 2 * var(--space-5)); }
+  .recipe .cols { column-gap: var(--space-6); grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); max-width: calc(960px + 2 * var(--space-5)); }
   .cols section { max-width: none; }
-  .cols section + section { padding-left: var(--space-3); }
 }
 
 /* Покупки и готовка */
@@ -432,8 +431,9 @@ html:has(dialog[open]) { overflow: hidden; }
 ::view-transition-group(*) { animation-duration: 0.32s; animation-timing-function: var(--ease); }
 ::view-transition-group(dish-photo) { animation-duration: 0.45s; }
 /* Экран меняется по очереди: старый гаснет, потом проявляется новый, без наложения двух слоёв. */
-::view-transition-old(root) { animation-duration: 0.12s; }
-::view-transition-new(root) { animation-duration: 0.2s; animation-delay: 0.12s; animation-fill-mode: both; }
+::view-transition-old(root) { animation: none; mix-blend-mode: normal; }
+::view-transition-new(root) { animation: screen-in .3s var(--ease) both; mix-blend-mode: normal; }
+@keyframes screen-in { from { opacity: 0; transform: translateY(10px); } }
 ::view-transition-old(dish-photo), ::view-transition-new(dish-photo) { height: 100%; object-fit: cover; }
 /* Отмеченный товар переезжает в «Куплено»: строки и заголовки плывут на новые места, экран целиком не мигает. */
 .reorder .buy li { view-transition-name: var(--vt); }
@@ -609,3 +609,39 @@ button.tonal[aria-pressed="true"] { background: var(--accent); color: var(--on-a
 @keyframes shimmer { to { background-position: -300% 0; } }
 @media (prefers-reduced-motion: reduce) { .art.photo.loading { animation: none; } }
 .empty-art { inline-size: 56px; block-size: 56px; color: var(--accent); }
+
+/* Мягкий отклик нажатий: быстрое проседание, на отпускании пружина. */
+:is(nav a, .days button, .tabs button, .back, .tonal, .go, .priced button, .textbtn, button.link, .timer, .wkday, .wkdishes a, .options button) {
+  transition: background-color .25s var(--ease), color .25s var(--ease), border-color .25s var(--ease), scale .45s var(--spring);
+}
+:is(nav a, .days button, .tabs button, .back, .tonal, .go, .priced button, .textbtn, button.link, .timer, .wkday, .wkdishes a, .options button):active {
+  transition: background-color .25s var(--ease), color .25s var(--ease), border-color .25s var(--ease), scale .12s var(--ease);
+}
+
+/* Галочка: рамка и заливка плавно меняются, сама галочка рисуется с небольшой задержкой, коробка пружинит. */
+.buy input, .steps input, .amounts input {
+  transition: background-color .3s var(--ease), border-color .3s var(--ease), scale .45s var(--spring);
+}
+.buy input:active, .steps input:active, .amounts input:active { transition-duration: .3s, .3s, .12s; }
+.buy input::after, .steps input::after, .amounts input::after { transition: clip-path .15s var(--ease); }
+.buy input:checked::after, .steps input:checked::after, .amounts input:checked::after { transition: clip-path .35s var(--ease) .06s; }
+.steps li { transition: opacity .3s var(--ease); }
+.steps label span { text-decoration: line-through 2px transparent; transition: text-decoration-color .3s var(--ease); }
+.steps .ticked label span { text-decoration-color: currentColor; }
+
+/* «Приготовлено»: кнопка заливается цветом, галочка выскакивает. */
+.tonal[aria-pressed='true'] { background: var(--accent); color: var(--on-accent); }
+@media (hover: hover) { .tonal[aria-pressed='true']:hover { background: color-mix(in oklab, var(--accent), var(--ink) 14%); } }
+.tonal[aria-pressed='true'] svg { animation: pop .5s var(--spring); }
+@keyframes pop { from { scale: 0; rotate: -30deg; } }
+@media (prefers-reduced-motion: reduce) {
+  .tonal[aria-pressed='true'] svg { animation: none; }
+  .steps label span { transition: none; }
+  ::view-transition-new(root) { animation: none; }
+}
+
+/* Панель навигации не участвует в смене экрана: стоит на месте и не просвечивает. В снимок перехода размытие фона не попадает, поэтому фон плотнее. */
+nav { view-transition-name: nav; background: color-mix(in oklab, var(--surface) 92%, transparent); }
+::view-transition-group(nav) { animation: none; }
+::view-transition-old(nav) { display: none; }
+::view-transition-new(nav) { animation: none; }
