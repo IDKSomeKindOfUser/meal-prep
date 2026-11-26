@@ -84,6 +84,14 @@ export interface Found {
   cost: number
 }
 
+/** A cooking left exactly as in the previous menu: a rebuild should change every one of them. */
+const SAME_AS_BEFORE = 30
+
+function repeatPenalty(picks: Picks, previous: readonly (readonly string[])[] | undefined): number {
+  if (!previous || previous.length !== picks.length) return 0
+  return picks.reduce((sum, row, i) => sum + (row.every((r, j) => r.id === previous[i]![j]) ? SAME_AS_BEFORE : 0), 0)
+}
+
 /** How strongly the seed's random liking of dishes can outweigh comfort; small next to the norm and the budget. */
 const TASTE = 2
 
@@ -101,6 +109,7 @@ export function search(
   start: Picks, options: readonly (readonly Recipe[])[][], schedule: readonly Block[],
   settings: Settings, catalog: Catalog, goal: Goal, steps: number, random: () => number, deadline: number,
   taste: (recipe: Recipe) => number = () => 0,
+  previous?: readonly (readonly string[])[],
 ): Found {
   const picks = start.map((row) => [...row])
   const size = (row: readonly Recipe[], i: number) =>
@@ -113,11 +122,12 @@ export function search(
 
   const score = () => {
     const daily = penalties.reduce((a, b) => a + b, 0)
-    if (goal === 'cheapest') return daily + cost.total / totalDays / 10
+    const repeat = repeatPenalty(picks, previous)
+    if (goal === 'cheapest') return daily + repeat + cost.total / totalDays / 10
     const { budget } = settings
     const over = budget !== null && cost.total > budget ? 20 + (50 * (cost.total - budget)) / budget : 0
     const liking = picks.reduce((sum, row) => sum + row.reduce((a, r) => a + taste(r), 0), 0) / picks.length
-    return daily + over + comfortPenalty(picks, schedule, settings) + liking
+    return daily + repeat + over + comfortPenalty(picks, schedule, settings) + liking
   }
 
   let current = score()
@@ -132,6 +142,8 @@ export function search(
     const old = picks[i]![slot]!
     const next = pool[Math.floor(random() * pool.length)]!
     if (next === old) continue
+    // Lunch and dinner of one day are never the same dish.
+    if ((slot === LUNCH && next === picks[i]![DINNER]) || (slot === DINNER && next === picks[i]![LUNCH])) continue
     const oldDay = days[i]!
     const oldPenalty = penalties[i]!
     const { week, days: length } = schedule[i]!

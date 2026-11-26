@@ -82,6 +82,28 @@ describe('budget', () => {
     }
     for (let i = 1; i < menus.length; i++) expect(changed(menus[i]!, menus[i - 1]!)).toBeGreaterThanOrEqual(3)
   })
+  test.each([
+    ['free', {}],
+    ['tight', { kcal: 2600, protein: 150, budget: 4000 }],
+    ['month', { weeks: 4 as const, budget: 12000 }],
+  ] as const)('lunch and dinner of one day differ, %s', (_, over) => {
+    for (const cookTimes of [1, 2, 3, 7] as const) for (const seed of [1, 2, 3, 4, 5]) {
+      for (const b of plan({ ...over, cookTimes }, seed).menu) expect(b.lunch).not.toBe(b.dinner)
+    }
+  }, 120_000)
+  // Without care these rebuilds keep one cooking exactly as it was.
+  test.each([
+    [1, 7, { kcal: 2900, protein: 160, budget: 4000 }],
+    [3, 6, { kcal: 2900, protein: 160, budget: 4000 }],
+    [3, 7, { kcal: 2900, protein: 160, budget: 4000 }],
+    [1, 3, { budget: 2500 }],
+  ] as const)('a rebuild changes every cooking, %i cookings, seed %i', (cookTimes, seed, over) => {
+    const settings = { ...usual, ...over, cookTimes }
+    const before = plan(settings, seed)
+    const after = planMenu(settings, catalog, seed * 7919, before.menu)
+    if (!after.ok) throw new Error('no menu')
+    after.menu.forEach((b, i) => expect(SLOTS.some((s) => b[s] !== before.menu[i]![s])).toBe(true))
+  }, 30_000)
 })
 
 describe('when nothing fits', () => {

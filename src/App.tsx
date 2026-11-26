@@ -142,7 +142,7 @@ export function App() {
     setMessage(null)
     setMissing([])
     try {
-      const answer = await buildMenu({ settings, seed, prices: state.prices, own: state.own })
+      const answer = await buildMenu({ settings, seed, prices: state.prices, own: state.own, previous: plan?.menu })
       if (answer.ok) {
         const next: SavedPlan = { settings, menu: answer.menu, seed, start: first }
         transition(() => setState((s) => ({ ...s, form: form ?? s.form, plan: next })))

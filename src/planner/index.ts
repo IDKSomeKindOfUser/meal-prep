@@ -35,8 +35,13 @@ const TIME_LIMIT_MS = 4500
 /** How much a menu may cost above the cheapest one found when the budget is out of reach. */
 const UNREACHABLE_SLACK = 1.05
 
-/** The same settings, catalog and seed give the same menu unless the time limit is reached. */
-export function planMenu(settings: Settings, catalog: Catalog, seed: number, timeLimitMs = TIME_LIMIT_MS): PlanResult {
+/**
+ * The same settings, catalog and seed give the same menu unless the time limit is reached.
+ * `previous`: the menu being rebuilt; every cooking of the new one differs from it where possible.
+ */
+export function planMenu(
+  settings: Settings, catalog: Catalog, seed: number, previous?: Menu, timeLimitMs = TIME_LIMIT_MS,
+): PlanResult {
   const schedule = blocks(settings.cookTimes, settings.weeks)
   const options = schedule.map((block) => SLOTS.map((slot) => candidates(slot, block, settings, catalog)))
 
@@ -54,12 +59,21 @@ export function planMenu(settings: Settings, catalog: Catalog, seed: number, tim
   const wish = preference(settings.prefer)
   // The search lowers the score, so a wished dish counts below zero.
   const taste = (r: Recipe) => liking(r) - wish(r)
+  const before = previous?.length === schedule.length ? previous.map((b) => SLOTS.map((s) => b[s])) : undefined
   const deadline = performance.now() + timeLimitMs
   const steps = STEPS_PER_WEEK * settings.weeks
   const run = (start: Picks, goal: 'balanced' | 'cheapest', s = settings) =>
-    search(start, options, schedule, s, catalog, goal, goal === 'cheapest' ? steps * CHEAPEST_FACTOR : steps, random, deadline, taste)
+    search(start, options, schedule, s, catalog, goal, goal === 'cheapest' ? steps * CHEAPEST_FACTOR : steps, random, deadline, taste, before)
 
-  const start = options.map((row) => row.map((pool) => pool[Math.floor(random() * pool.length)]!))
+  const pick = (pool: readonly Recipe[]) => pool[Math.floor(random() * pool.length)]!
+  const start = options.map((row) => {
+    const picks = row.map(pick)
+    const [, lunch, dinner] = picks
+    // The search never makes lunch and dinner equal, so it must not start that way either.
+    const others = row[2]!.filter((r) => r !== lunch)
+    if (lunch === dinner && others.length > 0) picks[2] = pick(others)
+    return picks
+  })
   let found = run(start, 'balanced')
   if (settings.budget !== null && found.cost > settings.budget) {
     const cheapest = run(found.picks, 'cheapest')
