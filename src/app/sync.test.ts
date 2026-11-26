@@ -4,7 +4,7 @@ import schema from '../../supabase/schema.sql?raw'
 import { defaultCatalog, planMenu } from '../planner'
 import { EMPTY_FORM, readForm } from './form'
 import { EMPTY_STATE, parseState, type SavedPlan, type SavedState } from './storage'
-import { adopt, claim, outgoing, pending, stamp, type Row } from './sync'
+import { adopt, claim, outgoing, pending, stamp, tooBig, type Row } from './sync'
 
 const A = '00000000-0000-0000-0000-00000000000a'
 const B = '00000000-0000-0000-0000-00000000000b'
@@ -29,13 +29,15 @@ const as = (role: 'anon' | 'authenticated', uid: string, sql: string, params: un
   await tx.exec(`set local role ${role}; set local test.uid = '${uid}'`)
   return (await tx.query<Record<string, unknown>>(sql, params)).rows
 })
-const call = async (uid: string, changes: Row[]) =>
-  (await as('authenticated', uid, 'select public.sync_entries($1::json) as r', [JSON.stringify(changes)]))[0]!.r as Row[]
+const answer = async (uid: string, changes: Row[], since = 0) =>
+  (await as('authenticated', uid, 'select public.sync_entries($1::json, $2) as r', [JSON.stringify(changes), since]))[0]!.r as { rows: Row[]; seen: number }
+const call = async (uid: string, changes: Row[], since = 0) => (await answer(uid, changes, since)).rows
 async function sync(state: SavedState, uid = A): Promise<SavedState> {
   const claimed = claim(state, uid)
   if (!claimed) throw new Error('other account')
   const sent = outgoing(claimed)
-  return adopt(claimed, sent, await call(uid, sent))
+  const { rows, seen } = await answer(uid, sent, claimed.sync?.seen)
+  return adopt(claimed, sent, rows, seen)
 }
 const price = (n: number) => ({ rice: { price: n, grams: 900 } })
 const edit = (s: SavedState, change: Partial<SavedState>, at: number) => stamp(s, { ...s, ...change }, at)
@@ -101,6 +103,40 @@ describe('two devices', () => {
     await new Promise((r) => setTimeout(r, 5))
     await sync(edit(two, { prices: price(2) }, Date.now()))
     expect((await sync(one)).prices).toEqual(price(2))
+  })
+})
+
+describe('cloud limits', () => {
+  it('an entry the cloud would refuse stays here, and the rest are sent', async () => {
+    const huge = { price: 1, grams: 1, note: 'ы'.repeat(100_001) }
+    const one = await sync(edit(EMPTY_STATE, { prices: { ...price(1), buckw: huge, 'bad key': price(2).rice } }, 1000))
+    expect(tooBig(one)).toEqual(['price:buckw', 'price:bad key'])
+    expect(pending(one)).toBe(true)
+    expect((await sync(EMPTY_STATE)).prices).toEqual(price(1))
+  })
+})
+
+describe('polling', () => {
+  it('asks only for rows changed since the last answer', async () => {
+    await sync(edit(EMPTY_STATE, { prices: price(1) }, 1000))
+    const two = await sync(EMPTY_STATE)
+    // As if the first row was written long ago.
+    await db.exec('update public.entries set synced_at = 1')
+    await call(A, [{ key: 'form', value: form, changed_at: 2000 }])
+    expect((await call(A, [], two.sync!.seen)).map((r) => r.key)).toEqual(['form'])
+    expect(await sync(two)).toMatchObject({ form, prices: price(1) })
+  })
+  it('returns the stored row of a refused change, however old', async () => {
+    await call(A, [{ key: 'price:rice', value: price(5).rice, changed_at: 5000 }])
+    await db.exec('update public.entries set synced_at = 1')
+    expect(await call(A, [{ key: 'price:rice', value: price(4).rice, changed_at: 4000 }], 1e15)).toEqual([{ key: 'price:rice', value: price(5).rice, changed_at: 5000 }])
+  })
+  it('a dropped entry is fetched again', async () => {
+    const one = await sync(edit(EMPTY_STATE, { form, plan }, 1000))
+    const broken = structuredClone(one)
+    broken.plan!.menu[0]!.lunch = 'gone'
+    expect(parseState(JSON.stringify(broken)).sync?.seen).toBeUndefined()
+    expect(parseState(JSON.stringify(one)).sync?.seen).toBe(one.sync!.seen)
   })
 })
 

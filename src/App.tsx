@@ -18,6 +18,7 @@ import { SettingsScreen } from './app/SettingsScreen'
 import { ShoppingScreen } from './app/ShoppingScreen'
 import { loadState, saveState, type SavedPlan, type SavedState } from './app/storage'
 import { pending, stamp } from './app/sync'
+import { planKey, undoPlan } from './app/undo'
 import { SettingsSide, ShoppingSide, SwapSide, TodaySide } from './app/Side'
 import { SwapScreen } from './app/SwapScreen'
 import { Today } from './app/Today'
@@ -51,7 +52,8 @@ export function App() {
   const [shopWeek, setShopWeek] = useState(0)
   const [busy, setBusy] = useState(false)
   const [missing, setMissing] = useState<Missing[]>([])
-  const [message, setMessage] = useState<{ text: string; previous: SavedPlan | null } | null>(null)
+  /** `previous` is the menu to bring back, `after` the menu it was replaced with. */
+  const [message, setMessage] = useState<{ text: string; previous: SavedPlan | null; keepChecked?: boolean; after?: string } | null>(null)
   /** Loads the new version of the app. */
   const [update, setUpdate] = useState<(() => void) | null>(null)
   const [unsaved, setUnsaved] = useState(false)
@@ -113,6 +115,13 @@ export function App() {
   const start = plan && place?.state !== 'ended' ? plan.start : today
   const read = readForm(form)
   const changed = plan !== null && read.ok && JSON.stringify(read.settings) !== JSON.stringify(plan.settings)
+  const shownPlan = useMemo(() => planKey(plan), [plan])
+  useEffect(() => {
+    if (!message?.previous) return
+    // The menu changed in another way, for example on another device: undo would erase that.
+    if (message.after === undefined) setMessage({ ...message, after: shownPlan })
+    else if (message.after !== shownPlan) setMessage({ ...message, previous: null })
+  }, [message, shownPlan])
 
   async function build(settings: Settings, first: string) {
     const seed = Math.floor(Math.random() * 2 ** 31)
@@ -144,7 +153,7 @@ export function App() {
     if (!plan || busy) return
     // The latest plan: the cloud may have brought changes since this screen was drawn.
     setState((s) => s.plan ? { ...s, plan: { ...s.plan, edited: true, menu: replaceDish(s.plan.menu, block, slot, recipeId, s.plan.settings, catalog) } } : s)
-    setMessage({ text: 'Блюдо заменено, калории, белок и чек пересчитаны.', previous: plan })
+    setMessage({ text: 'Блюдо заменено, калории, белок и чек пересчитаны.', previous: plan, keepChecked: true })
     // Keeps "back" on the dish leading to the screen it was opened from.
     if (swapFromDish.current) history.back()
     else location.replace(dishHash(block, slot))
@@ -181,8 +190,9 @@ export function App() {
               {message.text}
               {message.previous && (
                 <button type="button" onClick={() => {
-                  const { previous } = message
-                  setState((s) => ({ ...s, plan: previous }))
+                  const { previous, keepChecked = false } = message
+                  if (!previous) return
+                  setState((s) => ({ ...s, plan: undoPlan(s.plan, previous, keepChecked) }))
                   setMessage({ text: 'Прошлое меню возвращено.', previous: null })
                 }}>Вернуть прошлое</button>
               )}

@@ -4,6 +4,7 @@ import { Field } from './fields'
 
 const STATUS: Record<Cloud['status'], string> = {
   idle: '', syncing: 'Сохраняем в облако…', synced: 'Всё сохранено в облаке.',
+  'too-big': 'Часть данных слишком большая для облака, поэтому осталась только в этом браузере. Остальное сохранено в облаке.',
   error: 'Облако не отвечает. Правки сохранены в этом браузере и отправятся позже.',
   'other-account': 'В этом браузере лежат данные другого аккаунта, поэтому они не отправляются. Выйдите и войдите под прежней почтой.',
 }
@@ -30,7 +31,7 @@ export function AccountForm({ cloud, unsent }: { cloud: Cloud; unsent: boolean }
     return (
       <>
         <p>Вы вошли как {cloud.email}.</p>
-        <p role="status" className={cloud.status === 'other-account' || cloud.status === 'error' ? 'warn' : 'hint'}>{status}</p>
+        <p role="status" className={cloud.status === 'other-account' || cloud.status === 'error' || cloud.status === 'too-big' ? 'warn' : 'hint'}>{status}</p>
         {cloud.status === 'error' && <button type="button" className="textbtn" onClick={cloud.syncNow}>Отправить сейчас</button>}
         <button type="button" className="textbtn" disabled={busy} onClick={() => run(cloud.signOut)}>Выйти</button>
         <p className="hint">После выхода данные останутся в этом браузере.</p>

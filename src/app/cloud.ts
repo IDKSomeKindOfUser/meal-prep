@@ -1,7 +1,7 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import type { SavedState } from './storage'
-import { adopt, claim, outgoing, pending, type Row } from './sync'
+import { adopt, claim, outgoing, pending, tooBig, type Row } from './sync'
 
 const { VITE_SUPABASE_URL: url, VITE_SUPABASE_KEY: key } = import.meta.env
 /** Without the keys the app works with this browser only. */
@@ -17,7 +17,7 @@ const getClient = () => {
   return client
 }
 
-export type SyncStatus = 'idle' | 'syncing' | 'synced' | 'error' | 'other-account'
+export type SyncStatus = 'idle' | 'syncing' | 'synced' | 'too-big' | 'error' | 'other-account'
 export interface Cloud {
   /** `undefined` until known. */
   email: string | null | undefined
@@ -48,7 +48,7 @@ export function useCloud(state: SavedState, setState: (change: (s: SavedState) =
     if (!cloudReady) return
     let stop = () => {}
     let gone = false
-    getClient().then((c) => {
+    const listen = () => getClient().then((c) => {
       if (gone) return
       const { data } = c.auth.onAuthStateChange((_, session) => {
         setUser((u) => {
@@ -57,7 +57,14 @@ export function useCloud(state: SavedState, setState: (change: (s: SavedState) =
         })
       })
       stop = () => data.subscription.unsubscribe()
-    }, () => { if (!gone) setUser(null) })
+    }, () => {
+      if (gone) return
+      setUser(null)
+      // The code of the cloud did not load: try again when the network is back.
+      addEventListener('online', listen, { once: true })
+      stop = () => removeEventListener('online', listen)
+    })
+    void listen()
     return () => { gone = true; stop() }
   }, [])
 
@@ -72,12 +79,13 @@ export function useCloud(state: SavedState, setState: (change: (s: SavedState) =
       if (!claimed) { setStatus('other-account'); return }
       const sent = outgoing(claimed)
       const c = await getClient()
-      const { data, error } = await c.rpc('sync_entries', { changes: sent }).abortSignal(AbortSignal.timeout(20_000))
+      const { data, error } = await c.rpc('sync_entries', { changes: sent, since: claimed.sync?.seen ?? 0 }).abortSignal(AbortSignal.timeout(20_000))
       if (error) throw error
       // Signed out or changed the account while waiting.
       if (active.current !== id) return
-      setState((s) => { const mine = claim(s, id); return mine ? adopt(mine, sent, data as Row[]) : s })
-      setStatus('synced')
+      const { rows, seen } = data as { rows: Row[]; seen: number }
+      setState((s) => { const mine = claim(s, id); return mine ? adopt(mine, sent, rows, seen) : s })
+      setStatus(tooBig(claimed).length > 0 ? 'too-big' : 'synced')
     } catch {
       setStatus('error')
     } finally {

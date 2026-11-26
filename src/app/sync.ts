@@ -9,6 +9,8 @@ export interface SyncMarks {
   stamps: Record<string, number>
   /** Entries the cloud has not received yet. */
   dirty: string[]
+  /** Server time up to which every row was received. */
+  seen?: number
 }
 /** The synchronised unit. A `null` value means it was deleted. */
 export interface Row { key: string; value: unknown; changed_at: number }
@@ -53,14 +55,21 @@ export function claim(state: SavedState, owner: string): SavedState | null {
 
 export const pending = (state: SavedState) => marks(state).dirty.length > 0
 
-export function outgoing(state: SavedState): Row[] {
+function unsent(state: SavedState): Row[] {
   const entries = entriesOf(state)
   const { stamps, dirty } = marks(state)
   return dirty.map((key) => ({ key, value: entries.get(key) ?? null, changed_at: stamps[key] ?? 1 }))
 }
+// The limits of `supabase/schema.sql`. One row that breaks them makes the cloud refuse the whole batch.
+const KEY = /^(form|plan|(price|product|recipe):[A-Za-z0-9_-]{1,80})$/
+const fits = ({ key, value }: Row) => KEY.test(key) && new TextEncoder().encode(JSON.stringify(value)).length <= 200_000
+
+export const outgoing = (state: SavedState) => unsent(state).filter(fits)
+/** Entries the cloud would refuse. They stay in this browser only. */
+export const tooBig = (state: SavedState) => unsent(state).filter((r) => !fits(r)).map((r) => r.key)
 
 /** Takes over everything the cloud answered, except what was edited after sending. */
-export function adopt(state: SavedState, sent: Row[], rows: Row[]): SavedState {
+export function adopt(state: SavedState, sent: Row[], rows: Row[], seen?: number): SavedState {
   const sync = marks(state)
   const sentAt = new Map(sent.map((r) => [r.key, r.changed_at]))
   const dirty = sync.dirty.filter((key) => sentAt.get(key) !== sync.stamps[key])
@@ -75,7 +84,7 @@ export function adopt(state: SavedState, sent: Row[], rows: Row[]): SavedState {
     if (value === null) entries.delete(key)
     else entries.set(key, value)
   }
-  const result = { ...state, sync: { ...sync, stamps, dirty } }
+  const result = { ...state, sync: { ...sync, stamps, dirty, ...(seen === undefined ? {} : { seen }) } }
   if (!changed) return same(sync, result.sync) ? state : result
   return parseState(JSON.stringify({
     ...result, form: entries.get('form'), plan: entries.get('plan') ?? null, prices: Object.fromEntries(under(entries, 'price:')),
@@ -98,5 +107,7 @@ export function parseSync(saved: unknown, raw: unknown, parsed: SavedState): Syn
   const kept = entriesOf(parsed)
   const lost = new Set([...before].filter((key) => !kept.has(key)))
   const stamps = Object.fromEntries(Object.entries(sync.stamps).filter(([key, at]) => Number.isSafeInteger(at) && !lost.has(key)))
-  return { ...(sync.owner === undefined ? {} : { owner: sync.owner }), stamps, dirty: sync.dirty.filter((key) => typeof key === 'string' && key in stamps) }
+  // Dropped entries are fetched again only by a full poll.
+  const seen = lost.size === 0 && Number.isSafeInteger(sync.seen) ? { seen: sync.seen } : {}
+  return { ...(sync.owner === undefined ? {} : { owner: sync.owner }), stamps, dirty: sync.dirty.filter((key) => typeof key === 'string' && key in stamps), ...seen }
 }
