@@ -38,6 +38,10 @@
   --radius-s: 10px;
   --radius-m: 14px;
   --radius-l: 16px;
+  --radius-card: 16px;
+  --radius-button: 14px;
+  --radius-thumb: 12px;
+  --shadow-card: 0 2px 6px rgb(29 42 34 / 0.08);
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -63,6 +67,7 @@
     --on-dinner: #0b2a1a;
     --snack: #f2a3c7;
     --on-snack: #3b0a22;
+    --shadow-card: 0 0 0 1px rgb(255 255 255 / 0.07), 0 2px 8px rgb(0 0 0 / 0.45);
   }
 }
 
@@ -87,4 +92,5 @@
   --on-dinner: #0b2a1a;
   --snack: #f2a3c7;
   --on-snack: #3b0a22;
+  --shadow-card: 0 0 0 1px rgb(255 255 255 / 0.07), 0 2px 8px rgb(0 0 0 / 0.45);
 }

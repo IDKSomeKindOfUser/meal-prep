@@ -66,7 +66,7 @@ nav [aria-current] { color: var(--accent); background: color-mix(in oklab, var(-
 .meals { display: grid; gap: var(--space-3); padding-inline: var(--space-5); }
 .dish {
   position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: var(--space-4);
-  padding: var(--space-4); border-radius: var(--radius-l); transition: scale 0.2s var(--ease);
+  padding: var(--space-4); border-radius: var(--radius-card); transition: scale 0.2s var(--ease);
 }
 .dish h3 { margin-bottom: var(--space-2); text-wrap: balance; overflow-wrap: break-word; hyphens: auto; }
 .dish:active { scale: 0.985; }
@@ -83,14 +83,14 @@ nav [aria-current] { color: var(--accent); background: color-mix(in oklab, var(-
 [data-slot='lunch'] { --mark: var(--lunch); --on-mark: var(--on-lunch); }
 [data-slot='dinner'] { --mark: var(--dinner); --on-mark: var(--on-dinner); }
 [data-slot='snack'] { --mark: var(--snack); --on-mark: var(--on-snack); }
-[data-slot] { background: var(--surface); color: var(--ink); box-shadow: inset 6px 0 var(--mark); padding-left: calc(var(--space-4) + 6px); }
+[data-slot] { background: var(--surface); color: var(--ink); box-shadow: inset 6px 0 var(--mark), var(--shadow-card); padding-left: calc(var(--space-4) + 6px); }
 [data-slot] .facts > li:first-child { background: var(--mark); color: var(--on-mark); }
 .art { display: block; width: 112px; height: 112px; transition: scale 0.4s var(--ease); }
 @media (min-width: 480px) { .big .art { width: 140px; height: 140px; } }
 .dish:hover .art { scale: 1.04; }
-.art.photo { border-radius: var(--radius-m); object-fit: cover; }
+.art.photo { border-radius: var(--radius-thumb); object-fit: cover; }
 .art.none {
-  display: grid; place-items: center; border-radius: var(--radius-m); aspect-ratio: 1;
+  display: grid; place-items: center; border-radius: var(--radius-thumb); aspect-ratio: 1;
   background: color-mix(in oklab, var(--mark, var(--muted)) 22%, var(--surface));
   color: color-mix(in oklab, var(--mark, var(--muted)) 60%, var(--ink));
 }
@@ -133,7 +133,7 @@ nav [aria-current] { color: var(--accent); background: color-mix(in oklab, var(-
 .options p { color: var(--muted); font-size: var(--text-s); }
 .options .warn { margin: 0; color: var(--danger); }
 .options li:has(.thumb) { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; }
-.options .thumb .art { border-radius: var(--radius-s); }
+.options .thumb .art { border-radius: var(--radius-thumb); }
 .facts { display: flex; flex-wrap: wrap; gap: var(--space-1); margin-top: var(--space-1); }
 .facts span { padding: 2px var(--space-2); border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); }
 .facts b { font-weight: 700; }
@@ -144,20 +144,20 @@ nav [aria-current] { color: var(--accent); background: color-mix(in oklab, var(-
   .options li:has(.thumb) { grid-template-columns: auto minmax(0, 1fr); }
   .options li:has(.thumb) button { grid-column: 1 / -1; }
 }
-.options button { flex: none; min-height: 48px; padding: 0 var(--space-4); border: 1px solid var(--control); border-radius: var(--radius-s); background: var(--surface); font-weight: 600; }
+.options button { flex: none; min-height: 48px; padding: 0 var(--space-4); border: 1px solid var(--control); border-radius: var(--radius-button); background: var(--surface); font-weight: 600; }
 .options button:hover { border-color: var(--ink); }
 .options button:disabled { cursor: progress; color: var(--muted); }
 
 /* Готовка и чек */
 .cookings { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: var(--space-2); }
-.cookings li { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-m); padding: var(--space-3); }
-.cookings [data-now] { border-color: var(--accent); }
+.cookings li { background: var(--surface); box-shadow: var(--shadow-card); border-radius: var(--radius-card); padding: var(--space-3); }
+.cookings [data-now] { box-shadow: inset 0 0 0 2px var(--accent), var(--shadow-card); }
 .cookings b, .cookings span { display: block; }
 .cookings span { color: var(--muted); font-size: var(--text-s); }
 .sum { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-3); }
 .sum b { font-size: var(--text-l); }
 .go {
-  display: grid; place-items: center; width: 100%; min-height: 52px; margin-top: var(--space-4); border: 0; border-radius: var(--radius-m);
+  display: grid; place-items: center; width: 100%; min-height: 52px; margin-top: var(--space-4); border: 0; border-radius: var(--radius-button);
   background: var(--accent); color: var(--on-accent); font-weight: 700; text-decoration: none;
 }
 .go { transition: background-color 0.2s var(--ease), scale 0.15s var(--ease); }
@@ -180,10 +180,10 @@ fieldset .hint, fieldset .warn, .field .hint { margin-top: var(--space-2); }
 .chips { display: flex; flex-wrap: wrap; gap: var(--space-2); }
 .chip { position: relative; }
 .chip input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
-.chip input, .chip { border-radius: var(--radius-s); }
+.chip input, .chip { border-radius: var(--radius-button); }
 .chip span {
   display: flex; align-items: center; gap: var(--space-2); min-height: 44px; padding: var(--space-2) var(--space-3);
-  background: var(--surface); border: 1px solid var(--control); border-radius: var(--radius-s);
+  background: var(--surface); border: 1px solid var(--control); border-radius: var(--radius-button);
   transition: background-color .2s, border-color .2s, color .2s, scale .1s;
 }
 .chip:hover span { border-color: var(--ink); }
@@ -207,7 +207,7 @@ fieldset .hint, fieldset .warn, .field .hint { margin-top: var(--space-2); }
 .exclude summary { min-height: 44px; align-content: center; font-weight: 600; }
 .exclude fieldset { margin-top: var(--space-4); }
 .build { padding: var(--space-5) var(--space-5) 0; }
-.missing { background: var(--surface); border: 1px solid var(--danger); border-radius: var(--radius-m); padding: var(--space-4); }
+.missing { background: var(--surface); border: 1px solid var(--danger); border-radius: var(--radius-card); padding: var(--space-4); }
 .missing + .hint, .build .warn + .hint { margin-top: var(--space-3); }
 .missing li { margin-top: var(--space-2); }
 
@@ -247,7 +247,7 @@ button.link { padding: var(--space-2) 0; border: 0; background: none; font: inhe
 section:has(> .buy) { max-width: 720px; }
 .cook { list-style: none; padding: 0; display: grid; gap: var(--space-3); max-width: 720px; }
 .cook .when { margin: 0 0 var(--space-1); color: var(--muted); font-size: var(--text-s); font-weight: 700; }
-.cook > li { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--space-4); align-items: center; padding: var(--space-3); border-radius: var(--radius-l); }
+.cook > li { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--space-4); align-items: center; padding: var(--space-3); border-radius: var(--radius-card); }
 .thumb .art { width: 72px; height: 72px; }
 .cook a { display: block; margin-bottom: var(--space-2); color: inherit; font-size: var(--text-l); font-weight: 800; line-height: 1.12; text-decoration: none; overflow-wrap: break-word; hyphens: auto; }
 .cook a::after { content: ''; position: absolute; inset: 0; border-radius: inherit; }
@@ -273,7 +273,7 @@ section:has(> .buy) { max-width: 720px; }
 /* Свои рецепты и продукты */
 .link { color: var(--accent); font-weight: 600; text-underline-offset: 3px; }
 .own { max-width: 720px; }
-.empty { max-width: 520px; padding: var(--space-4); border-radius: var(--radius-m); background: var(--surface); display: grid; gap: var(--space-2); justify-items: start; }
+.empty { max-width: 520px; padding: var(--space-4); border-radius: var(--radius-card); background: var(--surface); box-shadow: var(--shadow-card); display: grid; gap: var(--space-2); justify-items: start; }
 .empty p { color: var(--muted); }
 @media (min-width: 900px) { .own { max-width: none; display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--space-6); } }
 .own li { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0 var(--space-4); padding: var(--space-2) 0; border-bottom: 1px solid var(--line); }
@@ -294,7 +294,7 @@ textarea { min-height: 144px; padding-block: var(--space-3); resize: vertical; }
 .textbtn:disabled { color: var(--muted); cursor: progress; }
 .product {
   width: min(640px, 100%); max-width: none; max-height: 100dvh; margin: auto; padding: var(--space-5);
-  border: 1px solid var(--line); border-radius: var(--radius-m); background: var(--ground); color: var(--ink); overscroll-behavior: contain;
+  border: 1px solid var(--line); border-radius: var(--radius-card); background: var(--ground); color: var(--ink); overscroll-behavior: contain;
 }
 .product::backdrop { background: rgb(0 0 0 / 0.55); }
 .product form > * + * { margin-top: var(--space-5); }
@@ -315,7 +315,7 @@ html:has(dialog[open]) { overflow: hidden; }
 }
 
 /* Боковая панель со сводкой. На телефоне и планшете она идёт под основным списком. */
-.side { display: grid; gap: var(--space-4); align-content: start; margin: var(--space-6) var(--space-5) 0; padding: var(--space-5); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-l); }
+.side { display: grid; gap: var(--space-4); align-content: start; margin: var(--space-6) var(--space-5) 0; padding: var(--space-5); background: var(--surface); box-shadow: var(--shadow-card); border-radius: var(--radius-card); }
 .side h2 { margin: 0; font-size: var(--text-m); }
 .meter p { font-size: var(--text-s); color: var(--muted); }
 .meter b { color: var(--ink); font-size: var(--text-m); }
@@ -329,7 +329,7 @@ html:has(dialog[open]) { overflow: hidden; }
 .big-num b { font-size: var(--text-l); }
 .facts-list { display: grid; gap: var(--space-2); font-size: var(--text-s); }
 .facts-list li { padding-block: var(--space-1); color: var(--muted); }
-.thumb.wide .art { inline-size: 100%; block-size: auto; aspect-ratio: 4 / 3; border-radius: var(--radius-m); }
+.thumb.wide .art { inline-size: 100%; block-size: auto; aspect-ratio: 4 / 3; border-radius: var(--radius-thumb); }
 @media (prefers-reduced-motion: reduce) { .bar i { transition: none; } }
 @media (min-width: 1180px) {
   main { max-width: 1240px; }
@@ -339,8 +339,8 @@ html:has(dialog[open]) { overflow: hidden; }
 
 /* Неделя: день одной строкой, четыре миниатюры */
 .wk { list-style: none; margin: var(--space-3) 0 0; padding: 0 var(--space-5); display: grid; gap: var(--space-2); }
-.wkrow { display: grid; grid-template-columns: 64px minmax(0, 1fr) auto; align-items: center; gap: var(--space-3); padding: var(--space-2); border-radius: var(--radius-m); background: var(--surface); }
-.wkrow[aria-current] { box-shadow: inset 0 0 0 2px var(--accent); }
+.wkrow { display: grid; grid-template-columns: 64px minmax(0, 1fr) auto; align-items: center; gap: var(--space-3); padding: var(--space-2); border-radius: var(--radius-card); background: var(--surface); box-shadow: var(--shadow-card); }
+.wkrow[aria-current] { box-shadow: inset 0 0 0 2px var(--accent), var(--shadow-card); }
 .wkday { display: grid; justify-items: center; min-height: 48px; padding: var(--space-1); border: 0; border-radius: var(--radius-s); background: none; color: var(--ink); font-size: var(--text-s); transition: background-color 0.2s var(--ease), scale 0.15s var(--ease); }
 .wkday:hover { background: color-mix(in oklab, var(--surface), var(--ink) 8%); }
 .wkday:active { scale: 0.94; }
@@ -349,7 +349,7 @@ html:has(dialog[open]) { overflow: hidden; }
 .wkrow.wkcook .wkday small { color: var(--accent); font-weight: 700; }
 .wkdishes { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-2); max-width: 360px; }
 .wkdishes [data-slot] { background: none; box-shadow: none; padding: 0; }
-.wkdishes a { display: block; border-radius: var(--radius-m); transition: scale 0.15s var(--ease); }
+.wkdishes a { display: block; border-radius: var(--radius-thumb); transition: scale 0.15s var(--ease); }
 .wkdishes a:active { scale: 0.94; }
 .wkdishes a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 .wkdishes .art { width: 100%; height: auto; aspect-ratio: 1; }
