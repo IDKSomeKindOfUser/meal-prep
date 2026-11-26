@@ -25,5 +25,5 @@ export function DishPicture({ recipe }: { recipe: Recipe }) {
   // Фото из кэша может загрузиться раньше, чем React повесит onLoad.
   const ref = useCallback((img: HTMLImageElement | null) => { if (img?.complete && img.naturalWidth > 0) setLoaded(true) }, [])
   if (!HAS_PHOTO.has(recipe.id) || failed) return <NoPhoto />
-  return <img ref={ref} className={loaded ? 'art photo' : 'art photo loading'} onLoad={() => setLoaded(true)} src={`/photos/${recipe.id}.webp`} alt="" width="500" height="500" onError={() => setFailed(true)} />
+  return <img ref={ref} loading="lazy" className={loaded ? 'art photo' : 'art photo loading'} onLoad={() => setLoaded(true)} src={`/photos/${recipe.id}.webp`} alt="" width="500" height="500" onError={() => setFailed(true)} />
 }

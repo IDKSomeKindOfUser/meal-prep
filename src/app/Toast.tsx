@@ -29,5 +29,5 @@ export function Toast<T>({ value, children }: { value: T | null | undefined | fa
   }, [leaving])
 
   if (kept === null) return null
-  return <p ref={el} inert={leaving}>{children(kept)}</p>
+  return <p ref={el} role="status" inert={leaving}>{children(kept)}</p>
 }
