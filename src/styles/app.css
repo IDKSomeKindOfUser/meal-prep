@@ -60,6 +60,7 @@ nav [aria-current] { color: var(--accent); background: color-mix(in oklab, var(-
 .tabs { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: var(--space-3); max-width: 520px; }
 .tabs button { font-weight: 600; }
 @media (max-width: 479px) { .tabs .wide { display: none; } }
+.tabs.two { grid-template-columns: repeat(2, 1fr); max-width: 360px; }
 @media (min-width: 480px) { .tabs .short { display: none; } }
 
 /* Карточки блюд */
@@ -85,6 +86,8 @@ nav [aria-current] { color: var(--accent); background: color-mix(in oklab, var(-
 [data-slot='snack'] { --mark: var(--snack); --on-mark: var(--on-snack); }
 [data-slot] { background: var(--surface); color: var(--ink); box-shadow: inset 6px 0 var(--mark), var(--shadow-card); padding-left: calc(var(--space-4) + 6px); }
 [data-slot] .facts > li:first-child { background: var(--mark); color: var(--on-mark); }
+/* Ближайший приём пищи по времени суток обведён цветом приёма. */
+.dish[data-now] { box-shadow: inset 6px 0 var(--mark), inset 0 0 0 2px var(--mark), var(--shadow-card); }
 .art { display: block; width: 112px; height: 112px; transition: scale 0.4s var(--ease); }
 @media (min-width: 480px) { .big .art { width: 140px; height: 140px; } }
 .dish:hover .art { scale: 1.04; }
@@ -326,6 +329,9 @@ html:has(dialog[open]) { overflow: hidden; }
 /* Переходы между экранами: короткая смена, фото блюда перелетает между карточкой и рецептом. */
 ::view-transition-group(*) { animation-duration: 0.32s; animation-timing-function: var(--ease); }
 ::view-transition-group(dish-photo) { animation-duration: 0.45s; }
+/* Экран меняется по очереди: старый гаснет, потом проявляется новый, без наложения двух слоёв. */
+::view-transition-old(root) { animation-duration: 0.12s; }
+::view-transition-new(root) { animation-duration: 0.2s; animation-delay: 0.12s; animation-fill-mode: both; }
 ::view-transition-old(dish-photo), ::view-transition-new(dish-photo) { height: 100%; object-fit: cover; }
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after { transition: none !important; }
@@ -379,7 +385,7 @@ html:has(dialog[open]) { overflow: hidden; }
 .wkday .wkfor { display: block; font-weight: 400; }
 .wkname { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; margin-top: var(--space-1); font-size: 0.75rem; line-height: 1.25; color: var(--ink); text-wrap: pretty; overflow-wrap: anywhere; hyphens: auto; }
 .wkdishes .art { transition: scale 0.3s var(--ease); }
-@media (max-width: 479px) {
+@media (max-width: 899px) {
   .wkrow { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: 'day kcal' 'dishes dishes'; row-gap: var(--space-2); }
   .wkday { grid-area: day; display: flex; align-items: baseline; justify-content: start; gap: var(--space-2); min-height: 44px; padding: 0 var(--space-2); }
   .wkday .wkfor { display: inline; }
@@ -388,7 +394,19 @@ html:has(dialog[open]) { overflow: hidden; }
   .wkkcal small { display: inline; }
   .wkkcal small + small::before { content: ' · '; }
 }
-@media (min-width: 480px) { .wkdishes { max-width: 520px; } }
+@media (min-width: 900px) {
+  .wkrow { grid-template-columns: 136px minmax(0, 1fr); grid-template-areas: 'day dishes' 'kcal dishes'; align-items: start; column-gap: var(--space-4); padding: var(--space-3); }
+  .wkday { grid-area: day; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: start; gap: 0 var(--space-2); min-height: 0; padding: var(--space-1) var(--space-2); text-align: start; }
+  .wkday > span { text-transform: capitalize; }
+  .wkday small { flex-basis: 100%; }
+  .wkday .wkfor { display: inline; }
+  .wkkcal { grid-area: kcal; align-self: end; padding: 0 var(--space-2) var(--space-1); text-align: start; }
+  .wkkcal small:first-of-type { display: inline; }
+  .wkdishes { grid-area: dishes; max-width: none; align-self: center; }
+  .wkdishes a { display: grid; grid-template-columns: 72px minmax(0, 1fr); align-items: center; gap: var(--space-3); }
+  .wkdishes .art { width: 72px; }
+  .wkname { margin-top: 0; -webkit-line-clamp: 3; line-clamp: 3; font-size: var(--text-s); }
+}
 
 /* Шаги: галочка и таймер */
 .steps label { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: var(--space-2); align-items: start; min-height: 48px; cursor: pointer; }

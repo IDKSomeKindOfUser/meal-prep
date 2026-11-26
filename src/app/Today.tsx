@@ -1,7 +1,8 @@
 import type { Report } from '../planner'
 import { blocks } from '../planner/schedule'
 import { SLOTS } from '../planner/types'
-import { addDays, dayMonth, dayNumber, dayOfPlan, daysBetween, weekday, weekdayShort } from './dates'
+import { useEffect, useState } from 'react'
+import { addDays, dayMonth, dayNumber, dayOfPlan, daysBetween, mealNow, weekday, weekdayShort } from './dates'
 import { daysCount, num, rub } from './labels'
 import { DishField, portionNote, Warnings, WeekTabs } from './parts'
 import { cookHash, dishHash } from './route'
@@ -18,6 +19,17 @@ interface Props {
 
 const capital = (s: string) => s[0]!.toUpperCase() + s.slice(1)
 
+function useHour(): number {
+  const [hour, setHour] = useState(() => new Date().getHours())
+  useEffect(() => {
+    const update = () => setHour(new Date().getHours())
+    const timer = setInterval(update, 60_000)
+    document.addEventListener('visibilitychange', update)
+    return () => { clearInterval(timer); document.removeEventListener('visibilitychange', update) }
+  }, [])
+  return hour
+}
+
 export function Today({ plan, report, today, day, onDay, }: Props) {
   const { settings, start } = plan
   const date = addDays(start, day)
@@ -30,6 +42,8 @@ export function Today({ plan, report, today, day, onDay, }: Props) {
   const shopping = report.shopping.weeks[week]!
   const month = settings.weeks > 1
   const cookings = report.cookings.filter((c) => Math.floor(c.day / 7) === week)
+  const hour = useHour()
+  const now = date === today ? mealNow(hour) : null
   return (
     <>
       <header>
@@ -53,7 +67,7 @@ export function Today({ plan, report, today, day, onDay, }: Props) {
       </header>
       <ul className="meals" aria-label="Блюда дня">
         {SLOTS.map((slot, i) => (
-          <DishField key={slot} slot={slot} dish={menu.dishes[i]!} href={dishHash(blockIndex, slot)} note={day === block.cookDay ? undefined : portionNote(menu.dishes[i]!, block, day)} big={slot === 'lunch'} />
+          <DishField key={slot} slot={slot} dish={menu.dishes[i]!} href={dishHash(blockIndex, slot)} note={day === block.cookDay ? undefined : portionNote(menu.dishes[i]!, block, day)} big={slot === 'lunch'} now={slot === now} />
         ))}
       </ul>
       <section>

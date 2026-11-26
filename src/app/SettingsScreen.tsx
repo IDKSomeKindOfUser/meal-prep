@@ -11,6 +11,7 @@ import { norm, readForm, type Errors, type Form } from './form'
 import { ACTIVITY, ALLERGEN, COOK, GOAL, LACTOSE, missingLines, num } from './labels'
 import type { Own } from './own'
 import { applyTheme, currentTheme, type Theme } from './theme'
+import { transition } from './transition'
 
 interface Props {
   form: Form
@@ -38,6 +39,7 @@ export function SettingsScreen({ form, own, onForm, start: suggested, changed, b
   const [start, setStart] = useState(suggested)
   const [submitted, setSubmitted] = useState(false)
   const [theme, setTheme] = useState<Theme>(currentTheme)
+  const [tab, setTab] = useState<'form' | 'site'>('form')
   const formRef = useRef<HTMLFormElement>(null)
   const missingRef = useRef<HTMLDivElement>(null)
 
@@ -58,8 +60,14 @@ export function SettingsScreen({ form, own, onForm, start: suggested, changed, b
 
   return (
     <>
-      <header><h1 tabIndex={-1}>Настройки</h1></header>
-      <form ref={formRef} className="settings" noValidate onSubmit={(e) => {
+      <header>
+        <h1 tabIndex={-1}>Настройки</h1>
+        <div className="tabs two" role="group" aria-label="Раздел">
+          <button type="button" aria-pressed={tab === 'form'} onClick={() => transition(() => setTab('form'))}>Анкета</button>
+          <button type="button" aria-pressed={tab === 'site'} onClick={() => transition(() => setTab('site'))}>Рецепты и сайт</button>
+        </div>
+      </header>
+      {tab === 'form' ? <form ref={formRef} className="settings" noValidate onSubmit={(e) => {
         e.preventDefault()
         setSubmitted(true)
         if (read.ok && isIsoDate(start)) onBuild(read.settings, start)
@@ -144,8 +152,7 @@ export function SettingsScreen({ form, own, onForm, start: suggested, changed, b
           {changed && <p className="hint">Настройки изменены, меню пока прежнее.</p>}
           <button type="submit" className="go" disabled={busy}>{busy ? 'Собираем…' : 'Собрать меню'}</button>
         </div>
-      </form>
-      <div className="settings">
+      </form> : <div className="settings">
         <Group title="Свои рецепты">
           <p>{own.recipes.length > 0 ? `Добавлено: ${own.recipes.length}.` : 'Добавьте свои блюда, и они попадут в подбор.'}</p>
           <a className="back" href="#recipes">Открыть свои рецепты</a>
@@ -156,7 +163,7 @@ export function SettingsScreen({ form, own, onForm, start: suggested, changed, b
             options={[['system', 'Как в системе'], ['light', 'Светлая'], ['dark', 'Тёмная']]} />
         </Group>
         <Group title="О сайте"><a className="back" href="#credits">Авторы фото</a></Group>
-      </div>
+      </div>}
     </>
   )
 }

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { addDays, daysBetween, dayOfPlan, isIsoDate, toIso } from './dates'
+import { addDays, daysBetween, dayOfPlan, isIsoDate, mealNow, toIso } from './dates'
 
 describe('dates', () => {
   it('uses the local calendar day', () => {
@@ -22,5 +22,18 @@ describe('dates', () => {
     expect(dayOfPlan('2026-11-25', 7, '2026-12-01')).toEqual({ state: 'now', day: 6 })
     expect(dayOfPlan('2026-11-25', 7, '2026-12-02')).toEqual({ state: 'ended', day: 6 })
     expect(dayOfPlan('2026-11-25', 7, '2026-11-24')).toEqual({ state: 'before', day: 0 })
+  })
+
+  it('picks the meal for the hour of the day', () => {
+    expect(mealNow(5)).toBe('breakfast')
+    expect(mealNow(10)).toBe('breakfast')
+    expect(mealNow(11)).toBe('lunch')
+    expect(mealNow(14)).toBe('lunch')
+    expect(mealNow(15)).toBe('snack')
+    expect(mealNow(17)).toBe('snack')
+    expect(mealNow(18)).toBe('dinner')
+    expect(mealNow(21)).toBe('dinner')
+    expect(mealNow(22)).toBeNull()
+    expect(mealNow(3)).toBeNull()
   })
 })

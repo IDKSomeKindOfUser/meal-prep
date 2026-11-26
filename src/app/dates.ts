@@ -1,3 +1,5 @@
+import type { Slot } from '../planner/types'
+
 /** Calendar days as `YYYY-MM-DD`. Arithmetic goes through UTC, so clock changes do not shift it. */
 const DAY = 86_400_000
 const utc = (iso: string) => Date.parse(`${iso}T00:00:00Z`)
@@ -19,6 +21,14 @@ export function dayOfPlan(start: string, length: number, today: string): PlanDay
   const day = daysBetween(start, today)
   if (day < 0) return { state: 'before', day: 0 }
   return day < length ? { state: 'now', day } : { state: 'ended', day: length - 1 }
+}
+
+/** The meal people usually eat at this hour. Late at night and before 5 there is none. */
+export function mealNow(hour: number): Slot | null {
+  if (hour < 5 || hour >= 22) return null
+  if (hour < 11) return 'breakfast'
+  if (hour < 15) return 'lunch'
+  return hour < 18 ? 'snack' : 'dinner'
 }
 
 const format = (options: Intl.DateTimeFormatOptions) => {
