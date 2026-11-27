@@ -97,7 +97,7 @@ nav [aria-current] svg { background: color-mix(in oklab, transparent, var(--acce
 .dish:not(.hero) a:focus-visible { outline: none; }
 .dish:not(.hero) a:focus-visible::after { outline: 3px solid currentColor; outline-offset: -6px; }
 .facts { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: var(--text-s); font-weight: 600; }
-.facts li { display: inline-flex; align-items: center; gap: 4px; min-block-size: 28px; padding: 3px 10px; line-height: 1.2; border-radius: var(--radius-s); background: color-mix(in srgb, currentColor 12%, transparent); }
+.facts li { display: inline-flex; align-items: center; gap: 4px; min-block-size: 28px; margin: 0; padding: 3px 10px; line-height: 1.2; border-radius: var(--radius-s); background: color-mix(in srgb, currentColor 12%, transparent); }
 .dish .from { margin-top: var(--space-2); font-size: var(--text-s); }
 /* Карточки нейтральные, приём пищи виден по полоске слева и первому чипу. */
 [data-slot='breakfast'] { --mark: var(--breakfast); --on-mark: var(--on-breakfast); }
@@ -135,12 +135,18 @@ nav [aria-current] svg { background: color-mix(in oklab, transparent, var(--acce
 .dish.hero { margin-inline: var(--space-5); grid-template-columns: minmax(0, 1fr); }
 .hero .art { grid-row: 1; width: 100%; height: auto; aspect-ratio: 4 / 3; max-height: 320px; }
 .hero:active { scale: none; }
-.hero h1 { font-size: clamp(1.5rem, 1.2rem + 1vw, var(--text-xl)); line-height: 1.2; overflow-wrap: break-word; hyphens: auto; }
+/* Шапка блюда: крупное плотное название, подпись капсом с точкой цвета приёма, цифры БЖУ как табло. */
+.hero h1 { font-size: clamp(1.75rem, 1.25rem + 1.8vw, 2.5rem); font-weight: 900; line-height: 1.05; letter-spacing: -0.025em; overflow-wrap: break-word; hyphens: auto; }
 .hero p { margin-top: var(--space-2); }
-.macros { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-2); margin: var(--space-3) 0 0; }
-.macros div { display: flex; flex-direction: column-reverse; }
-.macros dd { margin: 0; font-size: var(--text-l); font-weight: 800; }
-.macros dt { font-size: var(--text-s); color: var(--muted); }
+.hero h1 + p { display: flex; align-items: center; gap: var(--space-2); margin-top: var(--space-3); color: var(--muted); font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+.hero h1 + p::before { content: ''; flex: none; inline-size: 8px; block-size: 8px; border-radius: 50%; background: var(--mark); }
+.macros { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: var(--space-4) 0 0; padding-block: var(--space-3); border-block: 1px solid var(--line); }
+.macros div { display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: 2px; padding-inline: clamp(var(--space-2), 2vw, var(--space-3)); }
+.macros div:first-child { padding-inline-start: 0; }
+.macros div + div { border-inline-start: 1px solid var(--line); }
+.macros dd { margin: 0; font-size: clamp(1.375rem, 1.1rem + 1vw, 1.875rem); font-weight: 900; line-height: 1; letter-spacing: -0.02em; }
+.macros div:first-child dd { color: var(--accent); }
+.macros dt { color: var(--muted); font-size: clamp(0.6875rem, 0.6rem + 0.4vw, 0.75rem); font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
 .about { display: grid; gap: var(--space-2); margin-top: var(--space-4); padding-top: var(--space-4); border-top: 1px solid var(--line); }
 .about div { display: grid; grid-template-columns: 6.25em minmax(0, 1fr); gap: var(--space-3); }
 .about dt { color: var(--muted); }
@@ -168,7 +174,7 @@ nav [aria-current] svg { background: color-mix(in oklab, transparent, var(--acce
 .cols[data-slot-mark='snack'] { --mark: var(--snack); --on-mark: var(--on-snack); }
 /* Чипы в шапке блюда: время, хранение, аллергены. */
 .chips-info { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: var(--space-3) 0 0; padding: 0; list-style: none; }
-.chips-info li { display: inline-flex; align-items: center; gap: 6px; min-height: 32px; padding: 0 var(--space-3); border-radius: 999px; background: color-mix(in oklab, var(--ink) 8%, var(--surface)); font-size: var(--text-s); font-weight: 600; }
+.chips-info li { display: inline-flex; align-items: center; gap: 6px; min-height: 32px; margin: 0; padding: 0 var(--space-3); border-radius: 999px; background: color-mix(in oklab, var(--ink) 8%, var(--surface)); font-size: var(--text-s); font-weight: 600; }
 .chips-info svg { flex: none; width: 16px; height: 16px; }
 .chips-info .warnchip { background: color-mix(in oklab, var(--danger) 14%, var(--surface)); color: var(--danger); }
 .chips-info .maybe { background: none; border: 1px dashed var(--danger); }
@@ -823,10 +829,10 @@ nav [href='#dishes'][aria-current='page'] svg > :nth-child(1) { animation: nav-r
 .facts .ico { display: inline-flex; align-items: center; gap: 4px; }
 .facts .ico svg { flex: none; inline-size: 15px; block-size: 15px; }
 /* Часы, ножка, снежинка и треугольник заполняют весь квадрат, узкие пламя и пакет нет: уравниваем на глаз. */
-.facts :is(.time, .protein, .cold, .warn) svg { scale: .85; }
+.facts :is(.mins, .protein, .cold, .warn) svg { scale: .85; }
 :is(.facts, .chips-info) .kcal svg { color: var(--i-kcal); }
 :is(.facts, .chips-info) .protein svg { color: var(--i-protein); }
-:is(.facts, .chips-info) .time svg { color: var(--i-time); }
+:is(.facts, .chips-info) .mins svg { color: var(--i-time); }
 :is(.facts, .chips-info) .keep svg { color: var(--i-keep); }
 :is(.facts, .chips-info) .cold svg { color: var(--i-cold); }
 :is(.facts, .chips-info) .dairy svg { color: var(--i-dairy); }

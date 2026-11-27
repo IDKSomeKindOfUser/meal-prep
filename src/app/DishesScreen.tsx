@@ -138,7 +138,7 @@ export function CardScreen({ recipe, catalog, isOwn }: CardProps) {
         </dl>
         <DishPicture recipe={recipe} />
         <ul className="chips-info" aria-label="Коротко о блюде">
-          <li className="time"><Clock aria-hidden="true" />около {recipe.minutes}&nbsp;мин.</li>
+          <li className="mins"><Clock aria-hidden="true" />около {recipe.minutes}&nbsp;мин.</li>
           <li className="keep"><Refrigerator aria-hidden="true" />в холодильнике {daysCount(recipe.keepDays)}</li>
           {recipe.freezable && <li className="cold"><Snowflake aria-hidden="true" />можно заморозить</li>}
           {contains.length > 0 && <li className="warnchip"><TriangleAlert aria-hidden="true" />{names(contains)}</li>}

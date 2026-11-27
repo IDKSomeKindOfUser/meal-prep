@@ -22,7 +22,7 @@ export function MacroFacts({ kcal, protein, minutes }: { kcal: number; protein: 
     <>
       <li className="ico kcal"><Flame aria-hidden="true" />{num(kcal)} ккал</li>
       <li className="ico protein"><Drumstick aria-hidden="true" />{num(protein)} г белка</li>
-      <li className="ico time"><Clock aria-hidden="true" />{minutes} мин</li>
+      <li className="ico mins"><Clock aria-hidden="true" />{minutes} мин</li>
     </>
   )
 }
