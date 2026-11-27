@@ -136,7 +136,9 @@ describe('a rebuild of one cooking', () => {
 test('a replacement puts wished dishes first', () => {
   const settings: Settings = { ...usual, prefer: { meats: [], kinds: ['rice'] } }
   const { menu } = plan(settings)
-  const wished = alternatives(menu, 0, 'lunch', settings, catalog).map((o) => kindsOf(o.recipe).includes('rice'))
+  const options = alternatives(menu, 0, 'lunch', settings, catalog)
+  const wished = options.map((o) => kindsOf(o.recipe).includes('rice'))
+  expect(options.map((o) => o.wished)).toEqual(wished)
   expect(wished).toContain(true)
   expect(wished).toContain(false)
   expect(wished.indexOf(false)).toBeGreaterThan(wished.lastIndexOf(true))

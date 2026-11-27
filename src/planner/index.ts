@@ -113,6 +113,8 @@ export interface Alternative {
   protein: number
   /** Rubles for the whole period. */
   costChange: number
+  /** Matches the wishes from «Собрать меню заново». */
+  wished: boolean
 }
 
 /** Dishes that can replace the current one, the closest to the calorie and protein goals first. */
@@ -132,7 +134,7 @@ export function alternatives(
       const changed = menu.map((row, i) => (i === blockIndex ? { ...row, [slot]: recipe.id } : row))
       const report = describeMenu(changed, settings, catalog)
       const { kcal, protein } = report.blocks[blockIndex]!.day
-      return { recipe, kcal, protein, costChange: report.shopping.total - now }
+      return { recipe, kcal, protein, costChange: report.shopping.total - now, wished: wish(recipe) > 0 }
     })
     .sort((a, b) => wish(b.recipe) - wish(a.recipe) || miss(a) - miss(b))
 }
