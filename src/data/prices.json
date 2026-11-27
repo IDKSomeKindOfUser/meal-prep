@@ -233,6 +233,19 @@
    }
   ]
  },
+ "cowmilk": {
+  "packGrams": 950,
+  "records": [
+   {
+    "price": 167.99,
+    "grams": 950,
+    "shop": "spar",
+    "date": "2026-11-27",
+    "url": "https://spar-online.ru/catalog/molochnaya_produktsiya_syry_1/moloko_1/11425/",
+    "status": "found"
+   }
+  ]
+ },
  "kefir": {
   "packGrams": 900,
   "records": [
@@ -303,6 +316,19 @@
     "shop": "spar",
     "date": "2026-11-25",
     "url": "https://spar-online.ru/catalog/bakaleya/krupy/14047755/",
+    "status": "found"
+   }
+  ]
+ },
+ "millet": {
+  "packGrams": 900,
+  "records": [
+   {
+    "price": 119.99,
+    "grams": 900,
+    "shop": "spar",
+    "date": "2026-11-27",
+    "url": "https://spar-online.ru/catalog/bakaleya/krupy/6851375/",
     "status": "found"
    }
   ]

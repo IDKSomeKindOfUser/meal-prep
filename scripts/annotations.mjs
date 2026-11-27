@@ -5,11 +5,13 @@ export const ingredientAllergens = {
   egg: a(['eggs']),
   cottage: a(['milk']),
   milk: a(['milk']),
+  cowmilk: a(['milk']),
   kefir: a(['milk']),
   // Egg lysozyme is a common preservative in hard cheese.
   cheese: a(['milk'], ['eggs']),
   yogurt: a(['milk']),
   buckw: a([], ['gluten']),
+  millet: a([], ['gluten']),
   bulgur: a(['gluten']),
   couscous: a(['gluten']),
   pasta: a(['gluten'], ['eggs']),

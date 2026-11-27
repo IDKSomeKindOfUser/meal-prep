@@ -6,15 +6,15 @@ const list = [...ingredients.values()]
 const byId = (id: string) => recipes.find((r) => r.id === id)!
 
 describe('целостность', () => {
-  it('77 продуктов и 150 рецептов с уникальными id', () => {
-    expect(ingredients.size).toBe(77)
-    expect(recipes).toHaveLength(150)
-    expect(new Set(recipes.map((r) => r.id)).size).toBe(150)
+  it('79 продуктов и 162 рецептов с уникальными id', () => {
+    expect(ingredients.size).toBe(79)
+    expect(recipes).toHaveLength(162)
+    expect(new Set(recipes.map((r) => r.id)).size).toBe(162)
   })
 
-  it('типы рецептов: 43 завтрака, 82 основных, 25 перекусов', () => {
+  it('типы рецептов: 51 завтрак, 82 основных, 29 перекусов', () => {
     const n = (t: string) => recipes.filter((r) => r.type === t).length
-    expect([n('breakfast'), n('main'), n('snack')]).toEqual([43, 82, 25])
+    expect([n('breakfast'), n('main'), n('snack')]).toEqual([51, 82, 29])
   })
 
   it('рецепты и выходы ссылаются на известные продукты', () => {
@@ -45,7 +45,7 @@ describe('аллергены', () => {
     )
     expect(table).toEqual({
       gluten: ['bread', 'bulgur', 'couscous', 'crisp', 'crumbs', 'flour', 'gochu', 'lavash', 'noodle', 'oats', 'pasta', 'semolina', 'soy', 'tortilla'],
-      milk: ['cheese', 'cottage', 'kefir', 'milk', 'yogurt'],
+      milk: ['cheese', 'cottage', 'cowmilk', 'kefir', 'milk', 'yogurt'],
       eggs: ['egg'],
       fish: ['pink', 'salmon', 'salmsalt'],
       crustaceans: ['shrimp'],
