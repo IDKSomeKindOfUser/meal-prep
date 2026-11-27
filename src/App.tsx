@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { CalendarDays, ShoppingCart, SlidersHorizontal, Sun } from 'lucide-react'
+import { BookOpen, CalendarDays, ShoppingCart, SlidersHorizontal, Sun } from 'lucide-react'
 import { buildMenu } from './app/buildMenu'
 import { addDays, dayOfPlan, toIso } from './app/dates'
 import { blocks } from './planner/schedule'
@@ -17,7 +17,9 @@ import { watchUpdates } from './app/offline'
 import { blockDays, DishScreen } from './app/DishScreen'
 import { RecipeScreen, clearDraft } from './app/RecipeScreen'
 import { RecipesScreen } from './app/RecipesScreen'
-import { MAIN_SCREENS, dishHash, parseHash, swapHash, type MainScreen } from './app/route'
+import { CardScreen, DishesScreen } from './app/DishesScreen'
+import type { DishFilter } from './app/dishes'
+import { MAIN_SCREENS, cardHash, dishHash, parseHash, swapHash, type MainScreen } from './app/route'
 import { SettingsScreen } from './app/SettingsScreen'
 import { ShoppingScreen } from './app/ShoppingScreen'
 import { cookedKey, loadState, saveState, type SavedPlan, type SavedState } from './app/storage'
@@ -32,7 +34,7 @@ import { Welcome } from './app/Welcome'
 import { cardPhoto, heroPhoto, transition } from './app/transition'
 import { describeMenu, replaceDish, type Missing } from './planner'
 import { SLOTS, type Settings, type Slot } from './planner/types'
-const NAV_ICONS: Record<MainScreen, typeof Sun> = { today: Sun, week: CalendarDays, shopping: ShoppingCart, settings: SlidersHorizontal }
+const NAV_ICONS: Record<MainScreen, typeof Sun> = { today: Sun, week: CalendarDays, shopping: ShoppingCart, dishes: BookOpen, settings: SlidersHorizontal }
 
 const length = (plan: SavedPlan) => plan.settings.weeks * 7
 
@@ -56,6 +58,8 @@ export function App() {
   /** `null`: follow the calendar. */
   const [chosenDay, setChosenDay] = useState<number | null>(null)
   const [shopWeek, setShopWeek] = useState(0)
+  const [dishFilter, setDishFilter] = useState<DishFilter>('all')
+  const [dishQuery, setDishQuery] = useState('')
   const [busy, setBusy] = useState(false)
   const [missing, setMissing] = useState<Missing[]>([])
   /** `previous` is the menu to bring back, `after` the menu it was replaced with. */
@@ -82,7 +86,7 @@ export function App() {
     history.scrollRestoration = 'manual'
     const update = () => {
       const next = parseHash(location.hash)
-      if (current.current.screen === 'today' || current.current.screen === 'week') left.current = scrollY
+      if (['today', 'week', 'dishes'].includes(current.current.screen)) left.current = scrollY
       current.current = next
       const before = shown.current
       if (next.screen !== 'swap') swapFromDish.current = false
@@ -111,8 +115,9 @@ export function App() {
     if (JSON.stringify(before) === JSON.stringify(route)) return
     shown.current = route
     // Back from a dish: return to its place in the list.
-    const link = 'block' in before && screen === origin
-      ? main.current?.querySelector<HTMLElement>(`a[href="${dishHash(before.block, before.slot)}"]`) : null
+    const back = 'block' in before && screen === origin ? dishHash(before.block, before.slot)
+      : before.screen === 'card' && screen === 'dishes' ? cardHash(before.id) : null
+    const link = back ? main.current?.querySelector<HTMLElement>(`a[href="${back}"]`) : null
     scrollTo(0, link ? left.current : 0)
     const target = link ?? main.current?.querySelector<HTMLElement>('h1')
     target?.focus({ preventScroll: true })
@@ -126,6 +131,8 @@ export function App() {
   const ownCook = schedule.find((b) => day >= b.firstDay && day < b.firstDay + b.days)?.cookDay
   const rebuildCookDay = place?.state !== 'ended' && schedule.some((b) => b.cookDay !== ownCook) ? ownCook : undefined
   const read = readForm(form)
+  /** The limits of the form, or of the menu while the form has errors. */
+  const limits = read.ok ? read.settings : plan?.settings ?? null
   const changed = plan !== null && read.ok && JSON.stringify(read.settings) !== JSON.stringify(plan.settings)
   const shownPlan = useMemo(() => planKey(plan), [plan])
   useEffect(() => {
@@ -193,10 +200,11 @@ export function App() {
   const edited = route.screen === 'recipe' ? state.own.recipes.find((r) => r.id === route.id) : undefined
 
   const period = plan?.settings.weeks === 4 ? 'Месяц' : 'Неделя'
-  const titles: Record<MainScreen | 'prices' | 'recipes' | 'recipe' | 'credits', string> = {
-    recipes: 'Свои рецепты', recipe: edited?.name ?? 'Новый рецепт', today: 'Сегодня', week: period, shopping: 'Покупки', prices: 'Цены', credits: 'Авторы фото', settings: 'Настройки',
+  const card = route.screen === 'card' ? catalog.recipes.find((r) => r.id === route.id) : undefined
+  const titles: Record<MainScreen | 'prices' | 'recipes' | 'recipe' | 'credits' | 'card', string> = {
+    dishes: 'Рецепты', card: card?.name ?? 'Рецепты', recipes: 'Свои рецепты', recipe: edited?.name ?? 'Новый рецепт', today: 'Сегодня', week: period, shopping: 'Покупки', prices: 'Цены', credits: 'Авторы фото', settings: 'Настройки',
   }
-  const links = plan ? MAIN_SCREENS : MAIN_SCREENS.filter((s) => s === 'today' || s === 'settings')
+  const links = plan ? MAIN_SCREENS : MAIN_SCREENS.filter((s) => s === 'today' || s === 'dishes' || s === 'settings')
   useEffect(() => { document.title = `${route.screen === 'cook' ? 'Готовка' : 'block' in route && report ? `${route.screen === 'swap' ? 'Замена: ' : ''}${report.blocks[route.block]!.day.dishes[SLOTS.indexOf(route.slot)]!.recipe.name}` : titles[screen as keyof typeof titles]} · Prepka` })
 
   return (
@@ -212,7 +220,7 @@ export function App() {
       </a>
       <nav aria-label="Разделы">
         {links.map((s) => (
-          <a key={s} href={`#${s}`} aria-current={s === screen ? 'page' : ('block' in route && s === origin) || ((screen === 'recipes' || screen === 'recipe') && s === 'settings') ? 'true' : undefined}
+          <a key={s} href={`#${s}`} aria-current={s === screen ? 'page' : ('block' in route && s === origin) || ((screen === 'recipes' || screen === 'recipe') && s === 'settings') || (screen === 'card' && s === 'dishes') ? 'true' : undefined}
             onClick={() => { if (s === 'today') setChosenDay(null) }}>
             {(() => { const Icon = NAV_ICONS[s]; return <Icon aria-hidden="true" /> })()}
             {titles[s]}
@@ -264,6 +272,11 @@ export function App() {
             <PricesScreen overrides={state.prices} onChange={(prices) => setState((s) => ({ ...s, prices }))} />
           ) : route.screen === 'credits' ? (
             <CreditsScreen />
+          ) : route.screen === 'dishes' ? (
+            <DishesScreen catalog={catalog} settings={limits} today={today} filter={dishFilter} onFilter={setDishFilter} query={dishQuery} onQuery={setDishQuery} />
+          ) : route.screen === 'card' ? (
+            card ? <CardScreen key={card.id} recipe={card} catalog={catalog} settings={limits} isOwn={state.own.recipes.some((r) => r.id === card.id)} />
+              : <><div className="top"><a className="back" href="#dishes">Назад к рецептам</a></div><header><h1 tabIndex={-1}>Рецепт не найден</h1><p className="sub">Возможно, его удалили.</p></header></>
           ) : route.screen === 'recipes' ? (
             <RecipesScreen own={state.own} busy={busy} onProduct={saveProduct}
               onDeleteProduct={(id) => setState((s) => ({

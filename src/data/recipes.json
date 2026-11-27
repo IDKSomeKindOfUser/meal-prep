@@ -8509,7 +8509,8 @@
   "protein": 44,
   "fat": 17,
   "carbs": 56,
-  "cookedGrams": 451
+  "cookedGrams": 451,
+  "added": "2026-11-28"
  },
  {
   "id": "b-m-rice",
@@ -8558,7 +8559,8 @@
   "protein": 31,
   "fat": 23,
   "carbs": 53,
-  "cookedGrams": 426
+  "cookedGrams": 426,
+  "added": "2026-11-28"
  },
  {
   "id": "b-m-millet",
@@ -8607,7 +8609,8 @@
   "protein": 37,
   "fat": 16,
   "carbs": 65,
-  "cookedGrams": 448
+  "cookedGrams": 448,
+  "added": "2026-11-28"
  },
  {
   "id": "b-m-semolina",
@@ -8660,7 +8663,8 @@
   "protein": 33,
   "fat": 23,
   "carbs": 52,
-  "cookedGrams": 502
+  "cookedGrams": 502,
+  "added": "2026-11-28"
  },
  {
   "id": "b-m-oats",
@@ -8712,7 +8716,8 @@
   "protein": 33,
   "fat": 16,
   "carbs": 70,
-  "cookedGrams": 520
+  "cookedGrams": 520,
+  "added": "2026-11-28"
  },
  {
   "id": "b-m-milletbake",
@@ -8770,7 +8775,8 @@
   "protein": 39,
   "fat": 18,
   "carbs": 58,
-  "cookedGrams": 442
+  "cookedGrams": 442,
+  "added": "2026-11-28"
  },
  {
   "id": "b-m-ricebake",
@@ -8828,7 +8834,8 @@
   "protein": 38,
   "fat": 18,
   "carbs": 59,
-  "cookedGrams": 457
+  "cookedGrams": 457,
+  "added": "2026-11-28"
  },
  {
   "id": "b-m-omelet",
@@ -8880,7 +8887,8 @@
   "protein": 35,
   "fat": 26,
   "carbs": 42,
-  "cookedGrams": 439
+  "cookedGrams": 439,
+  "added": "2026-11-28"
  },
  {
   "id": "s-m-ricepud",
@@ -8928,7 +8936,8 @@
   "protein": 11,
   "fat": 8,
   "carbs": 57,
-  "cookedGrams": 355
+  "cookedGrams": 355,
+  "added": "2026-11-28"
  },
  {
   "id": "s-m-semolina",
@@ -8976,7 +8985,8 @@
   "protein": 13,
   "fat": 12,
   "carbs": 47,
-  "cookedGrams": 300
+  "cookedGrams": 300,
+  "added": "2026-11-28"
  },
  {
   "id": "s-m-kefiroats",
@@ -9023,7 +9033,8 @@
   "protein": 15,
   "fat": 6,
   "carbs": 58,
-  "cookedGrams": 457
+  "cookedGrams": 457,
+  "added": "2026-11-28"
  },
  {
   "id": "s-m-chocmousse",
@@ -9070,6 +9081,7 @@
   "protein": 28,
   "fat": 14,
   "carbs": 30,
-  "cookedGrams": 282
+  "cookedGrams": 282,
+  "added": "2026-11-28"
  }
 ]

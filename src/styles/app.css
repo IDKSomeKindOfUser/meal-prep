@@ -750,3 +750,38 @@ nav [href='#settings'][aria-current='page'] svg > :is(:nth-child(2), :nth-child(
 
 /* Пересборка меню внизу «Сегодня»: возможность, а не первое, что видно. */
 .rebuild { display: grid; gap: var(--space-2); justify-items: start; }
+
+/* Рецепты: книга раскрывается при выборе и наведении. */
+nav [href='#dishes'][aria-current='page'] svg > :nth-child(2) { animation: nav-book .55s var(--spring); }
+nav [href='#dishes'][aria-current='page'] svg > :nth-child(1) { animation: nav-ring .4s var(--spring) .1s backwards; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  nav [href='#dishes']:not([aria-current='page']):hover svg > :nth-child(2) { animation: nav-book .55s var(--spring); }
+}
+@keyframes nav-book { from { scale: .25 1; } }
+
+/* Список всех рецептов: заголовок с поиском справа, фильтры по типу. */
+.title-row { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); min-height: 48px; }
+.find { position: relative; display: flex; align-items: center; flex: none; }
+.find-open, .find-clear { display: grid; place-items: center; inline-size: 44px; block-size: 44px; padding: 0; border: 0; border-radius: 999px; background: color-mix(in oklab, var(--accent) 11%, transparent); color: var(--accent); transition: background-color .2s var(--ease), scale .1s var(--ease); }
+.find-clear { position: absolute; inset-inline-end: 2px; inline-size: 40px; block-size: 40px; background: none; color: var(--muted); }
+.find-open:active, .find-clear:active { scale: .92; }
+@media (hover: hover) { .find-open:hover { background: color-mix(in oklab, var(--accent) 20%, transparent); } .find-clear:hover { color: var(--ink); } }
+.find svg { inline-size: 20px; block-size: 20px; }
+.find-icon { position: absolute; inset-inline-start: 14px; color: var(--muted); pointer-events: none; }
+.find input {
+  inline-size: min(17rem, 58vw); block-size: 44px; padding: 0 44px 0 42px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); font: inherit;
+  transition: inline-size .3s var(--ease), opacity .2s var(--ease);
+}
+.find input::-webkit-search-cancel-button { display: none; }
+@starting-style { .find input { inline-size: 44px; opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .find input, .find-open, .find-clear { transition: none; } }
+.filters { display: flex; flex-wrap: wrap; gap: var(--space-1); max-width: none; }
+.filters button { padding-inline: var(--space-4); }
+.found:empty { display: none; }
+.found { padding: 0 var(--space-5) var(--space-2); color: var(--muted); font-size: var(--text-s); }
+.dishes-empty { margin-inline: var(--space-5); }
+.facts .new { background: var(--accent); color: var(--on-accent); }
+.unfit-note { display: flex; gap: 6px; align-items: flex-start; color: var(--danger); font-weight: 600; }
+.unfit-note svg { flex: none; inline-size: 16px; block-size: 16px; margin-top: .2em; }
+.dish.hero .unfit-note { margin-top: var(--space-3); }
+.dish[data-unfit] .art { opacity: .55; }

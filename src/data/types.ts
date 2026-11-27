@@ -60,4 +60,6 @@ export interface Recipe {
   carbs: number
   /** Weight of a cooked portion in grams. */
   cookedGrams: number
+  /** ISO date the dish was added; it is marked as new for a week. */
+  added?: string
 }

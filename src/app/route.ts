@@ -1,6 +1,6 @@
 import { SLOTS, type Slot } from '../planner/types'
 
-export const MAIN_SCREENS = ['today', 'week', 'shopping', 'settings'] as const
+export const MAIN_SCREENS = ['today', 'week', 'shopping', 'dishes', 'settings'] as const
 export type MainScreen = (typeof MAIN_SCREENS)[number]
 export type Route =
   | { screen: MainScreen | 'prices' | 'recipes' | 'credits' }
@@ -10,10 +10,13 @@ export type Route =
   | { screen: 'cook'; day: number }
   /** `id` is `new` or an own recipe. */
   | { screen: 'recipe'; id: string }
+  /** A dish from the list of all dishes. */
+  | { screen: 'card'; id: string }
 
 export const dishHash = (block: number, slot: Slot) => `#dish/${block}/${slot}`
 export const cookHash = (day: number) => `#cook/${day}`
 export const recipeHash = (id: string) => `#recipe/${id}`
+export const cardHash = (id: string) => `#dishes/${id}`
 export const swapHash = (block: number, slot: Slot) => `#swap/${block}/${slot}`
 
 export function parseHash(hash: string): Route {
@@ -24,6 +27,8 @@ export function parseHash(hash: string): Route {
   if (hash === '#credits') return { screen: 'credits' }
   const recipe = /^#recipe\/([\w-]+)$/.exec(hash)
   if (recipe) return { screen: 'recipe', id: recipe[1]! }
+  const card = /^#dishes\/([\w-]+)$/.exec(hash)
+  if (card) return { screen: 'card', id: card[1]! }
   const cook = /^#cook\/(\d+)$/.exec(hash)
   if (cook) return { screen: 'cook', day: Number(cook[1]) }
   const [, screen, block, slot] = /^#(dish|swap)\/(\d+)\/(\w+)$/.exec(hash) ?? []

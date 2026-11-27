@@ -34,7 +34,7 @@ export function blockDays(start: string, block: Block): string {
 }
 
 /** Список продуктов: нажатие отмечает продукт, он зачёркивается. */
-function Ingredients({ items }: { items: { id: string; name: string; text: string }[] }) {
+export function Ingredients({ items }: { items: { id: string; name: string; text: string }[] }) {
   const [got, setGot] = useState<Set<string>>(new Set())
   const toggle = (id: string) => setGot((g) => { const n = new Set(g); if (!n.delete(id)) n.add(id); return n })
   return (
