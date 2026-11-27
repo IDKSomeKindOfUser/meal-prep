@@ -96,8 +96,8 @@ nav [aria-current] svg { background: color-mix(in oklab, transparent, var(--acce
 .dish:not(.hero) a::after { content: ''; position: absolute; inset: 0; z-index: 1; border-radius: inherit; }
 .dish:not(.hero) a:focus-visible { outline: none; }
 .dish:not(.hero) a:focus-visible::after { outline: 3px solid currentColor; outline-offset: -6px; }
-.facts { display: flex; flex-wrap: wrap; gap: var(--space-1) 6px; font-size: var(--text-s); font-weight: 600; }
-.facts li { padding: 2px var(--space-2); border-radius: var(--radius-s); background: color-mix(in srgb, currentColor 12%, transparent); }
+.facts { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: var(--text-s); font-weight: 600; }
+.facts li { display: inline-flex; align-items: center; gap: 4px; min-block-size: 28px; padding: 3px 10px; line-height: 1.2; border-radius: var(--radius-s); background: color-mix(in srgb, currentColor 12%, transparent); }
 .dish .from { margin-top: var(--space-2); font-size: var(--text-s); }
 /* Карточки нейтральные, приём пищи виден по полоске слева и первому чипу. */
 [data-slot='breakfast'] { --mark: var(--breakfast); --on-mark: var(--on-breakfast); }
@@ -135,7 +135,7 @@ nav [aria-current] svg { background: color-mix(in oklab, transparent, var(--acce
 .dish.hero { margin-inline: var(--space-5); grid-template-columns: minmax(0, 1fr); }
 .hero .art { grid-row: 1; width: 100%; height: auto; aspect-ratio: 4 / 3; max-height: 320px; }
 .hero:active { scale: none; }
-.hero h1 { font-size: var(--text-l); overflow-wrap: break-word; hyphens: auto; }
+.hero h1 { font-size: clamp(1.5rem, 1.2rem + 1vw, var(--text-xl)); line-height: 1.2; overflow-wrap: break-word; hyphens: auto; }
 .hero p { margin-top: var(--space-2); }
 .macros { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-2); margin: var(--space-3) 0 0; }
 .macros div { display: flex; flex-direction: column-reverse; }
@@ -824,11 +824,11 @@ nav [href='#dishes'][aria-current='page'] svg > :nth-child(1) { animation: nav-r
 .facts .ico svg { flex: none; inline-size: 15px; block-size: 15px; }
 /* Часы, ножка, снежинка и треугольник заполняют весь квадрат, узкие пламя и пакет нет: уравниваем на глаз. */
 .facts :is(.time, .protein, .cold, .warn) svg { scale: .85; }
-.facts .kcal svg { color: var(--i-kcal); }
-.facts .protein svg { color: var(--i-protein); }
-.facts .time svg { color: var(--i-time); }
-.facts .keep svg { color: var(--i-keep); }
-.facts .cold svg { color: var(--i-cold); }
-.facts .dairy svg { color: var(--i-dairy); }
+:is(.facts, .chips-info) .kcal svg { color: var(--i-kcal); }
+:is(.facts, .chips-info) .protein svg { color: var(--i-protein); }
+:is(.facts, .chips-info) .time svg { color: var(--i-time); }
+:is(.facts, .chips-info) .keep svg { color: var(--i-keep); }
+:is(.facts, .chips-info) .cold svg { color: var(--i-cold); }
+:is(.facts, .chips-info) .dairy svg { color: var(--i-dairy); }
 .facts .warn { background: color-mix(in oklab, var(--danger) 14%, transparent); color: var(--danger); }
 .facts .warn.maybe { background: none; outline: 1px dashed var(--danger); outline-offset: -1px; }
