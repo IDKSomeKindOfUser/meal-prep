@@ -9,7 +9,7 @@ import { DishField, GoIcon, portionNote, Warnings, WeekTabs } from './parts'
 import { cookingMinutes } from './cookOrder'
 import { cookHash, dishHash } from './route'
 import { cookedKey, type SavedPlan } from './storage'
-import { transition } from './transition'
+import { swap } from './transition'
 
 interface Props {
   plan: SavedPlan
@@ -72,7 +72,7 @@ export function Today({ plan, report, today, day, onDay, busy, onShuffle }: Prop
             const iso = addDays(start, d)
             return (
               <button key={d} type="button" aria-pressed={d === day} aria-label={`${weekday(iso)}, ${dayMonth(iso)}`}
-                aria-current={iso === today ? 'date' : undefined} onClick={() => transition(() => onDay(d))}>
+                aria-current={iso === today ? 'date' : undefined} onClick={() => swap(() => onDay(d))}>
                 {weekdayShort(iso)}<b>{dayNumber(iso)}</b>
               </button>
             )

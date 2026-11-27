@@ -1,5 +1,5 @@
-import type { ReactNode } from 'react'
-import { ArrowLeft, ChevronRight } from 'lucide-react'
+import type { CSSProperties, ReactNode } from 'react'
+import { ArrowLeft, ChevronRight, Clock, Drumstick, Flame } from 'lucide-react'
 import type { PortionedDish } from '../planner/portions'
 import type { Block } from '../planner/schedule'
 import { frozenDays } from '../planner/schedule'
@@ -7,7 +7,8 @@ import type { Slot } from '../planner/types'
 import type { Report } from '../planner'
 import { DishPicture } from './DishPicture'
 import { num, SLOT } from './labels'
-import { transition } from './transition'
+import { swap } from './transition'
+import { dishTints, type Tint } from './tints'
 
 export function BackLink({ href, onClick, children }: { href: string; onClick?: (e: import("react").MouseEvent) => void; children: ReactNode }) {
   return <a className="back" href={href} onClick={onClick}><ArrowLeft aria-hidden="true" />{children}</a>
@@ -15,16 +16,31 @@ export function BackLink({ href, onClick, children }: { href: string; onClick?: 
 
 export const GoIcon = () => <ChevronRight className="go-icon" aria-hidden="true" />
 
+/** Calories, protein and time as chips of a `.facts` list, each with its own colored icon. */
+export function MacroFacts({ kcal, protein, minutes }: { kcal: number; protein: number; minutes: number }) {
+  return (
+    <>
+      <li className="ico kcal"><Flame aria-hidden="true" />{num(kcal)} ккал</li>
+      <li className="ico protein"><Drumstick aria-hidden="true" />{num(protein)} г белка</li>
+      <li className="ico time"><Clock aria-hidden="true" />{minutes} мин</li>
+    </>
+  )
+}
+
+/** The extra colors of a dish card; app.css blends them with the meal color. */
+export const tintProps = (tints: Tint[]) => tints.length === 0 ? {} : {
+  'data-tinted': true,
+  style: { '--tint-1': `var(--t-${tints[0]})`, '--tint-2': `var(--t-${tints[1] ?? tints[0]})` } as CSSProperties,
+}
+
 export function DishField({ slot, dish, href, note, big, now, cooked }: { slot: Slot; dish: PortionedDish; href: string; note?: string; big?: boolean; now?: boolean; cooked?: boolean }) {
   return (
-    <li className={`dish${big ? ' big' : ''}`} data-slot={slot} data-now={now || undefined}>
+    <li className={`dish${big ? ' big' : ''}`} data-slot={slot} data-now={now || undefined} {...tintProps(dishTints(dish.recipe))}>
       <div>
         <h3><a href={href}>{dish.recipe.name}<GoIcon /></a></h3>
         <ul className="facts">
           <li>{SLOT[slot]}{now && ' · сейчас'}</li>
-          <li>{num(dish.kcal)} ккал</li>
-          <li>{num(dish.protein)} г белка</li>
-          <li>{dish.recipe.minutes} мин</li>
+          <MacroFacts kcal={dish.kcal} protein={dish.protein} minutes={dish.recipe.minutes} />
           {cooked && <li className="cooked">Приготовлено</li>}
         </ul>
         {note && <p className="from">{note}</p>}
@@ -45,7 +61,7 @@ export function WeekTabs({ weeks, week, onChange }: { weeks: number; week: numbe
   return (
     <div className="tabs" role="group" aria-label="Неделя">
       {Array.from({ length: weeks }, (_, i) => (
-        <button key={i} type="button" aria-pressed={i === week} aria-label={`Неделя ${i + 1}`} onClick={() => transition(() => onChange(i))}>
+        <button key={i} type="button" aria-pressed={i === week} aria-label={`Неделя ${i + 1}`} onClick={() => swap(() => onChange(i))}>
           <span className="wide">Неделя</span><span className="short">Нед.</span> {i + 1}
         </button>
       ))}

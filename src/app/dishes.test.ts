@@ -1,13 +1,11 @@
 import { describe, expect, it } from 'vitest'
 import { defaultCatalog } from '../planner'
-import { findDishes, isNew, unfitReasons } from './dishes'
+import { findDishes, isNew } from './dishes'
 import { cardHash, parseHash } from './route'
 import type { Recipe } from '../data/types'
-import { NO_LIMITS, type Settings } from '../planner/types'
 
 const recipes = defaultCatalog.recipes
 const byId = (id: string) => recipes.find((r) => r.id === id)!
-const settings: Settings = { ...NO_LIMITS, kcal: 2000, protein: 120, weeks: 1, cookTimes: 2, budget: null, maxMinutes: null }
 
 describe('findDishes', () => {
   it('shows every dish by default', () => {
@@ -52,24 +50,6 @@ describe('isNew', () => {
   })
 })
 
-describe('unfitReasons', () => {
-  it('is empty without limits', () => {
-    expect(unfitReasons(byId('b-m-millet'), null, defaultCatalog)).toEqual([])
-    expect(unfitReasons(byId('b-m-millet'), settings, defaultCatalog)).toEqual([])
-  })
-  it('names the allergen, the lactose and the tool', () => {
-    const milk = unfitReasons(byId('b-m-millet'), { ...settings, allergens: ['milk'], lactose: 'none' }, defaultCatalog)
-    expect(milk).toContain('аллерген: молоко')
-    expect(milk).toContain('лактоза')
-    const oven = recipes.find((r) => r.tools.includes('духовка'))!
-    expect(unfitReasons(oven, { ...settings, tools: ['плита'] }, defaultCatalog)).toContain('нет техники: духовка')
-  })
-  it('names the storage when no cooking keeps it long enough', () => {
-    const porridge = recipes.find((r) => !r.freezable && r.keepDays <= 2)!
-    expect(unfitReasons(porridge, { ...settings, cookTimes: 1 }, defaultCatalog)).toContain('не хранится до следующей готовки')
-    expect(unfitReasons(porridge, { ...settings, cookTimes: 7 }, defaultCatalog)).toEqual([])
-  })
-})
 
 describe('card route', () => {
   it('reads a dish from the list', () => {

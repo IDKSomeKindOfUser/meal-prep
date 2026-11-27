@@ -1,16 +1,17 @@
-import { useRef, useState } from 'react'
-import { ChefHat, Clock, Pencil, Refrigerator, Search, ShoppingBasket, Snowflake, TriangleAlert, X } from 'lucide-react'
-import { recipeAllergens } from '../data'
-import type { MealType, Recipe } from '../data/types'
-import type { Catalog, Settings, Slot } from '../planner/types'
+import { useEffect, useRef, useState } from 'react'
+import { ChefHat, Clock, Milk, Pencil, Refrigerator, Search, ShoppingBasket, Snowflake, TriangleAlert, X } from 'lucide-react'
+import { recipeAllergens, recipeLactose } from '../data'
+import type { Allergen, MealType, Recipe } from '../data/types'
+import type { Catalog, Slot } from '../planner/types'
 import { Ingredients } from './DishScreen'
 import { DishPicture } from './DishPicture'
-import { findDishes, isNew, unfitReasons, type DishFilter } from './dishes'
+import { findDishes, isNew, type DishFilter } from './dishes'
 import { ALLERGEN, amount, daysCount, MEAL, num } from './labels'
-import { BackLink, GoIcon } from './parts'
+import { BackLink, GoIcon, MacroFacts, tintProps } from './parts'
 import { cardHash, recipeHash } from './route'
 import { Steps } from './Steps'
-import { transition } from './transition'
+import { swap } from './transition'
+import { dishTints } from './tints'
 
 /** The meal color of a dish type. */
 const COLOR: Record<MealType, Slot> = { breakfast: 'breakfast', main: 'lunch', snack: 'snack' }
@@ -18,10 +19,13 @@ const FILTERS: { value: DishFilter; label: string }[] = [
   { value: 'all', label: 'Все' }, { value: 'breakfast', label: 'Завтраки' }, { value: 'main', label: 'Обеды и ужины' }, { value: 'snack', label: 'Перекусы' },
 ]
 
+/** How long the search field takes to fold; matches `.find input` in app.css. */
+const CLOSE_MS = 260
+const LACTOSE = { yes: 'лактоза', low: 'мало лактозы', none: 'без лактозы' } as const
+const names = (list: readonly Allergen[]) => list.map((a) => ALLERGEN[a].toLowerCase()).join(', ')
+
 interface ListProps {
   catalog: Catalog
-  /** The limits of the form; `null` when it is not filled in. */
-  settings: Settings | null
   today: string
   filter: DishFilter
   onFilter: (filter: DishFilter) => void
@@ -29,18 +33,28 @@ interface ListProps {
   onQuery: (query: string) => void
 }
 
-export function DishesScreen({ catalog, settings, today, filter, onFilter, query, onQuery }: ListProps) {
+export function DishesScreen({ catalog, today, filter, onFilter, query, onQuery }: ListProps) {
   const [searching, setSearching] = useState(query !== '')
+  const [closing, setClosing] = useState(false)
   const input = useRef<HTMLInputElement>(null)
   const opener = useRef<HTMLButtonElement>(null)
+  const timer = useRef(0)
+  useEffect(() => () => clearTimeout(timer.current), [])
   const found = findDishes(catalog.recipes, filter, query, today)
-  const close = () => { onQuery(''); setSearching(false); requestAnimationFrame(() => opener.current?.focus()) }
+  const finish = () => { setSearching(false); setClosing(false); requestAnimationFrame(() => opener.current?.focus()) }
+  // The field folds back into the round button first, then the button takes its place.
+  const close = () => {
+    onQuery('')
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { finish(); return }
+    setClosing(true)
+    timer.current = window.setTimeout(finish, CLOSE_MS)
+  }
   return (
     <>
       <header className="dishes-head">
         <div className="title-row">
           <h1 tabIndex={-1}>Рецепты</h1>
-          <search className="find" data-open={searching || undefined}>
+          <search className="find" data-open={searching || undefined} data-closing={closing || undefined}>
             {searching ? (
               <>
                 <Search className="find-icon" aria-hidden="true" />
@@ -54,10 +68,10 @@ export function DishesScreen({ catalog, settings, today, filter, onFilter, query
             )}
           </search>
         </div>
-        <p className="sub">Все блюда планировщика. Те, что не подходят под анкету, помечены причиной.</p>
+        <p className="sub">Все блюда планировщика: что в них есть и сколько они хранятся.</p>
         <div className="tabs filters" role="group" aria-label="Тип блюда">
           {FILTERS.map((f) => (
-            <button key={f.value} type="button" aria-pressed={f.value === filter} onClick={() => transition(() => onFilter(f.value))}>{f.label}</button>
+            <button key={f.value} type="button" aria-pressed={f.value === filter} onClick={() => swap(() => onFilter(f.value))}>{f.label}</button>
           ))}
         </div>
       </header>
@@ -71,19 +85,23 @@ export function DishesScreen({ catalog, settings, today, filter, onFilter, query
       ) : (
         <ul className="meals">
           {found.map((r) => {
-            const reasons = unfitReasons(r, settings, catalog)
+            const { contains, may } = recipeAllergens(r, catalog.ingredient)
+            const lactose = recipeLactose(r, catalog.ingredient)
+            const fresh = isNew(r, today)
             return (
-              <li key={r.id} className="dish" data-slot={COLOR[r.type]} data-unfit={reasons.length > 0 || undefined}>
+              <li key={r.id} className="dish" data-slot={COLOR[r.type]} data-new={fresh || undefined} {...tintProps(dishTints(r))}>
                 <div>
                   <h3><a href={cardHash(r.id)}>{r.name}<GoIcon /></a></h3>
                   <ul className="facts">
                     <li>{MEAL[r.type]}</li>
-                    {isNew(r, today) && <li className="new">Новое</li>}
-                    <li>{num(r.kcal)} ккал</li>
-                    <li>{num(r.protein)} г белка</li>
-                    <li>{r.minutes} мин</li>
+                    {fresh && <li className="new">Новое</li>}
+                    <MacroFacts kcal={r.kcal} protein={r.protein} minutes={r.minutes} />
+                    <li className="ico keep"><Refrigerator aria-hidden="true" />{daysCount(r.keepDays)}</li>
+                    {r.freezable && <li className="ico cold"><Snowflake aria-hidden="true" />заморозка</li>}
+                    {(lactose !== 'none' || contains.includes('milk')) && <li className="ico dairy"><Milk aria-hidden="true" />{LACTOSE[lactose]}</li>}
+                    {contains.length > 0 && <li className="ico warn"><TriangleAlert aria-hidden="true" />{names(contains)}</li>}
+                    {may.length > 0 && <li className="ico warn maybe">возможно, {names(may)}</li>}
                   </ul>
-                  {reasons.length > 0 && <p className="from unfit-note"><TriangleAlert aria-hidden="true" />Не подходит: {reasons.join('; ')}</p>}
                 </div>
                 <DishPicture recipe={r} />
               </li>
@@ -98,21 +116,18 @@ export function DishesScreen({ catalog, settings, today, filter, onFilter, query
 interface CardProps {
   recipe: Recipe
   catalog: Catalog
-  settings: Settings | null
   isOwn: boolean
 }
 
 /** A dish as written in the recipe: one portion, outside of any menu. */
-export function CardScreen({ recipe, catalog, settings, isOwn }: CardProps) {
+export function CardScreen({ recipe, catalog, isOwn }: CardProps) {
   const { contains, may } = recipeAllergens(recipe, catalog.ingredient)
-  const names = (list: typeof may) => list.map((a) => ALLERGEN[a].toLowerCase()).join(', ')
   const source = recipe.source as { name: string; url: string } | null
-  const reasons = unfitReasons(recipe, settings, catalog)
   const slot = COLOR[recipe.type]
   return (
     <article className="recipe">
       <div className="top"><BackLink href="#dishes">Назад к рецептам</BackLink></div>
-      <div className="dish hero" data-slot={slot}>
+      <div className="dish hero" data-slot={slot} {...tintProps(dishTints(recipe))}>
         <h1 tabIndex={-1}>{recipe.name}</h1>
         <p>{MEAL[recipe.type]}, {recipe.cuisine.toLowerCase()} кухня</p>
         <dl className="macros" aria-label="Одна порция">
@@ -129,7 +144,6 @@ export function CardScreen({ recipe, catalog, settings, isOwn }: CardProps) {
           {contains.length > 0 && <li className="warnchip"><TriangleAlert aria-hidden="true" />{names(contains)}</li>}
           {may.length > 0 && <li className="warnchip maybe"><TriangleAlert aria-hidden="true" />возможно, {names(may)}</li>}
         </ul>
-        {reasons.length > 0 && <p className="unfit-note"><TriangleAlert aria-hidden="true" />Не попадёт в меню по вашей анкете: {reasons.join('; ')}.</p>}
         {isOwn && <div className="actions"><a className="back" href={recipeHash(recipe.id)}><Pencil aria-hidden="true" />Изменить рецепт</a></div>}
       </div>
       <div className="cols" data-slot-mark={slot}>

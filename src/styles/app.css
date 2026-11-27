@@ -774,14 +774,61 @@ nav [href='#dishes'][aria-current='page'] svg > :nth-child(1) { animation: nav-r
 }
 .find input::-webkit-search-cancel-button { display: none; }
 @starting-style { .find input { inline-size: 44px; opacity: 0; } }
+/* Закрытие: поле сворачивается обратно в круглую кнопку, иконки гаснут раньше. */
+.find[data-closing] input { inline-size: 44px; opacity: 0; transition: inline-size .26s var(--ease), opacity .26s ease-in; }
+.find-icon, .find-clear { transition: opacity .15s var(--ease), color .2s var(--ease); }
+.find[data-closing] :is(.find-icon, .find-clear) { opacity: 0; }
+.find-open { transition: background-color .2s var(--ease), scale .3s var(--spring), opacity .2s var(--ease); }
+@starting-style { .find-open { scale: .6; opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .find input, .find-open, .find-clear { transition: none; } }
 .filters { display: flex; flex-wrap: wrap; gap: var(--space-1); max-width: none; }
 .filters button { padding-inline: var(--space-4); }
 .found:empty { display: none; }
 .found { padding: 0 var(--space-5) var(--space-2); color: var(--muted); font-size: var(--text-s); }
 .dishes-empty { margin-inline: var(--space-5); }
-.facts .new { background: var(--accent); color: var(--on-accent); }
-.unfit-note { display: flex; gap: 6px; align-items: flex-start; color: var(--danger); font-weight: 600; }
-.unfit-note svg { flex: none; inline-size: 16px; block-size: 16px; margin-top: .2em; }
-.dish.hero .unfit-note { margin-top: var(--space-3); }
-.dish[data-unfit] .art { opacity: .55; }
+
+/* Смена фильтра, дня, недели или вкладки: экран на месте, новое содержимое проявляется без сдвига. */
+:root[data-swap]::view-transition-new(root) { animation: swap-in .22s var(--ease) both; }
+@keyframes swap-in { from { opacity: 0; } }
+
+/* Оттенки блюда: полоса слева перетекает от цвета приёма к цветам самого блюда, фон чуть тонирован. */
+.dish[data-slot] {
+  overflow: clip; box-shadow: var(--shadow-card);
+  background: radial-gradient(130% 110% at 0% 100%, color-mix(in oklab, var(--tint-1, var(--mark)) 11%, transparent), transparent 62%), var(--surface);
+}
+.dish[data-slot][data-now] { box-shadow: inset 0 0 0 2px var(--mark), var(--shadow-card); }
+.dish[data-slot]::before {
+  content: ''; position: absolute; inset-block-start: 0; inset-inline-start: 0; inline-size: 6px; block-size: 200%; pointer-events: none;
+  background: linear-gradient(var(--mark), var(--tint-1, var(--mark)), var(--tint-2, var(--mark)), var(--mark), var(--tint-1, var(--mark)), var(--tint-2, var(--mark)), var(--mark));
+}
+@media (prefers-reduced-motion: no-preference) {
+  .dish[data-tinted]::before { animation: tint-flow 9s linear infinite; }
+}
+@keyframes tint-flow { to { translate: 0 -50%; } }
+
+/* Новое блюдо: пастельная радужная рамка медленно бежит по кругу. */
+@property --spin { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+.dish[data-new]::after {
+  content: ''; position: absolute; inset: 0; z-index: 2; border-radius: inherit; padding: 2.5px; pointer-events: none;
+  background: conic-gradient(from var(--spin), #e8b4c4, #f0c9b0, #e6d9ae, #b8d8c4, #b4cde4, #cbbde8, #e8b4c4);
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+@media (prefers-reduced-motion: no-preference) { .dish[data-new]::after { animation: spin 5s linear infinite; } }
+@keyframes spin { to { --spin: 360deg; } }
+/* У нового блюда только рамка: полоса приёма слева спорила бы с ней. */
+.dish[data-new]::before { display: none; }
+.facts .new { background: linear-gradient(90deg, #e8b4c4, #f0c9b0, #e6d9ae, #b8d8c4, #b4cde4, #cbbde8); color: #1d1a24; }
+
+/* Чипы с цветными иконками: ккал, белок, время, хранение, молоко, аллергены. */
+.facts .ico { display: inline-flex; align-items: center; gap: 4px; }
+.facts .ico svg { flex: none; inline-size: 15px; block-size: 15px; }
+/* Часы, ножка, снежинка и треугольник заполняют весь квадрат, узкие пламя и пакет нет: уравниваем на глаз. */
+.facts :is(.time, .protein, .cold, .warn) svg { scale: .85; }
+.facts .kcal svg { color: var(--i-kcal); }
+.facts .protein svg { color: var(--i-protein); }
+.facts .time svg { color: var(--i-time); }
+.facts .keep svg { color: var(--i-keep); }
+.facts .cold svg { color: var(--i-cold); }
+.facts .dairy svg { color: var(--i-dairy); }
+.facts .warn { background: color-mix(in oklab, var(--danger) 14%, transparent); color: var(--danger); }
+.facts .warn.maybe { background: none; outline: 1px dashed var(--danger); outline-offset: -1px; }

@@ -12,7 +12,7 @@ import { norm, readForm, STEPS, stepErrors, type Errors, type Form, type Step } 
 import { ACTIVITY, ALLERGEN, COOK, GOAL, LACTOSE, missingLines, num } from './labels'
 import type { Own } from './own'
 import { applyTheme, currentTheme, type Theme } from './theme'
-import { transition } from './transition'
+import { swap, transition } from './transition'
 
 interface Props {
   form: Form
@@ -79,8 +79,8 @@ export function SettingsScreen({ form, own, onForm, start: suggested, changed, b
       <header>
         <h1 tabIndex={-1}>Настройки</h1>
         <div className="tabs two" role="group" aria-label="Раздел">
-          <button type="button" aria-pressed={tab === 'form'} onClick={() => transition(() => setTab('form'))}>Анкета</button>
-          <button type="button" aria-pressed={tab === 'site'} onClick={() => transition(() => setTab('site'))}>Рецепты и сайт</button>
+          <button type="button" aria-pressed={tab === 'form'} onClick={() => swap(() => setTab('form'))}>Анкета</button>
+          <button type="button" aria-pressed={tab === 'site'} onClick={() => swap(() => setTab('site'))}>Рецепты и сайт</button>
         </div>
       </header>
       {tab === 'form' ? <form ref={formRef} className="settings" noValidate onSubmit={(e) => {

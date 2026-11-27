@@ -131,8 +131,6 @@ export function App() {
   const ownCook = schedule.find((b) => day >= b.firstDay && day < b.firstDay + b.days)?.cookDay
   const rebuildCookDay = place?.state !== 'ended' && schedule.some((b) => b.cookDay !== ownCook) ? ownCook : undefined
   const read = readForm(form)
-  /** The limits of the form, or of the menu while the form has errors. */
-  const limits = read.ok ? read.settings : plan?.settings ?? null
   const changed = plan !== null && read.ok && JSON.stringify(read.settings) !== JSON.stringify(plan.settings)
   const shownPlan = useMemo(() => planKey(plan), [plan])
   useEffect(() => {
@@ -273,9 +271,9 @@ export function App() {
           ) : route.screen === 'credits' ? (
             <CreditsScreen />
           ) : route.screen === 'dishes' ? (
-            <DishesScreen catalog={catalog} settings={limits} today={today} filter={dishFilter} onFilter={setDishFilter} query={dishQuery} onQuery={setDishQuery} />
+            <DishesScreen catalog={catalog} today={today} filter={dishFilter} onFilter={setDishFilter} query={dishQuery} onQuery={setDishQuery} />
           ) : route.screen === 'card' ? (
-            card ? <CardScreen key={card.id} recipe={card} catalog={catalog} settings={limits} isOwn={state.own.recipes.some((r) => r.id === card.id)} />
+            card ? <CardScreen key={card.id} recipe={card} catalog={catalog} isOwn={state.own.recipes.some((r) => r.id === card.id)} />
               : <><div className="top"><a className="back" href="#dishes">Назад к рецептам</a></div><header><h1 tabIndex={-1}>Рецепт не найден</h1><p className="sub">Возможно, его удалили.</p></header></>
           ) : route.screen === 'recipes' ? (
             <RecipesScreen own={state.own} busy={busy} onProduct={saveProduct}

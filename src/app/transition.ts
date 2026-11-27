@@ -5,12 +5,19 @@ const PHOTO = 'dish-photo'
 
 const still = () => !document.startViewTransition || matchMedia('(prefers-reduced-motion: reduce)').matches
 
+/** The transition running now; only it may clear the swap mark. */
+let current: ViewTransition | null = null
+
 /**
  * Draws a state change as a view transition. `before` names the element that leaves,
  * `after` finds the element that arrives once the new state is drawn.
+ * `inPlace`: the screen stays and only part of it changes, so the page fades without moving.
  */
-export function transition(change: () => void, photo?: { before?: Element | null; after?: () => Element | null | undefined }) {
+export function transition(change: () => void, photo?: { before?: Element | null; after?: () => Element | null | undefined }, inPlace = false) {
   if (still()) { change(); return }
+  const root = document.documentElement
+  if (inPlace) root.dataset.swap = ''
+  else delete root.dataset.swap
   const named: HTMLElement[] = []
   const name = (el: Element | null | undefined) => {
     if (el instanceof HTMLElement || el instanceof SVGElement) {
@@ -19,15 +26,21 @@ export function transition(change: () => void, photo?: { before?: Element | null
     }
   }
   name(photo?.before)
-  const run = document.startViewTransition(() => {
+  const run = current = document.startViewTransition(() => {
     flushSync(change)
     // The old photo is gone from the page by now, so the name is free.
     if (photo?.after) name(photo.after())
   })
   // A quick second change skips the first transition: that is fine, not an error.
   run.ready.catch(() => {})
-  run.finished.catch(() => {}).finally(() => named.forEach((el) => { el.style.viewTransitionName = '' }))
+  run.finished.catch(() => {}).finally(() => {
+    named.forEach((el) => { el.style.viewTransitionName = '' })
+    if (current === run) delete root.dataset.swap
+  })
 }
+
+/** A change inside the screen: a filter, a day, a week, a tab. */
+export const swap = (change: () => void) => transition(change, undefined, true)
 
 /** The photo in the dish card whose link leads to `hash`. */
 export const cardPhoto = (hash: string) => document.querySelector(`a[href="${hash}"]`)?.closest('.dish')?.querySelector('.art')
