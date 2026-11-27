@@ -343,7 +343,6 @@ fieldset .hint, fieldset .warn, .field .hint { margin-top: var(--space-2); }
 button.link { padding: var(--space-2) 0; border: 0; background: none; font: inherit; font-weight: 600; cursor: pointer; }
 .buy .name, .buy .qty { transition: color .3s var(--ease); }
 .buy :checked ~ .what .name, .buy :checked ~ .qty { color: var(--muted); }
-.buy label:active { scale: 0.99; }
 section:has(> .buy) { max-width: 720px; }
 .cook { list-style: none; padding: 0; display: grid; gap: var(--space-3); max-width: 720px; }
 .cook .when { margin: 0 0 var(--space-1); color: var(--muted); font-size: var(--text-s); font-weight: 700; }
@@ -357,7 +356,8 @@ section:has(> .buy) { max-width: 720px; }
 .cook > li { transition: scale 0.2s var(--ease); }
 /* Полоска: доля времени от самого долгого блюда. */
 .time { display: flex; align-items: center; gap: var(--space-2); margin-top: var(--space-2); font-size: var(--text-s); }
-.time::before { content: ''; flex: none; width: calc(var(--share) * 0.7); height: 6px; border-radius: 3px; background: currentColor; }
+/* Цвет приёма пищи, приглушённый: белая полоса на тёмном слепит. */
+.time::before { content: ''; flex: none; width: calc(var(--share) * 0.7); height: 6px; border-radius: 3px; background: color-mix(in oklab, var(--mark, var(--accent)) 55%, transparent); }
 
 /* Цены */
 .priced { max-width: 720px; }
@@ -458,7 +458,7 @@ html:has(dialog[open]) { overflow: hidden; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after { transition: none !important; }
-  .dish:hover .art, .dish:active, .cook > li:active, .days button:active, .tabs button:active, .go:active, .buy label:active, .buy input:active, .steps input:active { scale: none; }
+  .dish:hover .art, .dish:active, .cook > li:active, .days button:active, .tabs button:active, .go:active, .buy input:active, .steps input:active { scale: none; }
   ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
 }
 

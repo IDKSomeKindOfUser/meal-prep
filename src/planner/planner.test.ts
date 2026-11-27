@@ -3,6 +3,7 @@ import { ALLERGENS } from '../data/types'
 import { ingredients, recipeAllergens, recipeLactose, recipes } from '../data'
 import { alternatives, defaultCatalog as catalog, describeMenu, planMenu, replaceDish, type Plan } from './index'
 import { dishFamily } from './search'
+import { kindsOf } from './prefer'
 import { NO_LIMITS, SLOTS, TOOLS, type Settings } from './types'
 
 const usual: Settings = {
@@ -115,6 +116,30 @@ describe('budget', () => {
     if (!after.ok) throw new Error('no menu')
     after.menu.forEach((b, i) => expect(SLOTS.some((s) => b[s] !== before.menu[i]![s])).toBe(true))
   }, 30_000)
+})
+
+describe('a rebuild of one cooking', () => {
+  test.each([[2, 1], [3, 4], [1, 2]] as const)('changes only that cooking, %i cookings, seed %i', (cookTimes, seed) => {
+    const settings = { ...usual, cookTimes, weeks: 4 as const }
+    const before = plan(settings, seed)
+    const schedule = before.report.blocks.map((b) => b.block)
+    const cookDay = schedule[schedule.length - 1]!.cookDay
+    const after = planMenu(settings, catalog, seed * 31, before.menu, undefined, cookDay)
+    if (!after.ok) throw new Error('no menu')
+    schedule.forEach((b, i) => {
+      if (b.cookDay !== cookDay) expect(after.menu[i]).toEqual(before.menu[i])
+      else expect(SLOTS.some((s) => after.menu[i]![s] !== before.menu[i]![s])).toBe(true)
+    })
+  }, 30_000)
+})
+
+test('a replacement puts wished dishes first', () => {
+  const settings: Settings = { ...usual, prefer: { meats: [], kinds: ['rice'] } }
+  const { menu } = plan(settings)
+  const wished = alternatives(menu, 0, 'lunch', settings, catalog).map((o) => kindsOf(o.recipe).includes('rice'))
+  expect(wished).toContain(true)
+  expect(wished).toContain(false)
+  expect(wished.indexOf(false)).toBeGreaterThan(wished.lastIndexOf(true))
 })
 
 describe('when nothing fits', () => {

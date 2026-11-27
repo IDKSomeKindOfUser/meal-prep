@@ -8,6 +8,33 @@ function clock(s: number) {
   return `${m}:${String(s % 60).padStart(2, '0')}`
 }
 
+/** Created on the tap that starts a timer: browsers only allow sound after a user gesture. */
+let audio: AudioContext | null = null
+function wakeAudio() {
+  try {
+    audio ??= new AudioContext()
+    void audio.resume()
+  } catch { /* no sound in this browser */ }
+}
+
+/** Three short beeps and a vibration when a timer ends. */
+function ring() {
+  navigator.vibrate?.([300, 150, 300, 150, 300])
+  if (!audio) return
+  const t = audio.currentTime
+  for (let i = 0; i < 3; i++) {
+    const osc = audio.createOscillator()
+    const gain = audio.createGain()
+    osc.frequency.value = 880
+    gain.gain.setValueAtTime(0, t + i * 0.4)
+    gain.gain.linearRampToValueAtTime(0.3, t + i * 0.4 + 0.02)
+    gain.gain.exponentialRampToValueAtTime(0.001, t + i * 0.4 + 0.3)
+    osc.connect(gain).connect(audio.destination)
+    osc.start(t + i * 0.4)
+    osc.stop(t + i * 0.4 + 0.32)
+  }
+}
+
 /** A time span in a step: a tap starts a countdown, another tap stops it. */
 function Timer({ text, seconds }: { text: string; seconds: number }) {
   const [end, setEnd] = useState<number | null>(null)
@@ -17,7 +44,7 @@ function Timer({ text, seconds }: { text: string; seconds: number }) {
     const tick = () => {
       const s = Math.max(0, Math.ceil((end - Date.now()) / 1000))
       setLeft(s)
-      if (s === 0) { setEnd(null); navigator.vibrate?.([300, 150, 300]) }
+      if (s === 0) { setEnd(null); ring() }
     }
     tick()
     const id = setInterval(tick, 500)
@@ -28,7 +55,7 @@ function Timer({ text, seconds }: { text: string; seconds: number }) {
   return (
     <button type="button" className="timer" aria-pressed={running}
       aria-label={running ? `Остановить таймер, осталось ${clock(left)}` : `Запустить таймер на ${text}`}
-      onClick={() => { if (running) { setEnd(null); setLeft(seconds) } else { setLeft(seconds); setEnd(Date.now() + seconds * 1000) } }}>
+      onClick={() => { if (running) { setEnd(null); setLeft(seconds) } else { wakeAudio(); setLeft(seconds); setEnd(Date.now() + seconds * 1000) } }}>
       <TimerIcon aria-hidden="true" />{running ? clock(left) : done ? 'Готово' : text}
     </button>
   )

@@ -38,12 +38,18 @@ const UNREACHABLE_SLACK = 1.05
 /**
  * The same settings, catalog and seed give the same menu unless the time limit is reached.
  * `previous`: the menu being rebuilt; every cooking of the new one differs from it where possible.
+ * `onlyCookDay`: rebuild only the cooking of that day; other cookings keep their dishes while they still fit.
  */
 export function planMenu(
-  settings: Settings, catalog: Catalog, seed: number, previous?: Menu, timeLimitMs = TIME_LIMIT_MS,
+  settings: Settings, catalog: Catalog, seed: number, previous?: Menu, timeLimitMs = TIME_LIMIT_MS, onlyCookDay?: number,
 ): PlanResult {
   const schedule = blocks(settings.cookTimes, settings.weeks)
-  const options = schedule.map((block) => SLOTS.map((slot) => candidates(slot, block, settings, catalog)))
+  const kept = (i: number) => onlyCookDay !== undefined && previous?.length === schedule.length && schedule[i]!.cookDay !== onlyCookDay
+  const options = schedule.map((block, i) => SLOTS.map((slot) => {
+    const all = candidates(slot, block, settings, catalog)
+    const same = kept(i) ? all.filter((r) => r.id === previous![i]![slot]) : []
+    return same.length > 0 ? same : all
+  }))
 
   const missing: Missing[] = []
   schedule.forEach((block, i) =>
@@ -118,6 +124,8 @@ export function alternatives(
   const now = describeMenu(menu, settings, catalog).shopping.total
   const miss = (a: Alternative) =>
     Math.abs(a.kcal / settings.kcal - 1) + Math.max(0, 1 - a.protein / Math.max(1, settings.protein))
+  // Блюда по пожеланиям из «Собрать меню заново» идут первыми.
+  const wish = preference(settings.prefer)
   return candidates(slot, block, settings, catalog)
     .filter((r) => r.id !== menu[blockIndex]![slot])
     .map((recipe) => {
@@ -126,5 +134,5 @@ export function alternatives(
       const { kcal, protein } = report.blocks[blockIndex]!.day
       return { recipe, kcal, protein, costChange: report.shopping.total - now }
     })
-    .sort((a, b) => miss(a) - miss(b))
+    .sort((a, b) => wish(b.recipe) - wish(a.recipe) || miss(a) - miss(b))
 }

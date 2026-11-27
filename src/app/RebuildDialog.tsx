@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import type { Kind, Meat, Prefer } from '../planner/prefer'
 import { Checks, Choice, options } from './fields'
+import { dayMonth, weekdayShort } from './dates'
 import { answersFrom, SIMPLE_MINUTES, type Answers } from './questions'
 
 const MEAT: Record<Meat, string> = {
@@ -19,12 +20,14 @@ interface Props {
   milk: 'ok' | 'banned' | 'impossible'
   /** A budget is set: the cheapest dishes may win over the wishes. */
   budget: boolean
+  /** ISO date of the only cooking that changes; `undefined` when the whole menu does. */
+  cookDay?: string
   onBuild: (answers: Answers) => void
   onClose: () => void
 }
 
 /** Opens when mounted. Esc and «Отмена» close it without building. */
-export function RebuildDialog({ prefer, milk, budget, onBuild, onClose }: Props) {
+export function RebuildDialog({ prefer, milk, budget, cookDay, onBuild, onClose }: Props) {
   const ref = useRef<HTMLDialogElement>(null)
   const [answers, setAnswers] = useState(() => answersFrom(prefer))
   useEffect(() => {
@@ -41,6 +44,7 @@ export function RebuildDialog({ prefer, milk, budget, onBuild, onClose }: Props)
         ref.current?.close()
       }}>
         <h2 id="rebuild-title">Каким будет новое меню?</h2>
+        {cookDay && <p className="hint">Поменяются блюда только готовки {weekdayShort(cookDay)}, {dayMonth(cookDay)}. Остальные готовки останутся как есть.</p>}
         <p className="hint">Отмеченное попадётся чаще, остальное тоже может быть. Ничего не отмечать — оставить как есть.</p>
         {budget && <p className="hint">Бюджет задан, поэтому дешёвые блюда важнее пожеланий: отмеченное может и не попасться.</p>}
         <Checks legend="Что из мяса и рыбы хочется" options={options(MEAT)} value={answers.meats} onChange={set('meats')} />

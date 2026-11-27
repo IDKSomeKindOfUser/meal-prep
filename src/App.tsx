@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { CalendarDays, ShoppingCart, SlidersHorizontal, Sun } from 'lucide-react'
 import { buildMenu } from './app/buildMenu'
-import { dayOfPlan, toIso } from './app/dates'
+import { addDays, dayOfPlan, toIso } from './app/dates'
+import { blocks } from './planner/schedule'
 import { readForm, type Form } from './app/form'
 import { applyToForm, applyToSettings, canDropMilk } from './app/questions'
 import { RebuildDialog } from './app/RebuildDialog'
@@ -119,6 +120,11 @@ export function App() {
   const place = plan && dayOfPlan(plan.start, length(plan), today)
   const day = plan && place ? Math.min(chosenDay ?? place.day, length(plan) - 1) : 0
   const start = plan && place?.state !== 'ended' ? plan.start : today
+  // «Собрать меню заново» на экране дня меняет только готовку, из которой еда этого дня.
+  // С одной готовкой на всё меню пересобирается всё меню.
+  const schedule = plan ? blocks(plan.settings.cookTimes, plan.settings.weeks) : []
+  const ownCook = schedule.find((b) => day >= b.firstDay && day < b.firstDay + b.days)?.cookDay
+  const rebuildCookDay = place?.state !== 'ended' && schedule.some((b) => b.cookDay !== ownCook) ? ownCook : undefined
   const read = readForm(form)
   const changed = plan !== null && read.ok && JSON.stringify(read.settings) !== JSON.stringify(plan.settings)
   const shownPlan = useMemo(() => planKey(plan), [plan])
@@ -135,19 +141,22 @@ export function App() {
     else if (message.after !== shownPlan && shownPlan !== planKey(message.previous)) setMessage({ ...message, previous: null })
   }, [message, shownPlan])
 
-  /** `form`: the settings form changed together with the menu, for example by the questions before a rebuild. */
-  async function build(settings: Settings, first: string, form?: Form) {
+  /**
+   * `form`: the settings form changed together with the menu, for example by the questions before a rebuild.
+   * `onlyCookDay`: only the cooking of that day changes.
+   */
+  async function build(settings: Settings, first: string, form?: Form, onlyCookDay?: number) {
     const seed = Math.floor(Math.random() * 2 ** 31)
     setBusy(true)
     setMessage(null)
     setMissing([])
     try {
-      const answer = await buildMenu({ settings, seed, prices: state.prices, own: state.own, previous: plan?.menu })
+      const answer = await buildMenu({ settings, seed, prices: state.prices, own: state.own, previous: plan?.menu, onlyCookDay })
       if (answer.ok) {
         const next: SavedPlan = { settings, menu: answer.menu, seed, start: first }
         transition(() => setState((s) => ({ ...s, form: form ?? s.form, plan: next })))
         // The new menu is known now, so the check for later changes does not take the old one for it.
-        setMessage({ text: 'Меню собрано.', previous: plan, after: planKey(next), ...(form && { form: state.form }) })
+        setMessage({ text: onlyCookDay === undefined ? 'Меню собрано.' : 'Готовка собрана заново.', previous: plan, after: planKey(next), ...(form && { form: state.form }) })
         setChosenDay(null)
         location.hash = 'today'
         // The message with undo is at the top, while the button is at the bottom.
@@ -308,7 +317,8 @@ export function App() {
           {asking && plan && (
             <RebuildDialog prefer={plan.settings.prefer} budget={plan.settings.budget !== null}
               milk={plan.settings.allergens.includes('milk') ? 'banned' : canDropMilk(plan.settings, catalog) ? 'ok' : 'impossible'} onClose={() => setAsking(false)}
-              onBuild={(answers) => void build(applyToSettings(plan.settings, answers), start, applyToForm(state.form, answers))} />
+              cookDay={rebuildCookDay === undefined ? undefined : addDays(plan.start, rebuildCookDay)}
+              onBuild={(answers) => void build(applyToSettings(plan.settings, answers), start, applyToForm(state.form, answers), rebuildCookDay)} />
           )}
           </div>
           {screen === 'settings' ? <SettingsSide plan={plan} />
