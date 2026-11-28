@@ -589,7 +589,7 @@ html:has(dialog[open]) { overflow: hidden; }
 .ring { inline-size: 48px; block-size: 48px; rotate: -90deg; flex: none; }
 .ring circle { fill: none; stroke-width: 6; }
 .ring circle:first-child { stroke: color-mix(in oklab, var(--line) 60%, var(--surface)); }
-.ring circle:last-child { stroke: var(--selected); stroke-linecap: butt; transition: stroke-dasharray .4s var(--ease); }
+.ring circle + circle { stroke: var(--selected); stroke-linecap: butt; transition: stroke-dasharray .4s var(--ease); }
 .ring + p b { display: block; font-size: var(--text-m); }
 
 /* График ккал: тонкие столбики от нуля, пунктир — норма. */
@@ -604,7 +604,7 @@ html:has(dialog[open]) { overflow: hidden; }
 .daychart button::after { content: attr(data-tip); position: absolute; inset-block-end: calc(100% + 4px); padding: 2px 6px; border-radius: var(--radius-s); background: var(--ink); color: var(--surface); font-size: var(--text-s); white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity .15s; z-index: 2; }
 .daychart button:focus-visible::after { opacity: 1; }
 @media (hover: hover) { .daychart button:hover::after { opacity: 1; } .daychart button:hover i { background: color-mix(in oklab, var(--accent) 60%, var(--surface)); } }
-@media (prefers-reduced-motion: reduce) { .ring circle:last-child, .daychart button::after { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .ring circle + circle, .daychart button::after { transition: none; } }
 
 /* Карточки блюд крупнее, фото на всю высоту карточки. */
 @media (min-width: 900px) {
@@ -727,10 +727,10 @@ nav [href='#settings'][aria-current='page'] svg > :is(:nth-child(2), :nth-child(
 /* Сводки растут от нуля при появлении. Рост ждёт, пока экран проявится, и идёт ровно, иначе он прячется за сменой экрана. */
 .bar i { transform-origin: left; transition: inline-size .4s var(--ease), scale .8s cubic-bezier(.65, 0, .35, 1) .2s; }
 .daychart i { transform-origin: bottom; transition: background-color .3s var(--ease), scale .8s cubic-bezier(.65, 0, .35, 1) .2s; }
-.ring circle:last-child { transition: stroke-dasharray .8s cubic-bezier(.65, 0, .35, 1) .2s; }
+.ring circle + circle { transition: stroke-dasharray .8s cubic-bezier(.65, 0, .35, 1) .2s; }
 @starting-style {
   .bar i, .daychart i { scale: 0; }
-  .ring circle:last-child { stroke-dasharray: 0 100; }
+  .ring circle + circle { stroke-dasharray: 0 100; }
 }
 
 /* Идущий таймер мягко пульсирует. */
@@ -841,18 +841,44 @@ nav [href='#dishes'][aria-current='page'] svg > :nth-child(2) { animation: nav-b
 .facts .warn { background: color-mix(in oklab, var(--danger) 14%, transparent); color: var(--danger); }
 .facts .warn.maybe { background: none; outline: 1px dashed var(--danger); outline-offset: -1px; }
 
-/* Карточка блюда как в журнале: фото сверху во всю ширину, текст под ним, полоса приёма идёт по верхнему краю. */
+/* Карточка блюда как в журнале: фото сверху во всю ширину, текст под ним. */
 .meals .dish, .meals .dish:has(> div) {
   grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 1fr; align-items: stretch; gap: 0;
   padding: 0; overflow: clip; min-block-size: 0;
 }
 .meals .dish > .art, .meals .dish:has(> div) > .art { order: -1; inline-size: 100%; block-size: auto; aspect-ratio: 2 / 1; border-radius: 0; }
 .meals .dish > div { padding: var(--space-4); align-self: start; }
-.meals .dish[data-slot]::before { inline-size: 200%; block-size: 5px; z-index: 1; background: linear-gradient(90deg, var(--mark), var(--tint-1, var(--mark)), var(--tint-2, var(--mark)), var(--mark), var(--tint-1, var(--mark)), var(--tint-2, var(--mark)), var(--mark)); }
-@media (prefers-reduced-motion: no-preference) { .meals .dish[data-tinted]::before { animation-name: tint-flow-x; } }
-@keyframes tint-flow-x { to { translate: -50% 0; } }
+/* Полосы приёма у карточки с фото нет: цвет приёма несёт первая метка. */
+.meals .dish[data-slot]::before { display: none; }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) { .meals .dish:has(> div):hover .art { scale: 1.04; } }
 @media (min-width: 900px) {
   .meals { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
   .meals .dish > .art, .meals .dish:has(> div) > .art { aspect-ratio: 3 / 2; }
 }
+
+/* Кнопки-клавиши: у кнопок тёмный нижний край, при нажатии кнопка садится на него. Край нарисован тенью, чтобы высота не менялась. */
+.go { --edge: color-mix(in oklab, var(--accent), #000 28%); box-shadow: inset 0 -4px var(--edge); }
+.go:active:not(:disabled) { box-shadow: inset 0 -1px var(--edge); translate: 0 2px; }
+.go:disabled { box-shadow: none; }
+@media (hover: hover) { .go:hover:not(:disabled) { box-shadow: inset 0 -4px var(--edge), 0 0 0 3px color-mix(in oklab, var(--accent) 30%, transparent); } }
+:is(.textbtn, .tonal) {
+  border-radius: var(--radius-button); background: var(--surface); color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--line), inset 0 -3px var(--line);
+}
+:is(.textbtn, .tonal):active:not(:disabled) { box-shadow: inset 0 0 0 1px var(--line), inset 0 -1px var(--line); translate: 0 1px; }
+@media (hover: hover) { :is(.textbtn:not(:disabled), .tonal):hover { background: color-mix(in oklab, var(--accent) 10%, var(--surface)); } }
+.textbtn:disabled { box-shadow: none; }
+/* Чипы: невыбранный стоит на краю, выбранный утоплен в коралловую подложку с рамкой. */
+.chip span { border-color: var(--line); box-shadow: inset 0 -2px var(--line); }
+.chip :checked + span { background: color-mix(in oklab, var(--accent) 16%, var(--surface)); border-color: var(--accent); color: var(--accent); box-shadow: inset 0 0 0 .5px var(--accent); }
+@media (hover: hover) {
+  .chip:hover span { border-color: var(--accent); }
+  .chip:hover :checked + span { background: color-mix(in oklab, var(--accent) 24%, var(--surface)); }
+}
+@media (prefers-reduced-motion: reduce) { .go:active, :is(.textbtn, .tonal):active { translate: none; } }
+/* Полосы у карточки с фото нет, поэтому оттенки блюда переливаются в метке приёма. Оттенки смешаны с цветом приёма, чтобы текст метки читался. */
+.meals .dish[data-tinted] .facts > li:first-child {
+  background: linear-gradient(90deg, var(--mark), color-mix(in oklab, var(--tint-1, var(--mark)) 50%, var(--mark)), color-mix(in oklab, var(--tint-2, var(--mark)) 50%, var(--mark)), var(--mark)) 0 0 / 300% 100%;
+}
+@media (prefers-reduced-motion: no-preference) { .meals .dish[data-tinted] .facts > li:first-child { animation: tag-flow 6s ease-in-out infinite alternate; } }
+@keyframes tag-flow { to { background-position: 100% 0; } }

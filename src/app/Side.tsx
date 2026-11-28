@@ -31,14 +31,19 @@ function Bought({ plan, report, week }: { plan: SavedPlan; report: Report; week:
   return <Meter label="Куплено продуктов" value={done} goal={all.length} unit="" />
 }
 
-/** Progress as a ring with the numbers beside it. */
-function Ring({ done, all, label }: { done: number; all: number; label: string }) {
+/** Progress as a ring with the numbers beside it. With `parts`, each done part is its own arc in the colour of its meal. */
+function Ring({ done, all, label, parts }: { done: number; all: number; label: string; parts?: { slot: Slot; done: boolean }[] }) {
   const share = all > 0 ? (done / all) * 100 : 0
+  const arc = parts && parts.length > 0 ? 100 / parts.length : 0
+  const gap = parts && parts.length > 1 ? 2 : 0
   return (
     <div className="ring-row">
       <svg className="ring" viewBox="0 0 48 48" aria-hidden="true">
         <circle cx="24" cy="24" r="20" pathLength="100" />
-        <circle cx="24" cy="24" r="20" pathLength="100" strokeDasharray={`${share} 100`} />
+        {parts ? parts.map((p, i) => p.done && (
+          <circle key={i} cx="24" cy="24" r="20" pathLength="100" strokeDasharray={`${arc - gap} 100`}
+            strokeDashoffset={-(i * arc + gap / 2)} style={{ stroke: `var(--${p.slot})` }} />
+        )) : <circle cx="24" cy="24" r="20" pathLength="100" strokeDasharray={`${share} 100`} />}
       </svg>
       <p><b>{done} из {all}</b> <span className="hint">{label}</span></p>
     </div>
@@ -58,7 +63,9 @@ function BoughtRing({ plan, report, week }: { plan: SavedPlan; report: Report; w
 function CookedRing({ plan, cookDay }: { plan: SavedPlan; cookDay: number }) {
   const keys = cookingKeys(plan.settings.cookTimes, plan.settings.weeks, cookDay)
   const cooked = new Set(plan.cooked ?? [])
-  return <Ring done={keys.filter((k) => cooked.has(k)).length} all={keys.length} label="блюд этой готовки приготовлено" />
+  // Keys go meal by meal in SLOTS order, so the index gives the meal.
+  const parts = keys.map((k, i) => ({ slot: SLOTS[i % SLOTS.length]!, done: cooked.has(k) }))
+  return <Ring done={parts.filter((p) => p.done).length} all={keys.length} label="блюд этой готовки приготовлено" parts={parts} />
 }
 
 /** Right column of the cooking screen. */

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import type { Kind, Meat, Prefer } from '../planner/prefer'
+import type { Kind, Meat } from '../planner/prefer'
 import { Checks, Choice, options } from './fields'
 import { dayMonth, weekdayShort } from './dates'
 import { answersFrom, SIMPLE_MINUTES, type Answers } from './questions'
@@ -15,7 +15,6 @@ const EFFORT: Record<Answers['effort'], string> = { keep: 'Как сейчас',
 const DAIRY: Record<Answers['dairy'], string> = { keep: 'Как сейчас', none: 'Без молочного' }
 
 interface Props {
-  prefer: Prefer | undefined
   /** `banned`: milk is already off in the settings; `impossible`: no breakfast would be left without it. */
   milk: 'ok' | 'banned' | 'impossible'
   /** A budget is set: the cheapest dishes may win over the wishes. */
@@ -26,10 +25,13 @@ interface Props {
   onClose: () => void
 }
 
-/** Opens when mounted. Esc and «Отмена» close it without building. */
-export function RebuildDialog({ prefer, milk, budget, cookDay, onBuild, onClose }: Props) {
+const EMPTY = answersFrom(undefined)
+const isEmpty = (a: Answers) => a.meats.length === 0 && a.kinds.length === 0 && a.effort === 'keep' && a.dairy === 'keep'
+
+/** Opens when mounted, every time with nothing chosen. Esc, «Отмена» and a click outside close it without building. */
+export function RebuildDialog({ milk, budget, cookDay, onBuild, onClose }: Props) {
   const ref = useRef<HTMLDialogElement>(null)
-  const [answers, setAnswers] = useState(() => answersFrom(prefer))
+  const [answers, setAnswers] = useState(EMPTY)
   useEffect(() => {
     const dialog = ref.current
     if (dialog && !dialog.open) dialog.showModal()
@@ -37,7 +39,13 @@ export function RebuildDialog({ prefer, milk, budget, cookDay, onBuild, onClose 
   const set = <K extends keyof Answers>(key: K) => (value: Answers[K]) => setAnswers((a) => ({ ...a, [key]: value }))
 
   return (
-    <dialog ref={ref} className="product" aria-labelledby="rebuild-title" onClose={onClose}>
+    <dialog ref={ref} className="product" aria-labelledby="rebuild-title" onClose={onClose}
+      onClick={(e) => {
+        // A click on the backdrop lands on the dialog itself, but outside its box.
+        const r = e.currentTarget.getBoundingClientRect()
+        const outside = e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom
+        if (e.target === e.currentTarget && outside) e.currentTarget.close()
+      }}>
       <form noValidate onSubmit={(e) => {
         e.preventDefault()
         onBuild(answers)
@@ -57,6 +65,7 @@ export function RebuildDialog({ prefer, milk, budget, cookDay, onBuild, onClose 
         <div className="actions">
           <button type="submit" className="go">Собрать меню</button>
           <button type="button" className="textbtn" onClick={() => ref.current?.close()}>Отмена</button>
+          {!isEmpty(answers) && <button type="button" className="textbtn" onClick={() => setAnswers(EMPTY)}>Сбросить</button>}
         </div>
       </form>
     </dialog>
