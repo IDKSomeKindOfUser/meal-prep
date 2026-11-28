@@ -203,6 +203,7 @@ nav [aria-current] svg { background: color-mix(in oklab, transparent, var(--acce
 .options .thumb .art { border-radius: var(--radius-thumb); }
 .options .wished { margin-block-end: var(--space-2); padding-inline: var(--space-3); border: 1px solid color-mix(in oklab, var(--accent) 45%, var(--line)); border-inline-start-width: 4px; border-inline-start-color: var(--accent); border-radius: var(--radius-thumb); background: color-mix(in oklab, var(--accent) 8%, var(--surface)); }
 .options .wishtag { margin: 0 0 var(--space-1); color: var(--accent); font-weight: 700; }
+.options-head { display: flex; justify-content: flex-end; max-width: 760px; margin: 0 0 var(--space-2); }
 .options-rest { max-width: 760px; margin: var(--space-5) 0 0; padding: 0 var(--space-5); color: var(--muted); font-size: var(--text-s); font-weight: 700; }
 .facts { display: flex; flex-wrap: wrap; gap: var(--space-1); margin-top: var(--space-1); }
 .facts span { padding: 2px var(--space-2); border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); }

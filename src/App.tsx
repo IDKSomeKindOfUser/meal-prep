@@ -4,7 +4,7 @@ import { buildMenu } from './app/buildMenu'
 import { addDays, dayOfPlan, toIso } from './app/dates'
 import { blocks } from './planner/schedule'
 import { readForm, type Form } from './app/form'
-import { applyToForm, applyToSettings, canDropMilk } from './app/questions'
+import { answersFrom, applyToForm, applyToSettings, canDropMilk } from './app/questions'
 import { RebuildDialog } from './app/RebuildDialog'
 import { makeCatalog } from './app/catalog'
 import { useCloud } from './app/cloud'
@@ -311,7 +311,12 @@ export function App() {
           ) : route.screen === 'swap' ? (
             <SwapScreen plan={plan} report={report} catalog={catalog} block={route.block} slot={route.slot} busy={busy}
               onBack={(e) => { if (swapFromDish.current) { e.preventDefault(); history.back() } }}
-              onChoose={(id) => replace(route.block, route.slot, id)} />
+              onChoose={(id) => replace(route.block, route.slot, id)}
+              onResetWishes={(cookDay) => {
+                // Пустые пожелания этой готовки перекрывают общие, подсветка пропадает только здесь.
+                setState((s) => s.plan ? { ...s, plan: { ...s.plan, settings: applyToSettings(s.plan.settings, answersFrom(undefined), cookDay) } } : s)
+                setMessage({ text: 'Пожелания сброшены, блюда идут по близости к норме.', previous: null })
+              }} />
           ) : route.screen === 'cook' ? (
             <CookScreen plan={plan} report={report} day={route.day} />
           ) : screen === 'shopping' ? (

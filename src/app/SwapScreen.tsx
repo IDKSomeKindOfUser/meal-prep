@@ -18,9 +18,10 @@ interface Props {
   busy: boolean
   onBack: (e: MouseEvent) => void
   onChoose: (recipeId: string) => void
+  onResetWishes: (cookDay: number) => void
 }
 
-export function SwapScreen({ plan, report, block: index, slot, catalog, busy, onBack, onChoose }: Props) {
+export function SwapScreen({ plan, report, block: index, slot, catalog, busy, onBack, onChoose, onResetWishes }: Props) {
   const { menu, settings } = plan
   const options = useMemo(() => alternatives(menu, index, slot, settings, catalog), [menu, index, slot, settings, catalog])
   const { block, day } = report.blocks[index]!
@@ -74,6 +75,11 @@ export function SwapScreen({ plan, report, block: index, slot, catalog, busy, on
         </p>
       </header>
       {options.length === 0 && <section><p>Других блюд под ваши ограничения нет. Ослабьте их в настройках и соберите меню заново.</p></section>}
+      {wished.length > 0 && (
+        <div className="options-head">
+          <button type="button" className="textbtn" disabled={busy} onClick={() => onResetWishes(block.cookDay)}>Сбросить пожелания</button>
+        </div>
+      )}
       {wished.length > 0 && list(wished)}
       {wished.length > 0 && rest.length > 0 && <p className="options-rest">Остальные блюда</p>}
       {rest.length > 0 && list(rest)}
