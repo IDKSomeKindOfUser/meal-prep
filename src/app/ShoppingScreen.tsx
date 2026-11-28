@@ -104,7 +104,7 @@ export function ShoppingScreen({ plan, report, catalog, week, onWeek, onCheck }:
   const all = [...list.market, ...list.store]
   const done = all.filter((i) => checked.has(checkKey(week, i.id))).length
   const first = addDays(plan.start, week * 7)
-  const [copied, setCopied] = useState(false)
+  const [copied, setCopied] = useState<boolean | null>(false)
   const check: Props['onCheck'] = (key, bought) => {
     if (bought && done + 1 === all.length) celebrate('shopping')
     onCheck(key, bought)
@@ -114,7 +114,7 @@ export function ShoppingScreen({ plan, report, catalog, week, onWeek, onCheck }:
     navigator.clipboard?.writeText(listText(rest, catalog)).then(() => {
       setCopied(true)
       setTimeout(() => setCopied(false), 2500)
-    }, () => {})
+    }, () => setCopied(null))
   }
   return (
     <>
@@ -128,6 +128,7 @@ export function ShoppingScreen({ plan, report, catalog, week, onWeek, onCheck }:
         <p className="hint" role="status">Куплено {done} из {all.length}</p>
         <div className="actions-row">
           <button type="button" className="link" onClick={copy}>{copied ? <Check aria-hidden="true" /> : <Copy aria-hidden="true" />}{copied ? 'Скопировано' : 'Скопировать список'}</button>
+          <span className={copied === null ? 'warn' : 'sr-only'} role="status">{copied === null ? 'Не удалось скопировать' : copied ? 'Список скопирован' : ''}</span>
           <a className="tonal" href="#prices"><Pencil aria-hidden="true" />Править цены</a>
         </div>
         <p className="hint">Соль и специи считаются имеющимися дома. Остаток пачки идёт в следующую неделю.</p>

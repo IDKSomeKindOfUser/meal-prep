@@ -89,9 +89,9 @@ export function DishesScreen({ catalog, today, filter, onFilter, query, onQuery 
             const lactose = recipeLactose(r, catalog.ingredient)
             const fresh = isNew(r, today)
             return (
-              <li key={r.id} className="dish" data-slot={COLOR[r.type]} {...tintProps(dishTints(r))}>
+              <li key={r.id} className="dish" data-slot={COLOR[r.type]} data-new={fresh || undefined} {...tintProps(dishTints(r))}>
                 <div>
-                  <h3><a href={cardHash(r.id)}>{r.name}<GoIcon /></a></h3>
+                  <h2><a href={cardHash(r.id)}>{r.name}<GoIcon /></a></h2>
                   <ul className="facts">
                     <li>{MEAL[r.type]}</li>
                     {fresh && <li className="new">Новое</li>}

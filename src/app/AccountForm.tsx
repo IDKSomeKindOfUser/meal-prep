@@ -50,8 +50,8 @@ export function AccountForm({ cloud, unsent }: { cloud: Cloud; unsent: boolean }
       if (await run(() => cloud.signIn(email.trim(), password))) setPassword('')
     }}>
       <p>Войдите, чтобы меню и рецепты были на всех ваших устройствах. Без входа всё хранится только в этом браузере.</p>
-      <Field label="Почта" type="email" autoComplete="username" value={email} onChange={(e) => setEmail(e.target.value)} />
-      <Field label="Пароль" type="password" autoComplete="current-password" value={password} onChange={(e) => setPassword(e.target.value)} />
+      <Field label="Почта" type="email" name="email" spellCheck={false} autoComplete="username" value={email} onChange={(e) => setEmail(e.target.value)} />
+      <Field label="Пароль" type="password" name="password" autoComplete="current-password" value={password} onChange={(e) => setPassword(e.target.value)} />
       {error && <p className="warn" role="alert">{error}</p>}
       <button type="submit" className="textbtn" disabled={busy}>{busy ? 'Входим…' : 'Войти'}</button>
     </form>

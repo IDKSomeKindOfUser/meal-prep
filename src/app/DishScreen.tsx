@@ -91,7 +91,7 @@ export function DishScreen({ plan, report, catalog, isOwn, block: index, slot, o
           {frozen.length > 0 && <div><dt>В морозилку</dt><dd>порции на {frozen.map((d) => weekdayShort(addDays(plan.start, d))).join(', ')}</dd></div>}
         </dl>
         <div className="actions">
-          <button type="button" className="tonal" aria-pressed={cooked} onClick={(e) => { if (!cooked) celebrate(last ? 'cooking' : 'dish', e.currentTarget); onCooked(key, !cooked) }}>
+          <button type="button" className="tonal" data-on={cooked || undefined} onClick={(e) => { if (!cooked) celebrate(last ? 'cooking' : 'dish', e.currentTarget); onCooked(key, !cooked) }}>
             <Check aria-hidden="true" />{cooked ? 'Приготовлено' : 'Отметить приготовленным'}
           </button>
           <a className="go" href={swapHash(index, slot)} onClick={onSwap}>Заменить блюдо</a>

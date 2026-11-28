@@ -53,11 +53,14 @@ function Timer({ text, seconds }: { text: string; seconds: number }) {
   const running = end !== null
   const done = !running && left === 0
   return (
-    <button type="button" className="timer" aria-pressed={running}
+    <>
+    <button type="button" className="timer" data-on={running || undefined}
       aria-label={running ? `Остановить таймер, осталось ${clock(left)}` : `Запустить таймер на ${text}`}
       onClick={() => { if (running) { setEnd(null); setLeft(seconds) } else { wakeAudio(); setLeft(seconds); setEnd(Date.now() + seconds * 1000) } }}>
       <TimerIcon aria-hidden="true" />{running ? clock(left) : done ? 'Готово' : text}
     </button>
+    <span className="sr-only" role="status">{done ? `Таймер на ${text} закончился` : ''}</span>
+    </>
   )
 }
 

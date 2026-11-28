@@ -37,7 +37,7 @@ export function DishField({ slot, dish, href, note, big, now, cooked }: { slot: 
   return (
     <li className={`dish${big ? ' big' : ''}`} data-slot={slot} data-now={now || undefined} {...tintProps(dishTints(dish.recipe))}>
       <div>
-        <h3><a href={href}>{dish.recipe.name}<GoIcon /></a></h3>
+        <h2><a href={href}>{dish.recipe.name}<GoIcon /></a></h2>
         <ul className="facts">
           <li>{SLOT[slot]}{now && ' · сейчас'}</li>
           <MacroFacts kcal={dish.kcal} protein={dish.protein} minutes={dish.recipe.minutes} />

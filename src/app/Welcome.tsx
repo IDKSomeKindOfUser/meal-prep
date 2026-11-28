@@ -22,7 +22,7 @@ export function Welcome() {
       <ul className="meals" aria-label="Пример дня">
         {SLOTS.map((slot) => (
           <li key={slot} className={`dish${slot === 'lunch' ? ' big' : ''}`} data-slot={slot}>
-            <h3>{EXAMPLE[slot].name}</h3>
+            <h2>{EXAMPLE[slot].name}</h2>
             <p>{SLOT[slot]}</p>
             <DishPicture recipe={EXAMPLE[slot]} />
           </li>

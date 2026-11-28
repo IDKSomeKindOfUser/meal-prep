@@ -92,7 +92,7 @@ nav [aria-current] svg { background: color-mix(in oklab, transparent, var(--acce
   position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: var(--space-4);
   padding: var(--space-4); border-radius: var(--radius-card); transition: scale 0.2s var(--ease);
 }
-.dish h3 { margin-bottom: var(--space-2); text-wrap: balance; overflow-wrap: break-word; hyphens: auto; }
+.dish h2 { margin-bottom: var(--space-2); text-wrap: balance; overflow-wrap: break-word; hyphens: auto; }
 .dish:active { scale: 0.985; }
 /* Нажимается вся карточка, а ссылкой служит название. */
 .dish:not(.hero) a { color: inherit; text-decoration: none; }
@@ -385,6 +385,9 @@ section:has(> .buy) { max-width: 720px; }
 .priced label { display: block; flex: 1 1 110px; }
 .priced input { width: 100%; min-height: 48px; padding: 0 var(--space-3); border: 1px solid var(--control); border-radius: var(--radius-s); background: var(--surface); }
 .priced input[aria-invalid] { border-color: var(--danger); border-width: 2px; }
+.priced .warn { flex: 1 1 100%; margin: 0; }
+/* Текст только для экранных читалок. */
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 /* Действия — тональные кнопки, а не голый текст: видно, что нажимается. */
 .priced button, .textbtn, button.link {
   display: inline-flex; align-items: center; gap: var(--space-2); min-height: 44px; padding: 0 var(--space-3); border: 0; border-radius: 999px;
@@ -567,7 +570,7 @@ html:has(dialog[open]) { overflow: hidden; }
 @media (hover: hover) { .timer:hover { background: color-mix(in oklab, var(--accent) 10%, transparent); } }
 .timer svg { flex: none; width: 18px; height: 18px; }
 .timer:active { scale: 0.95; }
-.timer[aria-pressed='true'] { background: var(--accent); color: var(--on-accent); }
+.timer[data-on] { background: var(--accent); color: var(--on-accent); }
 
 /* Hover on mouse devices only: filled or accent-outlined controls so the target is obvious. */
 @media (hover: hover) {
@@ -628,7 +631,7 @@ html:has(dialog[open]) { overflow: hidden; }
 .facts .cooked { color: var(--accent); font-weight: 600; }
 .wkdishes [data-cooked] a { position: relative; }
 .wkdishes [data-cooked] a::after { content: '✓'; position: absolute; inset-block-start: 4px; inset-inline-end: 4px; display: grid; place-items: center; inline-size: 20px; block-size: 20px; border-radius: 50%; background: var(--accent); color: var(--on-accent, #fff); font-size: 13px; font-weight: 700; }
-button.tonal[aria-pressed="true"] { background: var(--accent); color: var(--on-accent, #fff); }
+button.tonal[data-on] { background: var(--accent); color: var(--on-accent, #fff); }
 
 /* Скелетон, пока фото грузится. */
 .art.photo.loading { background: linear-gradient(100deg, var(--surface) 30%, color-mix(in oklab, var(--muted) 18%, var(--surface)) 50%, var(--surface) 70%) 0 0 / 300% 100%; animation: shimmer 1.4s linear 3; }
@@ -658,12 +661,12 @@ button.tonal[aria-pressed="true"] { background: var(--accent); color: var(--on-a
 .steps li { transition: opacity .5s var(--ease); }
 
 /* «Приготовлено»: кнопка заливается цветом, галочка выскакивает. */
-.tonal[aria-pressed='true'] { background: var(--accent); color: var(--on-accent); }
-@media (hover: hover) { .tonal[aria-pressed='true']:hover { background: color-mix(in oklab, var(--accent), var(--ink) 14%); } }
-.tonal[aria-pressed='true'] svg { animation: pop .5s var(--spring); }
+.tonal[data-on] { background: var(--accent); color: var(--on-accent); }
+@media (hover: hover) { .tonal[data-on]:hover { background: color-mix(in oklab, var(--accent), var(--ink) 14%); } }
+.tonal[data-on] svg { animation: pop .5s var(--spring); }
 @keyframes pop { from { scale: 0; rotate: -30deg; } }
 @media (prefers-reduced-motion: reduce) {
-  .tonal[aria-pressed='true'] svg { animation: none; }
+  .tonal[data-on] svg { animation: none; }
   .steps label span, .line { transition: none !important; }
   ::view-transition-new(root) { animation: none; }
 }
@@ -739,7 +742,7 @@ nav [href='#settings'][aria-current='page'] svg > :is(:nth-child(2), :nth-child(
 }
 
 /* Идущий таймер мягко пульсирует. */
-.timer[aria-pressed='true'] { animation: ticking 1.6s ease-in-out infinite; }
+.timer[data-on] { animation: ticking 1.6s ease-in-out infinite; }
 @keyframes ticking { 50% { box-shadow: 0 0 0 5px color-mix(in oklab, var(--accent) 25%, transparent); } }
 
 /* Строки недели и варианты замены появляются друг за другом. */
@@ -753,7 +756,7 @@ nav [href='#settings'][aria-current='page'] svg > :is(:nth-child(2), :nth-child(
   :is(.wk, .options) > li:nth-child(n+7) { animation-delay: 180ms; }
 }
 @media (prefers-reduced-motion: reduce) {
-  nav svg, nav svg > *, .chip :checked + span::before, .timer[aria-pressed='true'] { animation: none !important; }
+  nav svg, nav svg > *, .chip :checked + span::before, .timer[data-on] { animation: none !important; }
   .bar i, .daychart i { scale: none; }
 }
 
@@ -815,8 +818,18 @@ nav [href='#dishes'][aria-current='page'] svg > :nth-child(2) { animation: nav-b
   background: linear-gradient(var(--mark), var(--tint-1, var(--mark)), var(--tint-2, var(--mark)), var(--mark), var(--tint-1, var(--mark)), var(--tint-2, var(--mark)), var(--mark));
 }
 
-/* Новое блюдо: коралловый чип из палитры. */
-.facts .new { background: color-mix(in oklab, var(--accent) 16%, var(--surface)); color: var(--accent); }
+/* Новое блюдо: пастельная радужная рамка медленно бежит по кругу. */
+@property --spin { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+.dish[data-new]::after {
+  content: ''; position: absolute; inset: 0; z-index: 2; border-radius: inherit; padding: 2.5px; pointer-events: none;
+  background: conic-gradient(from var(--spin), #e8b4c4, #f0c9b0, #e6d9ae, #b8d8c4, #b4cde4, #cbbde8, #e8b4c4);
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+@media (prefers-reduced-motion: no-preference) { .dish[data-new]::after { animation: spin 5s linear infinite; } }
+@keyframes spin { to { --spin: 360deg; } }
+/* У нового блюда только рамка: полоса приёма слева спорила бы с ней. */
+.dish[data-new]::before { display: none; }
+.facts .new { background: linear-gradient(90deg, #e8b4c4, #f0c9b0, #e6d9ae, #b8d8c4, #b4cde4, #cbbde8); color: #1d1a24; }
 
 /* Чипы с цветными иконками: ккал, белок, время, хранение, молоко, аллергены. */
 .facts .ico { display: inline-flex; align-items: center; gap: 4px; }
@@ -857,7 +870,7 @@ nav [href='#dishes'][aria-current='page'] svg > :nth-child(2) { animation: nav-b
   box-shadow: inset 0 0 0 1px var(--line), inset 0 -3px var(--line);
 }
 :is(.textbtn, .tonal, button.link, .priced button):active:not(:disabled) { box-shadow: inset 0 0 0 1px var(--line), inset 0 -1px var(--line); translate: 0 1px; }
-@media (hover: hover) { :is(.textbtn:not(:disabled), .tonal:not([aria-pressed='true']), button.link, .priced button):hover { background: color-mix(in oklab, var(--accent) 10%, var(--surface)); } }
+@media (hover: hover) { :is(.textbtn:not(:disabled), .tonal:not([data-on]), button.link, .priced button):hover { background: color-mix(in oklab, var(--accent) 10%, var(--surface)); } }
 .textbtn:disabled { box-shadow: none; }
 /* В одном ряду с главной кнопкой второстепенные той же высоты. */
 .actions > :is(.tonal, .textbtn) { min-height: 52px; }

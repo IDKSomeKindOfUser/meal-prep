@@ -1,5 +1,5 @@
 import { BackLink } from './parts'
-import { useState } from 'react'
+import { useId, useState } from 'react'
 import { getIngredient, ingredients, prices } from '../data'
 import { defaultCatalog } from '../planner'
 import { num } from './labels'
@@ -24,6 +24,8 @@ function Row({ id, own, onChange }: { id: string; own: PriceOverrides[string] | 
     if (validOverride(next)) onChange(next)
   }
   const bad = (v: string) => !(Number(v.replace(',', '.')) > 0)
+  const errId = useId()
+  const wrong = bad(price) || (packed && bad(grams))
   const name = getIngredient(id).name
   const estimated = prices[id]?.records.some((r) => r.status === 'estimate')
   return (
@@ -34,16 +36,17 @@ function Row({ id, own, onChange }: { id: string; own: PriceOverrides[string] | 
       </div>
       <label>
         <span className="hint">{packed ? '₽ за пачку' : '₽ за кг'}</span>
-        <input inputMode="decimal" autoComplete="off" aria-label={`${name}, ${packed ? 'рублей за пачку' : 'рублей за килограмм'}`} value={price} aria-invalid={bad(price) || undefined}
+        <input inputMode="decimal" autoComplete="off" aria-label={`${name}, ${packed ? 'рублей за пачку' : 'рублей за килограмм'}`} value={price} aria-invalid={bad(price) || undefined} aria-describedby={bad(price) ? errId : undefined}
           onChange={(e) => { setPrice(e.target.value); commit(e.target.value, grams) }} />
       </label>
       {packed && (
         <label>
           <span className="hint">г в пачке</span>
-          <input inputMode="decimal" autoComplete="off" aria-label={`${name}, граммов в пачке`} value={grams} aria-invalid={bad(grams) || undefined}
+          <input inputMode="decimal" autoComplete="off" aria-label={`${name}, граммов в пачке`} value={grams} aria-invalid={bad(grams) || undefined} aria-describedby={bad(grams) ? errId : undefined}
             onChange={(e) => { setGrams(e.target.value); commit(price, e.target.value) }} />
         </label>
       )}
+      {wrong && <p className="warn" id={errId}>Введите число больше нуля</p>}
       {own && (
         <button type="button" onClick={() => {
           onChange(null)
