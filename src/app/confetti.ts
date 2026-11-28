@@ -8,7 +8,7 @@ export type Celebration = 'dish' | 'shopping' | 'cooking'
 
 const colors = () => {
   const style = getComputedStyle(document.documentElement)
-  const accent = style.getPropertyValue('--accent').trim() || '#f2a3c7'
+  const accent = style.getPropertyValue('--accent').trim() || '#ff8a65'
   return [accent, '#f6d365', '#7fd49b', '#f7a35c', '#ffffff']
 }
 

@@ -1,4 +1,5 @@
 import '@fontsource-variable/sofia-sans'
+import '@fontsource-variable/playfair-display'
 import './styles/tokens.css'
 import './styles/app.css'
 import { StrictMode } from 'react'

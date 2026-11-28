@@ -16,6 +16,9 @@ a, button, summary, label, select { touch-action: manipulation; }
 .skip:focus-visible { transform: none; }
 h1 { font-size: var(--text-xl); font-weight: 800; line-height: 1.1; text-wrap: balance; }
 h2, h3 { font-size: var(--text-l); font-weight: 800; line-height: 1.12; text-wrap: balance; }
+/* Заголовки с засечками: название блюда звучит как в меню ресторана. Мелкие подписи-заголовки остаются рублеными. */
+:is(h1, h2, h3) { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.005em; }
+:is(.options, .side, .widget) h2, .panel h2 { font-family: var(--font); font-weight: 800; }
 /* Абзацы бывают в три строки и больше: им нужен интервал не меньше 1.4 и без одинокого слова в конце. */
 p { line-height: 1.45; text-wrap: pretty; }
 h2 { margin-bottom: var(--space-3); }
@@ -136,7 +139,7 @@ nav [aria-current] svg { background: color-mix(in oklab, transparent, var(--acce
 .hero .art { grid-row: 1; width: 100%; height: auto; aspect-ratio: 4 / 3; max-height: 320px; }
 .hero:active { scale: none; }
 /* Шапка блюда: крупное плотное название, подпись капсом с точкой цвета приёма, цифры БЖУ как табло. */
-.hero h1 { font-size: clamp(1.75rem, 1.25rem + 1.8vw, 2.5rem); font-weight: 900; line-height: 1.05; letter-spacing: -0.025em; overflow-wrap: break-word; hyphens: auto; }
+.hero h1 { font-size: clamp(1.75rem, 1.25rem + 1.8vw, 2.5rem); font-weight: 800; line-height: 1.08; letter-spacing: -0.01em; overflow-wrap: break-word; hyphens: auto; }
 .hero p { margin-top: var(--space-2); }
 .hero h1 + p { display: flex; align-items: center; gap: var(--space-2); margin-top: var(--space-3); color: var(--muted); font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
 .hero h1 + p::before { content: ''; flex: none; inline-size: 8px; block-size: 8px; border-radius: 50%; background: var(--mark); }
@@ -314,7 +317,10 @@ fieldset .hint, fieldset .warn, .field .hint { margin-top: var(--space-2); }
   .compact .art { width: 96px; height: 96px; }
   .dish.hero { grid-template-columns: minmax(0, 1fr) minmax(0, 360px); max-width: 960px; }
   .dish.hero { grid-template-rows: repeat(5, auto) 1fr; align-items: start; }
-  .hero .art { grid-row: 1 / -1; grid-column: 2; }
+  /* Фото во всю высоту карточки: под ним не остаётся пустоты, лишнее обрезается. */
+  .hero .art { grid-row: 1 / -1; grid-column: 2; align-self: stretch; height: 100%; min-height: 280px; max-height: none; aspect-ratio: auto; }
+  /* На широком экране название помещается без переносов внутри слова. */
+  .hero h1 { hyphens: manual; }
   .actions .go { flex: 0 1 260px; }
   /* Продукты и рецепт рядом, чтобы правая часть экрана не пустовала. */
   .recipe .cols { column-gap: var(--space-6); grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); max-width: calc(960px + 2 * var(--space-5)); }
@@ -757,13 +763,9 @@ nav [href='#settings'][aria-current='page'] svg > :is(:nth-child(2), :nth-child(
 /* Пересборка меню внизу «Сегодня»: возможность, а не первое, что видно. */
 .rebuild { display: grid; gap: var(--space-2); justify-items: start; }
 
-/* Рецепты: книга раскрывается при выборе и наведении. */
-nav [href='#dishes'][aria-current='page'] svg > :nth-child(2) { animation: nav-book .55s var(--spring); }
-nav [href='#dishes'][aria-current='page'] svg > :nth-child(1) { animation: nav-ring .4s var(--spring) .1s backwards; }
-@media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  nav [href='#dishes']:not([aria-current='page']):hover svg > :nth-child(2) { animation: nav-book .55s var(--spring); }
-}
-@keyframes nav-book { from { scale: .25 1; } }
+/* Рецепты: при выборе книга плавно раскрывается от корешка, корешок стоит на месте. */
+nav [href='#dishes'][aria-current='page'] svg > :nth-child(2) { animation: nav-book .8s var(--ease); }
+@keyframes nav-book { from { scale: .08 1; opacity: .4; } 55% { opacity: 1; } }
 
 /* Список всех рецептов: заголовок с поиском справа, фильтры по типу. */
 .title-row { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); min-height: 48px; }
@@ -838,3 +840,19 @@ nav [href='#dishes'][aria-current='page'] svg > :nth-child(1) { animation: nav-r
 :is(.facts, .chips-info) .dairy svg { color: var(--i-dairy); }
 .facts .warn { background: color-mix(in oklab, var(--danger) 14%, transparent); color: var(--danger); }
 .facts .warn.maybe { background: none; outline: 1px dashed var(--danger); outline-offset: -1px; }
+
+/* Карточка блюда как в журнале: фото сверху во всю ширину, текст под ним, полоса приёма идёт по верхнему краю. */
+.meals .dish, .meals .dish:has(> div) {
+  grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 1fr; align-items: stretch; gap: 0;
+  padding: 0; overflow: clip; min-block-size: 0;
+}
+.meals .dish > .art, .meals .dish:has(> div) > .art { order: -1; inline-size: 100%; block-size: auto; aspect-ratio: 2 / 1; border-radius: 0; }
+.meals .dish > div { padding: var(--space-4); align-self: start; }
+.meals .dish[data-slot]::before { inline-size: 200%; block-size: 5px; z-index: 1; background: linear-gradient(90deg, var(--mark), var(--tint-1, var(--mark)), var(--tint-2, var(--mark)), var(--mark), var(--tint-1, var(--mark)), var(--tint-2, var(--mark)), var(--mark)); }
+@media (prefers-reduced-motion: no-preference) { .meals .dish[data-tinted]::before { animation-name: tint-flow-x; } }
+@keyframes tint-flow-x { to { translate: -50% 0; } }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) { .meals .dish:has(> div):hover .art { scale: 1.04; } }
+@media (min-width: 900px) {
+  .meals { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+  .meals .dish > .art, .meals .dish:has(> div) > .art { aspect-ratio: 3 / 2; }
+}

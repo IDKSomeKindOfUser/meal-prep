@@ -2,13 +2,13 @@
 name: Рыночный прилавок
 description: Меню недели как прилавок, где у каждого приёма пищи свой цвет
 colors:
-  ground: "#f5f5ef"
+  ground: "#f7f2ec"
   surface: "#ffffff"
-  ink: "#1d2a22"
-  muted: "#56635a"
-  line: "#d6dbd0"
-  control: "#6b8073"
-  accent: "#8c1d52"
+  ink: "#2a1f1a"
+  muted: "#66574e"
+  line: "#e3d8cd"
+  control: "#8a7468"
+  accent: "#b23c17"
   on-accent: "#ffffff"
   selected: "#0f5b3a"
   on-selected: "#ffffff"
@@ -21,14 +21,14 @@ colors:
   on-dinner: "#ffffff"
   snack: "#a3336a"
   on-snack: "#ffffff"
-  ground-dark: "#0e1a13"
-  surface-dark: "#18271e"
-  ink-dark: "#eaf3e4"
-  muted-dark: "#a9bcaa"
-  line-dark: "#33463a"
-  control-dark: "#7c9485"
-  accent-dark: "#f2a3c7"
-  on-accent-dark: "#3b0a22"
+  ground-dark: "#15110f"
+  surface-dark: "#221c19"
+  ink-dark: "#f3ebe4"
+  muted-dark: "#b0a59c"
+  line-dark: "#362e2a"
+  control-dark: "#8f8178"
+  accent-dark: "#ff8a65"
+  on-accent-dark: "#3a1206"
   selected-dark: "#f7d84a"
   on-selected-dark: "#3a2c00"
   danger-dark: "#ffb0a6"
@@ -42,14 +42,14 @@ colors:
   on-snack-dark: "#ffe0ee"
 typography:
   title:
-    fontFamily: Sofia Sans Variable
+    fontFamily: Playfair Display Variable
     fontSize: 30px
-    fontWeight: 800
+    fontWeight: 700
     lineHeight: 1.1
   heading:
-    fontFamily: Sofia Sans Variable
+    fontFamily: Playfair Display Variable
     fontSize: 20px
-    fontWeight: 800
+    fontWeight: 700
     lineHeight: 1.12
   body:
     fontFamily: Sofia Sans Variable
@@ -98,14 +98,14 @@ components:
 
 | Токен | Светлая | Тёмная | Где |
 |---|---|---|---|
-| ground | #f5f5ef | #111312 | фон страницы |
-| surface | #ffffff | #1c1f1d | карточка блюда, поле ввода |
-| ink | #1d2a22 | #ecece6 | основной текст |
-| muted | #56635a | #a3a8a2 | второстепенный текст |
-| line | #d6dbd0 | #2d312e | разделители |
-| control | #6b8073 | #7c8a81 | граница поля ввода |
-| accent | #8c1d52 | #f2a3c7 | главная кнопка, активный пункт, фокус |
-| on-accent | #ffffff | #3b0a22 | текст на accent |
+| ground | #f7f2ec | #15110f | фон страницы |
+| surface | #ffffff | #221c19 | карточка блюда, поле ввода |
+| ink | #2a1f1a | #f3ebe4 | основной текст |
+| muted | #66574e | #b0a59c | второстепенный текст |
+| line | #e3d8cd | #362e2a | разделители |
+| control | #8a7468 | #8f8178 | граница поля ввода |
+| accent | #b23c17 | #ff8a65 | главная кнопка, активный пункт, фокус |
+| on-accent | #ffffff | #3a1206 | текст на accent |
 | selected | #0f5b3a | #f7d84a | выбранный день |
 | on-selected | #ffffff | #3a2c00 | текст на selected |
 | danger | #a8201a | #ffb0a6 | нехватка денег, ошибка |
@@ -124,7 +124,7 @@ components:
 
 ## Typography
 
-Sofia Sans, один шрифт на весь сайт, файлы хранятся в проекте. Заголовок экрана 30px/800, название блюда и раздела 20px/800, текст 16px/400, подписи 14px. Числа табличные (`tabular-nums`).
+Два шрифта, файлы хранятся в проекте. Заголовки (h1–h3) набраны Playfair Display с засечками, 700: заголовок экрана 30px, название блюда и раздела 20px. Мелкие заголовки панелей и всё остальное набраны Sofia Sans: текст 16px/400, подписи 14px. Числа табличные (`tabular-nums`).
 
 ## Layout
 
@@ -144,7 +144,7 @@ Sofia Sans, один шрифт на весь сайт, файлы хранят�
 
 - Знак Prepka: буква P, у которой петля сделана тарелкой, в тарелке жёлтая точка. Ножка и тарелка цветом accent, точка цветом breakfast, центр тарелки прозрачный. Сетка 32×32, исходник `public/icon.svg` (сам меняет цвета под тёмную тему браузера). В интерфейсе `.brand`: знак 28px и слово Prepka (text-l, 800). На телефоне строка над экраном, на компьютере закреплён над левым меню. PNG-иконки делает `python scripts/icons.py`.
 
-- Карточка блюда: слева название, под ним чипы (приём пищи, ккал, белок, минуты) и строка, откуда порция; справа квадратное фото. Первый чип (приём пищи) залит цветом приёма пищи, остальные полупрозрачные цветом текста. Слева полоска 6px того же цвета. Нажимается целиком.
+- Карточка блюда в списках (`.meals`): фото сверху во всю ширину (2:1 на телефоне, 3:2 от 900px), под ним название и чипы (приём пищи, ккал, белок, минуты) и строка, откуда порция. Первый чип залит цветом приёма пищи, остальные полупрозрачные цветом текста. По верхнему краю идёт полоска 5px цветом приёма и оттенков блюда. От 900px карточки стоят сеткой по 260px и шире. Нажимается целиком. Шапка блюда (`.hero`) сохраняет полоску слева.
 - Экран блюда: фото 4:3 сверху, на компьютере справа.
 - Экран готовки: нейтральные карточки с полоской и чипом приёма пищи, миниатюра 72px, чипы и полоска времени (доля от самого долгого блюда).
 - Навигация: активный пункт подсвечен фоном и полосой 4px сверху.

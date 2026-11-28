@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { BackLink } from './parts'
-import { Check, ChefHat, Clock, Pencil, Refrigerator, ShoppingBasket, TriangleAlert } from 'lucide-react'
+import { Check, ChefHat, Clock, Pencil, Refrigerator, ShoppingBasket, Snowflake, TriangleAlert } from 'lucide-react'
 import { recipeAllergens } from '../data'
 import type { Report } from '../planner'
 import { frozenDays, type Block } from '../planner/schedule'
@@ -80,8 +80,9 @@ export function DishScreen({ plan, report, catalog, isOwn, block: index, slot, o
         </dl>
         <DishPicture recipe={recipe} />
         <ul className="chips-info" aria-label="Коротко о блюде">
-          <li><Clock aria-hidden="true" />около {recipe.minutes}&nbsp;мин.</li>
-          <li><Refrigerator aria-hidden="true" />в холодильнике {daysCount(recipe.keepDays)}</li>
+          <li className="mins"><Clock aria-hidden="true" />около {recipe.minutes}&nbsp;мин.</li>
+          <li className="keep"><Refrigerator aria-hidden="true" />в холодильнике {daysCount(recipe.keepDays)}</li>
+          {recipe.freezable && <li className="cold"><Snowflake aria-hidden="true" />можно заморозить</li>}
           {contains.length > 0 && <li className="warnchip"><TriangleAlert aria-hidden="true" />{names(contains)}</li>}
           {may.length > 0 && <li className="warnchip maybe"><TriangleAlert aria-hidden="true" />возможно, {names(may)}</li>}
         </ul>
