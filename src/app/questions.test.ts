@@ -23,6 +23,22 @@ test('"without dairy" never adds milk twice and "any effort" lifts the time limi
   expect(s.allergens).toEqual(['milk'])
   expect(s.maxMinutes).toBeNull()
 })
+test('answers for one cooking leave the wishes of the others alone', () => {
+  const rice = { meats: [], kinds: ['rice' as const] }
+  const fish = { ...answersFrom(undefined), meats: ['fish' as const] }
+  const start = { ...settings, prefer: rice, preferAt: { 3: { meats: ['beef' as const], kinds: [] } } }
+  const part = applyToSettings(start, fish, 0)
+  expect(part.prefer).toEqual(rice)
+  expect(part.preferAt).toEqual({ 3: { meats: ['beef'], kinds: [] }, 0: { meats: ['fish'], kinds: [] } })
+  // Nothing chosen for one cooking still means "no wishes" there, not "the common ones".
+  expect(applyToSettings(start, answersFrom(undefined), 0).preferAt?.[0]).toEqual({ meats: [], kinds: [] })
+  // A whole new menu starts over.
+  const whole = applyToSettings(start, fish)
+  expect(whole.prefer).toEqual({ meats: ['fish'], kinds: [] })
+  expect(whole.preferAt).toBeUndefined()
+  // The form keeps the common wishes when one cooking changes.
+  expect(applyToForm({ ...form, prefer: rice }, fish, 0).prefer).toEqual(rice)
+})
 test('a broken saved wish is dropped', () => {
   const state = parseState(JSON.stringify({ version: 1, form: { ...form, prefer: { meats: ['dragon'], kinds: [] } } }))
   expect(state.form.prefer).toEqual({ meats: [], kinds: [] })

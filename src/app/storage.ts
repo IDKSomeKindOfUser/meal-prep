@@ -74,6 +74,8 @@ function parsePlan(saved: unknown, catalog: Catalog): SavedPlan | null {
     if (!Array.isArray(plan.checked) || !plan.checked.every((x) => typeof x === 'string')) delete plan.checked
     if (!Array.isArray(plan.cooked) || !plan.cooked.every((x) => typeof x === 'string')) delete plan.cooked
     if (plan.settings.prefer !== undefined && !isPrefer(plan.settings.prefer)) delete plan.settings.prefer
+    const at = plan.settings.preferAt as Record<string, unknown> | undefined
+    if (at !== undefined && !(typeof at === 'object' && at !== null && Object.values(at).every(isPrefer))) delete plan.settings.preferAt
     // Throws when the menu does not match the schedule or the recipes.
     const report = describeMenu(plan.menu, plan.settings, catalog)
     return Number.isFinite(report.shopping.total) && report.days.every((d) => Number.isFinite(d.kcal)) ? plan : null

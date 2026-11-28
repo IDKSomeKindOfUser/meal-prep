@@ -329,7 +329,7 @@ export function App() {
             <RebuildDialog budget={plan.settings.budget !== null}
               milk={plan.settings.allergens.includes('milk') ? 'banned' : canDropMilk(plan.settings, catalog) ? 'ok' : 'impossible'} onClose={() => setAsking(false)}
               cookDay={rebuildCookDay === undefined ? undefined : addDays(plan.start, rebuildCookDay)}
-              onBuild={(answers) => void build(applyToSettings(plan.settings, answers), start, applyToForm(state.form, answers), rebuildCookDay)} />
+              onBuild={(answers) => void build(applyToSettings(plan.settings, answers, rebuildCookDay), start, applyToForm(state.form, answers, rebuildCookDay), rebuildCookDay)} />
           )}
           </div>
           {screen === 'settings' ? <SettingsSide plan={plan} />

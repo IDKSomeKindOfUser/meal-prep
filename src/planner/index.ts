@@ -1,7 +1,7 @@
 import { getIngredient, getPrice, recipes } from '../data'
 import type { Recipe } from '../data/types'
 import { candidates, explainMissing, type Missing } from './candidates'
-import { preference } from './prefer'
+import { preference, wishesFor } from './prefer'
 import { describeMenu, type Menu, type Report } from './report'
 import { blocks } from './schedule'
 import { randomFrom, search, tasteFrom, type Picks } from './search'
@@ -62,7 +62,7 @@ export function planMenu(
 
   const random = randomFrom(seed)
   const liking = tasteFrom(randomFrom(seed ^ 0x5eed))
-  const wish = preference(settings.prefer)
+  const wish = preference(wishesFor(settings, onlyCookDay))
   // The search lowers the score, so a wished dish counts below zero.
   const taste = (r: Recipe) => liking(r) - wish(r)
   const before = previous?.length === schedule.length ? previous.map((b) => SLOTS.map((s) => b[s])) : undefined
@@ -127,7 +127,7 @@ export function alternatives(
   const miss = (a: Alternative) =>
     Math.abs(a.kcal / settings.kcal - 1) + Math.max(0, 1 - a.protein / Math.max(1, settings.protein))
   // Блюда по пожеланиям из «Собрать меню заново» идут первыми.
-  const wish = preference(settings.prefer)
+  const wish = preference(wishesFor(settings, block.cookDay))
   return candidates(slot, block, settings, catalog)
     .filter((r) => r.id !== menu[blockIndex]![slot])
     .map((recipe) => {

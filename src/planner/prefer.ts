@@ -48,6 +48,16 @@ export function kindsOf(recipe: Recipe): Kind[] {
 /** How much a matching dish is preferred; enough to tip the choice, not to break the norm or the budget. */
 const BONUS = 3
 
+/**
+ * The wishes that count for one cooking: its own when it was rebuilt alone, otherwise the common ones.
+ * Without `cookDay` only the common ones are meant (the whole menu is being built).
+ */
+export function wishesFor(
+  settings: { prefer?: Prefer; preferAt?: Record<number, Prefer> }, cookDay?: number,
+): Prefer | undefined {
+  return cookDay === undefined ? settings.prefer : settings.preferAt?.[cookDay] ?? settings.prefer
+}
+
 /** A score the search subtracts: higher for dishes that match the wishes. */
 export function preference(prefer: Prefer | undefined): (recipe: Recipe) => number {
   if (!prefer || (prefer.meats.length === 0 && prefer.kinds.length === 0)) return () => 0

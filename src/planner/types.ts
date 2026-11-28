@@ -37,6 +37,8 @@ export interface Settings extends Limits {
   maxMinutes: number | null
   /** Soft wishes asked before a rebuild. Absent in plans saved before they existed. */
   prefer?: Prefer
+  /** Wishes of a single cooking (by its day) asked when only that cooking was rebuilt; they win over `prefer` there. */
+  preferAt?: Record<number, Prefer>
 }
 
 export const SLOTS = ['breakfast', 'lunch', 'dinner', 'snack'] as const

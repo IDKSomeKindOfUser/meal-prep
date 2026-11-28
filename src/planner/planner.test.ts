@@ -144,6 +144,16 @@ test('a replacement puts wished dishes first', () => {
   expect(wished.indexOf(false)).toBeGreaterThan(wished.lastIndexOf(true))
 })
 
+test('wishes of one cooking do not mark dishes of another', () => {
+  const base = plan()
+  const days = base.report.blocks.map((b) => b.block.cookDay)
+  const settings: Settings = { ...usual, preferAt: { [days[0]!]: { meats: [], kinds: ['rice'] } } }
+  const first = alternatives(base.menu, 0, 'lunch', settings, catalog)
+  const second = alternatives(base.menu, 1, 'lunch', settings, catalog)
+  expect(first.some((o) => o.wished)).toBe(true)
+  expect(second.some((o) => o.wished)).toBe(false)
+})
+
 describe('when nothing fits', () => {
   test('says which meal and which limit', () => {
     const result = planMenu({ ...usual, tools: [] }, catalog, 1)

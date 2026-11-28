@@ -25,22 +25,25 @@ const minutes = (a: Answers, now: number | null) => (a.effort === 'simple' ? SIM
 const allergens = <T extends string>(a: Answers, now: T[]) =>
   a.dairy === 'none' && !now.includes('milk' as T) ? [...now, 'milk' as T] : now
 
-/** Answers never lift a ban: "without dairy" only adds one, the settings screen removes it. */
-export function applyToSettings(settings: Settings, a: Answers): Settings {
-  const { prefer: _, ...rest } = settings
+/**
+ * Answers never lift a ban: "without dairy" only adds one, the settings screen removes it.
+ * `cookDay`: only that cooking is rebuilt, so its wishes are kept apart and the others stay as they were.
+ */
+export function applyToSettings(settings: Settings, a: Answers, cookDay?: number): Settings {
+  const common = { maxMinutes: minutes(a, settings.maxMinutes), allergens: allergens(a, settings.allergens) }
+  if (cookDay !== undefined)
+    return { ...settings, ...common, preferAt: { ...settings.preferAt, [cookDay]: { meats: [...a.meats], kinds: [...a.kinds] } } }
+  const { prefer: _, preferAt: __, ...rest } = settings
   const prefer = preferOf(a)
-  return {
-    ...rest, maxMinutes: minutes(a, settings.maxMinutes), allergens: allergens(a, settings.allergens),
-    ...(prefer && { prefer }),
-  }
+  return { ...rest, ...common, ...(prefer && { prefer }) }
 }
 
-export function applyToForm(form: Form, a: Answers): Form {
+export function applyToForm(form: Form, a: Answers, cookDay?: number): Form {
   const now = form.maxMinutes === '' ? null : Number(form.maxMinutes)
   const next = minutes(a, now)
   return {
     ...form, maxMinutes: next === null ? '' : String(next), allergens: allergens(a, form.allergens),
-    prefer: { meats: [...a.meats], kinds: [...a.kinds] },
+    ...(cookDay === undefined && { prefer: { meats: [...a.meats], kinds: [...a.kinds] } }),
   }
 }
 
