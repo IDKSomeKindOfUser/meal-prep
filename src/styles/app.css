@@ -51,7 +51,7 @@ body::after {
 /* Навигация: снизу на телефоне, панель слева на компьютере. Активный пункт — таблетка. */
 nav {
   position: fixed; z-index: 3; inset: auto 0 0; display: grid; grid-auto-flow: column; grid-auto-columns: 1fr;
-  background: var(--glass); backdrop-filter: blur(18px) saturate(1.4); border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom);
+  background: color-mix(in oklab, var(--surface) 92%, transparent); border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom);
 }
 nav a { min-height: 60px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; text-decoration: none; color: inherit; font-size: var(--text-s); font-weight: 600; }
 nav svg { width: 56px; height: 30px; padding: 3px 16px; border-radius: 999px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; transition: background-color 0.2s var(--ease); }
@@ -141,7 +141,7 @@ nav [aria-current] svg { background: color-mix(in oklab, transparent, var(--acce
 /* Шапка блюда: крупное плотное название, подпись капсом с точкой цвета приёма, цифры БЖУ как табло. */
 .hero h1 { font-size: clamp(1.75rem, 1.25rem + 1.8vw, 2.5rem); font-weight: 800; line-height: 1.08; letter-spacing: -0.01em; overflow-wrap: break-word; hyphens: auto; }
 .hero p { margin-top: var(--space-2); }
-.hero h1 + p { display: flex; align-items: center; gap: var(--space-2); margin-top: var(--space-3); color: var(--muted); font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+.hero h1 + p { display: flex; align-items: center; gap: var(--space-2); margin-top: var(--space-3); color: var(--muted); font-size: var(--text-s); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
 .hero h1 + p::before { content: ''; flex: none; inline-size: 8px; block-size: 8px; border-radius: 50%; background: var(--mark); }
 .macros { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: var(--space-4) 0 0; padding-block: var(--space-3); border-block: 1px solid var(--line); }
 .macros div { display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: 2px; padding-inline: clamp(var(--space-2), 2vw, var(--space-3)); }
@@ -149,7 +149,7 @@ nav [aria-current] svg { background: color-mix(in oklab, transparent, var(--acce
 .macros div + div { border-inline-start: 1px solid var(--line); }
 .macros dd { margin: 0; font-size: clamp(1.375rem, 1.1rem + 1vw, 1.875rem); font-weight: 900; line-height: 1; letter-spacing: -0.02em; }
 .macros div:first-child dd { color: var(--accent); }
-.macros dt { color: var(--muted); font-size: clamp(0.6875rem, 0.6rem + 0.4vw, 0.75rem); font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+.macros dt { color: var(--muted); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
 .about { display: grid; gap: var(--space-2); margin-top: var(--space-4); padding-top: var(--space-4); border-top: 1px solid var(--line); }
 .about div { display: grid; grid-template-columns: 6.25em minmax(0, 1fr); gap: var(--space-3); }
 .about dt { color: var(--muted); }
@@ -210,6 +210,8 @@ nav [aria-current] svg { background: color-mix(in oklab, transparent, var(--acce
 .facts b { font-weight: 700; }
 .facts .up { border-color: var(--selected); background: color-mix(in oklab, var(--selected) 16%, var(--surface)); }
 .facts .down { border-color: var(--danger); background: color-mix(in oklab, var(--danger) 12%, var(--surface)); }
+.facts .up::before { content: '✓ ' / 'лучше: '; }
+.facts .down::before { content: '! ' / 'хуже: '; }
 .options .used { display: inline-block; margin-top: var(--space-2); padding: 2px var(--space-2); border-radius: var(--radius-s); background: var(--accent); color: var(--on-accent); font-weight: 600; }
 @media (width < 480px) {
   .options li:has(.thumb) { grid-template-columns: auto minmax(0, 1fr); }
@@ -329,7 +331,7 @@ fieldset .hint, fieldset .warn, .field .hint { margin-top: var(--space-2); }
 }
 
 /* Покупки и готовка */
-.cookings a { display: block; color: inherit; text-decoration: none; margin: calc(-1 * var(--space-3)); padding: var(--space-3); border-radius: var(--radius-m); min-height: 48px; }
+.cookings a { display: block; color: inherit; text-decoration: none; margin: calc(-1 * var(--space-3)); padding: var(--space-3); border-radius: var(--radius-card); min-height: 48px; }
 @media (hover: hover) { .cookings a:hover { background: color-mix(in oklab, var(--surface), var(--ink) 6%); } }
 .total { margin-top: var(--space-3); max-width: 520px; }
 .total b { font-size: var(--text-l); }
@@ -364,7 +366,7 @@ section:has(> .buy) { max-width: 720px; }
 .cook .when { margin: 0 0 var(--space-1); color: var(--muted); font-size: var(--text-s); font-weight: 700; }
 .cook > li { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--space-4); align-items: center; padding: var(--space-3); border-radius: var(--radius-card); }
 .thumb .art { width: 72px; height: 72px; }
-.cook a { display: block; margin-bottom: var(--space-2); color: inherit; font-size: var(--text-l); font-weight: 800; line-height: 1.12; text-decoration: none; overflow-wrap: break-word; hyphens: auto; }
+.cook a { display: block; margin-bottom: var(--space-2); color: inherit; font-family: var(--font-display); font-size: var(--text-l); font-weight: 700; line-height: 1.12; text-decoration: none; overflow-wrap: break-word; hyphens: auto; }
 .cook a::after { content: ''; position: absolute; inset: 0; border-radius: inherit; }
 .cook a:focus-visible { outline: none; }
 .cook a:focus-visible::after { outline: 3px solid currentColor; outline-offset: -6px; }
@@ -522,7 +524,7 @@ html:has(dialog[open]) { overflow: hidden; }
 .wkkcal { margin: 0; font-weight: 700; text-align: right; }
 .wkkcal small { display: block; font-weight: 400; color: var(--muted); }
 .wkday .wkfor { display: block; font-weight: 400; }
-.wkname { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; margin-top: var(--space-1); font-size: 0.75rem; line-height: 1.25; color: var(--ink); text-wrap: pretty; overflow-wrap: anywhere; hyphens: auto; }
+.wkname { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; margin-top: var(--space-1); font-size: 0.75rem; line-height: 1.25; color: var(--ink); text-wrap: pretty; overflow-wrap: break-word; hyphens: auto; }
 .wkdishes .art { transition: scale 0.3s var(--ease); }
 @media (max-width: 899px) {
   .wkrow { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: 'day kcal' 'dishes dishes'; row-gap: var(--space-2); }
@@ -542,6 +544,8 @@ html:has(dialog[open]) { overflow: hidden; }
   .wkkcal { grid-area: kcal; align-self: end; padding: 0 var(--space-2) var(--space-1); text-align: start; }
   .wkkcal small:first-of-type { display: inline; }
   .wkdishes { grid-area: dishes; max-width: none; align-self: center; }
+}
+@media (min-width: 1180px) {
   .wkdishes a { display: grid; grid-template-columns: 72px minmax(0, 1fr); align-items: center; gap: var(--space-3); }
   .wkdishes .art { width: 72px; }
   .wkname { margin-top: 0; -webkit-line-clamp: 3; line-clamp: 3; font-size: var(--text-s); }
@@ -627,7 +631,7 @@ html:has(dialog[open]) { overflow: hidden; }
 button.tonal[aria-pressed="true"] { background: var(--accent); color: var(--on-accent, #fff); }
 
 /* Скелетон, пока фото грузится. */
-.art.photo.loading { background: linear-gradient(100deg, var(--surface) 30%, color-mix(in oklab, var(--muted) 18%, var(--surface)) 50%, var(--surface) 70%) 0 0 / 300% 100%; animation: shimmer 1.4s linear infinite; }
+.art.photo.loading { background: linear-gradient(100deg, var(--surface) 30%, color-mix(in oklab, var(--muted) 18%, var(--surface)) 50%, var(--surface) 70%) 0 0 / 300% 100%; animation: shimmer 1.4s linear 3; }
 @keyframes shimmer { to { background-position: -300% 0; } }
 @media (prefers-reduced-motion: reduce) { .art.photo.loading { animation: none; } }
 .empty-art { inline-size: 56px; block-size: 56px; color: var(--accent); }
@@ -810,23 +814,9 @@ nav [href='#dishes'][aria-current='page'] svg > :nth-child(2) { animation: nav-b
   content: ''; position: absolute; inset-block-start: 0; inset-inline-start: 0; inline-size: 6px; block-size: 200%; pointer-events: none;
   background: linear-gradient(var(--mark), var(--tint-1, var(--mark)), var(--tint-2, var(--mark)), var(--mark), var(--tint-1, var(--mark)), var(--tint-2, var(--mark)), var(--mark));
 }
-@media (prefers-reduced-motion: no-preference) {
-  .dish[data-tinted]::before { animation: tint-flow 9s linear infinite; }
-}
-@keyframes tint-flow { to { translate: 0 -50%; } }
 
-/* Новое блюдо: пастельная радужная рамка медленно бежит по кругу. */
-@property --spin { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
-.dish[data-new]::after {
-  content: ''; position: absolute; inset: 0; z-index: 2; border-radius: inherit; padding: 2.5px; pointer-events: none;
-  background: conic-gradient(from var(--spin), #e8b4c4, #f0c9b0, #e6d9ae, #b8d8c4, #b4cde4, #cbbde8, #e8b4c4);
-  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
-}
-@media (prefers-reduced-motion: no-preference) { .dish[data-new]::after { animation: spin 5s linear infinite; } }
-@keyframes spin { to { --spin: 360deg; } }
-/* У нового блюда только рамка: полоса приёма слева спорила бы с ней. */
-.dish[data-new]::before { display: none; }
-.facts .new { background: linear-gradient(90deg, #e8b4c4, #f0c9b0, #e6d9ae, #b8d8c4, #b4cde4, #cbbde8); color: #1d1a24; }
+/* Новое блюдо: коралловый чип из палитры. */
+.facts .new { background: color-mix(in oklab, var(--accent) 16%, var(--surface)); color: var(--accent); }
 
 /* Чипы с цветными иконками: ккал, белок, время, хранение, молоко, аллергены. */
 .facts .ico { display: inline-flex; align-items: center; gap: 4px; }
@@ -862,13 +852,15 @@ nav [href='#dishes'][aria-current='page'] svg > :nth-child(2) { animation: nav-b
 .go:active:not(:disabled) { box-shadow: inset 0 -1px var(--edge); translate: 0 2px; }
 .go:disabled { box-shadow: none; }
 @media (hover: hover) { .go:hover:not(:disabled) { box-shadow: inset 0 -4px var(--edge), 0 0 0 3px color-mix(in oklab, var(--accent) 30%, transparent); } }
-:is(.textbtn, .tonal) {
-  border-radius: var(--radius-button); background: var(--surface); color: var(--ink);
+:is(.textbtn, .tonal, button.link, .priced button) {
+  border: 0; border-radius: var(--radius-button); background: var(--surface); color: var(--ink);
   box-shadow: inset 0 0 0 1px var(--line), inset 0 -3px var(--line);
 }
-:is(.textbtn, .tonal):active:not(:disabled) { box-shadow: inset 0 0 0 1px var(--line), inset 0 -1px var(--line); translate: 0 1px; }
-@media (hover: hover) { :is(.textbtn:not(:disabled), .tonal:not([aria-pressed='true'])):hover { background: color-mix(in oklab, var(--accent) 10%, var(--surface)); } }
+:is(.textbtn, .tonal, button.link, .priced button):active:not(:disabled) { box-shadow: inset 0 0 0 1px var(--line), inset 0 -1px var(--line); translate: 0 1px; }
+@media (hover: hover) { :is(.textbtn:not(:disabled), .tonal:not([aria-pressed='true']), button.link, .priced button):hover { background: color-mix(in oklab, var(--accent) 10%, var(--surface)); } }
 .textbtn:disabled { box-shadow: none; }
+/* В одном ряду с главной кнопкой второстепенные той же высоты. */
+.actions > :is(.tonal, .textbtn) { min-height: 52px; }
 /* Чипы: невыбранный стоит на краю, выбранный утоплен в коралловую подложку с рамкой. */
 .chip span { border-color: var(--line); box-shadow: inset 0 -2px var(--line); }
 .chip :checked + span { background: color-mix(in oklab, var(--accent) 16%, var(--surface)); border-color: var(--accent); color: var(--accent); box-shadow: inset 0 0 0 .5px var(--accent); }

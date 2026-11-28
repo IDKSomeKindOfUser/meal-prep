@@ -60,3 +60,16 @@ export function amount(product: Ingredient, grams: number): string {
   if (id === 'garlic') return count(pieces, 'зубчик', 'зубчика', 'зубчиков')
   return `${num(pieces)} шт. (${num(grams)} г)`
 }
+
+/** How a swap changes a day: `up` is better, `down` is worse. Calories are better closer to the goal either way. */
+export function goalTone(before: number, after: number, goal: number): '' | 'up' | 'down' {
+  if (after === before) return ''
+  return Math.abs(after - goal) < Math.abs(before - goal) ? 'up' : 'down'
+}
+
+/** Protein above the goal does no harm: only a growing shortfall is worse, only a shrinking one is better. */
+export function proteinTone(before: number, after: number, goal: number): '' | 'up' | 'down' {
+  if (after < before) return after < goal ? 'down' : ''
+  if (after > before) return before < goal ? 'up' : ''
+  return ''
+}
